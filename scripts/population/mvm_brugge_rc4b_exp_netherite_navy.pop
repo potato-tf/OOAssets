@@ -5,8 +5,8 @@
 #base robot_standard.pop
 #base robot_lyney.pop
 
-// WAVE 1 Current Money: 350$
-// WAVE 2 Current Money: 350$ + 800$ + 100$ Bonus = 1250$ (No Bonus: 1150$)
+// WAVE 1 Current Money: 400$
+// WAVE 2 Current Money: 400$ + 750$ + 100$ Bonus = 1250$ (No Bonus: 1150$)
 // WAVE 3 Current Money: 1250$ + 750$ + 100$ Bonus = 2100$ (No Bonus: 1900$)
 // WAVE 4 Current Money: 2100$ + 700$ + 100$ Bonus = 2900$ (No Bonus: 2600$)
 // WAVE 5 Current Money: 2900$ + 500$ + 100$ Bonus = 3500$ (No Bonus: 3100$)
@@ -16,7 +16,7 @@
 
 WaveSchedule
 {
-	StartingCurrency 350
+	StartingCurrency 400
 	RespawnWaveTime 4
 	CanBotsAttackWhileInSpawnRoom no
 	
@@ -53,7 +53,7 @@ WaveSchedule
 			OriginalItemName "The Gunboats"
 			"rocket jump damage reduction" 1
 			"no double jump" 1
-			"dmg taken increased" 0.65
+			"dmg taken increased" 0.64
 			"provide on active" 1
 		}
 		
@@ -89,6 +89,7 @@ WaveSchedule
 			"cannot be upgraded" 1
 			"passive reload" 2
 			"ragdolls become ash" 1
+			"projectile penetration" 1
 			//"mult crit dmg" 0.3334
 		}
 		
@@ -171,6 +172,21 @@ WaveSchedule
 	
 	PointTemplates
 	{
+		MissionName
+		{
+			logic_relay
+			{
+				"targetname" "name"
+				"OnTrigger" "tf_objective_resource,$SetClientProp$m_iszMvMPopfileName,(Expert) Netherite Navy,0,-1"
+			}
+			OnSpawnOutput
+			{
+				Target "name"
+				Action "trigger"
+				Delay 0
+			}
+		}
+	
 		SmallKits
         {
             item_healthkit_small
@@ -313,6 +329,7 @@ WaveSchedule
 	}
 
 	SpawnTemplate BluBotSpawns
+	SpawnTemplate MissionName
 	SpawnTemplate Annotations
 	SpawnTemplate
 	{
@@ -624,7 +641,7 @@ WaveSchedule
 		}
 	}
 	
-	//WAVE 1 (800$)
+	//WAVE 1 (750$)
 	Wave
 	{
 		WaitWhenDone	65
@@ -650,11 +667,6 @@ WaveSchedule
 				EntFire(`bombpath_right_arrows`, `TurnOff`)
 				EntFire(`bombpath_left`, `Trigger`)
 				ClientPrint(null,3,`\x08FF54F1FFThis mission, The bomb will take a unique path for each wave!`)
-				//local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				//if (ent)
-				//{
-					//NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Netherite Navy (Expert)`)
-				//}
 			"
 		}
 		
@@ -707,7 +719,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 15
-			TotalCurrency 150
+			TotalCurrency 100
 			
 			TFBot
 			{
@@ -2408,10 +2420,10 @@ WaveSchedule
 			Action Trigger
 		}
 		DoneOutput
-		{
-			Target wave_finished_relay
-			Action Trigger
-		}
+        {
+            Target wave_finished_relay
+            Action Trigger
+        }
 		InitWaveOutput
 		{
 			Target wave_start_relay
@@ -2752,7 +2764,7 @@ WaveSchedule
 					tag "pair_pyrosoldier1_carrier"
 					CharacterAttributes
 					{
-						"move speed bonus"	0.37
+						"move speed bonus"	0.4
 					}
 				}
 				TFBot
@@ -2791,7 +2803,7 @@ WaveSchedule
 					tag "pair_pyrosoldier1_carrier"
 					CharacterAttributes
 					{
-						"move speed bonus"	0.37
+						"move speed bonus"	0.4
 					}
 				}
 				TFBot
@@ -2830,7 +2842,7 @@ WaveSchedule
 					tag "pair_pyrosoldier1_carrier"
 					CharacterAttributes
 					{
-						"move speed bonus"	0.37
+						"move speed bonus"	0.4
 					}
 				}
 				TFBot
