@@ -66,11 +66,11 @@ local pivotKeywords = {
             str += format("%s ", s[i])
 
         //setting this netprop directly will break the map rotation for rafmod/sigmod servers, use ClientProp instead to fake it
-        this.IsSigmod() ? EntFireByHandle(objRes, "$SetClientProp$m_iszMvMPopfileName", format("%s", str), delay, null, null) : EntFireByHandle(objRes, "RunScriptCode", format("NetProps.SetPropString(self, `m_iszMvMPopfileName`, `%s`)", str), delay, null, null)
+        this.IsSigmod() ? EntFireByHandle(objRes, "$SetClientProp$m_iszMvMPopfileName", format("%s", str), -1, null, null) : EntFireByHandle(objRes, "RunScriptCode", format("NetProps.SetPropString(self, `m_iszMvMPopfileName`, `%s`)", str), -1, null, null)
     }
     Events = {
         function OnGameEvent_teamplay_round_start(_) {
-            this.Format()
+            EntFire("worldspawn", "RunScriptCode", "__NameFormat.Format()", delay)
         }
     }
 }
