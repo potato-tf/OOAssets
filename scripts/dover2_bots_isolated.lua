@@ -217,7 +217,7 @@ AddEventCallback('player_death', function(event)
 end)
 
 function OnWaveInit(wave)
-    _TimeConstraintOnWaveInit(wave)
+    -- _TimeConstraintOnWaveInit(wave)
     waiting = {
         Carriers = {},
         Carried = {},
