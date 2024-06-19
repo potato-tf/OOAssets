@@ -23,6 +23,9 @@ WaveSchedule
 	CanBotsAttackWhileInSpawnRoom no
 	WaveStartCountdown 3
 
+	// Add to download list
+	PrecacheSound "clement_rillet.mp3" [$SIGSEGV]
+
 	// Missions
 	
 	Mission // Sentrybuster
