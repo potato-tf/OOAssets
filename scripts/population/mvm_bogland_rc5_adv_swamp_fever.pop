@@ -110,7 +110,7 @@ HelloEverybodyMyNameIsMarkiplier
 			{
 				TFBot
 				{
-				ClassIcon demo_spammer
+					ClassIcon demo_rapid_giant
 					Template	T_TFBot_Giant_Demoman
 				}
 			}
@@ -196,7 +196,7 @@ HelloEverybodyMyNameIsMarkiplier
 			Where	spawnbot_left
 			TFBot
 			{
-				ClassIcon	soldier_bison
+				ClassIcon	soldier_bison_b
 				Health	200
 				Name	"Bison Soldier"
 				Class	Soldier
@@ -674,7 +674,7 @@ HelloEverybodyMyNameIsMarkiplier
 			{
 				TFBot
 				{
-				ClassIcon demo_spammer
+					ClassIcon demo_rapid_giant
 					Template	T_TFBot_Giant_Demoman
 				}
 			}
@@ -818,7 +818,7 @@ HelloEverybodyMyNameIsMarkiplier
 			TFBot
 			{
 				Class	Sniper
-				ClassIcon	sniper_jarate_bushwacka
+				ClassIcon	sniper_jarate_bushwacka_nolod
 				Health 25000
 				Name	"Cobra King JFS"
 				WeaponRestrictions MeleeOnly
@@ -949,7 +949,7 @@ HelloEverybodyMyNameIsMarkiplier
 					Template	T_TFBot_Medic_QuickUber
 					Scale	1.25
 					Health	300
-					ClassIcon	medic_uber_armored
+					ClassIcon	medic_uber_armored_nolod
 					Name	"Armored Quick-Uber Medic"
 					Tag	bot_squad_member
 					
@@ -1034,6 +1034,7 @@ HelloEverybodyMyNameIsMarkiplier
 			TFBot
 			{
 				Template	T_TFBot_Heavyweapons_Fist
+				ClassIcon heavy_steelfist_nys_nolod
 			}	
 		}		
 		

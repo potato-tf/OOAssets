@@ -729,7 +729,7 @@ population
 				{
 					Template	T_TFBot_Giant_Soldier
 					Item	"The Cow Mangler 5000"
-					ClassIcon	soldier_mangler
+					ClassIcon	soldier_mangler_nolod
 					Attributes	"HoldFireUntilFullReload"
 					FireWeapon
 					{
@@ -1073,6 +1073,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Heavyweapons_Fist
+				ClassIcon heavy_steelfist_nys_nolod
 			}
 		}
 		WaveSpawn
@@ -1537,7 +1538,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Giant_Heavyweapons_BrassBeast
-				ClassIcon	heavy_brass_nys
+				ClassIcon	heavy_brass_nys_nolod
 			}
 		}
 		WaveSpawn
@@ -1759,6 +1760,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Heavyweapons_Fist
+				ClassIcon heavy_steelfist_nys_nolod
 			}
 		}
 	}

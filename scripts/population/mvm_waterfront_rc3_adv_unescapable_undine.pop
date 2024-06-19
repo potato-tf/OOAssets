@@ -1186,6 +1186,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Heavyweapons_Fist
+				ClassIcon heavy_steelfist_nys_nolod
 			}
 		}
 		
@@ -2075,7 +2076,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Spammer
-				ClassIcon soldier_infinite_giant_crit
+				ClassIcon soldier_infinite_giant_crit_nl
 				Attributes AlwaysCrit
 				CharacterAttributes
 				{

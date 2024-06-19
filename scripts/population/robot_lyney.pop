@@ -201,7 +201,7 @@ WaveSchedule
 		{
 			Class Soldier
 			Name "Charged Soldier"
-			ClassIcon soldier_crit_normal2
+			ClassIcon soldier_crit
 			Skill Expert
 			Item "The Original"
 			Attributes AlwaysCrit
@@ -400,7 +400,7 @@ WaveSchedule
 		{
 			Class Soldier
 			Name "Equalizer Soldier"
-			ClassIcon soldier_equalizer
+			ClassIcon soldier_pickaxe_equalize
 			Skill Expert
 			WeaponRestrictions MeleeOnly
 			Item "The Equalizer"
@@ -415,7 +415,7 @@ WaveSchedule
 		{
 			Class Soldier
 			Name "Escape Plan Soldier"
-			ClassIcon soldier_escape
+			ClassIcon soldier_pickaxe_escape_giant
 			Skill Expert
 			WeaponRestrictions MeleeOnly
 			Item "The Escape Plan"
@@ -650,7 +650,7 @@ WaveSchedule
 		T_TFBot_Demoman_LochNLoad
 		{
 			Class Demoman
-			ClassIcon demo_loch_nys
+			ClassIcon demo_lochload
 			Name "Loch n' Load Demoman"
 			Skill Normal
 			Item "The Loch-n-Load"
@@ -764,7 +764,7 @@ WaveSchedule
 			Class Heavyweapons
 			Name "Steel Manlet"
 			Skill Hard
-			ClassIcon heavy_steelfist
+			ClassIcon heavy_steelfist_nys_nolod
 			WeaponRestrictions MeleeOnly
 			Item "Fists of Steel"
 			Item "The Purity Fist"
@@ -1541,7 +1541,7 @@ WaveSchedule
 			Template T_TFBot_Demoman_Armored
 			Name "Armored Burst Fire Demo"
 			Skill Normal
-			ClassIcon demo_burst_armored_bin
+			ClassIcon demo_burst_armored_bin_nolod
 			WeaponRestrictions PrimaryOnly
 			Attributes HoldFireUntilFullReload
 			Tag bot_giant
@@ -1658,7 +1658,7 @@ WaveSchedule
 			Class Heavyweapons
 			Name "Steel Gauntlet"
 			Skill Hard
-			ClassIcon heavy_steelfist
+			ClassIcon heavy_steelfist_nys_nolod
 			Health 900
 			Scale 1.5
 			WeaponRestrictions MeleeOnly
@@ -1714,7 +1714,7 @@ WaveSchedule
 		{
 			Template T_TFBot_Medic_Armored
 			Name "Armored Uber Medic"
-			ClassIcon medic_uber_armored
+			ClassIcon medic_uber_armored_nolod
 			Skill Normal
 			Attributes SpawnWithFullCharge
 			ItemAttributes
@@ -1736,7 +1736,7 @@ WaveSchedule
 		{
 			Template T_TFBot_Medic_Armored
 			Name "Armored Quick-Uber Medic"
-			ClassIcon medic_uber_armored
+			ClassIcon medic_uber_armored_nolod
 			Skill Normal
 			Attributes SpawnWithFullCharge
 			ItemAttributes
@@ -1761,7 +1761,7 @@ WaveSchedule
 		{
 			Template T_TFBot_Medic_Armored
 			Name "Armored Slow-Recharge Uber Medic"
-			ClassIcon medic_uber_armored
+			ClassIcon medic_uber_armored_nolod
 			Skill Normal
 			Attributes SpawnWithFullCharge
 			ItemAttributes
@@ -3014,7 +3014,7 @@ WaveSchedule
 		{
 			Class Soldier
 			Name "Giant Equalizer Soldier"
-			ClassIcon soldier_equalizer_giant
+			ClassIcon soldier_pickaxe_equalize_giant
 			Skill Expert
 			Health 3800
 			Item "The Equalizer"
@@ -3040,7 +3040,7 @@ WaveSchedule
 		{
 			Class Soldier
 			Name "Giant Escape Soldier"
-			ClassIcon soldier_escape_giant
+			ClassIcon soldier_pickaxe_escape_giant
 			Skill Expert
 			Health 3800
 			Item "The Escape Plan"
@@ -3557,7 +3557,7 @@ WaveSchedule
 		{
 			Class Demoman
 			Name "Giant Rapid Fire Demoman"
-			ClassIcon demo_spammer
+			ClassIcon demo_rapid_giant
 			Skill Expert
 			Health 3000
 			WeaponRestrictions PrimaryOnly
@@ -3786,7 +3786,7 @@ WaveSchedule
 		{
 			Class Heavyweapons
 			Name "Giant Brass Beast Heavy"
-			ClassIcon heavy_brass_nys_giant
+			ClassIcon heavy_brass_nys_nolod_giant
 			Skill Expert
 			Health 5000
 			WeaponRestrictions PrimaryOnly
@@ -3838,7 +3838,7 @@ WaveSchedule
 		{
 			Class heavyweapons
 			Name "Giant Steel Gauntlet"
-			ClassIcon heavy_steelfist_nys_giant
+			ClassIcon heavy_steelfist_nys_nolod_giant
 			Skill Expert
 			Health 5000
 			Item "Fists of Steel"

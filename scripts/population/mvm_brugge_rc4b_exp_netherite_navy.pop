@@ -2279,6 +2279,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Heavyweapons_Fist
+				ClassIcon heavy_steelfist_nys_nolod
 				Attributes AlwaysCrit
 			}
 		}

@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$baseTexture" "hud/leaderboard_class_heavy_natascha_grapple_nys"
+	"$baseTexture" "hud/leaderboard_class_demo_burst_armored_bin_nolod"
 	"$vertexcolor" 1
 	"$no_fullbright" 1
 	"$ignorez" 1

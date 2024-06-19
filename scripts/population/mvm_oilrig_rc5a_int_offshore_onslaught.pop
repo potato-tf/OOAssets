@@ -573,7 +573,7 @@ WaveSchedule
 				Class Heavyweapons
 				Name "Steel Gauntlet"
 				Skill Hard
-				ClassIcon heavy_steelfist
+				ClassIcon heavy_steelfist_nys_nolod
 				//Attributes DefensiveBuffHigh	// Passive damage reduction, replaces high health
 				Health 900
 				Scale 1.5						// Force scale to 1 when "Health" set high
@@ -632,7 +632,7 @@ WaveSchedule
 			{
 				Name	"Rapid Fire Demoman"
 				Class	Demoman
-				ClassIcon	demo_spammer
+				ClassIcon	demo_rapid_giant
 				Skill	Hard
 				Attributes  AlwaysFireWeapon
 				Item "Scotch Bonnet"
@@ -1121,7 +1121,7 @@ WaveSchedule
 				Item "The Triggerman's Tacticals"
 				Item "The Conspicuous Camouflage"
 				Skill Normal
-				ClassIcon sniper_smg
+				ClassIcon sniper_smg_tind
 				WeaponRestrictions SecondaryOnly
 			}
 		}
@@ -1551,6 +1551,7 @@ WaveSchedule
             TFBot
             {
 				Template	T_TFBot_Heavyweapons_Fist
+				ClassIcon heavy_steelfist_nys_nolod
 			}
         }
         WaveSpawn
