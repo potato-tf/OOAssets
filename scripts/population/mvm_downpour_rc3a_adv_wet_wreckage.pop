@@ -892,6 +892,7 @@ population
 				TFBot
 				{
 					Template	T_TFBot_Heavyweapons_Fist
+					ClassIcon heavy_steelfist_nys_nolod
 					Attributes	AlwaysCrit
 				}
 
@@ -961,7 +962,11 @@ population
 			{
 				Target	wave_start_relay
 				Action	RunScriptCode
-				Param	"EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); "
+				Param	"
+					for (local ent; ent = Entities.FindByName(ent, `tankboss`);) {
+						EntFireByHandle(ent, `RemoveHealth`, `15000`, 0, null, null)
+					}
+				"
 			}
 			// kill tanks when wave is over.
 			// runs 8 of these even though there's no way 8 can be on the field at once.
