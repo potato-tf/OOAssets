@@ -13,12 +13,6 @@ WaveSchedule
 	
 	// Add to download list
 	PrecacheSound "pizza_tower_war.mp3" [$SIGSEGV]
-	PrecacheSound "mvm/giant_soldier/giant_soldier_step02.wav" [$SIGSEGV]
-	PrecacheModel "models/bots/soldier_boss/bot_soldier_boss.mdl" [$SIGSEGV]
-	PrecacheModel "models/player/items/soldier/luckyshot.mdl" [$SIGSEGV]
-	PrecacheModel "models/workshop/player/items/soldier/spr18_veterans_attire/spr18_veterans_attire.mdl" [$SIGSEGV]
-	PrecacheModel "models/weapons/c_models/c_pickaxe/c_pickaxe_s2.mdl" [$SIGSEGV]
-	PrecacheModel "models/weapons/w_models/w_stickybomb2.mdl" [$SIGSEGV]
 
 	Mission
 	{
