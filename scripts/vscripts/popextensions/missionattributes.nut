@@ -61,7 +61,7 @@ if (!("ScriptUnloadTable" in ROOT))
 		function OnGameEvent_player_changeclass(params) { foreach (_, func in MissionAttributes.ChangeClassTable) func(params) }
 		function OnGameEvent_player_team(params) {
 			local player = GetPlayerFromUserID(params.userid)
-			if (!player.IsBotOfType(TF_BOT_TYPE) && params.team == TEAM_SPECTATOR && params.oldteam == TF_TEAM_PVE_INVADERS)
+			if (player && !player.IsBotOfType(TF_BOT_TYPE) && params.team == TEAM_SPECTATOR && params.oldteam == TF_TEAM_PVE_INVADERS)
 			{
 				EntFireByHandle(player, "RunScriptCode", "PopExtUtil.ChangePlayerTeamMvM(self, TF_TEAM_PVE_INVADERS)", -1, null, null)
 				EntFireByHandle(player, "RunScriptCode", "self.ForceRespawn()", SINGLE_TICK, null, null)
