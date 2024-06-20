@@ -2,7 +2,7 @@
 //Intermediate Difficulty
 #base robot_giant.pop
 #base robot_standard.pop
-#base judge_restricts.pop
+//#base judge_restricts.pop
 population
 {
 	StartingCurrency	1100
