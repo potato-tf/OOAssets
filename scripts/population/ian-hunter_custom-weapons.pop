@@ -1,0 +1,279 @@
+// Custom weapons created by Ian Hunter.
+// Any future mvm mission creator can use my '#base ian-hunter_custom-weapons.pop' on you mission.
+WaveSchedule
+{
+	CustomWeapon
+	{
+		"The Deflector"
+		{
+			OriginalItemName			"Deflector"
+			"killstreak tier"			1
+			"attack projectiles"			2
+		}
+		"Ludmila"
+		{
+			OriginalItemName			"Natascha"
+			"attach particle effect"		4
+			"killstreak tier"			1
+			"heal on hit for rapidfire"		3
+			"fire rate penalty"			1.2
+			"maxammo primary reduced"		0.75
+			"damage penalty"			1
+			"slow enemy on hit"			0
+			"minigun spinup time increased"		1
+			"spunup_damage_resistance"		1
+		}
+		"Heavy Packable Provisions"
+		{
+			OriginalItemName			"The Sandvich Safe"
+			"maxammo secondary increased"		1.5
+			"move speed bonus"			1.3
+			"mult credit collect range"		2.5
+			"health from credits"			25
+			"teleport instead of die"		0.35
+			"special item description"		"+50% max secondary ammo on wearer"
+			"special item description 2"		"+30% faster move speed on wearer"
+			"custom item model"			"models/workshop/player/items/engineer/dec16_packable_provisions/dec16_packable_provisions_heavy.mdl"
+		}
+		"Army of One"
+		{
+			OriginalItemName			"The Black Box"
+			"set_item_texture_wear"			0
+			"paintkit_proto_def_index"		217
+			"attach particle effect"		702
+			"mult projectile scale"			2
+			"penetrate teammates"			1
+			"projectile no deflect"			1
+			"no damage falloff"			1
+			"killstreak tier"			1
+			"damage bonus"				5
+			"blast radius increased"		2
+			"fire rate bonus HIDDEN"		2
+			"use large smoke explosion"		1
+			"clip size penalty"			0.25
+			"crit mod disabled"			0
+			"maxammo primary reduced"		0.15
+			"reload time increased"			2
+			"projectile speed decreased"		0.4
+			"blast dmg to self increased"		2
+			"health on radius damage"		0
+			"cannot be upgraded"			1
+		}
+		"The Bouncing Betty"
+		{
+			OriginalItemName				"tf_weapon_grenadelauncher"
+			"grenade explode on impact"			1
+			"killstreak tier"				1
+			"card: damage bonus"				1.4
+			"projectile speed increased"			2
+			"grenade no spin"				1
+			"clip size penalty"				0.75
+			"fire rate penalty"				1.25
+			"self dmg push force decreased"			0.5
+			"maxammo primary reduced"			0.5625
+			"reload time increased"				1.25
+			"blast radius decreased"			0.65
+			"blast dmg to self increased"			1.5
+			"no primary ammo from dispensers while active"	1
+			"custom weapon fire sound"			"=80|weapons/the_bouncing_betty_shoot.wav"
+			"custom item model"				"models/workshop/weapons/c_models/c_bouncing_betty/c_bouncing_betty.mdl"
+		}
+		"Steel Battalion"
+		{
+			OriginalItemName			"Panic Attack Shotgun"
+			"killstreak tier"			1
+			"bullets per shot bonus"		2
+			"clip size penalty"			0.34
+			"spread penalty"			2
+			"damage penalty"			1
+			"single wep deploy time decreased"	1
+			"mult_spread_scales_consecutive"	0
+			"fixed_shot_pattern"			0
+			"custom weapon fire sound"		"=80|weapons/the_steel_battalion_shoot.wav"
+			"custom item model"			"models/workshop/weapons/c_models/c_steel_battalion/c_steel_battalion.mdl"
+		}
+		"The Full Throttle"
+		{
+			OriginalItemName			"upgradeable tf_weapon_shotgun_primary"
+			"killstreak tier"			1
+			"clip size bonus"			1.5
+			"reload time decreased"			0.7
+			"weapon spread bonus"			0.7
+			"minicrits become crits"		1
+			"fire rate bonus with reduced health"	0.3
+			"fire rate penalty"			1.6
+			"crit mod disabled"			0
+			"dmg penalty while half alive"		0.85
+			"custom weapon fire sound"		"=80|weapons/the_full_throttle_shoot.wav"
+			"custom item model"			"models/workshop/weapons/c_models/c_full_throttle/c_full_throttle.mdl"
+		}
+		"(Scout) Bullet Blow"
+		{
+			OriginalItemName			"tf_weapon_pistol"
+			"attach particle effect"		704
+			"collect currency on kill"		1
+			"no damage falloff"			1
+			"killstreak tier"			1
+			"special item description"		"This weapon deals 200 damage."
+			"damage bonus"				13.34
+			"weapon spread bonus"			0.7
+			"minicrit vs burning player"		1
+			"single wep deploy time decreased"	0.5
+			"dmg pierces resists absorbs"		1
+			"clip size penalty"			0.5
+			"fire rate penalty"			2
+			"maxammo secondary reduced"		0.34
+			"mult_dmgtaken_active"			1.25
+			"dmg penalty vs buildings"		0.25
+			"mult dmg vs giants"			0.25
+			"mult dmg vs tanks"			0.25
+			"cannot be upgraded"			1
+			"custom weapon fire sound"		"=80|weapons/the_bullet_blow_shoot.wav"
+		}
+		"(Engineer) Bullet Blow"
+		{
+			OriginalItemName			"tf_weapon_pistol"
+			"attach particle effect"		704
+			"collect currency on kill"		1
+			"no damage falloff"			1
+			"killstreak tier"			1
+			"special item description"		"This weapon deals 200 damage."
+			"damage bonus"				13.34
+			"weapon spread bonus"			0.7
+			"minicrit vs burning player"		1
+			"single wep deploy time decreased"	0.5
+			"dmg pierces resists absorbs"		1
+			"clip size penalty"			0.5
+			"fire rate penalty"			2
+			"maxammo secondary reduced"		0.09
+			"mult_dmgtaken_active"			1.25
+			"dmg penalty vs buildings"		0.25
+			"mult dmg vs giants"			0.25
+			"mult dmg vs tanks"			0.25
+			"cannot be upgraded"			1
+			"custom weapon fire sound"		"=80|weapons/the_bullet_blow_shoot.wav"
+		}
+		"The Burping Blaster"
+		{
+			OriginalItemName			"tf_weapon_smg"
+			"killstreak tier"			1
+			"card: damage bonus"			2.5
+			"fire rate bonus"			0.3
+			"weapon spread bonus"			0
+			"auto fires full clip"			1
+			"clip size penalty"			0.2
+			"maxammo secondary reduced"		0.667
+			"reload time increased"			1.5
+			"max health additive penalty"		-15
+			"custom weapon fire sound"		"=80|weapons/the_burping_blaster_shoot.wav"
+			"custom item model"			"models/workshop/weapons/c_models/c_burping_blaster/c_burping_blaster.mdl"
+		}
+		"(White Noise) Southern Hospitality"
+		{
+			OriginalItemName			"The Southern Hospitality"
+			"killstreak tier"			1
+			"mult dispenser rate"			2
+			"mult teleporter recharge rate"		0.5
+			"engy sentry damage bonus"		0.8
+			"special item description"		"-20% sentry damage penalty"
+			"special item description 2"		"This Southern Hospitality are from 'White Noise' mission that was created by Seelpit."
+			"crit mod disabled"			1
+			"dmg taken from fire increased"		1
+			"bleeding duration"			0
+			"custom item model"			"models/workshop/weapons/c_models/c_spikewrench/c_spikewrench_wn.mdl"
+		}
+	}
+	ExtraLoadoutItems
+	{
+		Scout
+		{
+			Secondary
+			{
+				Item	"(Scout) Bullet Blow"
+			}
+		}
+		Soldier
+		{
+			Primary
+			{
+				Item	"Army of One"
+			}
+			Secondary
+			{
+				Item	"Steel Battalion"
+			}
+			Secondary
+			{
+				Item	"The Full Throttle"
+			}
+		}
+		Pyro
+		{
+			Secondary
+			{
+				Item	"Steel Battalion"
+			}
+			Secondary
+			{
+				Item	"The Full Throttle"
+			}
+		}
+		Demoman
+		{
+			Primary
+			{
+				Item	"The Bouncing Betty"
+			}
+		}
+		HeavyWeapons
+		{
+			Primary
+			{
+				Item	"The Deflector"
+				Cost	400
+			}
+			Primary
+			{
+				Item	"Ludmila"
+			}
+			Primary
+			{
+				Item	"Heavy Packable Provisions"
+			}
+			Secondary
+			{
+				Item	"Steel Battalion"
+			}
+			Secondary
+			{
+				Item	"The Full Throttle"
+			}
+		}
+		Engineer
+		{
+			Primary
+			{
+				Item	"Steel Battalion"
+			}
+			Primary
+			{
+				Item	"The Full Throttle"
+			}
+			Secondary
+			{
+				Item	"(Engineer) Bullet Blow"
+			}
+			Melee
+			{
+				Item	"(White Noise) Southern Hospitality"
+			}
+		}
+		Sniper
+		{
+			Secondary
+			{
+				Item	"The Burping Blaster"
+			}
+		}
+	}
+}
