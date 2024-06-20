@@ -147,7 +147,7 @@
 		SpawnEntityFromTable("prop_dynamic_ornament",
 		{
 			targetname     			= "thesoul_1"
-			model                   = "models/player/items/soldier/luckyShot.mdl"
+			model                   = "models/player/items/soldier/luckyshot.mdl"
 			skin 					= 1
 			disablebonefollowers	= 1
 			initialowner			= "thebody_1"
@@ -203,7 +203,7 @@
 			SpawnEntityFromTable("prop_dynamic_ornament",
 			{
 				targetname     			= "thesoul_2"
-				model                   = "models/player/items/soldier/luckyShot.mdl"
+				model                   = "models/player/items/soldier/luckyshot.mdl"
 				skin 					= 1
 				disablebonefollowers	= 1
 				initialowner			= "thebody_2"
@@ -290,7 +290,7 @@ PrecacheSound("npc/attack_helicopter/aheli_damaged_alarm1.wav")
 PrecacheSound("mvm/giant_soldier/giant_soldier_step02.wav")
 
 PrecacheModel("models/bots/soldier_boss/bot_soldier_boss.mdl")
-PrecacheModel("models/player/items/soldier/luckyShot.mdl")
+PrecacheModel("models/player/items/soldier/luckyshot.mdl")
 PrecacheModel("models/workshop/player/items/soldier/spr18_veterans_attire/spr18_veterans_attire.mdl")
 PrecacheModel("models/weapons/c_models/c_pickaxe/c_pickaxe_s2.mdl")
 PrecacheModel("models/weapons/w_models/w_stickybomb2.mdl")
