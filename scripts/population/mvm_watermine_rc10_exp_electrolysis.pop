@@ -125,7 +125,6 @@ quepereza
                     "spawnflags" "1"
 					"launchTarget" "targe_target"
 					"filtername" "blueteam"
-					"OnCatapulted" "targe_hit,PlaySound,,0,-1"
 					"OnCatapulted" "fuckno,trigger,,0,-1"
 				}
 				info_target 
@@ -133,6 +132,34 @@ quepereza
     		    	"targetname" "targe_target"
 			    	"origin" "5451 2095 723"
 				}
+				trigger_catapult
+				{
+			        "targetname" "targe_push_2"
+					"playerspeed" "2500"
+					"physicsSpeed" "2500"
+					"mins" "-600 -600 -80"
+					"maxs" "600 600 250"
+                    "origin" "5080 3670 0"
+					"applyAngularImpulse" "1"
+					"entryAngleTolerance" "-1.0"
+					"AirCtrlSupressionTime" "0.33"
+					"onlyVelocityCheck" "0"
+					"lowerthreshold" "0"
+					"upperthreshold" "0.75"
+					"useExactVelocity" "1"
+                    "spawnflags" "1"
+					"launchTarget" "targe_target_2"
+					"filtername" "blueteam"
+					"OnCatapulted" "fuckno,trigger,,0,-1"
+					"OnCatapulted" "!activator,$takedamage,1000,0,-1"
+				}
+				info_target 
+				{
+    		    	"targetname" "targe_target_2"
+			    	"origin" "4335 3405 2473"
+				}
+				
+
             
         }
          boss
@@ -391,13 +418,20 @@ quepereza
 				"targetname" "haha_boom"
 				"origin" "0 0 0"
 				"angles" "0 0 0"
-				"mins" "-500 -500 -8000"
-				"maxs" "500 500 8000"
+				"mins" "-300 -300 -750"
+				"maxs" "300 300 750"
 				"damagetype" "64"
-				"damage" "2000"
+				"damage" "500"
 				"StartDisabled" "1"
 				"spawnflags" "64"
 				"filtername" "redteam"
+			}
+			info_particle_system
+			{
+				"targetname" "bosspyroexplosion"
+				"origin" "0 0 20"
+				"effect_name" "cinefx_goldrush"
+				"start_active" "0"
 			}
             logic_relay
             {
@@ -405,6 +439,13 @@ quepereza
                 "OnTrigger" "@p@boss_thingy,$PlaySequence,taunt_flip_success_receiver,0,-1"
                 "OnTrigger" "@p@boss_thingy,$AddPlayerAttribute,no_attack|1,0,-1"
                 "OnTrigger" "@p@boss_thingy,$RemovePlayerAttribute,no_attack,5,-1"
+				"OnTrigger"	"tf_gamerules,PlayVO,vo\mvm\mght\pyro_mvm_m_battlecry01.mp3,0.17,-1"
+				"OnTrigger"	"tf_gamerules,PlayVO,vo\mvm\mght\pyro_mvm_m_battlecry01.mp3,0.17,-1"
+				"OnTrigger"	"tf_gamerules,PlayVO,ambient\explosions\explode_2.wav,2.7,-1"
+				"OnTrigger"	"bosspyroexplosion,start,,2.75,-1"
+				"OnTrigger"	"bosspyroexplosion,stop,,3,-1"
+				"OnTrigger" "haha_boom,enable,,2.75,-1"
+				"OnTrigger" "haha_boom,disable,,2.76,-1"
             }
             OnSpawnOutput
             {
@@ -1288,8 +1329,7 @@ quepereza
 				NoCrushDamage 1  
                 		Model "models/bots/boss_bot/boss_blimp.mdl"  
                 		Gravity 0  
-                		DisableTracks 1  
-                		ReplaceModelCollisions 1  
+                		DisableTracks 1   
                 		DisableChildModels 1  
                 		EngineLoopSound "npc\combine_gunship\dropship_engine_distant_loop1.wav"  
                 		PingSound "npc\combine_gunship\ping_search.wav"  
@@ -2089,7 +2129,7 @@ quepereza
 				WeaponRestrictions MeleeOnly
 				Attributes UseBossHealthBar
 				UseMeleeThreatPrioritization 1
-				Health 110000
+				Health 97500
                 tag giant
 				Skill Expert
                 Action Mobber
