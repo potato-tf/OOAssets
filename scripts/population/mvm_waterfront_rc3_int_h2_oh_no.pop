@@ -381,7 +381,7 @@ WaveSchedule
 			{
 				Template	T_TFBot_Sniper_Huntsman
 				Name	"Caustic Huntsman"
-				ClassIcon	sniper_huntsman_bleed
+				ClassIcon	sniper_huntsman_bleed_nolod
 				Skill	Normal
 				
 				ItemAttributes
@@ -409,7 +409,7 @@ WaveSchedule
 			{
 				Template	T_TFBot_Sniper_Huntsman
 				Name	"Caustic Huntsman"
-				ClassIcon	sniper_huntsman_bleed
+				ClassIcon	sniper_huntsman_bleed_nolod
 				Skill	Normal
 				
 				ItemAttributes
