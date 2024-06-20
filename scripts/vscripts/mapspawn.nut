@@ -158,9 +158,18 @@
         function OnGameEvent_mvm_mission_complete(params) {
             __potato.InVictory = true
             // Set mission name without difficulty for the victory panel
-            NetProps.SetPropString(__potato.objective_resource, "m_iszMvMPopfileName", __potato.FormatMissionName(params.mission, true))
+            EntFire("worldspawn", "RunScriptCode", format(@"
+                if (__potato.InVictory == true)
+                    NetProps.SetPropString(__potato.objective_resource, `m_iszMvMPopfileName`, `%s`)", __potato.FormatMissionName(params.mission, true))
+            , 1)
 
-            // Reset mission name before popfile is reloaded.
+            // Set back to regular formatted name once panel has been displayed
+            EntFire("worldspawn", "RunScriptCode", format(@"
+                if (__potato.InVictory == true)
+                    NetProps.SetPropString(__potato.objective_resource, `m_iszMvMPopfileName`, `%s`)", __potato.FormatMissionName(params.mission))
+            , 3)
+
+            // Reset mission name before the popfile is reloaded.
             //  This is done because the Potato plugin that intercepts the default mission
             //  cycle behaviour retrieves the popfile name directly from this NetProp,
             //  which causes the plugin to fail if we have overwritten the default string
