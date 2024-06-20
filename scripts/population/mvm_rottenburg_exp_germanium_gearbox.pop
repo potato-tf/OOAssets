@@ -906,13 +906,13 @@ population
 			Target wave_finished_relay
 			Action trigger
 		}
-		InitWaveOutput		//	fellen's working solution for the barricade problem
-		{
-			Target	"gamerules"
-			Action	"RunScriptCode"
-			Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
-					EntFire(`Barricade`, `DisableCollision`)"
-		}
+		//InitWaveOutput		//	fellen's working solution for the barricade problem
+		//{
+		//	Target	"gamerules"
+		//	Action	"RunScriptCode"
+		//	Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
+		//			EntFire(`Barricade`, `DisableCollision`)"
+		//}
 		WaveSpawn
 		{
 			Name	1a1
@@ -1128,13 +1128,13 @@ population
 			Target wave_finished_relay
 			Action trigger
 		}
-		InitWaveOutput		//	fellen's working solution for the barricade problem
-		{
-			Target	"gamerules"
-			Action	"RunScriptCode"
-			Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
-					EntFire(`Barricade`, `DisableCollision`)"
-		}
+		//InitWaveOutput		//	fellen's working solution for the barricade problem
+		//{
+		//	Target	"gamerules"
+		//	Action	"RunScriptCode"
+		//	Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
+		//			EntFire(`Barricade`, `DisableCollision`)"
+		//}
 		WaveSpawn
 		{
 			Name	2a
@@ -1438,13 +1438,13 @@ population
 			Target wave_finished_relay
 			Action trigger
 		}
-		InitWaveOutput		//	fellen's working solution for the barricade problem
-		{
-			Target	"gamerules"
-			Action	"RunScriptCode"
-			Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
-					EntFire(`Barricade`, `DisableCollision`)"
-		}
+		//InitWaveOutput		//	fellen's working solution for the barricade problem
+		//{
+		//	Target	"gamerules"
+		//	Action	"RunScriptCode"
+		//	Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
+		//			EntFire(`Barricade`, `DisableCollision`)"
+		//}
 		WaveSpawn
 		{
 			Name	3a
@@ -1819,13 +1819,13 @@ population
 			Target wave_finished_relay
 			Action trigger
 		}
-		InitWaveOutput		//	fellen's working solution for the barricade problem
-		{
-			Target	"gamerules"
-			Action	"RunScriptCode"
-			Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
-					EntFire(`Barricade`, `DisableCollision`)"
-		}
+		//InitWaveOutput		//	fellen's working solution for the barricade problem
+		//{
+		//	Target	"gamerules"
+		//	Action	"RunScriptCode"
+		//	Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
+		//			EntFire(`Barricade`, `DisableCollision`)"
+		//}
 		WaveSpawn
 		{
 			Name	barricade
@@ -2108,13 +2108,13 @@ population
 			Target wave_finished_relay
 			Action trigger
 		}
-		InitWaveOutput		//	fellen's working solution for the barricade problem
-		{
-			Target	"gamerules"
-			Action	"RunScriptCode"
-			Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
-					EntFire(`Barricade`, `DisableCollision`)"
-		}
+		//InitWaveOutput		//	fellen's working solution for the barricade problem
+		//{
+		//	Target	"gamerules"
+		//	Action	"RunScriptCode"
+		//	Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
+		//			EntFire(`Barricade`, `DisableCollision`)"
+		//}
 		WaveSpawn
 		{
 			Name	Nuke_Soldier_voice_relay_5.1
@@ -2417,13 +2417,13 @@ population
 			Target wave_finished_relay
 			Action trigger
 		}
-		InitWaveOutput		//	fellen's working solution for the barricade problem
-		{
-			Target	"gamerules"
-			Action	"RunScriptCode"
-			Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
-					EntFire(`Barricade`, `DisableCollision`)"
-		}
+		//InitWaveOutput		//	fellen's working solution for the barricade problem
+		//{
+		//	Target	"gamerules"
+		//	Action	"RunScriptCode"
+		//	Param	"EntFire(`Barricade`, `SetParent`, `Tank_Barricade_Particle`)
+		//			EntFire(`Barricade`, `DisableCollision`)"
+		//}
 		WaveSpawn
 		{
 			Name	6a
