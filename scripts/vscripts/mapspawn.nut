@@ -6,8 +6,7 @@
     objective_resource = null
     mapname = GetMapName()
     len_mapname = GetMapName().len()
-    // True if the server is running the sigsegv-mvm extension.
-    IsSigmod = Convars.GetInt("sig_color_console") != null ? true : false
+    InVictory = false
 
     // Mapping for difficulty phrases to respective display name.
     difficultyMap = {
@@ -23,59 +22,44 @@
     ]
 
     /**
-     * Sets the current mission display name according to Potato.tf standard formatting, if
-     * the mission name is otherwise unchanged.
+     * Formats the current mission display name according to Potato.tf standard formatting,
+     * if the mission name is otherwise unchanged.
      * Standard format is "(Difficulty) Mission Name".
      *
      * @param str popname   Mission name to format.
      * @param bool end      Set to true to use end card formatting (no difficulty).
      */
-    function SetMissionName(popname, end = false) {
-        if (startswith(popname, "scripts/population/mvm_") && endswith(popname, ".pop")) {
-            // Split:
-            //  "scripts/population/mvm_condemned_b3_adv_unholy_undead.pop"
-            // To:
-            //  ["adv", "unholy", "undead"]
-            local strings = split(popname.slice(20 + __potato.len_mapname, -4), "_")
+    function FormatMissionName(popname, end = false) {
+        // Split:
+        //  "scripts/population/mvm_condemned_b3_adv_unholy_undead.pop"
+        // To:
+        //  ["adv", "unholy", "undead"]
+        local strings = split(popname.slice(20 + __potato.len_mapname, -4), "_")
 
-            local name = ""  // Mission display name
-            local difficulty = ""   // Mission dispaly difficulty tag
-            for(local i = 0; i <= strings.len() - 2; ++i) {
-                // Don't include "rev" or "reverse" in formatted version
-                if (strings[i] in this.toStrip) continue
-                // Test for mission difficulty tag
-                //  No way to access a key without potentially throwing an exception,
-                //   and exceptions aren't typed so have to do this (or use arrays instead
-                //   of a table for __potato.difficultyMap)
-                if (strings[i] in this.difficultyMap) {
-                    difficulty = this.difficultyMap[strings[i]]
-                    continue
-                }
-                // Join strings to form mission name with space separator
-                name += strings[i] + " "
+        local name = ""  // Mission display name
+        local difficulty = ""   // Mission display difficulty tag
+        for(local i = 0; i <= strings.len() - 2; ++i) {
+            // Don't include "rev" or "reverse" in formatted version
+            if (strings[i] in this.toStrip) continue
+            // Test for mission difficulty tag
+            //  No way to access a key without potentially throwing an exception,
+            //   and exceptions aren't typed so have to do this (or use arrays instead
+            //   of a table for __potato.difficultyMap)
+            if (strings[i] in this.difficultyMap) {
+                difficulty = this.difficultyMap[strings[i]]
+                continue
             }
-            // Add mission difficulty to the start if it exists.
-            //  Don't add if on the victory screen since map name will also be squashed in.
-            // Also append the last word of the mission name, done outside the loop to avoid
-            //  a trailing space.
-            if (end == false) {
-                name = difficulty + name + strings.top()
-            } else {
-                name = name + strings.top()
-            }
-
-            if (this.IsSigmod) {
-                // Use $SetClientProp if on a sigsegv-mvm server
-                //  This is done because the Potato plugin that intercepts the default mission
-                //  cycle behaviour retrieves the popfile name directly from this NetProp,
-                //  which causes the plugin to fail if we have overwritten the default string
-                //  name. Plugin authors should consider using a method like this instead:
-                //  https://github.com/mtxfellen/tf2-plugins/blob/3a83742/addons/sourcemod/scripting/include/tfmvm_stocks.inc#L21
-                EntFireByHandle(__potato.objective_resource, "$SetClientProp$m_iszMvMPopfileName", format("%s", name), -1, null, null)
-            } else {
-                // Otherwise write the formatted mission name directly to the prop.
-                NetProps.SetPropString(__potato.objective_resource, "m_iszMvMPopfileName", name)
-            }
+            // Join strings to form mission name with space separator
+            name += strings[i] + " "
+        }
+        // Add mission difficulty to the start if it exists.
+        //  Don't add if on the victory screen since map name will also be squashed in.
+        // Also append the last word of the mission name, done outside the loop to avoid
+        //  a trailing space.
+        if (end == false) {
+            return difficulty + name + strings.top()
+        } else {
+            return name + strings.top()
         }
     }
 
@@ -155,6 +139,7 @@
     Events = {
         // Event is fired every wave init (on mission change, wave jump or post wave fail).
         function OnGameEvent_teamplay_round_start(_) {
+            __potato.InVictory = false
             __potato.ApplyMapFixes()
 
             // tf_objective_resource is made by tf_gamerules after map init, so we can't fetch it on map spawn.
@@ -163,12 +148,28 @@
             // We want to delay setting the mission display name so that mission makers may
             //  set their own as desired.
             EntFire("worldspawn", "RunScriptCode", @"
-                __potato.SetMissionName(NetProps.GetPropString(__potato.objective_resource, ""m_iszMvMPopfileName""), false)"
+                local popname = NetProps.GetPropString(__potato.objective_resource, `m_iszMvMPopfileName`)
+                if (startswith(popname, `scripts/population/mvm_`) && endswith(popname, `.pop`))
+                    NetProps.SetPropString(__potato.objective_resource, `m_iszMvMPopfileName`, __potato.FormatMissionName(popname))
+                "
             , __potato.FormatNameDelay)
         }
         // Event is fired at mission victory (all waves complete).
         function OnGameEvent_mvm_mission_complete(params) {
-            __potato.SetMissionName(params.mission, true)
+            __potato.InVictory = true
+            // Set mission name without difficulty for the victory panel
+            NetProps.SetPropString(__potato.objective_resource, "m_iszMvMPopfileName", __potato.FormatMissionName(params.mission, true))
+
+            // Reset mission name before popfile is reloaded.
+            //  This is done because the Potato plugin that intercepts the default mission
+            //  cycle behaviour retrieves the popfile name directly from this NetProp,
+            //  which causes the plugin to fail if we have overwritten the default string
+            //  name. Plugin authors should consider using a method like this instead:
+            //  https://github.com/mtxfellen/tf2-plugins/blob/3a83742/addons/sourcemod/scripting/include/tfmvm_stocks.inc#L21
+            EntFire("worldspawn", "RunScriptCode", format(@"
+                if (__potato.InVictory == true)
+                    NetProps.SetPropString(__potato.objective_resource, `m_iszMvMPopfileName`, `%s`)", params.mission)
+            , 9.5)
         }
     }
 }
