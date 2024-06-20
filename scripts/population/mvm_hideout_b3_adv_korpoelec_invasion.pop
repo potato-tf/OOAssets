@@ -131,18 +131,7 @@ WaveSchedule
 	// WAVE 1 // Currency 750 //
 	Wave
 	{
-		InitWaveOutput
-		{
-			Target	wave_start_relay
-			Action	RunScriptCode
-			Param	"
-				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				if (ent)
-				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Advanced) Korpoelec Invasion`)
-				}
-				"
-		}
+
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -302,18 +291,7 @@ WaveSchedule
 	// WAVE 2 // Currency 850 //
 	Wave
 	{
-		InitWaveOutput
-		{
-			Target	wave_start_relay
-			Action	RunScriptCode
-			Param	"
-				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				if (ent)
-				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Advanced) Korpoelec Invasion`)
-				}
-				"
-		}
+
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -602,18 +580,7 @@ WaveSchedule
 	// WAVE 3 // Currency 1300 //
 	Wave
 	{
-		InitWaveOutput
-		{
-			Target	wave_start_relay
-			Action	RunScriptCode
-			Param	"
-				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				if (ent)
-				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Advanced) Korpoelec Invasion`)
-				}
-				"
-		}
+
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -877,18 +844,7 @@ WaveSchedule
 	// WAVE 4 // Currency 1600 //
 	Wave
 	{
-		InitWaveOutput
-		{
-			Target	wave_start_relay
-			Action	RunScriptCode
-			Param	"
-				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				if (ent)
-				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Advanced) Korpoelec Invasion`)
-				}
-				"
-		}
+
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -1103,18 +1059,7 @@ WaveSchedule
 	// WAVE 5 // Currency 1000 //
 	Wave
 	{
-		InitWaveOutput
-		{
-			Target	wave_start_relay
-			Action	RunScriptCode
-			Param	"
-				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				if (ent)
-				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Advanced) Korpoelec Invasion`)
-				}
-				"
-		}
+
 		StartWaveOutput
 		{
 			Target	wave_start_relay
