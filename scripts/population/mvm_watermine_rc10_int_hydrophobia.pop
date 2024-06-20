@@ -2,29 +2,13 @@
 //Intermediate Difficulty
 #base robot_giant.pop
 #base robot_standard.pop
-//#base judge_restricts.pop
+
 population
 {
 	StartingCurrency	1100
 	RespawnWaveTime	3
 	CanBotsAttackWhileInSpawnRoom	no
-	PointTemplates
-	{
-		MissionName
-		{
-			logic_relay
-			{
-				"targetname" "name"
-				"OnTrigger" "tf_objective_resource,$SetClientProp$m_iszMvMPopfileName,Hydrophobia (Intermediate),0,-1"
-			}
-			OnSpawnOutput
-			{
-				Target "name"
-				Action "trigger"
-				Delay 0
-			}
-		}
-	}
+
 	Mission
 	{
 		Objective	DestroySentries
@@ -81,7 +65,6 @@ population
 			Template	T_TFBot_Spy
 		}
 	}
-	SpawnTemplate MissionName
 	Wave
 	{
 		WaitWhenDone	65

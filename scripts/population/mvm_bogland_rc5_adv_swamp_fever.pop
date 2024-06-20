@@ -8,23 +8,6 @@ HelloEverybodyMyNameIsMarkiplier
 	StartingCurrency	1500
 	RespawnWaveTime	4
 	CanBotsAttackWhileInSpawnRoom	no
-	PointTemplates
-	{
-		MissionName
-		{
-			logic_relay
-			{
-				"targetname" "name"
-				"OnTrigger" "tf_objective_resource,$SetClientProp$m_iszMvMPopfileName,Swamp Fever (Advanced),0,-1"
-			}
-			OnSpawnOutput
-			{
-				Target "name"
-				Action "trigger"
-				Delay 0
-			}
-		}
-	}
 	Mission
 	{
 		BeginAtWave	1
@@ -81,7 +64,6 @@ HelloEverybodyMyNameIsMarkiplier
 			Template	T_TFBot_SentryBuster
 		}
 	}
-	SpawnTemplate MissionName
 	Wave
 	{
 		WaitWhenDone	65
