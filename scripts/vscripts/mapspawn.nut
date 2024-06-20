@@ -6,20 +6,42 @@
     objective_resource = null
     mapname = GetMapName()
     len_mapname = GetMapName().len()
+    // True if the mission has been completed.
     InVictory = false
+    // True if the server is running the sigsegv-mvm extension.
+    IsSigmod = Convars.GetInt("sig_color_console") != null ? true : false
 
     // Mapping for difficulty phrases to respective display name.
     difficultyMap = {
-        "nor": "(Nor) "
-        "int": "(Int) "
-        "adv": "(Adv) "
-        "exp": "(Exp) "
+        "nor": "(nor) "
+        "int": "(int) "
+        "adv": "(adv) "
+        "exp": "(exp) "
     }
     // Phrases to ignore when formatting mission display name.
     toStrip = [
         "rev",
         "reverse"
     ]
+
+    /**
+     * Detects the recommended mission name setting method and sets the mission display name
+     * using that method.
+     *
+     * @param str newname
+     */
+    function SetMissionName(newname) {
+        if (this.IsSigmod == true) {
+            // This is done because the Potato plugin that serves the mission name to the 
+            // website retrieves the popfile name directly from this NetProp, causing the website
+            // to display incorrectly if it is modified. Plugin authors should consider using a 
+            // method like this instead:
+            // https://github.com/mtxfellen/tf2-plugins/blob/3a83742/addons/sourcemod/scripting/include/tfmvm_stocks.inc#L21
+            EntFireByHandle(__potato.objective_resource, "$SetClientProp$m_iszMvMPopfileName", newname, -1, null, null)
+            return
+        }
+        NetProps.SetPropString(__potato.objective_resource, "m_iszMvMPopfileName", newname)
+    }
 
     /**
      * Formats the current mission display name according to Potato.tf standard formatting,
@@ -150,7 +172,7 @@
             EntFire("worldspawn", "RunScriptCode", @"
                 local popname = NetProps.GetPropString(__potato.objective_resource, `m_iszMvMPopfileName`)
                 if (startswith(popname, `scripts/population/mvm_`) && endswith(popname, `.pop`))
-                    NetProps.SetPropString(__potato.objective_resource, `m_iszMvMPopfileName`, __potato.FormatMissionName(popname))
+                    __potato.SetMissionName(__potato.FormatMissionName(popname))
                 "
             , __potato.FormatNameDelay)
         }
@@ -160,13 +182,13 @@
             // Set mission name without difficulty for the victory panel
             EntFire("worldspawn", "RunScriptCode", format(@"
                 if (__potato.InVictory == true)
-                    NetProps.SetPropString(__potato.objective_resource, `m_iszMvMPopfileName`, `%s`)", __potato.FormatMissionName(params.mission, true))
+                    __potato.SetMissionName(`%s`)", __potato.FormatMissionName(params.mission, true))
             , 1)
 
             // Set back to regular formatted name once panel has been displayed
             EntFire("worldspawn", "RunScriptCode", format(@"
                 if (__potato.InVictory == true)
-                    NetProps.SetPropString(__potato.objective_resource, `m_iszMvMPopfileName`, `%s`)", __potato.FormatMissionName(params.mission))
+                    __potato.SetMissionName(`%s`)", __potato.FormatMissionName(params.mission))
             , 3)
 
             // Reset mission name before the popfile is reloaded.
