@@ -92,25 +92,25 @@ population
 //			Template	T_TFBot_Engineer_Sentry_Teleporter
 //		}
 //	}
-//	PointTemplates
-//	{
-//		finalsubPT
-//		{
-//			logic_relay
-//			{
-//				"targetname" "FinalSubCheck"
-//				"OnTrigger" "finalsubmath,Add,1,0,-1"
-//			}
-//			math_counter
-//			{
-//				"targetname" "finalsubmath"
-//				"min" "0"
-//				"max" "2"
-//				"OnHitMax" "tank_boss,RemoveHealth,999999,0,-1"
-//			}
-//		}
-//	}
-//	SpawnTemplate	finalsubPT
+	PointTemplates
+	{
+		finalsubPT
+		{
+			logic_relay
+			{
+				"targetname" "FinalSubCheck"
+				"OnTrigger" "finalsubmath,Add,1,0,-1"
+			}
+			math_counter
+			{
+				"targetname" "finalsubmath"
+				"min" "0"
+				"max" "2"
+				"OnHitMax" "tank_boss,RemoveHealth,999999,0,-1"
+			}
+		}
+	}
+	SpawnTemplate	finalsubPT
 	
 	Templates
 	{
@@ -285,10 +285,9 @@ population
 			Name "Monorail Tank"
 			Gravity 0  
             DisableTracks 1
-            ReplaceModelCollisions 1
             DisableChildModels 1
 			NoCrushDamage 1
-			StartingPathTrackNode	monorail_tank_path_B
+			StartingPathTrackNode	monorail_path_B
 			ClassIcon	tank_monorail_cng
             Model   //Set custom model on tank. Will spit harmless errors on client console if the model does not have enough sequences
 			{
@@ -567,7 +566,7 @@ population
 			Tank
 			{
 				Template	MonorailTank
-				StartingPathTrackNode	monorail_tank_path_B
+				StartingPathTrackNode	monorail_path_B
 				Health	9500
 			}
 			FirstSpawnOutput                                                                                                                                                            
@@ -729,7 +728,7 @@ population
 				{
 					Template	T_TFBot_Giant_Soldier
 					Item	"The Cow Mangler 5000"
-					ClassIcon	soldier_mangler_nolod
+					ClassIcon	soldier_mangler
 					Attributes	"HoldFireUntilFullReload"
 					FireWeapon
 					{
@@ -852,7 +851,7 @@ population
 			Tank
 			{
 				Template	MonorailTank
-				StartingPathTrackNode	monorail_tank_path_B
+				StartingPathTrackNode	monorail_path_B
 				Health	14500
 			}
 			FirstSpawnOutput                                                                                                                                                            
@@ -877,7 +876,7 @@ population
 			Tank
 			{
 				Template	MonorailTank
-				StartingPathTrackNode	monorail_tank_path_E
+				StartingPathTrackNode	monorail_path_E
 				Health	11500
 			}
 			FirstSpawnOutput                                                                                                                                                            
@@ -1073,7 +1072,6 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Heavyweapons_Fist
-				ClassIcon heavy_steelfist_nys_nolod
 			}
 		}
 		WaveSpawn
@@ -1253,7 +1251,7 @@ population
 			RandomSpawn	1
 			Tank
 			{
-				StartingPathTrackNode	monorail_tank_path_E
+				StartingPathTrackNode	monorail_path_E
 				Template	MonorailTank
 				Health	20000
 			}
@@ -1538,7 +1536,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Giant_Heavyweapons_BrassBeast
-				ClassIcon	heavy_brass_nys_nolod
+				ClassIcon	heavy_brass_nys
 			}
 		}
 		WaveSpawn
@@ -1599,7 +1597,7 @@ population
 			Tank
 			{
 				Template	MonorailTank
-				StartingPathTrackNode	monorail_tank_path_B
+				StartingPathTrackNode	monorail_path_B
 				Health	26000
 			}
 			FirstSpawnOutput                                                                                                                                                            
@@ -1624,7 +1622,7 @@ population
 			Tank
 			{
 				Template	MonorailTank
-				StartingPathTrackNode	monorail_tank_path_E
+				StartingPathTrackNode	monorail_path_E
 				Health	21500
 			}
 			FirstSpawnOutput                                                                                                                                                            
@@ -1720,6 +1718,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Scout_FAN
+				WeaponRestrictions	PrimaryOnly
 				Attributes	"AlwaysCrit"
 				Tag	flank
 			}
@@ -1760,7 +1759,6 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Heavyweapons_Fist
-				ClassIcon heavy_steelfist_nys_nolod
 			}
 		}
 	}
@@ -1806,14 +1804,14 @@ population
 				Tank
 				{
 					Template	MonorailTank
-					StartingPathTrackNode	monorail_tank_path_E
+					StartingPathTrackNode	monorail_path_E
 					Speed	125
 					Health	12000
 				}
 				Tank
 				{
 					Template	MonorailTank
-					StartingPathTrackNode	monorail_tank_path_B
+					StartingPathTrackNode	monorail_path_B
 					Speed	125
 					Health	14000
 				}
