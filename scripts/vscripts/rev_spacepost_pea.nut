@@ -58,8 +58,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	tank_stage2_speed = 0.0
 	tank_stage3_speed = 0.0
 
-	fullbar = "â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ" // IMPORTANT: for some reason game_text considers 1 â–ˆ as three characters
-	emptybar = "â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘" // same here
+	fullbar = "███████████████" // IMPORTANT: for some reason game_text considers 1 █ as three characters
+	emptybar = "░░░░░░░░░░░░░░░" // same here
 
 	blood_tank_healthdrain_dmg = 1
 	tank_healthdrain_alarm_timer = 0
