@@ -355,7 +355,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		EntFireByHandle(scope.selfglow, "SetParent", "!activator", -1.0, self, null) // parenting a tf_glow fixes issues where it doesn't render if it's too far from you
 	}
 	
-	digitsize_table = { "1": "â‚", "2": "â‚‚", "3": "â‚ƒ", "4": "â‚„", "5": "â‚…", "6": "â‚†", "7": "â‚‡", "8": "â‚ˆ", "9": "â‚‰", "0": "â‚€" }
+	digitsize_table = { "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉", "0": "₀" }
 
 	SmallDigits = function(number, spacemode = "cash")
 	{
@@ -754,7 +754,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		fadein       = 0
 		fadeout      = 0
 		fxtime       = 0
-		message      = "â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ"
+		message      = "███████████████"
 		holdtime     = 1.0
 		spawnflags   = 1
 		x            = 0.803
@@ -1527,7 +1527,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		if (!spies_found) EmitGlobalSound("Announcer.mvm_spybot_death_all")
 	}
 
-	// Ã¢â€“Ë† = full block, Ã¢â€“â€˜ = shadowed block
+	// â–ˆ = full block, â–‘ = shadowed block
 
 	AcknowledgeBloodTank = function()
 	{
@@ -4492,7 +4492,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				if (scope.escaped == "[X]" && IsInside(bluplayer.GetOrigin(), Vector(900, -800, -1000), Vector(1400, -600, 1000)) && in_endgame)
 				{
 					player_has_escaped = true
-					bluplayer.GetScriptScope().bloodstorage.escaped = "[âœ”]"
+					bluplayer.GetScriptScope().bloodstorage.escaped = "[✔]"
 					players_escaped = players_escaped + 1
 					
 					bluplayer.SetGravity(1)
@@ -4583,7 +4583,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					
 					if (in_endgame && scope.escaped == "[X]")
 					{
-						scope.escaped = "[âœ”]"
+						scope.escaped = "[✔]"
 						
 						player_has_escaped = true
 						
@@ -6408,28 +6408,28 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			{
 				excess_bounds = 3
 				excess_stage_progression_requirement = 2
-				message_format = "â–¯â–¯â–¯"
+				message_format = "▯▯▯"
 			}
 			
 			if (tf_class == soldier || tf_class == pyro || tf_class == demoman || tf_class == spy)
 			{
 				excess_bounds = 5
 				excess_stage_progression_requirement = 3
-				message_format = "â–¯â–¯â–¯â–¯â–¯"
+				message_format = "▯▯▯▯▯"
 			}
 			
 			if (tf_class == engineer || tf_class == medic || tf_class == sniper)
 			{
 				excess_bounds = 7
 				excess_stage_progression_requirement = 4
-				message_format = "â–¯â–¯â–¯â–¯â–¯â–¯â–¯"
+				message_format = "▯▯▯▯▯▯▯"
 			}
 			
 			if (tf_class == heavyweapons)
 			{
 				excess_bounds = 9
 				excess_stage_progression_requirement = 5
-				message_format = "â–¯â–¯â–¯â–¯â–¯â–¯â–¯â–¯â–¯"
+				message_format = "▯▯▯▯▯▯▯▯▯"
 			}
 		}
 	
@@ -6479,7 +6479,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			if 		 (tutorial_box == null) ResetTutorialBox()
 			else if (!tutorial_box.IsValid()) ResetTutorialBox()
 		
-			if (WAVE == 3) NetProps.SetPropString(blood_carried_hud, "m_iszMessage", "   " + giant_points + hud_separate_giantpoints_from_bloodheld + "   " + message_format + poisoned_string + "\n" + SmallDigits(owner.GetCurrency()) + SmallDigits(blood_count, "blood") + SmallDigits(bombs_satisfied, "tnt") + "â‚‚â‚€")
+			if (WAVE == 3) NetProps.SetPropString(blood_carried_hud, "m_iszMessage", "   " + giant_points + hud_separate_giantpoints_from_bloodheld + "   " + message_format + poisoned_string + "\n" + SmallDigits(owner.GetCurrency()) + SmallDigits(blood_count, "blood") + SmallDigits(bombs_satisfied, "tnt") + "₂₀")
 			else		   NetProps.SetPropString(blood_carried_hud, "m_iszMessage", "   " + giant_points + hud_separate_giantpoints_from_bloodheld + "   " + message_format + poisoned_string + "\n" + SmallDigits(owner.GetCurrency()))
 			
 			if (!in_setup() && !in_cutscene && !in_endgame) EntFireByHandle(blood_carried_hud, "Display", null, -1.0, owner, owner)
@@ -6622,7 +6622,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					
 					if (blood_loss_rate < 0.15) blood_loss_rate = 0.15
 				
-					poisoned_string = " (â˜ )"
+					poisoned_string = " (☠)"
 					
 					DeliverTipToPlayer(owner, "zombieblood", "Enemy zombies drop rotten blood. Rotten blood doubles and damages your blood storage, causing it to leak over time.")
 					
@@ -6780,12 +6780,12 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			foreach (character in max_empty_bloodbar.slice(0, 0 + pickup_count - excess_count))
 			{
-				message_format += "â–®" // full
+				message_format += "▮" // full
 			}
 			
 			foreach (character in max_empty_bloodbar.slice(0, excess_bounds - pickup_count + excess_count))
 			{
-				message_format += "â–¯" // empty
+				message_format += "▯" // empty
 			}
 			
 			message_format = message_format.slice(0, 0 + excess_bounds * 3) + excess_string // each block character counts as 3
