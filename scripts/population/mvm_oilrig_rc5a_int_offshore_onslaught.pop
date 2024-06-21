@@ -145,14 +145,14 @@ WaveSchedule
                 "blast radius increased" 2
                 "Reload time decreased" 0.5
             }
-			FireInput
-			{
-				Target player
-				Action $PlaySoundToSelf
-				Param "=50|misc\doomsday_lift_warning.wav"
-				Cooldown 999
-				Delay 0
-			}
+			//FireInput
+			//{
+			//	Target player
+			//	Action $PlaySoundToSelf
+			//	Param "=50|misc\doomsday_lift_warning.wav"
+			//	Cooldown 999
+			//	Delay 0
+			//}
         }
 	}
 	Mission
@@ -256,14 +256,14 @@ WaveSchedule
                 "blast radius increased" 2
                 "Reload time decreased" 0.5
             }
-			FireInput
-			{
-				Target player
-				Action $PlaySoundToSelf
-				Param "=50|misc\doomsday_lift_warning.wav"
-				Cooldown 999
-				Delay 0
-			}
+			//FireInput
+			//{
+			//	Target player
+			//	Action $PlaySoundToSelf
+			//	Param "=50|misc\doomsday_lift_warning.wav"
+			//	Cooldown 999
+			//	Delay 0
+			//}
         }
 	}
 	Mission
@@ -293,14 +293,14 @@ WaveSchedule
                 "blast radius increased" 2
                 "Reload time decreased" 0.5
             }
-			FireInput
-			{
-				Target player
-				Action $PlaySoundToSelf
-				Param "=50|misc\doomsday_lift_warning.wav"
-				Cooldown 999
-				Delay 0
-			}
+			//FireInput
+			//{
+			//	Target player
+			//	Action $PlaySoundToSelf
+			//	Param "=50|misc\doomsday_lift_warning.wav"
+			//	Cooldown 999
+			//	Delay 0
+			//}
         }
 	}
 
@@ -437,7 +437,6 @@ WaveSchedule
 				Skill Easy
 				Item "The Galvanized Gibus"
 			}
-		
 		}
 		WaveSpawn
 		{
@@ -573,7 +572,7 @@ WaveSchedule
 				Class Heavyweapons
 				Name "Steel Gauntlet"
 				Skill Hard
-				ClassIcon heavy_steelfist_nys_nolod
+				ClassIcon heavy_steelfist
 				//Attributes DefensiveBuffHigh	// Passive damage reduction, replaces high health
 				Health 900
 				Scale 1.5						// Force scale to 1 when "Health" set high
@@ -632,7 +631,7 @@ WaveSchedule
 			{
 				Name	"Rapid Fire Demoman"
 				Class	Demoman
-				ClassIcon	demo_rapid_giant
+				ClassIcon	demo_spammer
 				Skill	Hard
 				Attributes  AlwaysFireWeapon
 				Item "Scotch Bonnet"
@@ -889,7 +888,7 @@ WaveSchedule
 		{
 			Name "w4a_ff_giant_demo"
 			Where spawnbot
-			TotalCount 12
+			TotalCount 15
 			MaxActive 6
 			SpawnCount 3
 			WaitBeforeStarting	0
@@ -1121,7 +1120,7 @@ WaveSchedule
 				Item "The Triggerman's Tacticals"
 				Item "The Conspicuous Camouflage"
 				Skill Normal
-				ClassIcon sniper_smg_tind
+				ClassIcon sniper_smg
 				WeaponRestrictions SecondaryOnly
 			}
 		}
@@ -1318,8 +1317,21 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template T_TFBot_Giant_Pyro
+					Class Pyro
+					Name "Giant Pyro"
+					ClassIcon pyro_reflect_daan_giant
+					Skill Expert
+					Health 3000
+					WeaponRestrictions PrimaryOnly
+					Attributes MiniBoss
 					Attributes AlwaysCrit
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction" 0.6
+						"airblast vulnerability multiplier" 0.6
+						"override footstep sound set" 6
+					}
 				}
 				TFBot
 				{
@@ -1353,8 +1365,21 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template T_TFBot_Giant_Pyro
+					Class Pyro
+					Name "Giant Pyro"
+					ClassIcon pyro_reflect_daan_giant
+					Skill Expert
+					Health 3000
+					WeaponRestrictions PrimaryOnly
+					Attributes MiniBoss
 					Attributes AlwaysCrit
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction" 0.6
+						"airblast vulnerability multiplier" 0.6
+						"override footstep sound set" 6
+					}
 				}
 				TFBot
 				{
@@ -1388,8 +1413,21 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template T_TFBot_Giant_Pyro
+					Class Pyro
+					Name "Giant Pyro"
+					ClassIcon pyro_reflect_daan_giant
+					Skill Expert
+					Health 3000
+					WeaponRestrictions PrimaryOnly
+					Attributes MiniBoss
 					Attributes AlwaysCrit
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction" 0.6
+						"airblast vulnerability multiplier" 0.6
+						"override footstep sound set" 6
+					}
 				}
 				TFBot
 				{
@@ -1432,11 +1470,11 @@ WaveSchedule
 			Name "w6b_battalion_soldier"
 			Where spawnbot
 			TotalCount 22
-			MaxActive 1
+			MaxActive 2
 			SpawnCount 1
 			WaitForAllSpawned w6b_tank
-			WaitBeforeStarting 12
-			WaitBetweenSpawnsAfterDeath 5
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 4
 			Support 1
 			TFBot
 			{
@@ -1551,7 +1589,6 @@ WaveSchedule
             TFBot
             {
 				Template	T_TFBot_Heavyweapons_Fist
-				ClassIcon heavy_steelfist_nys_nolod
 			}
         }
         WaveSpawn
