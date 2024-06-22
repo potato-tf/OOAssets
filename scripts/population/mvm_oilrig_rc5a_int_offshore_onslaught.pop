@@ -119,7 +119,7 @@ WaveSchedule
         Where    Behind
         BeginAtWave    3
         RunForThisManyWaves    1
-        InitialCooldown    20
+        InitialCooldown    25
         CooldownTime    25
         DesiredCount    1
         TFBot
@@ -1020,7 +1020,7 @@ WaveSchedule
 		{
 			Name "w4b_alwaysfire_pyro"
 			Where spawnbot
-			TotalCount 20
+			TotalCount 18
 			MaxActive 6
 			SpawnCount 3
 			WaitForAllSpawned w4b_tank
@@ -1166,7 +1166,7 @@ WaveSchedule
 		{
 			Name "w5b_heater_heavies"
 			Where spawnbot
-			TotalCount 16
+			TotalCount 14
 			MaxActive 8
 			SpawnCount 2
 			WaitForAllSpawned "w5a_super_scout"
@@ -1449,7 +1449,7 @@ WaveSchedule
 		{
 			Name "w6b_heavy"
 			Where spawnbot
-			TotalCount 16
+			TotalCount 15
 			MaxActive 8
 			SpawnCount 3
 			WaitForAllSpawned w6b_tank
@@ -1694,7 +1694,7 @@ WaveSchedule
 			WaitBeforeStarting	6
 			Tank
 			{
-				Health	20000
+				Health	22000
 				Name	Tank
 				Speed	75
 				Skin	1
