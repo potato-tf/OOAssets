@@ -12,6 +12,9 @@ WaveSchedule
 	BluHumanInfiniteAmmo 0  
 	BluHumanInfiniteCloak 0  
 	
+	AllowBluPlayerReanimators 1  
+	MedigunShieldDamage 1  
+	
 	RemoveBluVelocityLimit 1  
 	BluHumanSpawnNoShoot 0  
 	BluHumanSpawnProtection 0  
@@ -2619,7 +2622,7 @@ WaveSchedule
 			MaxActive 3
 			TotalCount 3
 			StartDisabled 1  
-			WaitBeforeStarting 3
+			WaitBeforeStarting 8
 			WaitBetweenSpawns 0
 			Squad
 			{
@@ -2644,7 +2647,7 @@ WaveSchedule
 			MaxActive 8
 			TotalCount 8
 			StartDisabled 1  
-			WaitBeforeStarting 10
+			WaitBeforeStarting 15
 			WaitBetweenSpawns 10
 			TFBot
 			{
@@ -2661,7 +2664,7 @@ WaveSchedule
 			MaxActive 3
 			TotalCount 3
 			StartDisabled 1  
-			WaitBeforeStarting 30
+			WaitBeforeStarting 35
 			WaitBetweenSpawns 0
 			Squad
 			{
