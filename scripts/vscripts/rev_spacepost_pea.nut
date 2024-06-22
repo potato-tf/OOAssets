@@ -507,8 +507,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	{
 		local scope = player.GetScriptScope().bloodstorage
 
-		if (scope.in_vistip_cooldown) return
-		if (!scope.tip_table[tip_name]) 
+		if (!scope.in_vistip_cooldown && !scope.tip_table[tip_name])
 		{
 			SendGlobalGameEvent("show_annotation", 
 			{
@@ -519,7 +518,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				play_sound = "misc/null.wav"
 				show_distance = false
 				show_effect = false
-				lifetime = 5
+				lifetime = 7.5
 			})
 			
 			scope.tip_table[tip_name] = true
@@ -1665,10 +1664,10 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			{
 				tank_objective_explosion_imminent = false
 				
-				self.TakeDamage(1000, 1, blood_tank_outofblood_healthdrain)
-				
 				DispatchParticleEffect("fireSmoke_Collumn_mvmAcres", self.GetOrigin(), Vector(0, 90, 0))
 				
+				self.TakeDamage(1000, 1, blood_tank_outofblood_healthdrain)
+
 				EmitSoundEx({ sound_name = "weapons/loose_cannon_explode.wav", filter_type = 5, flags = 0, channel = 6 })
 				
 				tank_objective_explosion_cooldown = 8.0 + tank_objective_explosion_leftovers
@@ -2655,15 +2654,6 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				
 				if (tank_tnt_level > 0 && tank_blood_level == 0) extraction_mode = "tnt"
 				if (tank_tnt_level == 0 && tank_blood_level > 0) extraction_mode = "blood"
-			}
-			
-			for (local i = 1; i <= MaxClients().tointeger(); i++)
-			{
-				local player = PlayerInstanceFromIndex(i)
-				if (player == null) continue;
-				if (player.GetTeam() == 1) continue
-				if (!player.IsFakeClient()) continue
-				if (!player.HasBotTag("aggrobot")) continue
 			}
 		}
 		
@@ -4144,6 +4134,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		EntFire("wormhole_end_relay", "Trigger", null, 23.5)
 		
 		EntFireByHandle(pop_interface_ent, "$FinishWave", null, 25.0, null, null)
+		EntFireByHandle(ufo, "RunScriptCode", "self.KeyValueFromInt(`renderamt`, 0)", 25.0, null, null)
 		
 		foreach (bluplayer in bluplayer_array)
 		{
@@ -4365,10 +4356,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 
 	LossHandler = function()
 	{
-		if (game_over) return
-		
-		if (objective_type != "end") EntFire("robots_lose", "RoundWin")
-		else 						 game_over = true
+		if (!player_stood_on_boombox) EntFire("robots_lose", "RoundWin")
+		else game_over = true
 	}
 	
 	///////////////////////////////////////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////
@@ -5376,7 +5365,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			{
 				SendGlobalGameEvent("show_annotation", 
 				{
-					id = 952318
+					id = RandomInt(500, 5000)
 					text = "Destroy to get extra blood"
 					visibilityBitfield = (1 << player.entindex())
 					follow_entindex = self.entindex()
@@ -6285,7 +6274,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		desired_tip_cooldown = 15
 		in_tip_cooldown = false
 		
-		desired_vistip_cooldown = 7.5
+		desired_vistip_cooldown = 10
 		in_vistip_cooldown = false
 
 		tip_table =
@@ -6538,11 +6527,11 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			if (!in_setup())
 			{
-				if (WAVE < 3 && blood_count >= 5 && !tip_table["vis_deliverblood"]) DeliverVisualTipToPlayer(owner, "vis_deliverblood", "Take the blood to the Blood Tank!")
-				if (tnt_count >= 5 && !tip_table["vis_armbarrels"])	DeliverVisualTipToPlayer(owner, "vis_armbarrels", "Take the TNT to any glowing barrel!")
-				if (giant_points >= 30 && !tip_table["vis_giantpoints"]) DeliverVisualTipToPlayer(owner, "vis_giantpoints", "Hold your Projectile Shield\nkey to become giant!")
-				if (is_giant_robot && !tip_table["vis_giantpoints_turnback"]) DeliverVisualTipToPlayer(owner, "vis_giantpoints_turnback", "Hold the same key again\nto turn back to normal")
-				if (excess_stage > 0 && !tip_table["vis_bloodexcess"]) DeliverVisualTipToPlayer(owner, "vis_bloodexcess", "Carrying too much makes\nyou slow and fragile")
+				if (WAVE < 3 && blood_count >= 5) DeliverVisualTipToPlayer(owner, "vis_deliverblood", "Take the blood to the Blood Tank!")
+				if (tnt_count >= 5)	DeliverVisualTipToPlayer(owner, "vis_armbarrels", "Take the TNT to any glowing barrel!")
+				if (giant_points >= 30) DeliverVisualTipToPlayer(owner, "vis_giantpoints", "Hold your Projectile Shield\nkey to become giant!")
+				if (is_giant_robot) DeliverVisualTipToPlayer(owner, "vis_giantpoints_turnback", "Hold the same key again\nto turn back to normal")
+				if (excess_stage > 0) DeliverVisualTipToPlayer(owner, "vis_bloodexcess", "Carrying too much makes\nyou slow and fragile")
 				if (WAVE < 3 && tank_blood_level == 0) DeliverVisualTipToPlayer(owner, "vis_tankhasnoblood", "Blood Tank drains its own health\nwhile it has no blood")
 			
 				if (WAVE == 3 && extraction_mode == "blood") DeliverVisualTipToPlayer(owner, "vis_bloodconversion", "Bring blood to the Blood Tank\nwhile it's refilling its TNT!")
@@ -7624,20 +7613,41 @@ CALLBACKS.OnGameEvent_player_say <- function(params)
 		
 		if (params.text == "test")
 		{
-			SendGlobalGameEvent("show_annotation", 
-			{
-				id = 927382
-				text = "Remember to collect blood!"
-				worldPosX = player.GetScriptScope().bloodstorage.tutorial_box.GetOrigin().x
-				worldPosY = player.GetScriptScope().bloodstorage.tutorial_box.GetOrigin().y
-				worldPosZ = player.GetScriptScope().bloodstorage.tutorial_box.GetOrigin().z
-				follow_entindex = player.GetScriptScope().bloodstorage.tutorial_box.entindex()
-				visibilityBitfield = (1 << player.entindex())
-				play_sound = "misc/null.wav"
-				show_distance = false
-				show_effect = false
-				lifetime = 3
-			})
+			// SendGlobalGameEvent("show_annotation", 
+			// {
+				// id = 927382
+				// text = "Remember to collect blood!"
+				// worldPosX = player.GetScriptScope().bloodstorage.tutorial_box.GetOrigin().x
+				// worldPosY = player.GetScriptScope().bloodstorage.tutorial_box.GetOrigin().y
+				// worldPosZ = player.GetScriptScope().bloodstorage.tutorial_box.GetOrigin().z
+				// follow_entindex = player.GetScriptScope().bloodstorage.tutorial_box.entindex()
+				// visibilityBitfield = (1 << player.entindex())
+				// play_sound = "misc/null.wav"
+				// show_distance = false
+				// show_effect = false
+				// lifetime = 3
+			// })
+			
+			// for (local i = 31; i >= 1; i--)
+			// {
+				// local player = PlayerInstanceFromIndex(i)
+				
+				// if (player == null) continue
+				
+				// SendGlobalGameEvent("show_annotation", 
+				// {
+					// id = RandomInt(5000, 50000)
+					// text = "testsahdajhs"
+					// follow_entindex = player.entindex()
+					// visibilityBitfield = (1 << player.entindex())
+					// play_sound = "misc/null.wav"
+					// show_distance = false
+					// show_effect = false
+					// lifetime = 5
+				// })
+				
+				// ClientPrint(null,3,"" + player.entindex() + " | " + (1 << player.entindex()))
+			// }
 		}
 
 		if (params.text == "!p")
