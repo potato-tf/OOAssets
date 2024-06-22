@@ -27,98 +27,13 @@ WaveSchedule
 	//DisableSound "music.mvm_end_last_wave"
 	//PrecacheSound "lament_et_tri_up8db.mp3"
 	//PrecacheSound "lament_et_tri_end_up8db.mp3"
-	PrecacheSound "no_turning_back_up8db.mp3"
-	PrecacheSound "no_turning_back_end_up8db.mp3"
+	//PrecacheSound "no_turning_back_up8db.mp3"
+	//PrecacheSound "no_turning_back_end_up8db.mp3"
 
 	//DisallowUpgrade "building instant upgrade"
 	//DisallowUpgrade "generate rage on heal"
 	//DisallowUpgrade "explosive sniper shot"
 	//RespecEnabled 0
-	
-	PointTemplates
-	{
-		Wave4Music
-		{
-			// Music
-			ambient_generic
-			{
-				"targetname" "startmusicplay"
-				"message" "#lament_et_tri_up8db.mp3"
-				"health" "5"
-				"pitch" "100"
-				"spawnflags" "17"
-			}
-			
-			// End Music
-			ambient_generic
-			{
-				"targetname" "endmusicplay"
-				"message" "#lament_et_tri_end_up8db.mp3"
-				"health" "5"
-				"pitch" "100"
-				"spawnflags" "17"
-			}
-			
-			// Music Play
-			logic_relay
-			{
-				"targetname" "musicplay"
-				"spawnflags" "2"
-				
-				"OnTrigger" "startmusicplay,PlaySound,,0,-1"
-				"OnTrigger" "startmusicplay,StopSound,,678,-1"
-			}
-			
-			//Music Stop
-			logic_relay
-			{
-				"targetname" "musicstop"
-				"OnTrigger" "startmusicplay,StopSound,,0,-1"
-				"OnTrigger" "endmusicplay,PlaySound,,0,-1"
-				"OnTrigger" "endmusicplay,StopSound,,13,-1"
-			}
-		}
-		
-		Wave5Music
-		{
-			// Music
-			ambient_generic
-			{
-				"targetname" "startmusicplay2"
-				"message" "#no_turning_back_up8db.mp3"
-				"health" "20"
-				"pitch" "100"
-				"spawnflags" "17"
-			}
-			
-			// End Music
-			ambient_generic
-			{
-				"targetname" "endmusicplay2"
-				"message" "#no_turning_back_end_up8db.mp3"
-				"health" "20"
-				"pitch" "100"
-				"spawnflags" "17"
-			}
-			
-			// Music Play
-			logic_relay
-			{
-				"targetname" "musicplay2"
-				"spawnflags" "2"
-				
-				"OnTrigger" "startmusicplay2,PlaySound,,0,-1"
-				"OnTrigger" "startmusicplay2,StopSound,,712,-1"
-			}
-			
-			//Music Stop
-			logic_relay
-			{
-				"targetname" "musicstop2"
-				"OnTrigger" "startmusicplay2,StopSound,,0,-1"
-			}
-		}
-	}
 
 	Mission
 	{
