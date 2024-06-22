@@ -454,8 +454,8 @@ population
 			Name	w3a1
 			WaitForAllSpawned	w3a
 			TotalCurrency	150
-			TotalCount	4
-			MaxActive	4
+			TotalCount	6
+			MaxActive	6
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	10
