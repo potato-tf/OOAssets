@@ -170,11 +170,6 @@ WaveSchedule
 				EntFire(`bombpath_right_arrows`, `TurnOff`)
                 EntFire(`bombpath_left`, `Trigger`)
 				ClientPrint(null,3,`\x08FF54F1FFThis mission, The bomb will take a unique path for each wave!`)
-				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				if (ent)
-				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Unescapable Undine (Advanced)`)
-				}
 			"
 		}
 		
@@ -446,11 +441,6 @@ WaveSchedule
 				EntFire(`bombpath_left_arrows`, `TurnOff`)
 				EntFire(`bombpath_right_arrows`, `TurnOn`)
                 EntFire(`bombpath_right`, `Trigger`)
-				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				if (ent)
-				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Unescapable Undine (Advanced)`)
-				}
             "
 		}
 		
@@ -866,11 +856,6 @@ WaveSchedule
 				EntFire(`bombpath_left_arrows`, `TurnOff`)
 				EntFire(`bombpath_right_arrows`, `TurnOn`)
                 EntFire(`bombpath_right`, `Trigger`)
-				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				if (ent)
-				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Unescapable Undine (Advanced)`)
-				}
             "
 		}
 		
@@ -1101,6 +1086,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Heavyweapons_Fist
+				ClassIcon heavy_steelfist_nys_nolod
 			}
 		}
 		
@@ -1197,11 +1183,6 @@ WaveSchedule
 				EntFire(`bombpath_right_arrows`, `TurnOff`)
 				EntFire(`bombpath_left_arrows`, `TurnOn`)
                 EntFire(`bombpath_left`, `Trigger`)
-				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				if (ent)
-				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Unescapable Undine (Advanced)`)
-				}
 			"
 		}
 		
@@ -1663,11 +1644,6 @@ WaveSchedule
 				EntFire(`bombpath_right_arrows`, `TurnOff`)
 				EntFire(`bombpath_left_arrows`, `TurnOn`)
                 EntFire(`bombpath_left`, `Trigger`)
-				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				if (ent)
-				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Unescapable Undine (Advanced)`)
-				}
 			"
 		}
 		
@@ -1990,7 +1966,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Spammer
-				ClassIcon soldier_infinite_giant_crit
+				ClassIcon soldier_infinite_giant_crit_nl
 				Attributes AlwaysCrit
 				CharacterAttributes
 				{

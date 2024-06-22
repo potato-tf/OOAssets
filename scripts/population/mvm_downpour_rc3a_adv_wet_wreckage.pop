@@ -171,19 +171,6 @@ population
 
 	Wave
 	{
-		InitWaveOutPut
-		{
-			Target	wave_start_relay
-			Action	RunScriptCode
-			Param	"
-			local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-                if (ent)
-                {
-                    NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Wet Wreckage (Advanced)`)
-                } //^ sets mission name
-			"
-		}
-
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -313,19 +300,6 @@ population
 
 	Wave
 	{
-		InitWaveOutPut
-		{
-			Target	wave_start_relay
-			Action	RunScriptCode
-			Param	"
-			local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-                if (ent)
-                {
-                    NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Wet Wreckage (Advanced)`)
-                } //^ sets mission name
-			"
-		}
-
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -527,19 +501,6 @@ population
 
 	Wave
 	{
-		InitWaveOutPut
-		{
-			Target	wave_start_relay
-			Action	RunScriptCode
-			Param	"
-			local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-                if (ent)
-                {
-                    NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Wet Wreckage (Advanced)`)
-                } //^ sets mission name
-			"
-		}
-
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -739,19 +700,6 @@ population
 
 	Wave
 	{
-		InitWaveOutPut
-		{
-			Target	wave_start_relay
-			Action	RunScriptCode
-			Param	"
-			local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-                if (ent)
-                {
-                    NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Wet Wreckage (Advanced)`)
-                } //^ sets mission name
-			"
-		}
-
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -892,6 +840,7 @@ population
 				TFBot
 				{
 					Template	T_TFBot_Heavyweapons_Fist
+					ClassIcon heavy_steelfist_nys_nolod
 					Attributes	AlwaysCrit
 				}
 
@@ -961,7 +910,11 @@ population
 			{
 				Target	wave_start_relay
 				Action	RunScriptCode
-				Param	"EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); EntFire(`tankboss`, `removehealth`, `15000`); "
+				Param	"
+					for (local ent; ent = Entities.FindByName(ent, `tankboss`);) {
+						EntFireByHandle(ent, `RemoveHealth`, `15000`, 0, null, null)
+					}
+				"
 			}
 			// kill tanks when wave is over.
 			// runs 8 of these even though there's no way 8 can be on the field at once.
@@ -993,36 +946,10 @@ population
 
 	Wave
 	{
-		InitWaveOutPut
-		{
-			Target	wave_start_relay
-			Action	RunScriptCode
-			Param	"
-			local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-                if (ent)
-                {
-                    NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Wet Wreckage (Advanced)`)
-                } //^ sets mission name
-			"
-		}
-
 		StartWaveOutput
 		{
 			Target	wave_start_2bomb_relay
 			Action	Trigger
-		}
-
-		DoneOutput	// resets pop name when the mission is over so the mission changing logic works properly. Must be changed if map/mission name changes.
-		{
-			Target	wave_start_relay
-			Action	RunScriptCode
-			Param	"
-			local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-                if (ent)
-                {
-                    NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `mvm_downpour_rc3a_adv_wet_wreckage.pop`)
-                } //^ sets mission name
-			"
 		}
 
 		WaveSpawn

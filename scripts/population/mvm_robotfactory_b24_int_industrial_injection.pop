@@ -10,23 +10,6 @@ population
         PrecacheModel "models/monorail_tank_damage1.mdl"
 	PrecacheModel "models/monorail_tank_damage2.mdl"
 	PrecacheModel "models/monorail_tank_damage3.mdl"
-	PointTemplates
-	{
-		MissionName
-		{
-			logic_relay
-			{
-				"targetname" "name"
-				"OnTrigger" "tf_objective_resource,$SetClientProp$m_iszMvMPopfileName,Industrial Injection (Intermediate),0,-1"
-			}
-			OnSpawnOutput
-			{
-				Target "name"
-				Action "trigger"
-				Delay 0
-			}
-		}
-	}
 	Mission
 	{
 		Objective	DestroySentries
@@ -56,7 +39,6 @@ population
 			Template	T_TFBot_Sniper
 		}
 	}
-	SpawnTemplate MissionName
 	Wave
 	{
 		WaitWhenDone	65

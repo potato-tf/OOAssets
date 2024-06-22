@@ -53,11 +53,6 @@ WaveSchedule
                 "bot medic uber health threshold" 225
             }
 		}
-		T_TFBot_Giant_Pyro
-		{
-			ClassIcon	pyro_reflect_daan_giant
-			Item	"Pyro Helm"
-		}
 	}
     Mission
     {
@@ -350,7 +345,7 @@ WaveSchedule
 			Name "wave1_pyros"
 			Where spawnbot
 			TotalCount 21
-			MaxActive 6
+			MaxActive 5
 			SpawnCount 2
 			WaitBeforeStarting 4
 			WaitBetweenSpawns 6
@@ -369,7 +364,7 @@ WaveSchedule
 			Name "wave1_demos"
 			Where spawnbot
 			TotalCount 24
-			MaxActive 6
+			MaxActive 4
 			SpawnCount 2
 			WaitBeforeStarting 4
 			WaitBetweenSpawns 6
@@ -437,7 +432,6 @@ WaveSchedule
 				Skill Easy
 				Item "The Galvanized Gibus"
 			}
-		
 		}
 		WaveSpawn
 		{
@@ -889,7 +883,7 @@ WaveSchedule
 		{
 			Name "w4a_ff_giant_demo"
 			Where spawnbot
-			TotalCount 12
+			TotalCount 15
 			MaxActive 6
 			SpawnCount 3
 			WaitBeforeStarting	0
@@ -1121,7 +1115,7 @@ WaveSchedule
 				Item "The Triggerman's Tacticals"
 				Item "The Conspicuous Camouflage"
 				Skill Normal
-				ClassIcon sniper_smg
+				ClassIcon sniper_smg_tind
 				WeaponRestrictions SecondaryOnly
 			}
 		}
@@ -1265,7 +1259,7 @@ WaveSchedule
 		{
 			Name "w6a_mitten_heavies"
 			Where spawnbot
-			TotalCount 54
+			TotalCount 56
 			MaxActive 9
 			SpawnCount 3
 			WaitBeforeStarting 0
@@ -1318,8 +1312,22 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template T_TFBot_Giant_Pyro
+					Class Pyro
+					Name "Giant Pyro"
+					ClassIcon pyro_reflect_daan_giant
+					Item "Pyro Helm"
+					Skill Expert
+					Health 3000
+					WeaponRestrictions PrimaryOnly
+					Attributes MiniBoss
 					Attributes AlwaysCrit
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction" 0.6
+						"airblast vulnerability multiplier" 0.6
+						"override footstep sound set" 6
+					}
 				}
 				TFBot
 				{
@@ -1353,8 +1361,22 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template T_TFBot_Giant_Pyro
+					Class Pyro
+					Name "Giant Pyro"
+					ClassIcon pyro_reflect_daan_giant
+					Item "Pyro Helm"			
+					Skill Expert
+					Health 3000
+					WeaponRestrictions PrimaryOnly
+					Attributes MiniBoss
 					Attributes AlwaysCrit
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction" 0.6
+						"airblast vulnerability multiplier" 0.6
+						"override footstep sound set" 6
+					}
 				}
 				TFBot
 				{
@@ -1388,8 +1410,22 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template T_TFBot_Giant_Pyro
+					Class Pyro
+					Name "Giant Pyro"
+					ClassIcon pyro_reflect_daan_giant
+					Item "Pyro Helm"
+					Skill Expert
+					Health 3000
+					WeaponRestrictions PrimaryOnly
+					Attributes MiniBoss
 					Attributes AlwaysCrit
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction" 0.6
+						"airblast vulnerability multiplier" 0.6
+						"override footstep sound set" 6
+					}
 				}
 				TFBot
 				{
@@ -1413,7 +1449,7 @@ WaveSchedule
 		{
 			Name "w6b_heavy"
 			Where spawnbot
-			TotalCount 18
+			TotalCount 16
 			MaxActive 8
 			SpawnCount 3
 			WaitForAllSpawned w6b_tank
@@ -1432,11 +1468,11 @@ WaveSchedule
 			Name "w6b_battalion_soldier"
 			Where spawnbot
 			TotalCount 22
-			MaxActive 1
+			MaxActive 2
 			SpawnCount 1
 			WaitForAllSpawned w6b_tank
-			WaitBeforeStarting 12
-			WaitBetweenSpawnsAfterDeath 5
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 8
 			Support 1
 			TFBot
 			{

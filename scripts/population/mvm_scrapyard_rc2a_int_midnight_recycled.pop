@@ -152,11 +152,6 @@ WaveSchedule
 				EntFire(`bombpath_arrows_left`, `TurnOff`)
                 EntFire(`bombpath_left_relay`, `Trigger`)
 				ClientPrint(null,3,`\x08FF54F1FFThis mission, The bomb will take a unique path for each wave!`)
-				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-				if (ent)
-				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `Midnight Recycled (Intermediate)`)
-				}
 			"
 		}
 		

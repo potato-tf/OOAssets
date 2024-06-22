@@ -658,7 +658,7 @@ WaveSchedule
 		{
 			Class Heavy
 			Skill Easy
-			ClassIcon	heavy_heater_nys
+			ClassIcon	heavy_heater_nys_nolod
 			Name	"Heater Heavy"
 			Item	"the huo long heatmaker"
 			Item "The Bunsen Brave"
@@ -755,7 +755,7 @@ WaveSchedule
 			Name "Shield Medic"
 			Class Medic
 			Skill Expert
-			ClassIcon medic_shield_qf
+			ClassIcon medic_shield_lite
 			Attributes ProjectileShield
 			Attributes SpawnWithFullCharge
 			Attributes IgnoreEnemies
@@ -777,7 +777,7 @@ WaveSchedule
 		{
 			Class Scout
 			Name "Crit-a-Cola Scout"
-			ClassIcon scout_cola
+			ClassIcon scout_cola_nys
 			Skill Normal
 			WeaponRestrictions PrimaryOnly
 			MaxVisionRange 1200
@@ -1326,20 +1326,6 @@ WaveSchedule
 				Delay 0.01
 			}
 		}
-	nameChange
-		{ 
-			logic_relay
-			{
-				"targetname" "nameChange"
-				"origin" "0 0 0"
-				"OnTrigger" "tf_objective_resource,$SetClientProp$m_iszMvMPopfileName,EXP Enduring Exceptions,0,-1"
-			}
-			OnSpawnOutput
-			{
-				Target "nameChange" 
-				Action trigger
-			}			
-		}
 		nukeSoldierFunni
 		{
 				logic_relay
@@ -1696,7 +1682,6 @@ WaveSchedule
 	
 	//Leaving these templates laying around is harmless because they are only invoked when they are needed.
 	//Unlike say, a template that lays a bunch of props around the place.
-	SpawnTemplate "nameChange"
 	SpawnTemplate "nukeSoldierFunni"
 	SpawnTemplate "music_3"
 	Mission
@@ -1730,7 +1715,7 @@ WaveSchedule
 			Item "The Cow Mangler 5000"
 			Item "Lord Cockswain's Novelty Mutton Chops and Pipe"
 			Item "Lord Cockswain's Pith Helmet"
-			ClassIcon "soldier_cowmangler"
+			ClassIcon soldier_mangler_nolod
 			ItemAttributes
 			{
 			ItemName "The Cow Mangler 5000"

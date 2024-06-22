@@ -172,21 +172,6 @@ WaveSchedule
 	
 	PointTemplates
 	{
-		MissionName
-		{
-			logic_relay
-			{
-				"targetname" "name"
-				"OnTrigger" "tf_objective_resource,$SetClientProp$m_iszMvMPopfileName,(Expert) Netherite Navy,0,-1"
-			}
-			OnSpawnOutput
-			{
-				Target "name"
-				Action "trigger"
-				Delay 0
-			}
-		}
-	
 		SmallKits
         {
             item_healthkit_small
@@ -329,7 +314,6 @@ WaveSchedule
 	}
 
 	SpawnTemplate BluBotSpawns
-	SpawnTemplate MissionName
 	SpawnTemplate Annotations
 	SpawnTemplate
 	{
@@ -2279,6 +2263,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Heavyweapons_Fist
+				ClassIcon heavy_steelfist_nys_nolod
 				Attributes AlwaysCrit
 			}
 		}
