@@ -119,9 +119,9 @@ WaveSchedule
         Where    Behind
         BeginAtWave    3
         RunForThisManyWaves    1
-        InitialCooldown    25
-        CooldownTime    25
-        DesiredCount    1
+        InitialCooldown    20
+        CooldownTime    20
+        DesiredCount    2
         TFBot
         {
             Class    Soldier
@@ -231,7 +231,7 @@ WaveSchedule
         BeginAtWave    6
         RunForThisManyWaves    1
         InitialCooldown    15
-        CooldownTime    35
+        CooldownTime    25
         DesiredCount    2
         TFBot
         {
@@ -267,8 +267,8 @@ WaveSchedule
         Where    Behind
         BeginAtWave    7
         RunForThisManyWaves    1
-        InitialCooldown    25
-        CooldownTime    45
+        InitialCooldown    20
+        CooldownTime    25
         DesiredCount    2
         TFBot
         {
