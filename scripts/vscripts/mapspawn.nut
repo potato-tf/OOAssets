@@ -32,10 +32,10 @@
      */
     function SetMissionName(newname) {
         if (this.IsSigmod == true) {
-            // This is done because the Potato plugin that serves the mission name to the 
+            // This is done because the Potato plugin that serves the mission name to the
             // website retrieves the popfile name directly from this NetProp, causing the website
-            // to display incorrectly if it is modified. Plugin authors should consider using a 
-            // method like this instead:
+            // to display incorrectly if it is modified. Plugin authors should consider using a
+            // method like this instead, perhaps in a static function to reduce overhead:
             // https://github.com/mtxfellen/tf2-plugins/blob/3a83742/addons/sourcemod/scripting/include/tfmvm_stocks.inc#L21
             EntFireByHandle(__potato.objective_resource, "$SetClientProp$m_iszMvMPopfileName", newname, -1, null, null)
             return
@@ -62,11 +62,8 @@
         local difficulty = ""   // Mission display difficulty tag
         for(local i = 0; i <= strings.len() - 2; ++i) {
             // Don't include "rev" or "reverse" in formatted version
-            if (strings[i] in this.toStrip) continue
+            if (this.toStrip.find(strings[i]) != null) continue
             // Test for mission difficulty tag
-            //  No way to access a key without potentially throwing an exception,
-            //   and exceptions aren't typed so have to do this (or use arrays instead
-            //   of a table for __potato.difficultyMap)
             if (strings[i] in this.difficultyMap) {
                 difficulty = this.difficultyMap[strings[i]]
                 continue

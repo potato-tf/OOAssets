@@ -22,9 +22,7 @@ WaveSchedule
 	RespawnWaveTime 4
 	CanBotsAttackWhileInSpawnRoom no
 	WaveStartCountdown 3
-
-	// Add to download list
-	PrecacheSound "clement_rillet.mp3" [$SIGSEGV]
+	PrecacheSound "flowerfieldupgradestation.mp3"
 
 	// Missions
 	
@@ -197,7 +195,7 @@ WaveSchedule
 			ambient_generic
 			{
 				"targetname" "startmusicplay"
-				"message" "#clement_rillet.mp3"
+				"message" "#flowerfieldupgradestation.mp3"
 				"health" "10"
 				"pitch" "100"
 				"volume" "10"
@@ -208,7 +206,7 @@ WaveSchedule
 			ambient_generic
 			{
 				"targetname" "extended"
-				"message" "#clement_rillet.mp3"
+				"message" "#flowerfieldupgradestation.mp3"
 				"health" "10"
 				"pitch" "100"
 				"volume" "10"
@@ -223,8 +221,8 @@ WaveSchedule
 				"spawnflags" "2"
 				
 				"OnSpawn" "startmusicplay,PlaySound,,0,-1"
-				"OnSpawn" "startmusicplay,StopSound,,91,-1"
-				"OnSpawn" "musicloop,Trigger,,91,-1"
+				"OnSpawn" "startmusicplay,StopSound,,457,-1"
+				"OnSpawn" "musicloop,Trigger,,457,-1"
 			}
 			//Loop
 			logic_relay
@@ -232,7 +230,7 @@ WaveSchedule
 				"targetname" "musicloop"
 				"spawnflags" "2"
 				"OnTrigger" "extended,PlaySound,,0,-1"
-				"OnTrigger" "musiclooper,Trigger,,91,-1"
+				"OnTrigger" "musiclooper,Trigger,,457,-1"
 			}
 			//Loop handler
 			logic_relay
@@ -250,7 +248,7 @@ WaveSchedule
 			ambient_generic
 			{
 				"targetname" "startmusicplay"
-				"message" "#clement_rillet.mp3"
+				"message" "#flowerfieldupgradestation.mp3"
 				"health" "10"
 				"pitch" "100"
 				"volume" "10"
@@ -261,7 +259,7 @@ WaveSchedule
 			ambient_generic
 			{
 				"targetname" "extended"
-				"message" "#clement_rillet.mp3"
+				"message" "#flowerfieldupgradestation.mp3"
 				"health" "10"
 				"pitch" "100"
 				"volume" "10"
@@ -276,8 +274,8 @@ WaveSchedule
 				"spawnflags" "2"
 				
 				"OnSpawn" "startmusicplay,PlaySound,,0,-1"
-				"OnSpawn" "startmusicplay,StopSound,,91,-1"
-				"OnSpawn" "musicloop,Trigger,,91,-1"
+				"OnSpawn" "startmusicplay,StopSound,,457,-1"
+				"OnSpawn" "musicloop,Trigger,,457,-1"
 			}
 			//Loop
 			logic_relay
@@ -285,7 +283,7 @@ WaveSchedule
 				"targetname" "musicloop"
 				"spawnflags" "2"
 				"OnTrigger" "extended,PlaySound,,0,-1"
-				"OnTrigger" "musiclooper,Trigger,,91,-1"
+				"OnTrigger" "musiclooper,Trigger,,457,-1"
 			}
 			//Loop handler
 			logic_relay
@@ -303,7 +301,7 @@ WaveSchedule
 			ambient_generic
 			{
 				"targetname" "startmusicplay"
-				"message" "#clement_rillet.mp3"
+				"message" "#flowerfieldupgradestation.mp3"
 				"health" "10"
 				"pitch" "100"
 				"volume" "10"
@@ -314,7 +312,7 @@ WaveSchedule
 			ambient_generic
 			{
 				"targetname" "extended"
-				"message" "#clement_rillet.mp3"
+				"message" "#flowerfieldupgradestation.mp3"
 				"health" "10"
 				"pitch" "100"
 				"volume" "10"
@@ -329,8 +327,8 @@ WaveSchedule
 				"spawnflags" "2"
 				
 				"OnSpawn" "startmusicplay,PlaySound,,0,-1"
-				"OnSpawn" "startmusicplay,StopSound,,91,-1"
-				"OnSpawn" "musicloop,Trigger,,91,-1"
+				"OnSpawn" "startmusicplay,StopSound,,457,-1"
+				"OnSpawn" "musicloop,Trigger,,457,-1"
 			}
 			//Loop
 			logic_relay
@@ -338,7 +336,7 @@ WaveSchedule
 				"targetname" "musicloop"
 				"spawnflags" "2"
 				"OnTrigger" "extended,PlaySound,,0,-1"
-				"OnTrigger" "musiclooper,Trigger,,91,-1"
+				"OnTrigger" "musiclooper,Trigger,,457,-1"
 			}
 			//Loop handler
 			logic_relay
@@ -354,8 +352,33 @@ WaveSchedule
 	
 	SpawnTemplate UpgradeStationMusic1
 	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	
 	SpawnTemplate UpgradeStationMusic2
 	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
 	SpawnTemplate UpgradeStationMusic3
 	SpawnTemplate UpgradeStationMusic3
 
@@ -692,12 +715,12 @@ WaveSchedule
 			WaitForAllSpawned "2a"
 
 			Where spawnbot_flank_short
-			TotalCount 12
-			MaxActive 5
-			SpawnCount 4
+			TotalCount 9
+			MaxActive 4
+			SpawnCount 3
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 15
-			TotalCurrency 240
+			TotalCurrency 270
 			
 			Squad
 			{
@@ -707,18 +730,13 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
-					Attributes IgnoreEnemies
+					Template T_TFBot_Medic_BigHeal
+					Name "Big-Heal Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
-					Attributes IgnoreEnemies
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_QuickUber
-					Attributes IgnoreEnemies
+					Template T_TFBot_Medic_BigHeal
+					Name "Big-Heal Medic"
 				}
 			}
 		}
@@ -729,12 +747,12 @@ WaveSchedule
 			WaitForAllSpawned "2a"
 
 			Where spawnbot
-			TotalCount 4
-			MaxActive 4
+			TotalCount 2
+			MaxActive 2
 			SpawnCount 1
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 2
-			TotalCurrency 4
+			TotalCurrency 10
 			
 			Support Limited
 			
@@ -752,12 +770,12 @@ WaveSchedule
 
 			Where spawnbot
 			Where spawnbot_flank_short
-			TotalCount 28
+			TotalCount 30
 			MaxActive 10
 			SpawnCount 1
-			WaitBeforeStarting 0
+			WaitBeforeStarting 2
 			WaitBetweenSpawns 1
-			TotalCurrency 56
+			TotalCurrency 60
 			
 			Support 1
 			
@@ -787,7 +805,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 0
-			TotalCurrency 160
+			TotalCurrency 120
 			
 			TFBot
 			{
@@ -2551,3 +2569,7 @@ WaveSchedule
 // Changelog
 // Wave 2
 // Reduce Giant Fury Pyro + Uber Medic MaxActive from 8 to 5
+
+// Post Beta Changelog
+// Wave 2
+// Change Quick Uber Medic to Big Heal Medic and Reduce from 3 Medic to 2 Medic
