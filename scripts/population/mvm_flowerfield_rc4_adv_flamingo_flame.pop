@@ -22,6 +22,7 @@ WaveSchedule
 	RespawnWaveTime 4
 	CanBotsAttackWhileInSpawnRoom no
 	WaveStartCountdown 3
+	PrecacheSound "flowerfieldupgradestation.mp3"
 
 	// Missions
 	
@@ -187,6 +188,206 @@ WaveSchedule
 		}
 	}
 	
+	PointTemplates
+	{
+		UpgradeStationMusic1
+		{
+			ambient_generic
+			{
+				"targetname" "startmusicplay"
+				"message" "#flowerfieldupgradestation.mp3"
+				"health" "10"
+				"pitch" "100"
+				"volume" "10"
+				"spawnflags" "16"
+				"origin" "1847 -2662 -31"
+				"radius" "250"
+			}
+			ambient_generic
+			{
+				"targetname" "extended"
+				"message" "#flowerfieldupgradestation.mp3"
+				"health" "10"
+				"pitch" "100"
+				"volume" "10"
+				"spawnflags" "16"
+				"origin" "1847 -2662 -31"
+				"radius" "250"
+			}
+
+			logic_relay
+			{
+				"targetname" "musicplay"
+				"spawnflags" "2"
+				
+				"OnSpawn" "startmusicplay,PlaySound,,0,-1"
+				"OnSpawn" "startmusicplay,StopSound,,457,-1"
+				"OnSpawn" "musicloop,Trigger,,457,-1"
+			}
+			//Loop
+			logic_relay
+			{
+				"targetname" "musicloop"
+				"spawnflags" "2"
+				"OnTrigger" "extended,PlaySound,,0,-1"
+				"OnTrigger" "musiclooper,Trigger,,457,-1"
+			}
+			//Loop handler
+			logic_relay
+			{
+				"targetname" "musiclooper"
+				"spawnflags" "2"
+				
+				"OnTrigger" "extended,StopSound,,0.2,-1"         
+				"OnTrigger" "musicloop,Trigger,,0.22,-1"
+			}
+		}
+		
+		UpgradeStationMusic2
+		{
+			ambient_generic
+			{
+				"targetname" "startmusicplay"
+				"message" "#flowerfieldupgradestation.mp3"
+				"health" "10"
+				"pitch" "100"
+				"volume" "10"
+				"spawnflags" "16"
+				"origin" "136 -3164 -31"
+				"radius" "250"
+			}
+			ambient_generic
+			{
+				"targetname" "extended"
+				"message" "#flowerfieldupgradestation.mp3"
+				"health" "10"
+				"pitch" "100"
+				"volume" "10"
+				"spawnflags" "16"
+				"origin" "136 -3164 -31"
+				"radius" "250"
+			}
+
+			logic_relay
+			{
+				"targetname" "musicplay"
+				"spawnflags" "2"
+				
+				"OnSpawn" "startmusicplay,PlaySound,,0,-1"
+				"OnSpawn" "startmusicplay,StopSound,,457,-1"
+				"OnSpawn" "musicloop,Trigger,,457,-1"
+			}
+			//Loop
+			logic_relay
+			{
+				"targetname" "musicloop"
+				"spawnflags" "2"
+				"OnTrigger" "extended,PlaySound,,0,-1"
+				"OnTrigger" "musiclooper,Trigger,,457,-1"
+			}
+			//Loop handler
+			logic_relay
+			{
+				"targetname" "musiclooper"
+				"spawnflags" "2"
+				
+				"OnTrigger" "extended,StopSound,,0.2,-1"         
+				"OnTrigger" "musicloop,Trigger,,0.22,-1"
+			}
+		}
+		
+		UpgradeStationMusic3
+		{
+			ambient_generic
+			{
+				"targetname" "startmusicplay"
+				"message" "#flowerfieldupgradestation.mp3"
+				"health" "10"
+				"pitch" "100"
+				"volume" "10"
+				"spawnflags" "16"
+				"origin" "1369 -742 -31"
+				"radius" "250"
+			}
+			ambient_generic
+			{
+				"targetname" "extended"
+				"message" "#flowerfieldupgradestation.mp3"
+				"health" "10"
+				"pitch" "100"
+				"volume" "10"
+				"spawnflags" "16"
+				"origin" "1369 -742 -31"
+				"radius" "250"
+			}
+
+			logic_relay
+			{
+				"targetname" "musicplay"
+				"spawnflags" "2"
+				
+				"OnSpawn" "startmusicplay,PlaySound,,0,-1"
+				"OnSpawn" "startmusicplay,StopSound,,457,-1"
+				"OnSpawn" "musicloop,Trigger,,457,-1"
+			}
+			//Loop
+			logic_relay
+			{
+				"targetname" "musicloop"
+				"spawnflags" "2"
+				"OnTrigger" "extended,PlaySound,,0,-1"
+				"OnTrigger" "musiclooper,Trigger,,457,-1"
+			}
+			//Loop handler
+			logic_relay
+			{
+				"targetname" "musiclooper"
+				"spawnflags" "2"
+				
+				"OnTrigger" "extended,StopSound,,0.2,-1"         
+				"OnTrigger" "musicloop,Trigger,,0.22,-1"
+			}
+		}
+	}
+	
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	SpawnTemplate UpgradeStationMusic1
+	
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	SpawnTemplate UpgradeStationMusic2
+	
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusic3
 
 	//WAVE 1 (650$)
 	Wave
@@ -521,12 +722,12 @@ WaveSchedule
 			WaitForAllSpawned "2a"
 
 			Where spawnbot_flank_short
-			TotalCount 12
-			MaxActive 5
-			SpawnCount 4
+			TotalCount 9
+			MaxActive 4
+			SpawnCount 3
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 15
-			TotalCurrency 240
+			TotalCurrency 270
 			
 			Squad
 			{
@@ -536,18 +737,13 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
-					Attributes IgnoreEnemies
+					Template T_TFBot_Medic_BigHeal
+					Name "Big-Heal Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
-					Attributes IgnoreEnemies
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_QuickUber
-					Attributes IgnoreEnemies
+					Template T_TFBot_Medic_BigHeal
+					Name "Big-Heal Medic"
 				}
 			}
 		}
@@ -558,12 +754,12 @@ WaveSchedule
 			WaitForAllSpawned "2a"
 
 			Where spawnbot
-			TotalCount 4
-			MaxActive 4
+			TotalCount 2
+			MaxActive 2
 			SpawnCount 1
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 2
-			TotalCurrency 4
+			TotalCurrency 10
 			
 			Support Limited
 			
@@ -581,12 +777,12 @@ WaveSchedule
 
 			Where spawnbot
 			Where spawnbot_flank_short
-			TotalCount 28
+			TotalCount 30
 			MaxActive 10
 			SpawnCount 1
-			WaitBeforeStarting 0
+			WaitBeforeStarting 2
 			WaitBetweenSpawns 1
-			TotalCurrency 56
+			TotalCurrency 60
 			
 			Support 1
 			
@@ -616,7 +812,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 0
-			TotalCurrency 160
+			TotalCurrency 120
 			
 			TFBot
 			{
@@ -2379,3 +2575,8 @@ WaveSchedule
 
 // Changelog
 // Wave 2
+// Reduce Giant Fury Pyro + Uber Medic MaxActive from 8 to 5
+
+// Post Beta Changelog
+// Wave 2
+// Change Quick Uber Medic to Big Heal Medic and Reduce from 3 Medic to 2 Medic
