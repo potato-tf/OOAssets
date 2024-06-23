@@ -2988,7 +2988,7 @@ WaveSchedule
 				ClassIcon iceblock
 				Tag iceblock_healthbar
 				Attributes UseBossHealthBar
-				Health 25000
+				Health 20000
 				Scale 0.001
 			}
 		}
