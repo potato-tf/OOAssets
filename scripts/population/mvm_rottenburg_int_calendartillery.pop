@@ -75,6 +75,7 @@ WaveSchedule
 	PrecacheModel "models/bots/boss_bot/robo_sleigh/robo_sleigh_damage1.mdl"
 	PrecacheModel "models/bots/boss_bot/robo_sleigh/robo_sleigh_damage2.mdl"
 	PrecacheModel "models/bots/boss_bot/robo_sleigh/robo_sleigh_damage3.mdl"
+	PrecacheGeneric "materials/hud/leaderboard_class_heavy_robosandvich_nys"
 	
 	Templates
 	{
