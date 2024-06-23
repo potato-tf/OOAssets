@@ -22,13 +22,11 @@ WaveSchedule
 	RespawnWaveTime 4
 	CanBotsAttackWhileInSpawnRoom no
 	Advanced 1
-	
-	//DisableSound "music.mvm_lost_wave" 
+
+	//DisableSound "music.mvm_lost_wave"
 	//DisableSound "music.mvm_end_last_wave"
 	//PrecacheSound "lament_et_tri_up8db.mp3"
 	//PrecacheSound "lament_et_tri_end_up8db.mp3"
-	//PrecacheSound "no_turning_back_up8db.mp3"
-	//PrecacheSound "no_turning_back_end_up8db.mp3"
 
 	//DisallowUpgrade "building instant upgrade"
 	//DisallowUpgrade "generate rage on heal"
@@ -51,7 +49,7 @@ WaveSchedule
 		    Attributes DisableDodge
         }
 	}
-	
+
 	Mission
 	{
 		Objective Spy
@@ -62,35 +60,14 @@ WaveSchedule
 		RunForThisManyWaves 1
 		CooldownTime 55
 		DesiredCount 1
-		
+
 		TFBot
 		{
 			Class Spy
 			Skill Normal
 		}
 	}
-	
-	//Mission
-	//{
-		//Objective Sniper
 
-		//InitialCooldown 30
-		//Where spawnbot_mission_Sniper
-		//BeginAtWave 2
-		//RunForThisManyWaves 1
-		//CooldownTime 40
-		//DesiredCount 2
-		
-		//TFBot
-		//{
-			//Template T_TFBot_Soldier_DirectHit_Support // Remove WeaponRestrictions PrimaryOnly
-			//CharacterAttributes
-			//{
-				//"Projectile speed increased" 1.5
-			//}
-		//}
-	//}
-	
 	Mission
 	{
 		Objective Sniper
@@ -101,14 +78,14 @@ WaveSchedule
 		RunForThisManyWaves 1
 		CooldownTime 40
 		DesiredCount 2
-		
+
 		TFBot
 		{
 			Class Sniper
 			Skill Hard
 		}
 	}
-	
+
 	Mission
 	{
 		Objective Sniper
@@ -119,14 +96,14 @@ WaveSchedule
 		RunForThisManyWaves 1
 		CooldownTime 40
 		DesiredCount 2
-		
+
 		TFBot
 		{
 			Class Sniper
 			Skill Hard
 		}
 	}
-	
+
 	Mission
 	{
 		Objective Spy
@@ -137,7 +114,7 @@ WaveSchedule
 		RunForThisManyWaves 1
 		CooldownTime 48
 		DesiredCount 2
-		
+
 		TFBot
 		{
 			Class Spy
@@ -145,8 +122,6 @@ WaveSchedule
 		}
 	}
 
-	SpawnTemplate Wave5Music
-	
 	Wave // Wave 1 (1100$)
 	{
 		StartWaveOutput
@@ -172,7 +147,7 @@ WaveSchedule
 				ClientPrint(null,3,`\x08FF54F1FFThis mission, The bomb will take a unique path for each wave!`)
 			"
 		}
-		
+
 		WaveSpawn
 		{
 			Name "1a"
@@ -184,14 +159,14 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 3
 			TotalCurrency 100
-			
+
 			TFBot
 			{
 				Class Scout
 				Skill Easy
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "1a"
@@ -203,14 +178,14 @@ WaveSchedule
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 6
 			TotalCurrency 100
-			
+
 			TFBot
 			{
 				Class Soldier
 				Skill Normal
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "1a"
@@ -222,18 +197,18 @@ WaveSchedule
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 20
 			TotalCurrency 150
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Huntsman
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "1b"
 			WaitForAllSpawned "1a"
-			
+
 			Where spawnbot_flank
 			TotalCount 2
 			MaxActive 2
@@ -241,7 +216,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 50
-			
+
 			Squad
 			{
 				TFBot
@@ -256,7 +231,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "1b"
@@ -269,11 +244,11 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 5
 			TotalCurrency 200
-			
+
 			Squad
 			{
 				ShouldPreserveSquad 1
-				
+
 				TFBot
 				{
 					Class Soldier
@@ -297,7 +272,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "1b"
@@ -310,18 +285,18 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 4
 			TotalCurrency 200
-			
+
 			TFBot
 			{
 				Template T_TFBot_Demoman_Knight
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "1c"
 			WaitForAllSpawned "1b"
-			
+
 			Where spawnbot
 			TotalCount 2
 			MaxActive 2
@@ -329,7 +304,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 50
-			
+
 			Squad
 			{
 				TFBot
@@ -344,7 +319,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "1c"
@@ -357,16 +332,16 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 4
 			TotalCurrency 100
-			
+
 			Support Limited
-			
+
 			TFBot
 			{
 				Class Pyro
 				Skill Easy
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "1c"
@@ -379,21 +354,21 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 4.5
 			TotalCurrency 100
-			
+
 			Support Limited
-			
+
 			TFBot
 			{
 				Class Scout
 				Skill Easy
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "1c"
 			WaitForAllDead "1b"
-			
+
 			Where spawnbot_flank2
 			TotalCount 2
 			MaxActive 2
@@ -401,7 +376,7 @@ WaveSchedule
 			WaitBeforeStarting 8
 			WaitBetweenSpawns 0
 			TotalCurrency 50
-			
+
 			Squad
 			{
 				TFBot
@@ -417,7 +392,7 @@ WaveSchedule
 			}
 		}
 	}
-	
+
 	Wave // Wave 2 (1000$)
 	{
 		StartWaveOutput
@@ -434,16 +409,17 @@ WaveSchedule
 		{
 			Target wave_start_relay
 			Action RunScriptCode
-			Param 
+			Param
 			"
 				EntFire(`bombpath_choose_relay`, `Kill`)
 				EntFire(`bombpath_clearall_relay`, `Trigger`)
 				EntFire(`bombpath_left_arrows`, `TurnOff`)
 				EntFire(`bombpath_right_arrows`, `TurnOn`)
                 EntFire(`bombpath_right`, `Trigger`)
+				IncludeScript(`disablesquad`)
             "
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2a-Support"
@@ -455,15 +431,15 @@ WaveSchedule
 			WaitBeforeStarting 30
 			WaitBetweenSpawns 40
 			TotalCurrency 0
-			
+
 			Support 1
-			
+
 			TFBot
 			{
 				Template T_TFBot_Soldier_DirectHit
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2a"
@@ -475,13 +451,13 @@ WaveSchedule
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 3
 			TotalCurrency 20
-			
+
 			TFBot
 			{
 				Template T_TFBot_Sniper_Huntsman
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2a"
@@ -493,32 +469,33 @@ WaveSchedule
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 5
 			TotalCurrency 80
-			
+
 			Squad
 			{
-				NoFormation 1
-				
 				TFBot
 				{
 					Template T_TFBot_Pyro_Shotgun
+					Tag disband_squad
 				}
 				TFBot
 				{
-					Template T_TFBot_Engineer_Shotgun
-					Action FetchFlag
+					Template T_TFBot_Pyro_Shotgun
+					Tag disband_squad
 				}
 				TFBot
 				{
 					Template T_TFBot_Soldier_Shotgun
+					Tag disband_squad
 				}
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Shotgun
 					Name "Shotgun Heavy"
+					Tag disband_squad
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2a"
@@ -530,13 +507,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 50
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Scout_Baseball
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2a-giant-scout"
@@ -549,13 +526,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 50
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Scout_Baseball
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2b"
@@ -568,13 +545,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 3
 			TotalCurrency 100
-			
+
 			TFBot
 			{
 				Template T_TFBot_Demoman_LochNLoad
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2b"
@@ -587,7 +564,7 @@ WaveSchedule
 			WaitBeforeStarting 4
 			WaitBetweenSpawns 4
 			TotalCurrency 100
-			
+
 			TFBot
 			{
 				Template T_TFBot_Pyro_Flaregun
@@ -595,7 +572,7 @@ WaveSchedule
 				Name "Flare Gun Pyro"
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2b"
@@ -608,11 +585,11 @@ WaveSchedule
 			WaitBeforeStarting 4
 			WaitBetweenSpawns 0
 			TotalCurrency 100
-			
+
 			Squad
 			{
 				FormationSize 100
-				
+
 				TFBot
 				{
 					Template T_TFBot_Giant_Soldier_Spammer_Reload
@@ -629,7 +606,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2c"
@@ -642,14 +619,15 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 200
-			
+
 			Squad
 			{
 				FormationSize 100
-				
+
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Heater
+					Name "Giant Heater Heavy"
 				}
 				TFBot
 				{
@@ -681,7 +659,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2c"
@@ -694,14 +672,14 @@ WaveSchedule
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 4
 			TotalCurrency 60
-			
+
 			TFBot
 			{
 				Template T_TFBot_Scout_Pistol
 				Skill Normal
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2c"
@@ -714,7 +692,7 @@ WaveSchedule
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 1
 			TotalCurrency 40
-			
+
 			TFBot
 			{
 				Template T_TFBot_Pyro_Flaregun
@@ -722,7 +700,7 @@ WaveSchedule
 				Name "Flare Gun Pyro"
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2c"
@@ -735,14 +713,15 @@ WaveSchedule
 			WaitBeforeStarting 15
 			WaitBetweenSpawns 0
 			TotalCurrency 200
-			
+
 			Squad
 			{
 				FormationSize 100
-				
+
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Heater
+					Name "Giant Heater Heavy"
 				}
 				TFBot
 				{
@@ -774,7 +753,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "2c-giant"
@@ -787,7 +766,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 100
-			
+
 			Squad
 			{
 				TFBot
@@ -808,7 +787,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		//WaveSpawn
 		//{
 			//Name "2c-pyro"
@@ -821,9 +800,9 @@ WaveSchedule
 			//WaitBeforeStarting 0
 			//WaitBetweenSpawns 1
 			//TotalCurrency 50
-			
+
 			//Support Limited
-			
+
 			//TFBot
 			//{
 				//Class Pyro
@@ -832,7 +811,7 @@ WaveSchedule
 			//}
 		//}
 	}
-	
+
 	Wave // Wave 3 (1000$)
 	{
 		StartWaveOutput
@@ -849,7 +828,7 @@ WaveSchedule
 		{
 			Target wave_start_relay
 			Action RunScriptCode
-			Param 
+			Param
 			"
 				EntFire(`bombpath_choose_relay`, `Kill`)
 				EntFire(`bombpath_clearall_relay`, `Trigger`)
@@ -858,7 +837,7 @@ WaveSchedule
                 EntFire(`bombpath_right`, `Trigger`)
             "
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3a"
@@ -870,13 +849,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 15
 			TotalCurrency 60
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Demo_RapidFire_FixIcons
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3a"
@@ -894,7 +873,7 @@ WaveSchedule
 				Template T_TFBot_Demoman_Sticky
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3a"
@@ -906,13 +885,13 @@ WaveSchedule
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 5
 			TotalCurrency 40
-			
+
 			TFBot
 			{
 				Template T_TFBot_Soldier_Armored_Burst
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3b-Tank"
@@ -921,7 +900,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 250
-			
+
 			Tank
 			{
 				Health 20000
@@ -940,7 +919,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3b"
@@ -953,13 +932,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 50
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Demoman_Battalion
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3b"
@@ -973,14 +952,14 @@ WaveSchedule
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 5
 			TotalCurrency 100
-			
+
 			TFBot
 			{
 				Template T_TFBot_Soldier_Bison
 				Skill Normal
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3b"
@@ -993,11 +972,11 @@ WaveSchedule
 			WaitBeforeStarting 25
 			WaitBetweenSpawns 0
 			TotalCurrency 100
-			
+
 			Squad
 			{
 				FormationSize 100
-				
+
 				TFBot
 				{
 					Template T_TFBot_Giant_Pyro_Dragon_Fury
@@ -1027,7 +1006,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3c-Support"
@@ -1040,16 +1019,16 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 7
 			TotalCurrency 50
-			
+
 			Support 1
-			
+
 			TFBot
 			{
 				Template T_TFBot_Soldier_Shovel
 				Attributes AlwaysCrit
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3c"
@@ -1062,14 +1041,14 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 2
 			TotalCurrency 50
-			
+
 			TFBot
 			{
 				Class Soldier
 				Skill Normal
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3c"
@@ -1082,14 +1061,13 @@ WaveSchedule
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 4
 			TotalCurrency 50
-			
+
 			TFBot
 			{
 				Template T_TFBot_Heavyweapons_Fist
-				ClassIcon heavy_steelfist_nys_nolod
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3c-giant"
@@ -1102,11 +1080,11 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 100
-			
+
 			Squad
 			{
 				FormationSize 100
-				
+
 				TFBot
 				{
 					Template T_TFBot_Giant_Pyro_Dragon_Fury
@@ -1136,7 +1114,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "3c-Bowman"
@@ -1149,9 +1127,9 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 7
 			TotalCurrency 50
-			
+
 			Support Limited
-			
+
 			TFBot
 			{
 				Template T_TFBot_Soldier_Bison
@@ -1159,7 +1137,7 @@ WaveSchedule
 			}
 		}
 	}
-	
+
 	Wave // Wave 4 (1000$)
 	{
 		StartWaveOutput
@@ -1185,7 +1163,7 @@ WaveSchedule
                 EntFire(`bombpath_left`, `Trigger`)
 			"
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4a"
@@ -1197,13 +1175,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 15
 			TotalCurrency 30
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Scout_Fast
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4a"
@@ -1215,13 +1193,13 @@ WaveSchedule
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 1
 			TotalCurrency 50
-			
+
 			TFBot
 			{
 				Template T_TFBot_Pyro_DF
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4a-support"
@@ -1233,15 +1211,15 @@ WaveSchedule
 			WaitBeforeStarting 35
 			WaitBetweenSpawns 50
 			TotalCurrency 50
-			
+
 			Support 1
-			
+
 			TFBot
 			{
 				Template T_TFBot_Pyro_Airblast
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4b"
@@ -1254,13 +1232,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 15
 			TotalCurrency 30
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Scout_Fast
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4b"
@@ -1273,13 +1251,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 2.5
 			TotalCurrency 60
-			
+
 			TFBot
 			{
 				Template T_TFBot_Sniper_Huntsman
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4b"
@@ -1292,13 +1270,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 8
 			TotalCurrency 100
-			
+
 			TFBot
 			{
 				Template T_TFBot_Demoman_Burst_Armored
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4c"
@@ -1311,13 +1289,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 15
 			TotalCurrency 30
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Scout_Fast
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4c"
@@ -1330,14 +1308,14 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 2
 			TotalCurrency 50
-			
+
 			TFBot
 			{
 				Template T_TFBot_Soldier_Extended_Buff_Banner_Bugfixed
 				Skill Normal
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4d"
@@ -1350,13 +1328,13 @@ WaveSchedule
 			WaitBeforeStarting 15
 			WaitBetweenSpawns 15
 			TotalCurrency 30
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Scout_Fast
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4a"
@@ -1368,7 +1346,7 @@ WaveSchedule
 			WaitBeforeStarting 9
 			WaitBetweenSpawns 0
 			TotalCurrency 60
-			
+
 			Squad
 			{
 				TFBot
@@ -1395,7 +1373,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4b"
@@ -1408,7 +1386,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 100
-			
+
 			Squad
 			{
 				TFBot
@@ -1435,7 +1413,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4c"
@@ -1448,7 +1426,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 60
-			
+
 			Squad
 			{
 				TFBot
@@ -1475,7 +1453,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4d"
@@ -1488,7 +1466,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 60
-			
+
 			Squad
 			{
 				TFBot
@@ -1515,7 +1493,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4d"
@@ -1528,7 +1506,7 @@ WaveSchedule
 			WaitBeforeStarting 8
 			WaitBetweenSpawns 22
 			TotalCurrency 120
-			
+
 			Squad
 			{
 				TFBot
@@ -1542,7 +1520,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4d-support-pyro"
@@ -1555,16 +1533,16 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 1
 			TotalCurrency 40
-			
+
 			Support 1
-			
+
 			TFBot
 			{
 				Class Pyro
 				Skill Easy
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4d-support-scout-soda"
@@ -1577,16 +1555,16 @@ WaveSchedule
 			WaitBeforeStarting 4
 			WaitBetweenSpawns 1
 			TotalCurrency 50
-			
+
 			Support 1
-			
+
 			TFBot
 			{
 				Template T_TFBot_Scout_Soda_Popper
 				Skill Easy
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "4d-support-soldier"
@@ -1599,20 +1577,20 @@ WaveSchedule
 			WaitBeforeStarting 8
 			WaitBetweenSpawns 1
 			TotalCurrency 80
-			
+
 			Support 1
-			
+
 			TFBot
 			{
 				Template T_TFBot_Soldier_RocketShotgun
 			}
 		}
-		
+
 		//WaveSpawn
 		//{
 			//Name "4d-stopmusic"
 			//WaitForAllDead "4d"
-			
+
 			//DoneOutput
             //{
 				//Target musicstop
@@ -1620,7 +1598,7 @@ WaveSchedule
 			//}
 		//}
 	}
-	
+
 	Wave // Wave 5 (1500$)
 	{
 		StartWaveOutput
@@ -1644,9 +1622,13 @@ WaveSchedule
 				EntFire(`bombpath_right_arrows`, `TurnOff`)
 				EntFire(`bombpath_left_arrows`, `TurnOn`)
                 EntFire(`bombpath_left`, `Trigger`)
+				//PrecacheSound(`no_turning_back_up8db.mp3`)
+				//PrecacheSound(`no_turning_back_end_up8db.mp3`)
+				//EmitSoundEx({sound_name = `no_turning_back_up8db.mp3`, flags = 4})
+				//EmitSoundEx({sound_name = `no_turning_back_up8db.mp3`, flags = 4})
 			"
 		}
-		
+
 		WaveSpawn
 		{
 			Name "5a"
@@ -1658,22 +1640,14 @@ WaveSchedule
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 1
 			TotalCurrency 300
-			
-			StartWaveOutput
-			{
-				Target musicplay2
-				Action Trigger
-			}
-			
-			FirstSpawnMessage "Music: No Turning Back - Enkanomiya OST (HOYO-MIX)"
-			
+
 			TFBot
 			{
 				Class Scout
 				Skill Normal
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "5a"
@@ -1685,7 +1659,19 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 300
-			
+
+			//FirstSpawnOutput
+			//{
+				//Target gamerules
+				//Action RunScriptCode
+				//Param
+				//"
+				//	EmitSoundEx({sound_name = `no_turning_back_up8db.mp3`, volume = 1.0})
+				//	EmitSoundEx({sound_name = `no_turning_back_up8db.mp3`, volume = 0.6})
+				//	ClientPrint(null,3,`\x08FF54F1FFMusic: No Turning Back - Enkanomiya OST (HOYO-MIX)`)
+				//"
+			//}
+
 			Squad
 			{
 				TFBot
@@ -1707,12 +1693,12 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "5b"
-			WaitForAllDead "5a"
-			
+			WaitForAllSpawned "5a"
+
 			Where spawnbot
 			Where spawnbot_flank
 			TotalCount 30
@@ -1721,7 +1707,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 2.5
 			TotalCurrency 180
-			
+
 			RandomChoice
 			{
 				TFBot
@@ -1741,11 +1727,11 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "5b"
-			WaitForAllDead "5a"
+			WaitForAllSpawned "5a"
 
 			Where spawnbot
 			TotalCount 3
@@ -1754,13 +1740,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 9
 			TotalCurrency 90
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Spammer
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "5c"
@@ -1773,13 +1759,13 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 30
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Spammer
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "5c-Tank"
@@ -1788,7 +1774,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 200
-			
+
 			Tank
 			{
 				Health 22000
@@ -1807,7 +1793,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "5c"
@@ -1820,7 +1806,7 @@ WaveSchedule
 			WaitBeforeStarting 2
 			WaitBetweenSpawns 25
 			TotalCurrency 200
-			
+
 			Squad
 			{
 				TFBot
@@ -1843,7 +1829,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "5d-support"
@@ -1859,9 +1845,9 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 2
 			TotalCurrency 80
-			
+
 			Support 1
-			
+
 			RandomChoice
 			{
 				TFBot
@@ -1886,7 +1872,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "5d"
@@ -1899,7 +1885,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 18
 			TotalCurrency 120
-			
+
 			Squad
 			{
 				TFBot
@@ -1920,7 +1906,7 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "5d-Tank"
@@ -1929,7 +1915,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 0
-			
+
 			Tank
 			{
 				Health 28000
@@ -1949,12 +1935,12 @@ WaveSchedule
 				}
 			}
 		}
-		
+
 		WaveSpawn
 		{
 			Name "5d-last-giant"
 			WaitForAllSpawned "5d"
-			
+
 			Where spawnbot
 			TotalCount 4
 			MaxActive 4
@@ -1962,7 +1948,7 @@ WaveSchedule
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 2
 			TotalCurrency 0
-			
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Spammer
@@ -1974,40 +1960,45 @@ WaveSchedule
 				}
 			}
 		}
-		
-		WaveSpawn
-		{
-			Name "5d-dummy"
-			WaitForAllDead "5d"
-		}
-		WaveSpawn
-		{
-			Name "5d-dummy"
-			WaitForAllDead "5c-Tank"
-		}
-		WaveSpawn
-		{
-			Name "5d-dummy"
-			WaitForAllDead "5d-Tank"
-		}
-		WaveSpawn
-		{
-			Name "5d-dummy"
-			WaitForAllDead "5d-last-giant"
-		}
-		
-		WaveSpawn
-		{
-			Name "5d-stopmusic"
-			WaitForAllDead "5d-dummy"
-			DoneWarningSound "no_turning_back_end_up8db.mp3"
-			
-			DoneOutput
-            {
-				Target musicstop2
-				Action Trigger
-            }
-		}
+
+		//WaveSpawn
+		//{
+		//	Name "5d-dummy"
+		//	WaitForAllDead "5d"
+		//}
+		//WaveSpawn
+		//{
+		//	Name "5d-dummy"
+		//	WaitForAllDead "5c-Tank"
+		//}
+		//WaveSpawn
+		//{
+		//	Name "5d-dummy"
+		//	WaitForAllDead "5d-Tank"
+		//}
+		//WaveSpawn
+		//{
+		//	Name "5d-dummy"
+		//	WaitForAllDead "5d-last-giant"
+		//}
+
+		//WaveSpawn
+		//{
+		//	Name "5d-stopmusic"
+		//	WaitForAllDead "5d-dummy"
+		//	FirstSpawnOutput
+		//	{
+		//		Target gamerules
+		//		Action RunScriptCode
+		//		Param
+		//		"
+		//			EmitSoundEx({sound_name = `no_turning_back_up8db.mp3`, flags = 4})
+		//			EmitSoundEx({sound_name = `no_turning_back_end_up8db.mp3` volume = 1.0})
+		//			EmitSoundEx({sound_name = `no_turning_back_up8db.mp3`, flags = 4})
+		//			EmitSoundEx({sound_name = `no_turning_back_end_up8db.mp3` volume = 0.6})
+		//		"
+		//	}
+		//}
 	}
 }
 
@@ -2093,14 +2084,14 @@ WaveSchedule
 // Change T_TFBot_Soldier_DirectHit to T_TFBot_Soldier_DirectHit_Support (Removed WeaponRestrictions PrimaryOnly)
 
 // Change Log
-// Wave 2 
+// Wave 2
 // Move Support Soldier Direct Hit to WaveSpawn Support (Because it work better as WaveSpawn Support)
 // Change Demo to Loch Demo
 // The 2a 2nd Giant Scout is use "2a-giant-scout" name subwave
 // Subwave 2b is use WaitForAllSpawned instead WaitForAllDead
 // Subwave 2c
 // The First Giant Heavy + Armored Medic Squad is Change WaitBeforeStarting from 5 to 0
-// Wave 4 
+// Wave 4
 // Removed Music
 
 // Change Log
@@ -2116,7 +2107,7 @@ WaveSchedule
 // The First Giant Uber Medic now using Giant Quick-Uber Medic (lower 8 sec duration uber to 5 sec duration)
 
 // Change Log
-// Wave 2 
+// Wave 2
 // Added the squad of shotgun with NoFormation 1 (TotalCount 16 MaxActive 8 SpawnCount 4 WaitBeforeStarting 5 WaitBetweenSpawns 5 TotalCurrency 80)
 // Huntsman TotalCurrency decreased from 100 to 20
 

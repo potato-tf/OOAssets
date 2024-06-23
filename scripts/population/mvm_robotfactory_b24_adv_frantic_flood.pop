@@ -728,7 +728,7 @@ population
 				{
 					Template	T_TFBot_Giant_Soldier
 					Item	"The Cow Mangler 5000"
-					ClassIcon	soldier_mangler
+					ClassIcon	soldier_mangler_nolod
 					Attributes	"HoldFireUntilFullReload"
 					FireWeapon
 					{
