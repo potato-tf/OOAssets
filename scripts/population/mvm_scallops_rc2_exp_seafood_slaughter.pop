@@ -79,7 +79,7 @@ population
 			Name "Chief Deflector"
 			Skill Expert
 			Item "The U-clank-a"
-			Health 19000
+			Health 20000
 			Scale 1.8
 			MaxVisionRange 2000
 			Attributes UseBossHealthBar
@@ -975,8 +975,8 @@ population
 			Support	1
 			TFBot
 			{
-				Template	T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
-				ClassIcon	heavy_gru_scallops_red
+				Template	T_TFBot_Soldier_Extended_Battalion
+				ClassIcon	soldier_backup_scallops_red
 			}
 		}
 		WaveSpawn
