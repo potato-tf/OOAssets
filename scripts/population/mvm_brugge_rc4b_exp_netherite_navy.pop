@@ -1,5 +1,6 @@
 //	Mission designer: Lyney
-//  Map Designer: Dayal and Startacker
+//	Map Designer: Dayal and Startacker
+//	Script: Royal
 
 #base robot_giant.pop
 #base robot_standard.pop
@@ -51,6 +52,7 @@ WaveSchedule
 		"The Iron Sneakers"
 		{
 			OriginalItemName "The Gunboats"
+			"special item description"	"Reduced 36% All Damage Type Taken."
 			"rocket jump damage reduction" 1
 			"no double jump" 1
 			"dmg taken increased" 0.64
@@ -2134,7 +2136,7 @@ WaveSchedule
 				Name "1 2 4 can't count 3"
 				ClassIcon soldier_spammer_hyper_lite
 				Health 25000
-				Scale 1.8
+				Scale 1.75
 				Attributes UseBossHealthBar
 				//Attributes AutoJump
 					//AutoJumpMin 10
@@ -2150,14 +2152,14 @@ WaveSchedule
 				{
 					Delay 0
 					Repeats 1
-					IfHealthBelow 12501
+					IfHealthBelow 16001
 					Name "phase1"
 				}
 				ChangeAttributes    
 				{
 					Delay 0.5
 					Repeats 1
-					IfHealthBelow 5001
+					IfHealthBelow 8001
 					Name "phase2"
 				}
 				EventChangeAttributes  
@@ -2263,7 +2265,6 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Heavyweapons_Fist
-				ClassIcon heavy_steelfist_nys_nolod
 				Attributes AlwaysCrit
 			}
 		}
@@ -3173,3 +3174,7 @@ WaveSchedule
 
 // robot_lyney.pop
 // Remove Range and Melee Resis on Armored and increase health 1.33x
+
+// Post Beta Changelog
+// Wave 6
+// boss threholds hp is change from 12.5k to 16k and 5k to 8k (boss health still same)
