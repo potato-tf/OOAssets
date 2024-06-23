@@ -1115,7 +1115,7 @@ WaveSchedule
 				Item "The Triggerman's Tacticals"
 				Item "The Conspicuous Camouflage"
 				Skill Normal
-				ClassIcon sniper_smg
+				ClassIcon sniper_smg_tind
 				WeaponRestrictions SecondaryOnly
 			}
 		}
