@@ -182,6 +182,7 @@ PopExt <- popExtEntity.GetScriptScope()
 		function OnGameEvent_npc_hurt(params) {
 
 			local victim = EntIndexToHScript(params.entindex)
+			if (!victim) return
 			if (victim.GetClassname() == "tank_boss") {
 				local scope = victim.GetScriptScope()
 				local dead  = (victim.GetHealth() - params.damageamount) <= 0
