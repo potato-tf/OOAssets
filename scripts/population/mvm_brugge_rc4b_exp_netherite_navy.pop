@@ -52,10 +52,10 @@ WaveSchedule
 		"The Iron Sneakers"
 		{
 			OriginalItemName "The Gunboats"
-			"special item description"	"Reduced 36% All Damage Type Taken."
+			"special item description"	"Reduced 36% All Damage Type Taken Including Melee Damage, and Max HP +15."
 			"rocket jump damage reduction" 1
-			"no double jump" 1
 			"dmg taken increased" 0.64
+			"max health additive bonus" 15
 			"provide on active" 1
 		}
 		
