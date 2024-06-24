@@ -291,10 +291,10 @@ population
 			ClassIcon	tank_monorail_cng
             Model   //Set custom model on tank. Will spit harmless errors on client console if the model does not have enough sequences
 			{
-				Default "models/monorail_tank.mdl"
-				Damage1 "models/monorail_tank_damage1.mdl"
-				Damage2 "models/monorail_tank_damage2.mdl"
-				Damage3 "models/monorail_tank_damage3.mdl"
+				Default "models/robot_factory/monorail_tank.mdl"
+				Damage1 "models/robot_factory/monorail_tank_damage1.mdl"
+				Damage2 "models/robot_factory/monorail_tank_damage2.mdl"
+				Damage3 "models/robot_factory/monorail_tank_damage3.mdl"
 			}
 			OnKilledOutput                                  
 			{

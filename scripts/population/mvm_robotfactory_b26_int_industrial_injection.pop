@@ -6,10 +6,10 @@ population
 	StartingCurrency	600
 	RespawnWaveTime	3
 	CanBotsAttackWhileInSpawnRoom	no
-	PrecacheModel "models/monorail_tank.mdl"
-        PrecacheModel "models/monorail_tank_damage1.mdl"
-	PrecacheModel "models/monorail_tank_damage2.mdl"
-	PrecacheModel "models/monorail_tank_damage3.mdl"
+	PrecacheModel "models/robot_factory/monorail_tank.mdl"
+	PrecacheModel "models/robot_factory/monorail_tank_damage1.mdl"
+	PrecacheModel "models/robot_factory/monorail_tank_damage2.mdl"
+	PrecacheModel "models/robot_factory/monorail_tank_damage3.mdl"
 	Mission
 	{
 		Objective	DestroySentries
@@ -852,7 +852,7 @@ population
 				Name    "Monorail Tank"
 				Speed	55
 				Skin	1
-				StartingPathTrackNode	monorail_tank_path_E
+				StartingPathTrackNode	monorail_path_E
 				Gravity 0  
             			DisableTracks 1
             			ReplaceModelCollisions 1
@@ -860,10 +860,10 @@ population
 				NoCrushDamage 1
             			Model
 				{
-					Default "models/monorail_tank.mdl"
-					Damage1 "models/monorail_tank_damage1.mdl"
-					Damage2 "models/monorail_tank_damage2.mdl"
-					Damage3 "models/monorail_tank_damage3.mdl"
+					Default "models/robot_factory/monorail_tank.mdl"
+					Damage1 "models/robot_factory/monorail_tank_damage1.mdl"
+					Damage2 "models/robot_factory/monorail_tank_damage2.mdl"
+					Damage3 "models/robot_factory/monorail_tank_damage3.mdl"
 				}
 				OnKilledOutput
 				{
