@@ -1117,6 +1117,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Heater
+					Name "Giant Heater Heavy"
 				}
 				TFBot
 				{

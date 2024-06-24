@@ -190,113 +190,7 @@ WaveSchedule
 	
 	PointTemplates
 	{
-		UpgradeStationMusic1
-		{
-			ambient_generic
-			{
-				"targetname" "startmusicplay"
-				"message" "#flowerfieldupgradestation.mp3"
-				"health" "10"
-				"pitch" "100"
-				"volume" "10"
-				"spawnflags" "16"
-				"origin" "1847 -2662 -31"
-				"radius" "250"
-			}
-			ambient_generic
-			{
-				"targetname" "extended"
-				"message" "#flowerfieldupgradestation.mp3"
-				"health" "10"
-				"pitch" "100"
-				"volume" "10"
-				"spawnflags" "16"
-				"origin" "1847 -2662 -31"
-				"radius" "250"
-			}
-
-			logic_relay
-			{
-				"targetname" "musicplay"
-				"spawnflags" "2"
-				
-				"OnSpawn" "startmusicplay,PlaySound,,0,-1"
-				"OnSpawn" "startmusicplay,StopSound,,457,-1"
-				"OnSpawn" "musicloop,Trigger,,457,-1"
-			}
-			//Loop
-			logic_relay
-			{
-				"targetname" "musicloop"
-				"spawnflags" "2"
-				"OnTrigger" "extended,PlaySound,,0,-1"
-				"OnTrigger" "musiclooper,Trigger,,457,-1"
-			}
-			//Loop handler
-			logic_relay
-			{
-				"targetname" "musiclooper"
-				"spawnflags" "2"
-				
-				"OnTrigger" "extended,StopSound,,0.2,-1"         
-				"OnTrigger" "musicloop,Trigger,,0.22,-1"
-			}
-		}
-		
-		UpgradeStationMusic2
-		{
-			ambient_generic
-			{
-				"targetname" "startmusicplay"
-				"message" "#flowerfieldupgradestation.mp3"
-				"health" "10"
-				"pitch" "100"
-				"volume" "10"
-				"spawnflags" "16"
-				"origin" "136 -3164 -31"
-				"radius" "250"
-			}
-			ambient_generic
-			{
-				"targetname" "extended"
-				"message" "#flowerfieldupgradestation.mp3"
-				"health" "10"
-				"pitch" "100"
-				"volume" "10"
-				"spawnflags" "16"
-				"origin" "136 -3164 -31"
-				"radius" "250"
-			}
-
-			logic_relay
-			{
-				"targetname" "musicplay"
-				"spawnflags" "2"
-				
-				"OnSpawn" "startmusicplay,PlaySound,,0,-1"
-				"OnSpawn" "startmusicplay,StopSound,,457,-1"
-				"OnSpawn" "musicloop,Trigger,,457,-1"
-			}
-			//Loop
-			logic_relay
-			{
-				"targetname" "musicloop"
-				"spawnflags" "2"
-				"OnTrigger" "extended,PlaySound,,0,-1"
-				"OnTrigger" "musiclooper,Trigger,,457,-1"
-			}
-			//Loop handler
-			logic_relay
-			{
-				"targetname" "musiclooper"
-				"spawnflags" "2"
-				
-				"OnTrigger" "extended,StopSound,,0.2,-1"         
-				"OnTrigger" "musicloop,Trigger,,0.22,-1"
-			}
-		}
-		
-		UpgradeStationMusic3
+		UpgradeStationMusicFront
 		{
 			ambient_generic
 			{
@@ -307,7 +201,7 @@ WaveSchedule
 				"volume" "10"
 				"spawnflags" "16"
 				"origin" "1369 -742 -31"
-				"radius" "250"
+				"radius" "150"
 			}
 			ambient_generic
 			{
@@ -318,7 +212,7 @@ WaveSchedule
 				"volume" "10"
 				"spawnflags" "16"
 				"origin" "1369 -742 -31"
-				"radius" "250"
+				"radius" "150"
 			}
 
 			logic_relay
@@ -327,8 +221,8 @@ WaveSchedule
 				"spawnflags" "2"
 				
 				"OnSpawn" "startmusicplay,PlaySound,,0,-1"
-				"OnSpawn" "startmusicplay,StopSound,,457,-1"
-				"OnSpawn" "musicloop,Trigger,,457,-1"
+				"OnSpawn" "startmusicplay,StopSound,,593,-1"
+				"OnSpawn" "musicloop,Trigger,,593,-1"
 			}
 			//Loop
 			logic_relay
@@ -336,7 +230,7 @@ WaveSchedule
 				"targetname" "musicloop"
 				"spawnflags" "2"
 				"OnTrigger" "extended,PlaySound,,0,-1"
-				"OnTrigger" "musiclooper,Trigger,,457,-1"
+				"OnTrigger" "musiclooper,Trigger,,593,-1"
 			}
 			//Loop handler
 			logic_relay
@@ -350,37 +244,8 @@ WaveSchedule
 		}
 	}
 	
-	SpawnTemplate UpgradeStationMusic1
-	SpawnTemplate UpgradeStationMusic1
-	SpawnTemplate UpgradeStationMusic1
-	SpawnTemplate UpgradeStationMusic1
-	SpawnTemplate UpgradeStationMusic1
-	
-	SpawnTemplate UpgradeStationMusic2
-	SpawnTemplate UpgradeStationMusic2
-	SpawnTemplate UpgradeStationMusic2
-	SpawnTemplate UpgradeStationMusic2
-	SpawnTemplate UpgradeStationMusic2
-	SpawnTemplate UpgradeStationMusic2
-	SpawnTemplate UpgradeStationMusic2
-	SpawnTemplate UpgradeStationMusic2
-	SpawnTemplate UpgradeStationMusic2
-	SpawnTemplate UpgradeStationMusic2
-	SpawnTemplate UpgradeStationMusic2
-	SpawnTemplate UpgradeStationMusic2
-	
-	SpawnTemplate UpgradeStationMusic3
-	SpawnTemplate UpgradeStationMusic3
-	SpawnTemplate UpgradeStationMusic3
-	SpawnTemplate UpgradeStationMusic3
-	SpawnTemplate UpgradeStationMusic3
-	SpawnTemplate UpgradeStationMusic3
-	SpawnTemplate UpgradeStationMusic3
-	SpawnTemplate UpgradeStationMusic3
-	SpawnTemplate UpgradeStationMusic3
-	SpawnTemplate UpgradeStationMusic3
-	SpawnTemplate UpgradeStationMusic3
-	SpawnTemplate UpgradeStationMusic3
+	SpawnTemplate UpgradeStationMusicFront
+	SpawnTemplate UpgradeStationMusicFront
 
 	//WAVE 1 (650$)
 	Wave
@@ -505,9 +370,9 @@ WaveSchedule
 			WaitForAllDead "1a"
 
 			Where spawnbot
-			TotalCount 48
-			MaxActive 5
-			SpawnCount 3
+			TotalCount 50
+			MaxActive 4
+			SpawnCount 2
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 5
 			TotalCurrency 150
@@ -771,7 +636,7 @@ WaveSchedule
 			Where spawnbot
 			Where spawnbot_flank_short
 			TotalCount 30
-			MaxActive 10
+			MaxActive 7
 			SpawnCount 1
 			WaitBeforeStarting 2
 			WaitBetweenSpawns 1
@@ -2573,3 +2438,9 @@ WaveSchedule
 // Post Beta Changelog
 // Wave 2
 // Change Quick Uber Medic to Big Heal Medic and Reduce from 3 Medic to 2 Medic
+
+// Wave 1
+// Reduce Crit Bat Scout MaxActive from 5 to 4, SpawnCount from 3 to 2
+
+// Wave 2
+// Reduce Pyro and Shotgun Heavy RandomChoice Support MaxActive from 10 to 7
