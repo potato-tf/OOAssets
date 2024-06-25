@@ -22,6 +22,7 @@ WaveSchedule
 		TFBot
 		{
 			Template	T_TFBot_SentryBuster
+			Tag bot_giant
 		}
 	}
 
