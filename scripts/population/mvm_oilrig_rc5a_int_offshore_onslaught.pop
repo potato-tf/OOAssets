@@ -1362,7 +1362,7 @@ WaveSchedule
 			Tank
             {
                 Name "tank3"
-                Health 25000           
+                Health 20000           
                 Speed 75                                
                 Name "tankboss"
                 StartingPathTrackNode "tank_path_a_1"
