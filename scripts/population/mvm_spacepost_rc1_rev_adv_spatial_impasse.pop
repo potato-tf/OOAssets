@@ -29,7 +29,7 @@ WaveSchedule
 	BonusRatioHalf 1.1
 	BonusRatioFull 1.1
 	
-	RespawnWaveTimeBlue 5
+	RespawnWaveTimeBlue 3
 	FixedRespawnWaveTimeBlue 1
 	
 	SniperAllowHeadshots 1
@@ -84,7 +84,7 @@ WaveSchedule
 	PrecacheModel "models/mvm/weapons/v_models/v_watch_pocket_spy_bot_animations.mdl"
 	PrecacheModel "models/mvm/weapons/v_models/v_watch_spy_bot.mdl"
 	PrecacheModel "models/mvm/weapons/v_models/v_watch_spy_bot_animations.mdl"
-
+	
 	PrecacheModel "models/mvm/workshop_partner/weapons/v_models/v_hm_watch/v_hm_watch_bot.mdl"
 
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal1.vmt"
@@ -539,10 +539,10 @@ WaveSchedule
 			Where spawnbot_red_9
 			SpawnCount 3
 			MaxActive 6
-			TotalCount 15
+			TotalCount 12
 			StartDisabled 1
-			WaitBeforeStarting 0
-			WaitBetweenSpawns 16
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 20
 			TFBot
 			{
 				Class Soldier
@@ -564,7 +564,7 @@ WaveSchedule
 			MaxActive 12
 			TotalCount 20
 			StartDisabled 1
-			WaitBeforeStarting 5
+			WaitBeforeStarting 10
 			WaitBetweenSpawns 8
 			RandomChoice
 			{
