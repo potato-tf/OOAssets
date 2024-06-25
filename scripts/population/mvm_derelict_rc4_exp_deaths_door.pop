@@ -371,7 +371,7 @@ Die
 		{
 			Class Pyro
 			Name "Giant Fury Pyro"
-			ClassIcon pyro_dragon_fury_giant
+			ClassIcon pyro_dragon_fury_swordstone_giant
 			Skill Expert
 			MaxVisionRange 450
 			Health 3000
@@ -458,7 +458,7 @@ Die
 		{
 			Class Pyro
 			Name "Fury Pyro"
-			ClassIcon pyro_dragon_fury
+			ClassIcon pyro_dragon_fury_swordstone
 			MaxVisionRange 450
 			Item "The Dragon's Fury"
 			Item "PY-40 Incinibot"
@@ -1881,7 +1881,7 @@ Die
 				Item "The Jupiter Jumpers"
 				Attributes HoldFireUntilFullReload
 				Name "Beam Soldier"
-				ClassIcon soldier_bison
+				ClassIcon soldier_bison_b
 				WeaponRestrictions SecondaryOnly
 				ItemAttributes
 				{
