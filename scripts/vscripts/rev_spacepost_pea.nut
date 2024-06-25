@@ -6,7 +6,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	mission = NetProps.GetPropString(Entities.FindByClassname(null, "tf_objective_resource"), "m_iszMvMPopfileName")
 	
 	debug = false
-	debug_stage = 3
+	debug_stage = 2
 	debug_objective = true
 	
 	draw_worldtext = false
@@ -213,6 +213,298 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	tip_header = "\x07FFD700"
 
 	//////////// MISC
+	
+	blu_spawn_1_booth = SpawnEntityFromTable("prop_dynamic",
+	{
+		targetname              = "infobooth"
+		origin                  = Vector(750, 1850, -380)
+		model                   = "models/props_medieval/ticket_booth/ticket_booth.mdl"
+		angles                  = QAngle(0, 120, 0)
+	})
+
+	blu_spawn_1_booth_bbox = SpawnEntityFromTable("func_button",
+	{
+		origin                  = Vector(750, 1850, -380)
+		angles                  = QAngle(0, 120, 0)
+	})
+
+	blu_spawn_1_booth_keeper = SpawnEntityFromTable("prop_dynamic",
+	{
+		targetname              = "infobooth_keeper"
+		origin                  = Vector(750, 1840, -380)
+		model                   = "models/bots/spy/bot_spy.mdl"
+		angles                  = QAngle(0, -150, 0)
+		DefaultAnim             = "stand_melee"
+		skin 					= 1
+	})
+
+	blu_spawn_1_booth_board = SpawnEntityFromTable("prop_dynamic",
+	{
+		origin                  = Vector(720, 1826, -250)
+		model                   = "models/props_gameplay/sign_wood_cap001.mdl"
+		angles                  = QAngle(0, 27, 0)
+		modelscale				= 0.5
+		disableshadows			= 1
+	})
+
+	blu_spawn_1_booth_text = SpawnEntityFromTable("point_worldtext",
+	{
+		textsize       = 12
+		message        = "SETTINGS"
+		font           = 1
+		orientation    = 0
+		textspacingx   = 1
+		textspacingy   = 10
+		spawnflags     = 0
+		origin         = Vector(705, 1851, -245)
+		angles         = QAngle(0, 27, 0)
+		rendermode     = 3
+		targetname	   = "infobooth_text"
+	})
+	
+	blu_spawn_2_booth = SpawnEntityFromTable("prop_dynamic",
+	{
+		targetname              = "infobooth"
+		origin                  = Vector(-1370, 680, -137)
+		model                   = "models/props_medieval/ticket_booth/ticket_booth.mdl"
+		angles                  = QAngle(0, 0, 0)
+	})
+
+	blu_spawn_2_booth_bbox = SpawnEntityFromTable("func_button",
+	{
+		origin                  = Vector(-1370, 680, -137)
+		angles                  = QAngle(0, 120, 0)
+	})
+
+	blu_spawn_2_booth_keeper = SpawnEntityFromTable("prop_dynamic",
+	{
+		targetname              = "infobooth_keeper"
+		origin                  = Vector(-1380, 680, -137)
+		model                   = "models/bots/spy/bot_spy.mdl"
+		angles                  = QAngle(0, 90, 0)
+		DefaultAnim             = "stand_melee"
+		skin 					= 1
+	})
+
+	blu_spawn_2_booth_board = SpawnEntityFromTable("prop_dynamic",
+	{
+		origin                  = Vector(-1380, 717, 0)
+		model                   = "models/props_gameplay/sign_wood_cap001.mdl"
+		angles                  = QAngle(0, -90, 0)
+		modelscale				= 0.5
+		disableshadows			= 1
+	})
+
+	blu_spawn_2_booth_text = SpawnEntityFromTable("point_worldtext",
+	{
+		textsize       = 12
+		message        = "SETTINGS"
+		font           = 1
+		orientation    = 0
+		textspacingx   = 1
+		textspacingy   = 10
+		spawnflags     = 0
+		origin         = Vector(-1350, 720, 0)
+		angles         = QAngle(0, -90, 0)
+		rendermode     = 3
+		targetname	   = "infobooth_text"
+	})
+
+	infobooth = SpawnEntityFromTable("logic_case",
+	{
+		targetname              = "infobooth_menu"
+		case16                  = "Welcome to the settings booth!|0|Cancel"
+		case01                  = "Toggle robot viewmodels (experimental)"
+		case02                  = "!All credit goes to CTriggerHurt for creating the viewmodels"
+		case03                  = "Reset all tips"
+		
+		OnCase01                = "!activator,CallScriptFunction,ToggleRobotViewmodels,0.0,-1"
+		OnCase03                = "resettips_prompt,$DisplayMenu,!activator,0.0,-1"
+	})
+
+	infobooth2 = SpawnEntityFromTable("logic_case",
+	{
+		targetname              = "resettips_prompt"
+		case16                  = "This will mark all tips you've encountered as unseen. Proceed?|0|Cancel"
+		case01                  = "Yes"
+		case02                  = "Go back"
+		OnCase01                = "!activator,CallScriptFunction,ResetTips,0.0,-1"
+		OnCase02                = "infobooth_menu,$DisplayMenu,!activator,0.0,-1"
+	})
+	
+	InfoBooth_Think = function()
+	{	
+		foreach (bluplayer in bluplayer_array)
+		{
+			if (bluplayer.IsFakeClient()) continue
+			
+			local scope = bluplayer.GetScriptScope().bloodstorage
+			
+			if (Entities.FindByNameWithin(null, "infobooth", bluplayer.GetOrigin(), 100.0) == null)
+			{
+				if (scope.reading_infobooth)
+				{
+					scope.reading_infobooth = false
+					EntFire("infobooth_menu", "$HideMenu", "!activator", -1.0, bluplayer)
+				}
+			}
+			
+			else if (!scope.reading_infobooth)
+			{
+				scope.reading_infobooth = true
+				EntFire("infobooth_menu", "$DisplayMenu", "!activator", -1.0, bluplayer)
+			}
+		}
+		
+		return 0.1
+	}
+	
+	ResetTips = function()
+	{	
+		local scope = self.GetScriptScope().bloodstorage
+
+		foreach (tip, value in scope.tip_table) scope.tip_table[tip] = false
+		
+		ClientPrint(self, 4, "Tips have been reset")
+	}
+	
+	ToggleRobotViewmodels = function() // all credit goes to CTriggerHurt for creating the viewmodels
+	{
+		local scope = self.GetScriptScope().bloodstorage
+		
+		if (!scope.wants_robot_viewmodels) scope.wants_robot_viewmodels = true
+		else						 	   scope.wants_robot_viewmodels = false
+		
+		local has_gunslinger = false
+		
+		for (local i = 0; i < 8; i++)
+		{
+			local weapon = NetProps.GetPropEntityArray(self, "m_hMyWeapons", i)
+
+			if (weapon == null) continue
+
+			if (NetProps.GetPropInt(weapon, "m_AttributeManager.m_Item.m_iItemDefinitionIndex") == 142) has_gunslinger = true
+		}
+
+		for (local i = 0; i < 8; i++)
+		{
+			local weapon = NetProps.GetPropEntityArray(self, "m_hMyWeapons", i)
+
+			if (weapon == null) continue
+
+			if (has_gunslinger)
+			{
+				if (scope.wants_robot_viewmodels) NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/c_models/c_engineer_bot_gunslinger.mdl"))
+				else							  NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/weapons/c_models/c_engineer_gunslinger.mdl"))
+			}
+			
+			else
+			{
+				local vm = NetProps.GetPropEntity(self, "m_hViewModel")
+				
+				local weaponid = NetProps.GetPropInt(weapon, "m_AttributeManager.m_Item.m_iItemDefinitionIndex")
+				
+				switch (weaponid)
+				{
+					case 27: // disguise kit
+					{
+						if (scope.wants_robot_viewmodels) NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/v_models/v_pda_spy_bot.mdl"))
+						else 							  NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/weapons/v_models/v_pda_spy.mdl"))
+					
+						break
+					}
+					
+					case 30: // invis watch
+					{
+						if (scope.wants_robot_viewmodels) NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/v_models/v_watch_spy_bot.mdl"))
+						else 							  NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/weapons/v_models/v_watch_spy.mdl"))
+					
+						break
+					}
+					
+					case 59: // dead ringer
+					{
+						if (scope.wants_robot_viewmodels) NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/v_models/v_watch_pocket_spy_bot.mdl"))
+						else 							  NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/weapons/v_models/v_watch_pocket_spy.mdl"))
+					
+						break
+					}
+					
+					case 60: // cloak and dagger
+					{
+						if (scope.wants_robot_viewmodels) NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/v_models/v_watch_leather_spy_bot.mdl"))
+						else 							  NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/weapons/v_models/v_watch_leather_spy.mdl"))
+					
+						break
+					}
+					
+					case 212: // disguise kit (strange)
+					{
+						if (scope.wants_robot_viewmodels) NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/v_models/v_pda_spy_bot.mdl"))
+						else 							  NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/weapons/v_models/v_pda_spy.mdl"))
+					
+						break
+					}
+					
+					case 297: // enthusiast's timepiece
+					{
+						if (scope.wants_robot_viewmodels) NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/v_models/v_ttg_watch_spy_bot.mdl"))
+						else 							  NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/weapons/v_models/v_ttg_watch_spy.mdl"))
+					
+						break
+					}
+					
+					case 947: // quackenbirdt
+					{
+						if (scope.wants_robot_viewmodels) NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/workshop_partner/weapons/v_models/v_hm_watch/v_hm_watch_bot.mdl"))
+						else 							  NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/weapons/v_models/v_hm_watch/v_hm_watch.mdl"))
+					
+						break
+					}
+					
+					default:
+					{
+						if (scope.wants_robot_viewmodels)
+						{
+							// NetProps.SetPropInt(vm, "m_nModelIndex", PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()])))
+							// vm.SetModelSimple(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()]))
+							
+							// NetProps.SetPropInt(weapon, "m_iViewModelIndex", PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()])))
+							NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()])))
+							// NetProps.SetPropInt(weapon, "m_hExtraWearableViewModel", PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()])))
+							
+							// weapon.SetCustomViewModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()]))
+							
+							// weapon.SetCustomViewModelModelIndex(PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()])))
+							
+							if (weaponid == 56 || weaponid == 1005 || weaponid == 1092) weapon.AddAttribute("reload time increased hidden", -5.0, -1.0) // very hacky fix for bow weapons not reloading properly with vscript-implemented robot viewmodels
+						}
+						else
+						{
+							// NetProps.SetPropInt(vm, "m_nModelIndex", PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()])))
+							// vm.SetModelSimple(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()]))
+							
+							// NetProps.SetPropInt(weapon, "m_iViewModelIndex", PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()])))
+							NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()])))
+							// NetProps.SetPropInt(weapon, "m_hExtraWearableViewModel", PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()])))
+							
+							// weapon.SetCustomViewModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()]))
+							
+							// weapon.SetCustomViewModelModelIndex(PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()])))
+							
+							if (weaponid == 56 || weaponid == 1005 || weaponid == 1092) weapon.AddAttribute("reload time increased hidden", 1.0, -1.0)
+						}
+					}
+				}
+			}
+		}
+		
+		local wep = self.GetActiveWeapon()
+		NetProps.SetPropEntity(self, "m_hActiveWeapon", null)
+		self.Weapon_Switch(wep)
+		
+		EntFire("infobooth_menu", "$DisplayMenu", "!activator", -1.0, self)
+	}
 	
 	spyalert_cooldown = 0
 	
@@ -514,9 +806,13 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			// ClientPrint(debugger, 3, "Successfully delivered visual tip to: " + NetProps.GetPropString(player, "m_szNetname"))
 			// ClientPrint(debugger, 3, "Recipient's bitfield is " + (1 << player.entindex()))
 			
+			local entdummy = Entities.CreateByClassname("trigger_stun")
+
+			Entities.DispatchSpawn(entdummy)
+
 			SendGlobalGameEvent("show_annotation", 
 			{
-				id = RandomInt(5000, 50000)
+				id = (500 | entdummy.entindex())
 				text = tip_description
 				follow_entindex = scope.tutorial_box.entindex()
 				visibilityBitfield = (1 << player.entindex())
@@ -525,6 +821,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				show_effect = false
 				lifetime = 7.5
 			})
+			
+			EntFireByHandle(entdummy, "Kill", null, 7.5, null, null)
 			
 			scope.tip_table[tip_name] = true
 			
@@ -895,7 +1193,12 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				}
 			}
 			
-			else scope.bloodstorage.ResetBloodCounter()
+			else
+			{
+				scope.bloodstorage.ResetBloodCounter()
+				
+				if (scope.bloodstorage.wants_robot_viewmodels) EntFireByHandle(spawned_player, "CallScriptFunction", "OverrideRobotArms", -1.0, null, null)
+			}
 			
 			if (spawned_player.GetPlayerClass() == spy) EntFireByHandle(spawned_player, "CallScriptFunction", "OverrideSapper", -1.0, null, null)
 			
@@ -1221,6 +1524,9 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		local goaftertank = true
 		local goaftertank_delay = 0.05
 		
+		// self.TakeDamage(99999, 1, blood_tank_outofblood_healthdrain)
+		// return
+		
 		if (in_endgame) { self.ForceChangeTeam(1, true); return }
 
 		if (self.HasBotTag("aggrobot"))
@@ -1315,6 +1621,51 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				weapon.AddAttribute("sapper damage penalty", 1, -1.0)
 			}
 		}
+	}
+	
+	OverrideRobotArms = function()
+	{		
+		local has_gunslinger = false
+		
+		for (local i = 0; i < 8; i++)
+		{
+			local weapon = NetProps.GetPropEntityArray(self, "m_hMyWeapons", i)
+
+			if (weapon == null) continue
+
+			if (NetProps.GetPropInt(weapon, "m_AttributeManager.m_Item.m_iItemDefinitionIndex") == 142) has_gunslinger = true
+		}
+		
+		for (local i = 0; i < 8; i++)
+		{
+			local weapon = NetProps.GetPropEntityArray(self, "m_hMyWeapons", i)
+
+			if (weapon == null) continue
+			
+			if (has_gunslinger) NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/c_models/c_engineer_bot_gunslinger.mdl"))
+			
+			else
+			{
+				local weaponid = NetProps.GetPropInt(weapon, "m_AttributeManager.m_Item.m_iItemDefinitionIndex")
+				
+				switch (weaponid)
+				{
+					case 27: NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/v_models/v_pda_spy_bot.mdl")); break // disguise kit
+					case 30: NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/v_models/v_watch_spy_bot.mdl")); break // invis watch
+					case 59: NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/v_models/v_watch_pocket_spy_bot.mdl")); break // dead ringer
+					case 60: NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/v_models/v_watch_leather_spy_bot.mdl")); break // cloak and dagger
+					case 297: NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/weapons/v_models/v_ttg_watch_spy_bot.mdl")); break // enthusiast's timepiece
+					case 947: NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel("models/mvm/workshop_partner/weapons/v_models/v_hm_watch/v_hm_watch_bot.mdl")); break // quackenbirdt
+					default: NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()]))); break
+				}
+				
+				if (weaponid == 56 || weaponid == 1005 || weaponid == 1092) weapon.AddAttribute("reload time increased hidden", -5.0, -1.0) // very hacky fix for bow weapons not reloading properly with vscript-implemented robot viewmodels
+			}
+		}
+		
+		local wep = self.GetActiveWeapon()
+		NetProps.SetPropEntity(self, "m_hActiveWeapon", null)
+		self.Weapon_Switch(wep)
 	}
 	
 	GetWeapon = function(className, itemID)
@@ -2010,6 +2361,19 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		
 		MarkRemainingEnemies()
 	}
+	
+	// SpeedUpTank = function(stage)
+	// {
+		// if (objective_type != null || current_stage != stage) return
+		
+		// ClientPrint(null,3,"speeding up the tank! old speed = " + NetProps.GetPropFloat(blood_tank, "m_speed"))
+
+		// blood_tank.KeyValueFromFloat("speed", NetProps.GetPropFloat(blood_tank, "m_speed") + 5)
+		
+		// ClientPrint(null,3,"speeding up the tank! new speed = " + NetProps.GetPropFloat(blood_tank, "m_speed"))
+		
+		// EmitGlobalSound("DisciplineDevice.PowerUp")
+	// }
 
 	ObjectiveProgress = function()
 	{
@@ -3604,6 +3968,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			}
 
 			bluplayer.AddCondEx(71, 9.5, null)
+			bluplayer.SetAbsVelocity(Vector(0, 0, 0))
 			
 			local utilstun = Entities.CreateByClassname("trigger_stun")
 
@@ -4854,7 +5219,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		}
 		
 		if (tick % 17 == 0)
-		{
+		{	
 			for (local i = 1; i <= MaxClients().tointeger(); i++)
 			{
 				local player = PlayerInstanceFromIndex(i)
@@ -4872,6 +5237,24 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 						if (player.HasBotTag("zombie_bot")) player.SetScaleOverride(1.5)
 					}
 				}
+			}
+			
+			for (local player; player = Entities.FindByClassnameWithin(player, "player", Vector(2550, 400, 0), 75); )
+			{
+				if (player == null) continue
+				if (player.GetTeam() != 2) continue
+				if (NetProps.GetPropInt(player, "m_lifeState") != 0) continue
+
+				player.Teleport(true, Vector(2500, 600, -50), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
+			}
+			
+			for (local player; player = Entities.FindByClassnameWithin(player, "player", Vector(850, -1250, -300), 75); )
+			{
+				if (player == null) continue
+				if (player.GetTeam() != 2) continue
+				if (NetProps.GetPropInt(player, "m_lifeState") != 0) continue
+
+				player.Teleport(true, Vector(900, -1400, -350), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
 			}
 			
 			for (local ent; ent = Entities.FindByClassname(ent, "base_boss"); )
@@ -6351,6 +6734,10 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		blood_carried_hud = null
 		tutorial_box = null
 		
+		wants_robot_viewmodels = false
+		
+		reading_infobooth = false
+		
 		life_tick = 0
 		
 		function constructor(player)
@@ -6412,6 +6799,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			in_tip_cooldown = false
 			in_vistip_cooldown = false
+			
+			reading_infobooth = false
 			
 			InitializeBloodCounter()
 			
@@ -6606,9 +6995,9 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				
 				ClientPrint(owner, 4, "" + obj_deliver_text)
 			}
-			
+
 			if (escaped == "[✔]") owner.AddCustomAttribute("healing received penalty", 0, -1.0)
-			
+
 			if (NetProps.GetPropInt(owner, "m_lifeState") == 0) life_tick++
 
 			return -1
@@ -7024,48 +7413,6 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				if (draw_debugchat) ClientPrint(null,3,"giant cooldown lifted")
 			}
 		}
-
-		ToggleTips = function()
-		{	
-			if (wants_tips)
-			{
-				ClientPrint(owner, 3, "Tips disabled")
-				wants_tips = false
-				
-				foreach (tip, value in tip_table) tip_table[tip] = true
-			}
-			
-			else
-			{
-				ClientPrint(owner, 3, "Tips enabled")
-				wants_tips = true
-				
-				foreach (tip, value in tip_table) tip_table[tip] = false
-			}
-		}
-		
-		// ToggleRobotViewmodels = function()
-		// {
-			// local vm = NetProps.GetPropEntity(owner, "m_hViewModel")
-
-			// NetProps.SetPropInt(vm, "m_nRenderMode", 1)
-			// NetProps.SetPropInt(vm, "m_clrRender", 0)
-			
-			// local weapon = owner.GetActiveWeapon()
-
-			// local hands = SpawnEntityFromTable("tf_wearable_vm", { modelindex = PrecacheModel(format("models/robot_arms/weapons/c_models/c_%s_arms.mdl", class_integers[owner.GetPlayerClass()])) })
-
-			// NetProps.SetPropBool(hands, "m_bForcePurgeFixedupStrings", true)
-			// owner.EquipWearableViewModel(hands)
-
-			// local hands2 = SpawnEntityFromTable("tf_wearable_vm", { modelindex = PrecacheModel(weapon.GetModelName()) })
-
-			// NetProps.SetPropBool(hands2, "m_bForcePurgeFixedupStrings", true)
-			// owner.EquipWearableViewModel(hands2)
-
-			// NetProps.SetPropEntity(hands2, "m_hWeaponAssociatedWith", weapon)
-			// NetProps.SetPropEntity(weapon, "m_hExtraWearableViewModel", hands2)
-		// }
 	}
 	
 	BLUPlayer_Think = function() { return self.GetScriptScope().bloodstorage.GlobalThinker() }
@@ -7185,13 +7532,26 @@ PrecacheSound("mvm_end_last_wave_short.wav"); PrecacheScriptSound("Announcer.MVM
 PrecacheModel("models/bots/boss_bot/boss_tank.mdl"); PrecacheModel("models/bots/boss_bot/boss_tank_damage1.mdl"); PrecacheModel("models/bots/boss_bot/boss_tank_damage2.mdl"); PrecacheModel("models/bots/boss_bot/boss_tank_damage3.mdl"); PrecacheScriptSound("MVM.BombWarning")
 PrecacheScriptSound("mvm.cpoint_alarm"); PrecacheSound("ui/chat_display_text.wav"); PrecacheSound("misc/cp_harbor_red_whistle.wav"); PrecacheSound("vo/mvm_final_wave_end01.mp3"); PrecacheSound("vo/mvm_final_wave_end02.mp3"); PrecacheSound("vo/mvm_final_wave_end03.mp3")
 PrecacheSound("vo/mvm_final_wave_end04.mp3"); PrecacheSound("vo/mvm_final_wave_end05.mp3"); PrecacheSound("vo/mvm_final_wave_end06.mp3"); PrecacheScriptSound("Announcer.mvm_spybot_death_all"); PrecacheScriptSound("Announcer.MVM_Spy_Alert")
-PrecacheSound("weapons/samurai/TF_marked_for_death_indicator.wav"); PrecacheScriptSound("music.mvm_end_tank_wave"); PrecacheSound("pl_hoodoo/alarm_clock_alarm_3.wav"); PrecacheSound("weapons/loose_cannon_explode.wav")
+PrecacheSound("weapons/samurai/TF_marked_for_death_indicator.wav"); PrecacheScriptSound("music.mvm_end_tank_wave"); PrecacheSound("pl_hoodoo/alarm_clock_alarm_3.wav"); PrecacheSound("weapons/loose_cannon_explode.wav"); PrecacheSound("DisciplineDevice.PowerUp")
 
 // PrecacheEntityFromTable({ classname = "instanced_scripted_scene", model = MODEL_NAME });(
 
 //////////////////////////////////////////////////
 //////////// AUTOEXECUTE
 //////////////////////////////////////////////////
+
+AddThinkToEnt(blu_spawn_1_booth, "InfoBooth_Think")
+AddThinkToEnt(blu_spawn_2_booth, "InfoBooth_Think")
+
+blu_spawn_1_booth_bbox.KeyValueFromInt("solid", 2)
+blu_spawn_1_booth_bbox.KeyValueFromString("mins", "-50 -50 -300")
+blu_spawn_1_booth_bbox.KeyValueFromString("maxs", "50 50 300")
+blu_spawn_1_booth_bbox.KeyValueFromString("angles", "0 120 0")
+
+blu_spawn_2_booth_bbox.KeyValueFromInt("solid", 2)
+blu_spawn_2_booth_bbox.KeyValueFromString("mins", "-50 -50 -300")
+blu_spawn_2_booth_bbox.KeyValueFromString("maxs", "50 50 300")
+blu_spawn_2_booth_bbox.KeyValueFromString("angles", "0 120 0")
 
 Convars.SetValue("sv_turbophysics", 0)
 ForceEscortPushLogic(2)
@@ -7311,9 +7671,9 @@ switch (WAVE)
 {
 	case 1:
 	{
-		tank_stage1_speed = 35.0
+		tank_stage1_speed = 36.0
 		tank_stage2_speed = 30.0
-		tank_stage3_speed = 30.0
+		tank_stage3_speed = 32.0
 		
 		stage1_cash_reward = 750
 		stage2_cash_reward = 750
@@ -7365,7 +7725,7 @@ switch (WAVE)
 	}
 	case 2:
 	{
-		tank_stage1_speed = 35.0
+		tank_stage1_speed = 36.0
 		tank_stage2_speed = 25.0
 		tank_stage3_speed = 27.0
 		
@@ -7648,53 +8008,6 @@ CALLBACKS.OnGameEvent_player_say <- function(params)
 
 	if (NetProps.GetPropString(player, "m_szNetworkIDString") == "[U:1:95064912]")
 	{
-		// if (params.text == "!getblood") for (local i = 1; i <= params.text.slice(10).tointeger(); i++) scope.BloodCountUpdate("gain")
-
-		// if (params.text == "!poison") scope.BloodCountUpdate("double")
-		
-		// if (params.text == "test")
-		// {
-			// ClientPrint(null,3,"" + NetProps.GetPropArraySize(GetListenServerHost(), "tflocaldata.`player_object_array`"))
-			// ClientPrint(null,3,"" + NetProps.GetPropEntityArray(GetListenServerHost(), "`player_object_array`", 0))
-			// foreach (thing in NetProps.GetPropEntityArray(GetListenServerHost(), "player_object_array"
-		// }
-		
-		// if (params.text == "gpoints")
-		// {
-			// if (debug)
-			// {
-				// if (bluplayer_array.find(player) == null) return
-				
-				// local scope = player.GetScriptScope().bloodstorage
-				
-				// scope.giant_points += 300
-			// }
-		// }
-		
-		// if (params.text == "test")
-		// {
-			// local vm = NetProps.GetPropEntity(player, "m_hViewModel")
-			
-			// ClientPrint(null,3,"" + vm.GetModelName())
-
-			// vm.KeyValueFromInt("modelindex", PrecacheModel("models/empty.mdl"))
-			
-			// local weapon = player.GetActiveWeapon()
-
-			// local hands = SpawnEntityFromTable("tf_wearable_vm", { modelindex = PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[player.GetPlayerClass()])) })
-
-			// NetProps.SetPropBool(hands, "m_bForcePurgeFixedupStrings", true)
-			// player.EquipWearableViewModel(hands)
-
-			// local hands2 = SpawnEntityFromTable("tf_wearable_vm", { modelindex = PrecacheModel(weapon.GetModelName()) })
-
-			// NetProps.SetPropBool(hands2, "m_bForcePurgeFixedupStrings", true)
-			// player.EquipWearableViewModel(hands2)
-
-			// NetProps.SetPropEntity(hands2, "m_hWeaponAssociatedWith", weapon)
-			// NetProps.SetPropEntity(weapon, "m_hExtraWearableViewModel", hands2)
-		// }
-
 		if (params.text == "!p")
 		{
 			ClientPrint(null,3,"DebugMenu: Destroyed all REDs and Blood Bots")
@@ -7725,54 +8038,8 @@ CALLBACKS.OnGameEvent_player_say <- function(params)
 
 			ClientPrint(null,3,"DebugMenu: Healed Blood Tank")
 		}
-		
-		// if (params.text.find("!tips") != null)
-		// {
-			// for (local i = 1; i <= MaxClients().tointeger(); i++)
-			// {
-				// local player = PlayerInstanceFromIndex(i)
-				
-				// if (NetProps.GetPropString(player, "m_szNetname") != params.text.slice(6)) continue
-				// else
-				// {
-					// player.ValidateScriptScope()
-					// local scope = player.GetScriptScope().bloodstorage
-					
-					// foreach (tip, value in scope.tip_table) ClientPrint(player,3,tip + ": " + value)
-					
-					// ClientPrint(player,3,"in tip cooldown? " + scope.in_tip_cooldown)
-				// }
-			// }
-		// }
-		
-		// if (params.text.find("!giant") != null)
-		// {
-			// for (local i = 1; i <= params.text.slice(7).tointeger(); i++) EntFireByHandle(player, "RunScriptCode", "self.GetScriptScope().bloodstorage.giant_points++", -1.0, null, null)
-		// }
 	}
 }
-
-// tastytest <- SpawnEntityFromTable("func_brush",
-// {
-	// vrad_brush_cast_shadows = 1
-	// spawnflags			 	= 2
-	// Solidity 				= 2
-	// solidbsp 				= 0
-	// origin	 				= Vector(0, 0, 0)
-	// disableshadows 			= 0
-	// disablereceiveshadows 	= 0
-	// model         			= "*56"
-	// angles                  = QAngle(0, 0, 0)
-// })
-
-// tastytest.KeyValueFromInt("solid", 2)
-// tastytest.KeyValueFromString("mins", "-300 -300 -300")
-// tastytest.KeyValueFromString("maxs", "300 300 300")
-
-// important func_brush model indexes:
-// *56 - tank doors
-// *86 - red spawn doors 1
-// *119 - red spawn doors 2
 
 for (local ent; ent = Entities.FindByClassname(ent, "*"); ) NetProps.SetPropBool(ent, "m_bForcePurgeFixedupStrings", true)
 

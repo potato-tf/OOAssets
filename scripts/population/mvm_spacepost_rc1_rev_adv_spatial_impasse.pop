@@ -4,73 +4,88 @@
 WaveSchedule
 {
 	StartingCurrency 1000
-
+	
 	HumansMustJoinTeam blue
 	BluPlayersAreRobots 1
 	ReverseWinConditions 1
-
+	
 	BluHumanInfiniteAmmo 0
 	BluHumanInfiniteCloak 0
-
+	
 	AllowBluPlayerReanimators 1
 	MedigunShieldDamage 1
-
+	
 	RemoveBluVelocityLimit 1
 	BluHumanSpawnNoShoot 0
 	BluHumanSpawnProtection 0
-
+	
 	BotsRandomCrit 1
 	NoRedBotsRandomCrit 1
 	NoRedSniperBotHeadshots 1
-
+	
 	NoRomevisionCosmetics 1
 	// WaveStartCountdown 0
-
+	
 	BonusRatioHalf 1.1
 	BonusRatioFull 1.1
-
+	
 	RespawnWaveTimeBlue 5
 	FixedRespawnWaveTimeBlue 1
-
+	
 	SniperAllowHeadshots 1
 	NoRedSniperBotHeadshots 1
 	SniperHideLasers 1
-
+	
 	NoMissionInfo 1
-
+	
 	PrecacheGeneric "materials/spatial_impasse_overlays/tank_blood_storage_overlay.vmt"
 	PrecacheGeneric "materials/spatial_impasse_overlays/tank_blood_storage_overlay.vtf"
 	PrecacheGeneric "materials/spatial_impasse_overlays/w3_tnt_storage_overlay.vmt"
 	PrecacheGeneric "materials/spatial_impasse_overlays/w3_tnt_storage_overlay.vtf"
 	PrecacheGeneric "materials/spatial_impasse_overlays/w3_blood_storage_overlay.vmt"
 	PrecacheGeneric "materials/spatial_impasse_overlays/w3_blood_storage_overlay.vtf"
-
+	
 	PrecacheGeneric "spatial_impasse_overlays/tank_blood_storage_overlay.vmt"
 	PrecacheGeneric "spatial_impasse_overlays/tank_blood_storage_overlay.vtf"
 	PrecacheGeneric "spatial_impasse_overlays/w3_tnt_storage_overlay.vmt"
 	PrecacheGeneric "spatial_impasse_overlays/w3_tnt_storage_overlay.vtf"
 	PrecacheGeneric "spatial_impasse_overlays/w3_blood_storage_overlay.vmt"
 	PrecacheGeneric "spatial_impasse_overlays/w3_blood_storage_overlay.vtf"
+	
+	PrecacheModel "models/props_invader/saucer.mdl"
+	PrecacheModel "models/props_invader/saucer_phys.mdl"
+	
+	PrecacheModel "models/mvm/weapons/c_models/c_demo_bot_animations.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_demo_bot_arms.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_engineer_bot_animations.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_engineer_bot_arms.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_engineer_bot_gunslinger.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_engineer_bot_gunslinger_animations.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_heavy_bot_animations.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_heavy_bot_arms.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_bot_animations.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_bot_arms.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_pyro_bot_animations.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_pyro_bot_arms.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_scout_bot_animations.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_scout_bot_arms.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_sniper_bot_animations.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_sniper_bot_arms.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_soldier_bot_animations.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_soldier_bot_arms.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_spy_bot_animations.mdl"
+	PrecacheModel "models/mvm/weapons/c_models/c_spy_bot_arms.mdl"
+	
+	PrecacheModel "models/mvm/weapons/v_models/v_pda_spy_bot.mdl"
+	PrecacheModel "models/mvm/weapons/v_models/v_pda_spy_bot_animations.mdl"
+	PrecacheModel "models/mvm/weapons/v_models/v_ttg_watch_spy_bot.mdl"
+	PrecacheModel "models/mvm/weapons/v_models/v_watch_leather_spy_bot.mdl"
+	PrecacheModel "models/mvm/weapons/v_models/v_watch_pocket_spy_bot.mdl"
+	PrecacheModel "models/mvm/weapons/v_models/v_watch_pocket_spy_bot_animations.mdl"
+	PrecacheModel "models/mvm/weapons/v_models/v_watch_spy_bot.mdl"
+	PrecacheModel "models/mvm/weapons/v_models/v_watch_spy_bot_animations.mdl"
 
-	PrecacheGeneric "models/props_invader/saucer.mdl"
-	PrecacheGeneric "models/props_invader/saucer.phy"
-	PrecacheGeneric "models/props_invader/saucer.sw.vtx"
-	PrecacheGeneric "models/props_invader/saucer.vvd"
-	PrecacheGeneric "models/props_invader/saucer.dx80.vtx"
-	PrecacheGeneric "models/props_invader/saucer.dx90.vtx"
-
-	PrecacheGeneric "models/props_invader/saucer_phys.mdl"
-	PrecacheGeneric "models/props_invader/saucer_phys.sw.vtx"
-	PrecacheGeneric "models/props_invader/saucer_phys.vvd"
-	PrecacheGeneric "models/props_invader/saucer_phys.dx80.vtx"
-	PrecacheGeneric "models/props_invader/saucer_phys.dx90.vtx"
-
-	PrecacheGeneric "materials/models/props_invader/saucer.vtf"
-	PrecacheGeneric "materials/models/props_invader/saucer.vmt"
-	PrecacheGeneric "materials/models/props_invader/saucer_norm.vtf"
-	PrecacheGeneric "materials/models/props_invader/saucer_material.vmt"
-	PrecacheGeneric "materials/models/props_invader/saucer_pulse_light.vtf"
-	PrecacheGeneric "materials/models/props_invader/saucer_pulse_light.vmt"
+	PrecacheModel "models/mvm/workshop_partner/weapons/v_models/v_hm_watch/v_hm_watch_bot.mdl"
 
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal1.vmt"
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal2.vmt"
@@ -78,7 +93,7 @@ WaveSchedule
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal4.vmt"
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal5.vmt"
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal6.vmt"
-
+	
 	Mission
 	{
 		Objective Engineer
@@ -198,7 +213,7 @@ WaveSchedule
 			Target wave_start_relay
 			Action Trigger
 		}
-		DoneOutput
+		DoneOutput					
 		{
 			Target wave_finished_relay
 			Action trigger
@@ -216,7 +231,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			HideIcon 1
-			FirstSpawnOutput
+			FirstSpawnOutput                
 			{
 				Target gamerules
 				Action CallScriptFunction
@@ -258,7 +273,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Scout_Melee"
 				Tag w1_start
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_right_exit
 				Tag avoid_outside_rightflank
@@ -277,7 +292,7 @@ WaveSchedule
 			TFBot
 			{
 				Template "T_TFBot_Scout_Melee"
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_right_exit
 				Tag avoid_outside_rightflank
@@ -300,7 +315,7 @@ WaveSchedule
 					Class Scout
 					Skill Normal
 					Tag squad_leader
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_right_exit
 					Tag avoid_outside_rightflank
@@ -310,7 +325,7 @@ WaveSchedule
 				{
 					Class Scout
 					Skill Normal
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_right_exit
 					Tag avoid_outside_rightflank
@@ -335,7 +350,7 @@ WaveSchedule
 					Class Scout
 					Skill Normal
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_right_exit
 					Tag avoid_outside_rightflank
@@ -358,7 +373,7 @@ WaveSchedule
 				Class Pyro
 				Skill Easy
 				Attributes AlwaysFireWeapon
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_right_exit
 			}
@@ -378,7 +393,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Scout_Melee"
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_right_exit
 			}
@@ -401,7 +416,7 @@ WaveSchedule
 				{
 					Class Scout
 					Skill Normal
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_right_exit
 				}
@@ -410,7 +425,7 @@ WaveSchedule
 				{
 					Class Soldier
 					Skill Normal
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_right_exit
 				}
@@ -434,7 +449,7 @@ WaveSchedule
 				Skill Easy
 				Attributes AlwaysFireWeapon
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+				
 				Tag avoid_back_corridor_left
 				Tag avoid_back_corridor_middle
 				Tag avoid_back_corridor_right
@@ -456,7 +471,7 @@ WaveSchedule
 			{
 				Class Heavyweapons
 				Skill Easy
-
+				
 				Tag avoid_walkdown_back
 			}
 		}
@@ -475,7 +490,7 @@ WaveSchedule
 			{
 				Class Pyro
 				Skill Easy
-
+				
 				Tag avoid_walkdown_back
 			}
 		}
@@ -494,7 +509,7 @@ WaveSchedule
 			{
 				Class Heavyweapons
 				Skill Normal
-
+				
 				Tag avoid_walkdown_back
 			}
 		}
@@ -513,7 +528,7 @@ WaveSchedule
 			{
 				Class Pyro
 				Skill Normal
-
+				
 				Tag avoid_walkdown_back
 			}
 		}
@@ -532,7 +547,7 @@ WaveSchedule
 			{
 				Class Soldier
 				Skill Normal
-
+				
 				Tag avoid_walkdown_back_right
 				Tag avoid_back_corridor_left
 				Tag avoid_back_corridor_middle
@@ -557,7 +572,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Demoman_Knight
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_walkdown_back
 					Tag avoid_walkdown_back_right
@@ -571,7 +586,7 @@ WaveSchedule
 				{
 					Template T_TFBot_Demoman_Knight
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_walkdown_back
 					Tag avoid_walkdown_back_right
@@ -580,12 +595,12 @@ WaveSchedule
 					Tag avoid_dropdown_middle
 					Tag avoid_walkdown_middle
 				}
-
+				
 				NextSpawnerClone 8
 				TFBot
 				{
 					Template T_TFBot_Demoman_Knight
-
+					
 					Tag avoid_dropdown_middle
 					Tag avoid_jumpdown_middle
 					Tag avoid_walkdown_back
@@ -598,7 +613,7 @@ WaveSchedule
 				{
 					Template T_TFBot_Demoman_Knight
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_dropdown_middle
 					Tag avoid_jumpdown_middle
 					Tag avoid_walkdown_back
@@ -623,7 +638,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Spammer
-
+				
 				Tag avoid_jumpdown_middle
 				Tag avoid_back_corridor_left
 				Tag avoid_back_corridor_middle
@@ -645,7 +660,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Spammer
-
+				
 				Tag avoid_walkdown_back_right
 				Tag avoid_back_corridor_left
 				Tag avoid_back_corridor_middle
@@ -669,7 +684,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Demoman_Knight
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_walkdown_back
 					Tag avoid_walkdown_back_right
@@ -681,7 +696,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Demoman_Knight
-
+					
 					Tag avoid_dropdown_middle
 					Tag avoid_jumpdown_middle
 					Tag avoid_walkdown_back
@@ -706,7 +721,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Heavyweapons_Heavyweight_Champ
-
+				
 				Tag avoid_back_corridor_left
 				Tag avoid_back_corridor_middle
 				Tag avoid_back_corridor_right
@@ -727,7 +742,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Demoman
-
+				
 				Tag avoid_jumpdown_middle
 				Tag avoid_dropdown_middle
 				Tag avoid_back_corridor_middle
@@ -749,7 +764,7 @@ WaveSchedule
 			{
 				Template T_TFBot_Giant_Demoman
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+				
 				Tag avoid_walkdown_back_right
 				Tag avoid_back_corridor_right
 				Tag avoid_back_corridor_middle
@@ -775,7 +790,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Heavyweight_Champ
-
+					
 					Tag avoid_jumpdown_middle
 					Tag avoid_upper_exit
 					Tag avoid_walkdown_back
@@ -788,7 +803,7 @@ WaveSchedule
 					Class Heavyweapons
 					Skill Hard
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_jumpdown_middle
 					Tag avoid_dropdown_middle
 					Tag avoid_upper_exit
@@ -820,7 +835,7 @@ WaveSchedule
 					"dmg taken increased" 0.2
 					"move speed penalty" 0.5
 					"health from healers reduced" 0.1
-				}
+				} 
 			}
 		}
 		WaveSpawn
@@ -838,7 +853,7 @@ WaveSchedule
 			{
 				Class Scout
 				Skill Normal
-
+				
 				Tag avoid_back_overpass
 				Tag avoid_walkdown_back
 				Tag avoid_back_corridor_right
@@ -862,7 +877,7 @@ WaveSchedule
 				{
 					Template T_TFBot_Giant_Heavyweapons
 					Tag squad_leader
-
+					
 					Tag avoid_back_overpass
 					Tag avoid_walkdown_back
 					Tag avoid_back_corridor_right
@@ -873,7 +888,7 @@ WaveSchedule
 				{
 					Class Soldier
 					Skill Normal
-
+					
 					Tag avoid_back_overpass
 					Tag avoid_walkdown_back
 					Tag avoid_back_corridor_right
@@ -898,7 +913,7 @@ WaveSchedule
 				{
 					Template T_TFBot_Giant_Soldier_Spammer
 					Tag squad_leader
-
+					
 					Tag avoid_back_overpass
 					Tag avoid_back_sidepath
 					Tag avoid_walkdown_back
@@ -912,7 +927,7 @@ WaveSchedule
 				{
 					Class Soldier
 					Skill Normal
-
+					
 					Tag avoid_back_overpass
 					Tag avoid_back_sidepath
 					Tag avoid_walkdown_back
@@ -942,7 +957,7 @@ WaveSchedule
 					Skill Easy
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					Tag squad_leader
-
+					
 					Tag avoid_back_corridor_right
 				}
 				NextSpawnerClone 2
@@ -951,7 +966,7 @@ WaveSchedule
 					Class Heavyweapons
 					Skill Easy
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_back_corridor_right
 				}
 			}
@@ -978,7 +993,7 @@ WaveSchedule
 		{
 			Name "W1-O3"
 			TotalCurrency 0
-
+			
 			Where spawnbot_red_1
 			Where spawnbot_red_2
 			Where spawnbot_red_3
@@ -995,7 +1010,7 @@ WaveSchedule
 			Where spawnbot_red_14
 			Where spawnbot_red_16
 			RandomSpawn 1
-
+			
 			SpawnCount 3
 			MaxActive 18
 			TotalCount 36
@@ -1026,7 +1041,7 @@ WaveSchedule
 					Skill Easy
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					Tag squad_leader
-
+					
 					Tag avoid_back_corridor_right
 				}
 				NextSpawnerClone 2
@@ -1035,7 +1050,7 @@ WaveSchedule
 					Class Heavyweapons
 					Skill Easy
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_back_corridor_right
 				}
 			}
@@ -1058,6 +1073,39 @@ WaveSchedule
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
 			}
 		}
+		// WaveSpawn
+		// {
+			// Name "W1-TankSpeedUp-S1"
+			// WaitForAllDead "W1-S1B"
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "SpeedUpTank(1)"
+			// }
+		// }
+		// WaveSpawn
+		// {
+			// Name "W1-TankSpeedUp-S2"
+			// WaitForAllDead "W1-S2B"
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "SpeedUpTank(2)"
+			// }
+		// }
+		// WaveSpawn
+		// {
+			// Name "W1-TankSpeedUp-S3"
+			// WaitForAllDead "W1-S3B"
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "SpeedUpTank(3)"
+			// }
+		// }
 		WaveSpawn
 		{
 			Name "W1-Cash-S1"
@@ -1090,7 +1138,7 @@ WaveSchedule
 			Target wave_start_relay
 			Action Trigger
 		}
-		DoneOutput
+		DoneOutput					
 		{
 			Target wave_finished_relay
 			Action trigger
@@ -1108,7 +1156,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			HideIcon 1
-			FirstSpawnOutput
+			FirstSpawnOutput                
 			{
 				Target gamerules
 				Action CallScriptFunction
@@ -1150,7 +1198,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Giant_Scout_Fast"
 				Tag bombrunner
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_right_exit
 				Tag avoid_outside_rightflank
@@ -1171,7 +1219,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Pyro_Flaregun"
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_right_exit
 			}
@@ -1191,7 +1239,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Pyro_Flaregun"
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_right_exit
 			}
@@ -1211,7 +1259,7 @@ WaveSchedule
 			{
 				Class Demoman
 				Skill Normal
-
+				
 				Tag avoid_middle_exit
 				Tag avoid_right_exit
 				Tag avoid_back_corridor_right
@@ -1232,7 +1280,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Giant_Scout_Fast"
 				Tag bombrunner
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_right_exit
 				Tag avoid_outside_rightflank
@@ -1255,7 +1303,7 @@ WaveSchedule
 				{
 					Template "T_TFBot_Pyro_Flaregun"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_right_exit
 				}
@@ -1263,11 +1311,11 @@ WaveSchedule
 				{
 					Template "T_TFBot_Sniper_Huntsman"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_right_exit
 				}
-
+				
 				Shuffle 1
 			}
 		}
@@ -1286,7 +1334,7 @@ WaveSchedule
 			{
 				Class Demoman
 				Skill Normal
-
+				
 				Tag avoid_middle_exit
 				Tag avoid_right_exit
 				Tag avoid_back_corridor_right
@@ -1306,7 +1354,7 @@ WaveSchedule
 			TFBot
 			{
 				Template "T_TFBot_Giant_Soldier_Crit"
-
+				
 				Tag avoid_middle_exit
 				Tag avoid_right_exit
 				Tag avoid_jumpdown_middle
@@ -1329,7 +1377,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Giant_Scout_Fast"
 				Tag bombrunner
-
+				
 				Tag avoid_back_overpass
 				Tag avoid_back_corridor_right
 				Tag avoid_back_corridor_middle
@@ -1351,7 +1399,7 @@ WaveSchedule
 			TFBot
 			{
 				Template "T_TFBot_Scout_Melee"
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_right_exit
 			}
@@ -1371,7 +1419,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Giant_Pyro"
 				Attributes AlwaysCrit
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_walkdown_back_right
 				Tag avoid_back_corridor_right
@@ -1399,7 +1447,7 @@ WaveSchedule
 				{
 					Template "T_TFBot_Scout_Melee"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_back_sidepath
 					Tag avoid_back_corridor_right
 					Tag avoid_walkdown_back
@@ -1410,7 +1458,7 @@ WaveSchedule
 				{
 					Template "T_TFBot_Sniper_Huntsman"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_back_sidepath
 					Tag avoid_back_corridor_right
 					Tag avoid_walkdown_back
@@ -1430,7 +1478,7 @@ WaveSchedule
 			Where spawnbot_red_14
 			SpawnCount 1
 			MaxActive 1
-			TotalCount 2
+			TotalCount 2 
 			StartDisabled 1
 			HideIcon 1
 			WaitBeforeStarting 3
@@ -1483,7 +1531,7 @@ WaveSchedule
 				{
 					Template "T_TFBot_Soldier_RocketPush"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_back_corridor_left
 					Tag avoid_back_corridor_right
 					Tag avoid_back_corridor_middle
@@ -1495,7 +1543,7 @@ WaveSchedule
 				{
 					Template "T_TFBot_Scout_Melee"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_back_corridor_left
 					Tag avoid_back_corridor_right
 					Tag avoid_back_corridor_middle
@@ -1519,7 +1567,7 @@ WaveSchedule
 			TFBot
 			{
 				Template "T_TFBot_Giant_Soldier_Crit"
-
+				
 				Tag avoid_back_corridor_left
 				Tag avoid_back_corridor_middle
 				Tag avoid_back_overpass
@@ -1541,7 +1589,7 @@ WaveSchedule
 			TFBot
 			{
 				Template "T_TFBot_Soldier_RocketPush"
-
+				
 				Tag avoid_back_corridor_left
 				Tag avoid_back_corridor_middle
 				Tag avoid_back_overpass
@@ -1566,7 +1614,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Sniper_Huntsman"
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+				
 				Tag avoid_back_corridor_left
 				Tag avoid_back_corridor_middle
 				Tag avoid_back_corridor_right
@@ -1589,7 +1637,7 @@ WaveSchedule
 			{
 				Class Pyro
 				Skill Easy
-
+				
 				Tag avoid_back_corridor_left
 				Tag avoid_back_corridor_middle
 				Tag avoid_back_corridor_right
@@ -1611,7 +1659,7 @@ WaveSchedule
 			TFBot
 			{
 				Template "T_TFBot_Soldier_RocketPush"
-
+				
 				Tag avoid_back_corridor_left
 				Tag avoid_back_corridor_middle
 				Tag avoid_back_overpass
@@ -1638,7 +1686,7 @@ WaveSchedule
 				Attributes AlwaysCrit
 				Attributes AlwaysFireWeapon
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+				
 				Tag avoid_back_corridor_left
 				Tag avoid_back_corridor_middle
 				Tag avoid_back_overpass
@@ -1664,7 +1712,7 @@ WaveSchedule
 				{
 					Template "T_TFBot_Pyro_Flaregun"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_back_corridor_left
 					Tag avoid_back_corridor_middle
 					Tag avoid_back_overpass
@@ -1677,7 +1725,7 @@ WaveSchedule
 					Class Pyro
 					Skill Easy
 					Attributes AlwaysFireWeapon
-
+					
 					Tag avoid_back_corridor_left
 					Tag avoid_back_corridor_middle
 					Tag avoid_back_corridor_right
@@ -1723,7 +1771,7 @@ WaveSchedule
 			{
 				Class Demoman
 				Skill Easy
-
+				
 				Tag avoid_back_sidepath
 				Tag avoid_back_corridor_right
 				Tag avoid_walkdown_back
@@ -1768,7 +1816,7 @@ WaveSchedule
 				Template "T_TFBot_Giant_Pyro"
 				Attributes AlwaysCrit
 				Attributes AlwaysFireWeapon
-
+				
 				Tag avoid_back_sidepath
 				Tag avoid_back_corridor_right
 				Tag avoid_walkdown_back
@@ -1790,7 +1838,7 @@ WaveSchedule
 			{
 				Class Demoman
 				Skill Easy
-
+				
 				Tag avoid_back_overpass
 				Tag avoid_back_corridor_right
 				Tag avoid_walkdown_back
@@ -1811,7 +1859,7 @@ WaveSchedule
 			{
 				Template T_TFBot_Heavyweapons_Fist
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+				
 				Tag avoid_back_sidepath
 				Tag avoid_back_corridor_right
 				Tag avoid_walkdown_back
@@ -1832,7 +1880,7 @@ WaveSchedule
 			{
 				Class Pyro
 				Skill Normal
-
+				
 				Tag avoid_back_overpass
 				Tag avoid_back_corridor_right
 				Tag avoid_walkdown_back
@@ -1853,7 +1901,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Giant_Scout_Fast"
 				Tag bombrunner
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_walkdown_middle
 				Tag avoid_walkdown_back_right
@@ -1909,12 +1957,65 @@ WaveSchedule
 			{
 				Template "T_TFBot_Giant_Scout_Fast"
 				Tag bombrunner
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_walkdown_middle
 				Tag avoid_walkdown_back_right
 			}
 		}
+		// WaveSpawn
+		// {
+			// Name "W2-TankSpeedUp-S1-WFAD"
+			// WaitForAllDead "W2-S1C-1"
+		// }
+		// WaveSpawn
+		// {
+			// Name "W2-TankSpeedUp-S1-WFAD"
+			// WaitForAllDead "W2-S1C-2"
+		// }
+		// WaveSpawn
+		// {
+			// Name "W2-TankSpeedUp-S1"
+			// WaitForAllDead "W2-TankSpeedUp-S1-WFAD"
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "SpeedUpTank(1)"
+			// }
+		// }
+		// WaveSpawn
+		// {
+			// Name "W2-TankSpeedUp-S2-WFAD"
+			// WaitForAllDead "W2-S2B-1"
+		// }
+		// WaveSpawn
+		// {
+			// Name "W2-TankSpeedUp-S2-WFAD"
+			// WaitForAllDead "W2-S2B-2"
+		// }
+		// WaveSpawn
+		// {
+			// Name "W2-TankSpeedUp-S2"
+			// WaitForAllDead "W2-TankSpeedUp-S2-WFAD"
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "SpeedUpTank(2)"
+			// }
+		// }
+		// WaveSpawn
+		// {
+			// Name "W2-TankSpeedUp-S3"
+			// WaitForAllDead "W2-S3C"
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "SpeedUpTank(3)"
+			// }
+		// }
 		WaveSpawn
 		{
 			Name "W2-Cash-S1"
@@ -1947,7 +2048,7 @@ WaveSchedule
 			Target wave_start_relay
 			Action Trigger
 		}
-		DoneOutput
+		DoneOutput					
 		{
 			Target wave_finished_relay
 			Action trigger
@@ -2012,7 +2113,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Scout_FAN"
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_middle_exit
 			}
@@ -2034,7 +2135,7 @@ WaveSchedule
 					Template "T_TFBot_Soldier_Extended_Concheror"
 					Tag has_banner
 					Tag squad_leader
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_middle_exit
 					Tag avoid_back_corridor_left
@@ -2064,7 +2165,7 @@ WaveSchedule
 				Template "T_TFBot_Scout_Shortstop"
 				Skill Normal
 				Attributes AlwaysCrit
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_middle_exit
 				Tag avoid_back_corridor_left
@@ -2087,7 +2188,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Giant_Heavyweapons_Shotgun"
 				ClassIcon heavy_shotgun_giant
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_right_exit
 				Tag avoid_back_overpass
@@ -2113,7 +2214,7 @@ WaveSchedule
 					Template "T_TFBot_Giant_Heavyweapons_Shotgun"
 					ClassIcon heavy_shotgun_giant
 					Tag squad_leader
-
+					
 					Tag avoid_upper_exit
 					Tag avoid_right_exit
 					Tag avoid_back_overpass
@@ -2146,7 +2247,7 @@ WaveSchedule
 					Item "The Direct Hit"
 					Tag has_banner
 					Tag squad_leader
-
+					
 					Tag avoid_middle_exit
 					Tag avoid_right_exit
 				}
@@ -2173,7 +2274,7 @@ WaveSchedule
 				Template "T_TFBot_Soldier_Extended_Concheror"
 				Item "The Direct Hit"
 				Tag has_banner
-
+				
 				Tag avoid_middle_exit
 				Tag avoid_right_exit
 			}
@@ -2187,7 +2288,7 @@ WaveSchedule
 			MaxActive 2
 			TotalCount 2
 			StartDisabled 1
-			WaitBeforeStarting 3
+			WaitBeforeStarting 15
 			WaitBetweenSpawns 0
 			Squad
 			{
@@ -2196,7 +2297,7 @@ WaveSchedule
 					Template "T_TFBot_Giant_Boxing_Heavy"
 					Tag bombrunner
 					Tag squad_leader
-
+					
 					Tag avoid_back_overpass
 					Tag avoid_back_sidepath
 					Tag avoid_back_corridor_right
@@ -2228,7 +2329,7 @@ WaveSchedule
 					Template "T_TFBot_Scout_FAN"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					Tag goaftercontrolpoints_any
-
+					
 					Tag avoid_back_sidepath
 					Tag avoid_back_overpass
 					Tag avoid_walkdown_back
@@ -2240,7 +2341,7 @@ WaveSchedule
 					Template "T_TFBot_Scout_FAN"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					Tag goaftercontrolpoints_any
-
+					
 					Tag avoid_back_sidepath
 					Tag avoid_back_corridor_right
 					Tag avoid_walkdown_back
@@ -2269,7 +2370,7 @@ WaveSchedule
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					Attributes AlwaysCrit
 					Tag goaftercontrolpoints_b
-
+					
 					Tag avoid_back_sidepath
 					Tag avoid_back_overpass
 					Tag avoid_walkdown_back
@@ -2283,7 +2384,7 @@ WaveSchedule
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					Attributes AlwaysCrit
 					Tag goaftercontrolpoints_c
-
+					
 					Tag avoid_back_sidepath
 					Tag avoid_back_corridor_right
 					Tag avoid_walkdown_back
@@ -2310,7 +2411,7 @@ WaveSchedule
 				{
 					Template "T_TFBot_Medic_AoEUber"
 					Tag squad_leader
-
+					
 					Tag avoid_back_sidepath
 					Tag avoid_back_overpass
 					Tag avoid_back_corridor_right
@@ -2319,7 +2420,7 @@ WaveSchedule
 				TFBot
 				{
 					Template "T_TFBot_Demo_Burst"
-
+					
 					Tag avoid_back_sidepath
 					Tag avoid_back_overpass
 					Tag avoid_back_corridor_right
@@ -2344,7 +2445,7 @@ WaveSchedule
 					Template "T_TFBot_Medic_AoEUber"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					Tag squad_leader
-
+					
 					Tag avoid_back_sidepath
 					Tag avoid_back_overpass
 					Tag avoid_back_corridor_right
@@ -2355,7 +2456,7 @@ WaveSchedule
 					Template "T_TFBot_Soldier_Extended_Concheror"
 					Tag has_banner
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_back_sidepath
 					Tag avoid_back_overpass
 					Tag avoid_back_corridor_right
@@ -2380,7 +2481,7 @@ WaveSchedule
 					Template "T_TFBot_Sniper_Huntsman_Spammer"
 					ClassIcon sniper_bow_multi
 					Tag squad_leader
-
+					
 					Tag avoid_back_corridor_left
 					Tag avoid_back_corridor_middle
 					Tag avoid_back_sidepath
@@ -2389,7 +2490,7 @@ WaveSchedule
 				TFBot
 				{
 					Template "T_TFBot_Demo_Burst"
-
+					
 					Tag avoid_back_corridor_left
 					Tag avoid_back_corridor_middle
 					Tag avoid_back_sidepath
@@ -2415,7 +2516,7 @@ WaveSchedule
 					ClassIcon sniper_bow_multi
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					Tag squad_leader
-
+					
 					Tag avoid_back_corridor_left
 					Tag avoid_back_corridor_middle
 					Tag avoid_back_sidepath
@@ -2426,7 +2527,7 @@ WaveSchedule
 					Template "T_TFBot_Soldier_Extended_Concheror"
 					Tag has_banner
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_back_corridor_left
 					Tag avoid_back_corridor_middle
 					Tag avoid_back_sidepath
@@ -2450,7 +2551,7 @@ WaveSchedule
 				{
 					Template "T_TFBot_Giant_Boxing_Heavy"
 					Tag bombrunner
-
+					
 					Tag avoid_walkdown_back
 					Tag avoid_back_sidepath
 					Tag avoid_back_corridor_right
@@ -2461,7 +2562,7 @@ WaveSchedule
 				{
 					Template "T_TFBot_Giant_Boxing_Heavy"
 					Tag bombrunner
-
+					
 					Tag avoid_back_overpass
 					Tag avoid_back_sidepath
 					Tag avoid_walkdown_back
@@ -2487,7 +2588,7 @@ WaveSchedule
 				{
 					Template "T_TFBot_Scout_FAN"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_walkdown_back
 					Tag avoid_back_sidepath
 					Tag avoid_walkdown_back_right
@@ -2501,7 +2602,7 @@ WaveSchedule
 				{
 					Template "T_TFBot_Scout_FAN"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
-
+					
 					Tag avoid_walkdown_back
 					Tag avoid_back_sidepath
 					Tag avoid_back_overpass
@@ -2513,7 +2614,7 @@ WaveSchedule
 				TFBot
 				{
 					Template "T_TFBot_Demo_Burst"
-
+					
 					Tag avoid_walkdown_back
 					Tag avoid_back_sidepath
 					Tag avoid_walkdown_back_right
@@ -2526,7 +2627,7 @@ WaveSchedule
 				TFBot
 				{
 					Template "T_TFBot_Demo_Burst"
-
+					
 					Tag avoid_walkdown_back
 					Tag avoid_back_sidepath
 					Tag avoid_back_overpass
@@ -2572,7 +2673,7 @@ WaveSchedule
 			{
 				Template "T_TFBot_Giant_Heavyweapons_Shotgun"
 				ClassIcon heavy_shotgun_giant
-
+				
 				Tag avoid_back_sidepath
 				Tag avoid_back_overpass
 				Tag avoid_walkdown_back
@@ -2600,7 +2701,7 @@ WaveSchedule
 					ClassIcon sniper_bow_multi
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					Tag goaftericeblock
-
+					
 					Tag avoid_dropdown_middle
 					Tag avoid_jumpdown_middle
 					Tag avoid_walkdown_back_right
@@ -2612,7 +2713,7 @@ WaveSchedule
 					Attributes AlwaysCrit
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					Tag goaftericeblock
-
+					
 					Tag avoid_dropdown_middle
 					Tag avoid_jumpdown_middle
 					Tag avoid_walkdown_back_right
@@ -2797,7 +2898,7 @@ WaveSchedule
 					{
 						"hold fire until full reload" 1
 					}
-
+					
 					Tag avoid_upper_left
 					Tag avoid_middle_corridor_left
 					Tag avoid_walkdown_back_right
@@ -2830,7 +2931,7 @@ WaveSchedule
 					{
 						"hold fire until full reload" 1
 					}
-
+					
 					Tag avoid_upper_right
 					Tag avoid_dropdown_middle
 					Tag avoid_back_corridor_middle
@@ -2965,7 +3066,7 @@ WaveSchedule
 					WaitUntilDone 1
 					Distance 500
 				}
-
+				
 				Tag avoid_upper_exit
 				Tag avoid_right_exit
 				Tag avoid_walkdown_middle
@@ -2999,6 +3100,39 @@ WaveSchedule
 				Scale 0.001
 			}
 		}
+		// WaveSpawn
+		// {
+			// Name "W3-TankSpeedUp-S1"
+			// WaitForAllDead "W3-S1B"
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "SpeedUpTank(1)"
+			// }
+		// }
+		// WaveSpawn
+		// {
+			// Name "W3-TankSpeedUp-S2"
+			// WaitForAllDead "W3-S2B"
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "SpeedUpTank(2)"
+			// }
+		// }
+		// WaveSpawn
+		// {
+			// Name "W3-TankSpeedUp-S3"
+			// WaitForAllDead "W3-S3C"
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "SpeedUpTank(3)"
+			// }
+		// }
 		WaveSpawn
 		{
 			Name "W3-Cash-S1"
@@ -3025,7 +3159,7 @@ WaveSchedule
 			// Target wave_start_relay
 			// Action Trigger
 		// }
-		// DoneOutput
+		// DoneOutput					
 		// {
 			// Target wave_finished_relay
 			// Action trigger
@@ -3043,7 +3177,7 @@ WaveSchedule
 			// WaitBeforeStarting 0
 			// WaitBetweenSpawns 0
 			// Support Limited
-			// FirstSpawnOutput
+			// FirstSpawnOutput                
 			// {
 				// Target gamerules
 				// Action CallScriptFunction
