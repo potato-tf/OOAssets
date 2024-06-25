@@ -211,6 +211,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	//////////// TIPS
 
 	tip_header = "\x07FFD700"
+	
+	current_vistip_recipient = null
 
 	//////////// MISC
 	
@@ -464,36 +466,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					
 					default:
 					{
-						if (scope.wants_robot_viewmodels)
-						{
-							// NetProps.SetPropInt(vm, "m_nModelIndex", PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()])))
-							// vm.SetModelSimple(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()]))
-							
-							// NetProps.SetPropInt(weapon, "m_iViewModelIndex", PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()])))
-							NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()])))
-							// NetProps.SetPropInt(weapon, "m_hExtraWearableViewModel", PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()])))
-							
-							// weapon.SetCustomViewModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()]))
-							
-							// weapon.SetCustomViewModelModelIndex(PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()])))
-							
-							if (weaponid == 56 || weaponid == 1005 || weaponid == 1092) weapon.AddAttribute("reload time increased hidden", -5.0, -1.0) // very hacky fix for bow weapons not reloading properly with vscript-implemented robot viewmodels
-						}
-						else
-						{
-							// NetProps.SetPropInt(vm, "m_nModelIndex", PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()])))
-							// vm.SetModelSimple(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()]))
-							
-							// NetProps.SetPropInt(weapon, "m_iViewModelIndex", PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()])))
-							NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()])))
-							// NetProps.SetPropInt(weapon, "m_hExtraWearableViewModel", PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()])))
-							
-							// weapon.SetCustomViewModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()]))
-							
-							// weapon.SetCustomViewModelModelIndex(PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()])))
-							
-							if (weaponid == 56 || weaponid == 1005 || weaponid == 1092) weapon.AddAttribute("reload time increased hidden", 1.0, -1.0)
-						}
+						if (scope.wants_robot_viewmodels) NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel(format("models/mvm/weapons/c_models/c_%s_bot_arms.mdl", class_integers[self.GetPlayerClass()])))
+						else NetProps.SetPropInt(weapon, "m_nCustomViewmodelModelIndex", PrecacheModel(format("models/weapons/c_models/c_%s_arms.mdl", class_integers[self.GetPlayerClass()])))
 					}
 				}
 			}
@@ -800,19 +774,17 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		local scope = player.GetScriptScope().bloodstorage
 		
 		// ClientPrint(debugger, 3, "Delivering visual tip to " + NetProps.GetPropString(player, "m_szNetname") + "...")
+		
+		if (scope.tip_table[tip_name]) return
 
-		if (NetProps.GetPropInt(player, "m_lifeState") == 0 && !scope.in_vistip_cooldown && !scope.tip_table[tip_name])
+		if (current_vistip_recipient == null && NetProps.GetPropInt(player, "m_lifeState") == 0 && !scope.in_vistip_cooldown)
 		{
 			// ClientPrint(debugger, 3, "Successfully delivered visual tip to: " + NetProps.GetPropString(player, "m_szNetname"))
 			// ClientPrint(debugger, 3, "Recipient's bitfield is " + (1 << player.entindex()))
-			
-			local entdummy = Entities.CreateByClassname("trigger_stun")
-
-			Entities.DispatchSpawn(entdummy)
 
 			SendGlobalGameEvent("show_annotation", 
 			{
-				id = (500 | entdummy.entindex())
+				id = scope.tutorial_box.entindex()
 				text = tip_description
 				follow_entindex = scope.tutorial_box.entindex()
 				visibilityBitfield = (1 << player.entindex())
@@ -822,12 +794,14 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				lifetime = 7.5
 			})
 			
-			EntFireByHandle(entdummy, "Kill", null, 7.5, null, null)
-			
+			current_vistip_recipient = player
+
 			scope.tip_table[tip_name] = true
 			
 			scope.in_vistip_cooldown = true
 			EntFireByHandle(player, "RunScriptCode", "self.GetScriptScope().bloodstorage.in_vistip_cooldown = false", scope.desired_vistip_cooldown, null, null)
+			
+			EntFireByHandle(gamerules_entity, "RunScriptCode", "current_vistip_recipient = null", 2.5, null, null)
 		}
 		
 		// else ClientPrint(debugger, 3, "Failed to deliver visual tip (in cooldown or already saw tip)")
@@ -1161,12 +1135,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			if (spawned_player.GetTeam() <= 1) return // when a player joins server, player_spawn fires twice: once when the player is at the initial class choice screen (as team 0 undefined), and then again when they actually spawn on blu side
 			
-			if (players_joining_array.find(spawned_player) != null)
-			{
-				players_joining_array.remove(players_joining_array.find(spawned_player))
-				EntFireByHandle(gamerules_entity, "CallScriptFunction", "WormholeCloseCheck", 5.0, null, null)
-			}
-			
+			if (players_joining_array.find(spawned_player) != null) players_joining_array.remove(players_joining_array.find(spawned_player))
+
 			if (bluplayer_array.find(spawned_player) == null) bluplayer_array.append(spawned_player)
 
 			spawned_player.ValidateScriptScope()
@@ -1176,6 +1146,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			if (!("bloodstorage" in scope))
 			{
+				EntFireByHandle(gamerules_entity, "CallScriptFunction", "WormholeCloseCheck", 5.0, null, null)
+				
 				scope.bloodstorage <- BloodStorage(spawned_player)
 
 				// ClientPrint(null,3,"class setup")
@@ -1423,11 +1395,9 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			if (IsPlayerABot(disconnected_player)) return
 			
-			if (players_joining_array.find(disconnected_player) != null)
-			{
-				players_joining_array.remove(players_joining_array.find(disconnected_player))
-				EntFireByHandle(gamerules_entity, "CallScriptFunction", "WormholeCloseCheck", 5.0, null, null)
-			}
+			if (players_joining_array.find(disconnected_player) != null) players_joining_array.remove(players_joining_array.find(disconnected_player))
+
+			EntFireByHandle(gamerules_entity, "CallScriptFunction", "WormholeCloseCheck", 5.0, null, null)
 			
 			local disc_player_id = NetProps.GetPropString(disconnected_player, "m_szNetworkIDString")
 			
@@ -1446,14 +1416,11 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 
 			if (params.team == 1)
 			{
-				if (players_joining_array.find(player) != null)
-				{
-					players_joining_array.remove(players_joining_array.find(player))
-					EntFireByHandle(gamerules_entity, "CallScriptFunction", "WormholeCloseCheck", 5.0, null, null)
-				}
-		
+				if (players_joining_array.find(player) != null) players_joining_array.remove(players_joining_array.find(player))
 				if (bluplayer_array.find(player) != null) bluplayer_array.remove(bluplayer_array.find(player))
 			}
+		
+			EntFireByHandle(gamerules_entity, "CallScriptFunction", "WormholeCloseCheck", 5.0, null, null)
 		}
 
 		OnGameEvent_player_activate = function(params)
@@ -1789,7 +1756,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		{
 			local players_to_cull_array = []
 			
-			for (local i = 0; i <= players_joining_array.len() - 1; i++) { if (!players_joining_array[i].IsValid()) players_to_cull_array.append(players_joining_array[i]) }
+			for (local i = 0; i <= players_joining_array.len() - 1; i++) { if (!players_joining_array[i].IsValid() || players_joining_array[i].GetTeam() > 0) players_to_cull_array.append(players_joining_array[i]) }
 
 			foreach (player in players_to_cull_array) players_joining_array.remove(players_joining_array.find(player))
 
@@ -3503,6 +3470,13 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	{	
 		local scope = self.GetScriptScope()
 		
+		foreach (bluplayer in bluplayer_array)
+		{
+			if (bluplayer.IsFakeClient()) continue
+			
+			DeliverVisualTipToPlayer(bluplayer, "vis_barricadebombs", "Stationary bombs destroy the Blood\nTank whole when run over!")
+		}
+		
 		if (!("barricadebomb" in scope))
 		{
 			barricade_destroyed_recently = false
@@ -3570,7 +3544,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			NetProps.SetPropString(self, "m_PlayerClass.m_iszClassIcon", "scout_bombrunner")
 		}
 		
-		DeliverTipToBLU("barricadebombs", "Bombs can spawn on their own and block the Blood Tank's path. When driven over, they instantly destroy it.")
+		// DeliverTipToBLU("barricadebombs", "Bombs can spawn on their own and block the Blood Tank's path. When driven over, they instantly destroy it.")
 		
 		if (self.GetHealth() > 0) self.SetHealth(self.GetMaxHealth() - (scope.barricadebomb.GetMaxHealth() - scope.barricadebomb.GetHealth()))
 		
@@ -5438,11 +5412,13 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 								empty_tnt_level = 0
 							}
 							
-							DeliverTipToBLU("armedallbombs", "While there are no barrels left to be filled, the Blood Tank only accepts blood, and converts any remaining TNT on all players into blood.")
+							// DeliverTipToBLU("armedallbombs", "While there are no barrels left to be filled, the Blood Tank only accepts blood, and converts any remaining TNT on all players into blood.")
 							
 							foreach (bluplayer in bluplayer_array)
 							{
 								if (bluplayer.IsFakeClient()) continue
+								
+								DeliverVisualTipToPlayer(bluplayer, "vis_armedallbombs", "No barrels left to fill. Bring blood\nto the Blood Tank to heal it.")
 								
 								bluplayer.ValidateScriptScope()
 								local scope = bluplayer.GetScriptScope().bloodstorage
@@ -6157,6 +6133,13 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		
 		local scope = self.GetScriptScope()
 		
+		foreach (bluplayer in bluplayer_array)
+		{
+			if (bluplayer.IsFakeClient()) continue
+			
+			DeliverVisualTipToPlayer(bluplayer, "vis_bombbots", "Bomb bots deal heavy damage to the\nBlood Tank when they get close!")
+		}
+		
 		if (!("spawn_alert" in scope))
 		{
 			scope.spawn_alert <- true
@@ -6291,7 +6274,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		
 		if (Entities.FindByNameWithin(null, "blood_tank", self.GetOrigin(), 200.0) != null) self.Taunt(1, 91)
 		
-		DeliverTipToBLU("bombrunners", "Certain enemies spawn with bombs that do massive damage to the Blood Tank. Their presence is indicated by a flashing yellow-red outline.")
+		// DeliverTipToBLU("bombrunners", "Certain enemies spawn with bombs that do massive damage to the Blood Tank. Their presence is indicated by a flashing yellow-red outline.")
 		
 		return -1
 	}
@@ -6679,36 +6662,36 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		firsttimeplayer = true
 		
 		wants_tips = true
-		desired_tip_cooldown = 15
+		desired_tip_cooldown = 15.0
 		in_tip_cooldown = false
 		
-		desired_vistip_cooldown = 10
+		desired_vistip_cooldown = 10.0
 		in_vistip_cooldown = false
 
 		tip_table =
 		{
-			howtoplay = false,
-			collectblood = false,
-			tankisoutofblood = false,
+			// howtoplay = false,
+			// collectblood = false,
+			// tankisoutofblood = false,
 			scoutandtank = false,
-			bloodexcess = false,
-			bloodfrombloodbots = false,
-			giantpoints = false,
+			// bloodexcess = false,
+			// bloodfrombloodbots = false,
+			// giantpoints = false,
 			aggrobots = false,
 			bloodtankhealthdrainlevels = false,
-			tankhealing = false,
-			bloodbots = false,
-			bombrunners = false,
+			// tankhealing = false,
+			// bloodbots = false,
+			// bombrunners = false,
 			zombieblood = false,
 			deathandblood = false,
-			barricadebombs = false,
-			newwaytoplay = false,
+			// barricadebombs = false,
+			// newwaytoplay = false,
 			nobloodexcess = false,
-			refueling = false,
+			// refueling = false,
 			multipleextractors = false,
-			volatilebloodtank = false,
-			armedallbombs = false,
-			voluntarygiantexit = false,
+			// volatilebloodtank = false,
+			// armedallbombs = false,
+			// voluntarygiantexit = false,
 			betterbloodbots = false,
 			healingbenefits = false,
 			bloodtankisdispenser = false,
@@ -6724,7 +6707,11 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			vis_bloodexcess = false,
 			vis_destroybloodbots = false,
 			vis_tankhasnoblood = false,
-			vis_wave3objective = false
+			vis_wave3objective = false,
+			vis_bombbots = false,
+			vis_barricadebombs = false,
+			vis_tankhealing = false,
+			vis_armedallbombs = false
 		}
 		
 		hasyettoturngiant = true
@@ -7093,7 +7080,14 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 							
 							if (overhealsound_cooldown < Time()) { EmitGlobalSound("misc/rd_finale_beep01.wav"); overhealsound_cooldown = Time() + 0.1 }
 							
-							DeliverTipToBLU("tankhealing", "While the Blood Tank is at max blood capacity, all blood extracted by it turns into extra health.")
+							// DeliverTipToBLU("tankhealing", "While the Blood Tank is at max blood capacity, all blood extracted by it turns into extra health.")
+							
+							foreach (bluplayer in bluplayer_array)
+							{
+								if (bluplayer.IsFakeClient()) continue
+								
+								DeliverVisualTipToPlayer(bluplayer, "vis_tankhealing", "Giving the Blood Tank more blood\nthan it can hold will heal it")
+							}
 						}
 						
 						if (draw_debugchat) ClientPrint(null,3,"" + blood_tank.GetHealth())
