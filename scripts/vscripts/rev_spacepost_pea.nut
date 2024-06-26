@@ -480,6 +480,23 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		EntFire("infobooth_menu", "$DisplayMenu", "!activator", -1.0, self)
 	}
 	
+	debug_menu = SpawnEntityFromTable("logic_case",
+	{
+		targetname              = "debug_menu"
+		case16                  = "Debug Menu|0|Cancel"
+		case01                  = "See tips status"
+		OnCase01 				= "!activator,CallScriptFunction,SeeTipStatus,0.0,-1"
+	})
+	
+	SeeTipStatus = function()
+	{
+		local scope = self.GetScriptScope().bloodstorage
+		
+		foreach (tip, value in scope.tip_table) ClientPrint(self, 3, tip + ": " + value)
+		
+		ClientPrint(self, 3, "-----")
+	}
+	
 	spyalert_cooldown = 0
 	
 	RespawnIfDead = function() { if (NetProps.GetPropInt(self, "m_lifeState") != 0) self.ForceRespawn() }
@@ -779,8 +796,11 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 
 		if (current_vistip_recipient == null && NetProps.GetPropInt(player, "m_lifeState") == 0 && !scope.in_vistip_cooldown)
 		{
-			// ClientPrint(debugger, 3, "Successfully delivered visual tip to: " + NetProps.GetPropString(player, "m_szNetname"))
-			// ClientPrint(debugger, 3, "Recipient's bitfield is " + (1 << player.entindex()))
+			if (debugger != null)
+			{
+				ClientPrint(debugger, 3, "Successfully delivered visual tip (" + tip_name + ") to: " + NetProps.GetPropString(player, "m_szNetname"))
+				ClientPrint(debugger, 3, "Recipient's bitfield is " + (1 << player.entindex()))
+			}
 
 			SendGlobalGameEvent("show_annotation", 
 			{
@@ -1396,6 +1416,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			if (IsPlayerABot(disconnected_player)) return
 			
 			if (players_joining_array.find(disconnected_player) != null) players_joining_array.remove(players_joining_array.find(disconnected_player))
+			
+			if (disconnected_player == debugger) debugger = null
 
 			EntFireByHandle(gamerules_entity, "CallScriptFunction", "WormholeCloseCheck", 5.0, null, null)
 			
@@ -1412,7 +1434,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			if (player.IsFakeClient()) return
 
-			// ClientPrint(null,3,"player_team procced: team " + player.GetTeam())
+			// printl("player_team procced: team " + player.GetTeam())
 
 			if (params.team == 1)
 			{
@@ -1756,7 +1778,14 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		{
 			local players_to_cull_array = []
 			
-			for (local i = 0; i <= players_joining_array.len() - 1; i++) { if (!players_joining_array[i].IsValid() || players_joining_array[i].GetTeam() > 0) players_to_cull_array.append(players_joining_array[i]) }
+			for (local i = 0; i <= players_joining_array.len() - 1; i++)
+			{
+				if (!players_joining_array[i].IsValid() || NetProps.GetPropInt(players_joining_array[i], "m_lifeState") == 0)
+				{
+					// printl(players_joining_array[i].GetTeam())
+					players_to_cull_array.append(players_joining_array[i])
+				}
+			}
 
 			foreach (player in players_to_cull_array) players_joining_array.remove(players_joining_array.find(player))
 
@@ -5052,7 +5081,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			{
 				if (!scope.debugkey_activated && scope.debugkey_holdtime > 33)
 				{	
-					foreach (bluplayer in bluplayer_array) ClientPrint(debugger, 3, "" + NetProps.GetPropString(bluplayer, "m_szNetname"))
+					EntFireByHandle(debug_menu, "$DisplayMenu", "!activator", -1.0, bluplayer, null)
 
 					scope.debugkey_holdtime = 0
 					scope.debugkey_activated = true
