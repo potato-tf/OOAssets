@@ -86,7 +86,7 @@ WaveSchedule
 	PrecacheModel "models/mvm/weapons/v_models/v_watch_spy_bot_animations.mdl"
 	
 	PrecacheModel "models/mvm/workshop_partner/weapons/v_models/v_hm_watch/v_hm_watch_bot.mdl"
-
+	
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal1.vmt"
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal2.vmt"
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal3.vmt"
@@ -801,7 +801,7 @@ WaveSchedule
 				TFBot
 				{
 					Class Heavyweapons
-					Skill Hard
+					Skill Easy
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					
 					Tag avoid_jumpdown_middle
