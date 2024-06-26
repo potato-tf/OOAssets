@@ -900,6 +900,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 150
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{
@@ -1774,6 +1775,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 40
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{
@@ -1915,6 +1917,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 0
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{

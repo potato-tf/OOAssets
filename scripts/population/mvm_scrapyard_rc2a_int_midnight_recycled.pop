@@ -27,7 +27,7 @@ WaveSchedule
 	
 	//DisallowUpgrade "building instant upgrade"
 	
-	//ClassLimit   
+	//ClassLimit [$SIGSEGV] 
 	//{
 		//HeavyWeapons 0
 		//Spy 0
@@ -384,6 +384,7 @@ WaveSchedule
 			TotalCount 1
 			SpawnCount 1
 			WaitBeforeStarting 0
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{
@@ -1042,6 +1043,7 @@ WaveSchedule
 			TotalCount 1
 			SpawnCount 1
 			WaitBeforeStarting 0
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{
@@ -1624,12 +1626,14 @@ WaveSchedule
 			TotalCount 1
 			SpawnCount 1
 			WaitBeforeStarting 0
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{
 				Health	22000
 				Name	Tank
 				Speed	75
+				Skin 1
 				StartingPathTrackNode	tank_path_b_1
 				OnKilledOutput
 				{
