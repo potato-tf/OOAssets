@@ -211,6 +211,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	//////////// TIPS
 
 	tip_header = "\x07FFD700"
+	
+	current_vistip_recipient = null
 
 	//////////// MISC
 	
@@ -789,8 +791,10 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		local scope = player.GetScriptScope().bloodstorage
 		
 		// ClientPrint(debugger, 3, "Delivering visual tip to " + NetProps.GetPropString(player, "m_szNetname") + "...")
+		
+		if (scope.tip_table[tip_name]) return
 
-		if (!scope.tip_table[tip_name] && NetProps.GetPropInt(player, "m_lifeState") == 0 && !scope.in_vistip_cooldown)
+		if (current_vistip_recipient == null && NetProps.GetPropInt(player, "m_lifeState") == 0 && !scope.in_vistip_cooldown)
 		{
 			if (debugger != null)
 			{
@@ -810,10 +814,14 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				lifetime = 7.5
 			})
 			
+			current_vistip_recipient = player
+
 			scope.tip_table[tip_name] = true
 			
 			scope.in_vistip_cooldown = true
 			EntFireByHandle(player, "RunScriptCode", "self.GetScriptScope().bloodstorage.in_vistip_cooldown = false", scope.desired_vistip_cooldown, null, null)
+			
+			EntFireByHandle(gamerules_entity, "RunScriptCode", "current_vistip_recipient = null", 2.5, null, null)
 		}
 		
 		// else ClientPrint(debugger, 3, "Failed to deliver visual tip (in cooldown or already saw tip)")
@@ -1215,8 +1223,6 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				
 				scope.ResetBloodCounter()
 				
-				for (local marker; marker = Entities.FindByClassname(marker, "entity_revive_marker"); ) { if (marker.GetModelName() != "models/props_mvm/mvm_revive_tombstone_blu.mdl") marker.SetModelSimple("models/props_mvm/mvm_revive_tombstone_blu.mdl") }
-
 				if (draw_debugchat) ClientPrint(null,3,"temp vars reset (from player_death)")
 			}
 			
@@ -6691,7 +6697,51 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		desired_vistip_cooldown = 10.0
 		in_vistip_cooldown = false
 
-		tip_table = {}
+		tip_table =
+		{
+			// howtoplay = false,
+			// collectblood = false,
+			// tankisoutofblood = false,
+			scoutandtank = false,
+			// bloodexcess = false,
+			// bloodfrombloodbots = false,
+			// giantpoints = false,
+			aggrobots = false,
+			bloodtankhealthdrainlevels = false,
+			// tankhealing = false,
+			// bloodbots = false,
+			// bombrunners = false,
+			zombieblood = false,
+			deathandblood = false,
+			// barricadebombs = false,
+			// newwaytoplay = false,
+			nobloodexcess = false,
+			// refueling = false,
+			multipleextractors = false,
+			// volatilebloodtank = false,
+			// armedallbombs = false,
+			// voluntarygiantexit = false,
+			betterbloodbots = false,
+			healingbenefits = false,
+			bloodtankisdispenser = false,
+			
+			vis_collectblood = false,
+			vis_collecttnt = false,
+			vis_deliverblood = false,
+			vis_armbarrels = false,
+			vis_armallbarrels = false,
+			vis_bloodconversion = false,
+			vis_giantpoints = false,
+			vis_giantpoints_turnback = false,
+			vis_bloodexcess = false,
+			vis_destroybloodbots = false,
+			vis_tankhasnoblood = false,
+			vis_wave3objective = false,
+			vis_bombbots = false,
+			vis_barricadebombs = false,
+			vis_tankhealing = false,
+			vis_armedallbombs = false
+		}
 		
 		hasyettoturngiant = true
 		turngiantreminder_cooldown = 0
@@ -6711,52 +6761,6 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			owner = player
 
 			InitializeBloodCounter()
-			
-			tip_table =
-			{
-				// howtoplay = false,
-				// collectblood = false,
-				// tankisoutofblood = false,
-				scoutandtank = false,
-				// bloodexcess = false,
-				// bloodfrombloodbots = false,
-				// giantpoints = false,
-				aggrobots = false,
-				bloodtankhealthdrainlevels = false,
-				// tankhealing = false,
-				// bloodbots = false,
-				// bombrunners = false,
-				zombieblood = false,
-				deathandblood = false,
-				// barricadebombs = false,
-				// newwaytoplay = false,
-				nobloodexcess = false,
-				// refueling = false,
-				multipleextractors = false,
-				// volatilebloodtank = false,
-				// armedallbombs = false,
-				// voluntarygiantexit = false,
-				betterbloodbots = false,
-				healingbenefits = false,
-				bloodtankisdispenser = false,
-				
-				vis_collectblood = false,
-				vis_collecttnt = false,
-				vis_deliverblood = false,
-				vis_armbarrels = false,
-				vis_armallbarrels = false,
-				vis_bloodconversion = false,
-				vis_giantpoints = false,
-				vis_giantpoints_turnback = false,
-				vis_bloodexcess = false,
-				vis_destroybloodbots = false,
-				vis_tankhasnoblood = false,
-				vis_wave3objective = false,
-				vis_bombbots = false,
-				vis_barricadebombs = false,
-				vis_tankhealing = false,
-				vis_armedallbombs = false
-			}
 			
 			if (!in_setup())
 			{
