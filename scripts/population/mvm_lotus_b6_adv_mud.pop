@@ -11,9 +11,6 @@ WaveSchedule
 	RespawnWaveTime	4
 	CanBotsAttackWhileInSpawnRoom	no
 	
-	// Add to download list
-	PrecacheSound "pizza_tower_war.mp3" [$SIGSEGV]
-
 	Mission
 	{
 		Objective	DestroySentries
@@ -488,7 +485,7 @@ WaveSchedule
 		{
 			Name	w3a-0
 			TotalCurrency	200
-			TotalCount	8
+			TotalCount	6
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot_middle
