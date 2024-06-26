@@ -87,6 +87,8 @@ WaveSchedule
 	
 	PrecacheModel "models/mvm/workshop_partner/weapons/v_models/v_hm_watch/v_hm_watch_bot.mdl"
 	
+	PrecacheModel "models/props_mvm/mvm_revive_tombstone_blu.mdl"
+	
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal1.vmt"
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal2.vmt"
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal3.vmt"
