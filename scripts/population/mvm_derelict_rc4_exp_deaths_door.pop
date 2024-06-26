@@ -7,6 +7,7 @@
 // spawnbot_tunnel
 
 //WizardII/Dylan_is_Legend OO Derelict EXP
+// Nerfed Final Wave final sub a bit.
 
 Die
 {
@@ -2558,7 +2559,7 @@ Die
 		
 			Tank
 			{
-				Health	26000
+				Health	22500
 				Name	tankboss
 				Speed	75
 				StartingPathTrackNode "tank_path_a_1"
@@ -2650,8 +2651,7 @@ Die
 				}
 				TFBot
 				{
-					Template T_TFBot_Giant_Medic
-					ClassIcon medic_pop
+					Template T_TFBot_Giant_Medic_regen
 				}
 				TFBot
 				{

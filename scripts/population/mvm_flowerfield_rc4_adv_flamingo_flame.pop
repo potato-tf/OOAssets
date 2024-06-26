@@ -19,7 +19,7 @@
 WaveSchedule
 {
 	StartingCurrency 250
-	RespawnWaveTime 4
+	RespawnWaveTime 3
 	CanBotsAttackWhileInSpawnRoom no
 	WaveStartCountdown 3
 	PrecacheSound "flowerfieldupgradestation.mp3"
@@ -393,9 +393,9 @@ WaveSchedule
 			WaitForAllDead "1a"
 
 			Where spawnbot
-			TotalCount 20
-			MaxActive 7
-			SpawnCount 5
+			TotalCount 16
+			MaxActive 6
+			SpawnCount 4
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 6
 			TotalCurrency 100
@@ -597,6 +597,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Medic_BigHeal
+					Attributes IgnoreEnemies
 					Name "Big-Heal Medic"
 				}
 			}
@@ -1048,16 +1049,19 @@ WaveSchedule
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
 			}
 		}
@@ -1090,40 +1094,20 @@ WaveSchedule
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name "4b-Support"
-			WaitForAllDead "4a"
-			
-			Where spawnbot
-			Where spawnbot_flank
-			Where spawnbot_flank_short
-			TotalCount 8
-			MaxActive 4
-			SpawnCount 4
-			WaitBeforeStarting 0
-			WaitBetweenSpawns 3
-			TotalCurrency 8
-			
-			Support 1
-			
-			TFBot
-			{
-				Template T_TFBot_Pyro_DF
 			}
 		}
 		
@@ -1140,7 +1124,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 1
-			TotalCurrency 16
+			TotalCurrency 24
 			
 			Support Limited
 			
@@ -1157,7 +1141,7 @@ WaveSchedule
 			
 			Where spawnbot_flank_hard
 			TotalCount 64
-			MaxActive 4
+			MaxActive 3
 			SpawnCount 1
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 1
@@ -1710,10 +1694,10 @@ WaveSchedule
 			
 			Where spawnbot
 			TotalCount 50
-			MaxActive 8
+			MaxActive 5
 			SpawnCount 2
 			WaitBeforeStarting 0
-			WaitBetweenSpawns 3
+			WaitBetweenSpawns 5
 			TotalCurrency 50
 			
 			Support 1
@@ -2459,3 +2443,17 @@ WaveSchedule
 // Wave 6 Change Money from 400 to 300 
 // Wave 7 Change Money from 600 to 700 
 // Wave 8 Change Money from 500 to 300 (To get Wave 9 have 5600$ same as previous version since completed rate is already 85%+)
+
+// Nerf
+// Reduced RespawnWaveTime from 4 to 3
+// Wave 1
+// Soldier bot reduce TotalCount from 20 to 16, MaxActive from 7 to 6, SpawnCount from 5 to 4
+
+// Wave 4
+// Support
+// Remove DF Pyro
+// Fury Pyro Reduce MaxActive from 4 to 2 and Ignite GRU Heavy MaxActive from 4 to 3
+
+// Wave 6
+// Support
+// Ignited Soldier Reduce MaxActive from 8 to 5, WaitBetweenSpawns from 3 to 5

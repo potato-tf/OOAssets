@@ -696,6 +696,8 @@ WaveSchedule
 			Skill Normal
 			ClassIcon demo_sticky_daan
 			WeaponRestrictions	SecondaryOnly
+			Item "Upgradeable TF_WEAPON_GRENADELAUNCHER"
+			Item "Upgradeable TF_WEAPON_PIPEBOMBLAUNCHER"
 			Item "Bomb Beanie"
 			ItemAttributes
 			{
@@ -720,7 +722,7 @@ WaveSchedule
 			ClassIcon demoknight_bottle_lite
 			Skill Hard
 			Item "The Chargin' Targe"
-			Item "tf_weapon_bottle"
+			Item "Upgradeable TF_WEAPON_BOTTLE"
 			WeaponRestrictions MeleeOnly
 			ItemAttributes
 			{
