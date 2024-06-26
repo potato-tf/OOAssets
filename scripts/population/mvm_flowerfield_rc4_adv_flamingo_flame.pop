@@ -1119,35 +1119,12 @@ WaveSchedule
 			Where spawnbot
 			Where spawnbot_flank
 			Where spawnbot_flank_short
-			TotalCount 8
-			MaxActive 2
-			SpawnCount 2
-			WaitBeforeStarting 0
-			WaitBetweenSpawns 3
-			TotalCurrency 8
-			
-			Support 1
-			
-			TFBot
-			{
-				Template T_TFBot_Pyro_DF
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name "4b-Support"
-			WaitForAllDead "4a"
-			
-			Where spawnbot
-			Where spawnbot_flank
-			Where spawnbot_flank_short
 			TotalCount 2
 			MaxActive 2
 			SpawnCount 1
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 1
-			TotalCurrency 16
+			TotalCurrency 24
 			
 			Support Limited
 			
@@ -2474,6 +2451,7 @@ WaveSchedule
 
 // Wave 4
 // Support
+// Remove DF Pyro
 // Fury Pyro Reduce MaxActive from 4 to 2 and Ignite GRU Heavy MaxActive from 4 to 3
 
 // Wave 6
