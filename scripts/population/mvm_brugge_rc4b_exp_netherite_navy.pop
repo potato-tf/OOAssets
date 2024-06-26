@@ -883,6 +883,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 150
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{
@@ -1332,6 +1333,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 50
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{
@@ -1556,6 +1558,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 100
+			FirstSpawnWarningSound	"misc\doomsday_lift_warning.wav"
 			
 			FirstSpawnOutPut
 			{
@@ -1602,6 +1605,7 @@ WaveSchedule
             TotalCount 1
             WaitBeforeStarting 15
 			TotalCurrency 90
+			FirstSpawnWarningSound	"misc\doomsday_lift_warning.wav"
 			
 			FirstSpawnOutPut
 			{
@@ -2514,12 +2518,14 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 18
 			TotalCurrency 50
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{
 				Health 30000
 				Name "tankboss"
 				Speed 75
+				Skin 1
 				StartingPathTrackNode "tank_path_bridge1"
 
 				OnKilledOutput
@@ -2627,6 +2633,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 60
+			FirstSpawnWarningSound	"misc\doomsday_lift_warning.wav"
 			
 			FirstSpawnOutPut
 			{
