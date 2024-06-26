@@ -1490,11 +1490,13 @@ quepereza
 				{
 					Template	T_TFBot_Sniper_Huntsman_Spammer
 					ClassIcon 		sniper_bow_multi_penetrator_fix
+					Name "Rapid Fire Piercing Bowman"
 					Tag giant
 					ItemAttributes
 					{
 						ItemName "The Huntsman"
 						"projectile penetration" 1
+						"damage bonus" 0.7
 					}
 				}
 			
