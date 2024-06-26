@@ -497,6 +497,7 @@ WaveSchedule
             TotalCount 1
             WaitBeforeStarting 0
 			TotalCurrency 100
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
             Tank
             {
@@ -1653,6 +1654,7 @@ WaveSchedule
             TotalCount 1
             WaitBeforeStarting 0
 			TotalCurrency 111
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
             Tank
             {
@@ -2224,12 +2226,14 @@ WaveSchedule
             TotalCount 1
             WaitBeforeStarting 15
 			TotalCurrency 200
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
             Tank
             {
                 Health 20000
                 Name "tankboss"
                 Speed 75
+				Skin 1
                 StartingPathTrackNode "boss_path_0_1"
 
                 OnKilledOutput
