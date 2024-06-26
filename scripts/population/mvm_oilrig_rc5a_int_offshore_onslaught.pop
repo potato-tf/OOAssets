@@ -1007,7 +1007,7 @@ WaveSchedule
 					Skill Normal
 					Health 650
 					Scale 1.3
-					ClassIcon soldier_conch_lite
+					ClassIcon soldier_conch
 					Attributes SpawnWithFullCharge
 					Item "The Concheror"
 					Item "The Original"
