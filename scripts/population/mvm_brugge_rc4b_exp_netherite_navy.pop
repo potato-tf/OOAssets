@@ -89,7 +89,7 @@ WaveSchedule
 			"no crit boost" 1
 			"crit mod disabled" 1
 			"cannot be upgraded" 1
-			"passive reload" 2
+			//"passive reload" 2
 			"ragdolls become ash" 1
 			"projectile penetration" 1
 			//"mult crit dmg" 0.3334
