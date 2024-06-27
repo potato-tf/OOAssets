@@ -481,8 +481,13 @@ WaveSchedule
 		}
         Initwaveoutput
         {
-            Target bombpath_flank
-            Action Trigger
+            Target wave_start_noreset_relay
+            Action RunScriptCode
+			Param 
+			"
+                EntFire(`bombpath_flank`, `Trigger`)
+				IncludeScript(`disablesquad`)
+            "
         }
 		DoneOutput
 		{
@@ -634,9 +639,9 @@ WaveSchedule
 			Where spawnbot_flank_short
 			TotalCount 30
 			MaxActive 7
-			SpawnCount 1
+			SpawnCount 5
 			WaitBeforeStarting 2
-			WaitBetweenSpawns 1
+			WaitBetweenSpawns 8
 			TotalCurrency 30
 			
 			Support 1
@@ -645,13 +650,30 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Class Pyro
-					Skill Easy
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ
+					Tag disband_squad
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ
+					Tag disband_squad
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ
+					Tag disband_squad
 				}
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Shotgun
 					Name "Shotgun Heavy"
+					Tag disband_squad
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Shotgun
+					Name "Shotgun Heavy"
+					Tag disband_squad
 				}
 			}
 		}
@@ -2457,3 +2479,8 @@ WaveSchedule
 // Wave 6
 // Support
 // Ignited Soldier Reduce MaxActive from 8 to 5, WaitBetweenSpawns from 3 to 5
+
+// Changelog
+// Nerf
+// Wave 2
+// Change Spawncount from 1 to 5 but longer WaitBetweenSpawns from 1 to 8 and Change Pyro bot to Heavyweight Champ

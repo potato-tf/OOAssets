@@ -40,6 +40,21 @@ WaveSchedule
 		{
 			Template	T_TFBot_Spy
 		}
+	}		
+	
+	Mission
+	{
+		BeginAtWave	6
+		RunForThisManyWaves	1
+		Objective	Spy
+		Where	spawnbot_mission_spy
+		InitialCooldown	20
+		CooldownTime	20
+		DesiredCount	4
+		TFBot
+		{
+			Template	T_TFBot_Spy
+		}
 	}	
 	
 	Mission
@@ -1262,8 +1277,8 @@ WaveSchedule
 			SpawnCount	1
 			Support	1
 			Where	spawnbot
-			WaitBeforeStarting	5
-			WaitBetweenSpawns	3
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	2
 
 			RandomChoice
 			{
@@ -1271,28 +1286,28 @@ WaveSchedule
 				{	
 					Class	Demoman
 					Skill	Expert
-
+					Attributes	AlwaysCrit
 				}	
 				
 				TFBot
 				{	
 					Class	Soldier
 					Skill	Expert
-
+					Attributes	AlwaysCrit
 				}	
 				
 				TFBot
 				{	
 					Class	Heavy
 					Skill	Expert
-
+					Attributes	AlwaysCrit
 				}	
 				
 				TFBot
 				{	
 					Class	Pyro
 					Skill	Expert
-
+					Attributes	AlwaysCrit
 				}
 			}	
 		}
