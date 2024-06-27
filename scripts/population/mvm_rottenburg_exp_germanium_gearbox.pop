@@ -76,7 +76,7 @@ population
 		RunForThisManyWaves	1
 		InitialCooldown	30
 		CooldownTime	40
-		DesiredCount	3
+		DesiredCount	1
 		TFBot
 		{
 			Template	T_TFBot_Sniper
@@ -102,9 +102,9 @@ population
 		Where	flankers
 		BeginAtWave	3
 		RunForThisManyWaves	1
-		InitialCooldown	25
+		InitialCooldown	35
 		CooldownTime	40
-		DesiredCount	2
+		DesiredCount	1
 		TFBot
 		{
 			Template	T_TFBot_Sniper_Sydney_Sleeper
@@ -942,9 +942,9 @@ population
 			Name	1a2
 			WaitForAllSpawned	1a1
 			TotalCurrency	140
-			TotalCount	20
-			MaxActive	12
-			SpawnCount	4
+			TotalCount	15
+			MaxActive	9
+			SpawnCount	3
 			Where	flankers
 			WaitBeforeStarting	4
 			Waitbetweenspawns	7
@@ -967,7 +967,7 @@ population
 			Waitbetweenspawns	0
 			TFBot
 			{
-				Template	T_TFBot_Giant_Soldier_RocketShotgun
+				Template	T_TFBot_Giant_Soldier_Extended_Buff_Banner
 			}
 		}
 		WaveSpawn
@@ -1298,15 +1298,26 @@ population
 			Name	2g
 			WaitForAllSpawned	2a2
 			TotalCurrency	200
-			TotalCount	4
-			MaxActive	4
-			SpawnCount	1
+			TotalCount	12
+			MaxActive	12
+			SpawnCount	3
 			Where		Spawnbot
 			WaitBeforeStarting	8
 			Waitbetweenspawns	20
-			TFBot
+			Squad
 			{
-				Template	T_TFBot_Giant_Soldier_Crit
+				TFBot
+				{
+					Template	T_TFBot_Giant_Soldier_Crit
+				}
+				TFBot
+				{
+					Template	T_TFBot_Heavyweapons_Fist
+				}
+				TFBot
+				{
+					Template	T_TFBot_Heavyweapons_Fist
+				}
 			}
 		}
 		WaveSpawn
@@ -1480,9 +1491,9 @@ population
 		{
 			Name	3a2
 			TotalCurrency	50
-			TotalCount	10
-			MaxActive	6
-			SpawnCount	2
+			TotalCount	6
+			MaxActive	3
+			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	2
 			Waitbetweenspawns	5
@@ -1774,7 +1785,7 @@ population
 			MaxActive 	3
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	30
+			WaitBeforeStarting	25
 			WaitBetweenSpawns	20
 			TFBot
 			{
@@ -2462,33 +2473,13 @@ population
 				}
 				TFBot
 				{
-					Class	Medic
-					Name	"Giant Uber Flashing Medic"
-					Skill	Expert
-					Health	4500
-					ClassIcon	medic_uber_quick_giant
-					Attributes	MiniBoss
-					Attributes	SpawnWithFullCharge
+					Template	T_TFBot_Giant_Medic
 					Attributes	IgnoreEnemies
-					WeaponRestrictions SecondaryOnly
-					Item	"gentlemanne_medigun_highrollers"
-					Item	"The Virus Doctor"
-					Item	"Burly Beast"
-					ItemAttributes
-					{
-						ItemName "gentlemanne_medigun_highrollers"
-						"ubercharge rate bonus"	20
-						"uber duration bonus"	-6
-						"heal rate bonus"		500
-					}
+					Classicon	medic_pop_giant
 					CharacterAttributes
 					{
-						"attach particle effect"			66	//	Overclock
-						"move speed bonus"					1.5
-						"damage force reduction"			0.6
-						"airblast vulnerability multiplier" 0.6
-						"bot medic uber health threshold"	100000
-						"heal rate bonus"					200
+						"move speed bonus"	1
+						"bot medic uber health threshold"	500
 					}
 				}
 			}
@@ -2505,16 +2496,29 @@ population
 			Waitbetweenspawns	0
 			TFBot
 			{
-				Template	T_TFBot_Giant_Heavyweapons_Deflector
-				Name		"Giant Deflector Pusher Heavy"
-				Classicon	heavy_deflector_push_giant
-				Item		"gentlemanne_minigun_topshelf"
+				Class Soldier
+				Name "Giant Hyper Soldier"
+				ClassIcon soldier_burstfire_hyper
+				Health 4200
+				Skill Expert
+				WeaponRestrictions PrimaryOnly
+				Attributes MiniBoss
+				Attributes HoldFireUntilFullReload
 				ItemAttributes
 				{
-					Itemname	"gentlemanne_minigun_topshelf"
-					"attack projectiles"				1
-					"apply look velocity on damage"		400
-					"attach particle effect"			704		//	Energy Orb
+					ItemName "TF_WEAPON_ROCKETLAUNCHER"
+					"damage bonus" 2.0
+					"faster reload rate" 0.4
+					"fire rate bonus" 0.2
+					"clip size upgrade atomic" 5.0
+				}
+				CharacterAttributes
+				{
+					"move speed bonus"	0.5
+					"damage force reduction" 0.4
+					"airblast vulnerability multiplier" 0.4
+					"override footstep sound set" 3
+					"Projectile speed increased" 0.9
 				}
 			}
 		}
@@ -2711,16 +2715,29 @@ population
 			Waitbetweenspawns	0
 			TFBot
 			{
-				Template	T_TFBot_Giant_Heavyweapons_Deflector
-				Name		"Giant Deflector Pusher Heavy"
-				Classicon	heavy_deflector_push_giant
-				Item		"gentlemanne_minigun_topshelf"
+				Class Soldier
+				Name "Giant Hyper Soldier"
+				ClassIcon soldier_burstfire_hyper
+				Health 4200
+				Skill Expert
+				WeaponRestrictions PrimaryOnly
+				Attributes MiniBoss
+				Attributes HoldFireUntilFullReload
 				ItemAttributes
 				{
-					Itemname	"gentlemanne_minigun_topshelf"
-					"attack projectiles"				1
-					"apply look velocity on damage"		400
-					"attach particle effect"			704		//	Energy Orb
+					ItemName "TF_WEAPON_ROCKETLAUNCHER"
+					"damage bonus" 2.0
+					"faster reload rate" 0.4
+					"fire rate bonus" 0.2
+					"clip size upgrade atomic" 5.0
+				}
+				CharacterAttributes
+				{
+					"move speed bonus"	0.5
+					"damage force reduction" 0.4
+					"airblast vulnerability multiplier" 0.4
+					"override footstep sound set" 3
+					"Projectile speed increased" 0.9
 				}
 			}
 		}
@@ -2851,7 +2868,7 @@ population
 			MaxActive	9
 			SpawnCount	3
 			Where	Spawnbot
-			WaitBeforeStarting	25
+			WaitBeforeStarting	17
 			Waitbetweenspawns	5
 			TFBot
 			{

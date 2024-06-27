@@ -484,6 +484,12 @@ quepereza
 			}
 			logic_relay
 			{
+				"targetname" "justtodisable2"
+				"OnTrigger" "bossattacks2,pickrandomshuffle,,0,-1"
+				"startdisabled" "1"
+			}
+			logic_relay
+			{
 				"targetname" "phase2transition"
 				"OnTrigger"	"tf_gamerules,PlayVO,vo\mvm\mght\pyro_mvm_m_jeers02.mp3,0.4,-1"
 				"OnTrigger"	"tf_gamerules,PlayVO,vo\mvm\mght\pyro_mvm_m_paincrticialdeath03.mp3,1.8,-1"
@@ -492,8 +498,8 @@ quepereza
 				"OnTrigger"	"tf_gamerules,PlayVO,ambient\explosions\explode_3.wav,0,-1"
 				
 				"OnTrigger" "justtodisable,disable,,0,-1"
-				"OnTrigger" "justtodisable,enable,,8,-1"
-				"OnTrigger" "justtodisable,trigger,,10.1,-1"
+				"OnTrigger" "justtodisable2,enable,,8,-1"
+				"OnTrigger" "justtodisable2,trigger,,10.1,-1"
 				"OnTrigger"	"pop_interface,ChangeBotAttributes,intermission,0,-1"
 				"OnTrigger" "@p@boss_thingy,$AddPlayerAttribute,no_attack|1,0.2,-1"
                 "OnTrigger" "@p@boss_thingy,$RemovePlayerAttribute,no_attack,10,-1"
@@ -502,10 +508,7 @@ quepereza
 				// "OnTrigger" "@p@boss_thingy,$PlaySequence,taunt_lollichop,1.5,-1"
 				"OnTrigger" "bosspyroexplosion,start,,0,-1"
 				"OnTrigger" "bosspyroexplosion,stop,,1,-1"
-				"OnTrigger"  "bossattacks,AddOutput,OnCase12 pop_interface:ChangeBotAttributes:divingpyro:0:-1,2,-1"
-				"OnTrigger"  "bossattacks,AddOutput,OnCase13 pop_interface:ChangeBotAttributes:divingpyro:0:-1,2,-1"
-				"OnTrigger"  "bossattacks,AddOutput,OnCase14 pop_interface:ChangeBotAttributes:rainblowerexplosion:0:-1,2,-1"
-				"OnTrigger"  "bossattacks,AddOutput,OnCase15 pop_interface:ChangeBotAttributes:rainblowerexplosion:0:-1,2,-1"
+				
 			}
 			 tf_point_weapon_mimic // the most rudest way to die from this shit
             {
@@ -845,6 +848,20 @@ quepereza
 				"OnCase09" "pop_interface,ChangeBotAttributes,attack5,0,-1"
 				"OnCase10" "pop_interface,ChangeBotAttributes,specialattack,0,-1"
 				"OnCase11" "pop_interface,ChangeBotAttributes,specialattack,0,-1"
+			}
+			logic_case
+			{
+				"targetname" "bossattacks2"
+				"OnCase01" "pop_interface,ChangeBotAttributes,attack2,0,-1"
+				"OnCase02" "pop_interface,ChangeBotAttributes,attack3,0,-1"
+				"OnCase03" "pop_interface,ChangeBotAttributes,specialattack,0,-1"
+				"OnCase04" "pop_interface,ChangeBotAttributes,attack4,0,-1"
+				"OnCase05" "pop_interface,ChangeBotAttributes,attack3b,0,-1"
+				"OnCase06" "pop_interface,ChangeBotAttributes,attack5,0,-1"
+				"OnCase07" "pop_interface,ChangeBotAttributes,divingpyro,0,-1"
+				"OnCase08" "pop_interface,ChangeBotAttributes,divingpyro,0,-1"
+				"OnCase09" "pop_interface,ChangeBotAttributes,rainblowerexplosion,0,-1"
+				"OnCase10" "pop_interface,ChangeBotAttributes,rainblowerexplosion,0,-1"
 			}
         }
 	}
@@ -1611,14 +1628,14 @@ quepereza
 		WaveSpawn
 		{
 			Name	w3c
-			WaitForAllSpawned	w3ba
+			WaitForAllDead	w3bb
 			TotalCurrency	50
 			TotalCount	50
 			MaxActive	15
 			SpawnCount	3
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	2.5
-            Support 1
+            Support Limited
 			Where	spawnbot_left
 			Where	spawnbot_flank
 			
@@ -2569,7 +2586,7 @@ quepereza
 					intermission
 					{
 						AddCond
-						{Index 51 Duration 4.5}
+						{Index 51 Duration 5}
 						Item "The Lollichop"
 						WeaponRestrictions MeleeOnly
 						CharacterAttributes
@@ -2578,7 +2595,7 @@ quepereza
 						}
 						Taunt    //Taunt periodically
 						{
-							Delay 0.2 //Time before the first taunt starts (Default: 10)
+							Delay 1.8 //Time before the first taunt starts (Default: 10)
 							Cooldown 99 //Time between each taunt (Default: 10)
 							Repeats 99 //How many times the bot should taunt in total (Default: 0 - Infinite)
 							Duration 0.1 //Duration of a looping taunt (Default: 0.1)
@@ -2704,6 +2721,8 @@ quepereza
 							"damage bonus" 2
 							"mult_item_meter_charge_rate" 0.6
 							"dmg bonus vs buildings" 2.5
+							"always allow taunt" 1
+							"no_jump" 1
 						}
 						CharacterAttributes
 						{
@@ -2720,6 +2739,15 @@ quepereza
                             Action "trigger"
                             Delay 7
                             Repeats 99
+							IfHealthAbove 60000
+                        }
+						FireInput   
+                        {
+                            Target "justtodisable2"
+                            Action "trigger"
+                            Delay 7
+                            Repeats 99
+							IfHealthBelow 60000
                         }
 						FireInput
 						{
@@ -2796,6 +2824,8 @@ quepereza
 							"damage force reduction" 252
 							"move speed bonus" 0.5
 							"cannot pick up intelligence" 1
+							"always allow taunt" 1
+							"no_jump" 1
 						}
 						ItemAttributes
 						{
@@ -2848,6 +2878,8 @@ quepereza
 							"damage force reduction" 252
 							"move speed bonus" 0.5
 							"cannot pick up intelligence" 1
+							"always allow taunt" 1
+							"no_jump" 1
 						}
 						FireInput
 						{
@@ -2864,6 +2896,15 @@ quepereza
                             Action "trigger"
                             Delay 7
                             Repeats 99
+							IfHealthAbove 60000
+                        }
+						FireInput   
+                        {
+                            Target "justtodisable2"
+                            Action "trigger"
+                            Delay 7
+                            Repeats 99
+							IfHealthBelow 60000
                         }
 						FireInput
                             {
@@ -2903,6 +2944,15 @@ quepereza
                             Action "trigger"
                             Delay 7
                             Repeats 99
+							IfHealthAbove 60000
+                        }
+						FireInput   
+                        {
+                            Target "justtodisable2"
+                            Action "trigger"
+                            Delay 7
+                            Repeats 99
+							IfHealthBelow 60000
                         }
 						FireInput
 						{
@@ -2948,6 +2998,8 @@ quepereza
 							"damage force reduction" 252
 							"move speed bonus" 0.5
 							"cannot pick up intelligence" 1
+							"always allow taunt" 1
+							"no_jump" 1
 						}
 						FireInput   
                         {
@@ -2955,6 +3007,15 @@ quepereza
                             Action "trigger"
                             Delay 7
                             Repeats 99
+							IfHealthAbove 60000
+                        }
+						FireInput   
+                        {
+                            Target "justtodisable2"
+                            Action "trigger"
+                            Delay 7
+                            Repeats 99
+							IfHealthBelow 60000
                         }
 						FireInput
 						{
@@ -2979,6 +3040,11 @@ quepereza
 					{
 						WeaponRestrictions SecondaryOnly
 						Item "Festive Flare Gun"
+						CharacterAttributes
+						{
+							"always allow taunt" 1
+							"no_jump" 1
+						}
 						ItemAttributes
 						{
 							ItemName "Festive Flare Gun"
@@ -2992,6 +3058,15 @@ quepereza
                             Action "trigger"
                             Delay 3
                             Repeats 99
+							IfHealthAbove 60000
+                        }
+						FireInput   
+                        {
+                            Target "justtodisable2"
+                            Action "trigger"
+                            Delay 3
+                            Repeats 99
+							IfHealthBelow 60000
                         }
 						FireInput
 						{
@@ -3014,6 +3089,8 @@ quepereza
 						CharacterAttributes
 						{
 							"move speed bonus" 0.3
+							"always allow taunt" 1
+							"no_jump" 1
 						}
 					   	AddAttribute [$SIGSEGV] 
 						{
@@ -3065,6 +3142,15 @@ quepereza
                             Action "trigger"
                             Delay 7
                             Repeats 99
+							IfHealthAbove 60000
+                        }
+						FireInput   
+                        {
+                            Target "justtodisable2"
+                            Action "trigger"
+                            Delay 7
+                            Repeats 99
+							IfHealthBelow 60000
                         }
 						FireInput
 						{
@@ -3092,6 +3178,8 @@ quepereza
 							"damage force reduction" 0
 							"airblast vulnerability multiplier" 0
 							"airblast vertical vulnerability multiplier" 0.1
+							"always allow taunt" 1
+							"no_jump" 1
 						}
 						AddAttribute [$SIGSEGV] 
 						{
@@ -3127,6 +3215,15 @@ quepereza
                             Action "trigger"
                             Delay 6
                             Repeats 99
+							IfHealthAbove 60000
+                        }
+						FireInput   
+                        {
+                            Target "justtodisable2"
+                            Action "trigger"
+                            Delay 6
+                            Repeats 99
+							IfHealthBelow 60000
                         }
 						FireInput
 						{
@@ -3147,10 +3244,12 @@ quepereza
 							"damage force reduction" 0
 							"airblast vulnerability multiplier" 0
 							"airblast vertical vulnerability multiplier" 0.1
+							"always allow taunt" 1
+							"no_jump" 1
 						}
 						Taunt    //Taunt periodically
 						{
-							Delay 0 //Time before the first taunt starts (Default: 10)
+							Delay 0.1 //Time before the first taunt starts (Default: 10)
 							Cooldown 15 //Time between each taunt (Default: 10)
 							Repeats 99 //How many times the bot should taunt in total (Default: 0 - Infinite)
 							Duration 0.1 //Duration of a looping taunt (Default: 0.1)
@@ -3161,16 +3260,25 @@ quepereza
 						{
 								Target "whatthefuckiswrongwithmewhydoesallmybossesendupwithabajillionlogicrelays"
 								Action "trigger"
-								Delay 0
+								Delay 0.1
 								Repeats 99
 						}
 						FireInput   
-						{
-								Target "justtodisable"
-								Action "trigger"
-								Delay 5.1
-								Repeats 99
-						}
+                        {
+                            Target "justtodisable"
+                            Action "trigger"
+                            Delay 5.1
+                            Repeats 99
+							IfHealthAbove 60000
+                        }
+						FireInput   
+                        {
+                            Target "justtodisable2"
+                            Action "trigger"
+                            Delay 5.1
+                            Repeats 99
+							IfHealthBelow 60000
+                        }
 						FireInput
 						{
 							Target player
