@@ -6,7 +6,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	mission = NetProps.GetPropString(Entities.FindByClassname(null, "tf_objective_resource"), "m_iszMvMPopfileName")
 	
 	debug = false
-	debug_stage = 1
+	debug_stage = 2
 	debug_objective = true
 	
 	draw_worldtext = false
@@ -5452,7 +5452,12 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 								
 								EmitGlobalSound("misc/cp_harbor_red_whistle.wav")
 								
-								foreach (bluplayer in bluplayer_array) DeliverVisualTipToPlayer(bluplayer, "vis_w3healwindow", "Bringing blood to the Blood Tank while\nthe whistle is blowing will heal it.")
+								foreach (bluplayer in bluplayer_array)
+								{
+									if (bluplayer.IsFakeClient()) continue
+									
+									DeliverVisualTipToPlayer(bluplayer, "vis_w3healwindow", "Bringing blood to the Blood Tank while\nthe whistle is blowing will heal it.")
+								}
 								
 								EntFireByHandle(gamerules_entity, "RunScriptCode", "extraction_mode = `tnt`", 6.25, null, null)
 							}
