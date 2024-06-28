@@ -4,7 +4,7 @@
 #base robot_standard.pop
 
 //
-// Starting Currency: 400
+// Starting Currency: 600
 //
 // +----------+----------+----------+
 // | Wave     | Currency | A+       |
@@ -12,18 +12,18 @@
 // | Wave 1   | 700      | 800      |
 // | Wave 2   | 800      | 900      |
 // | Wave 3   | 600      | 700      |
-// | Wave 4   | 400      | 500      |
+// | Wave 4   | 450      | 550      |
 // | Wave 5   | 650      | 750      |
 // | Wave 6   | 500      | 600      |
-// | Wave 7   | 800      | 900      |
+// | Wave 7   | 700      | 800      |
 // +----------+----------+----------+
-// | Total    | 4450     | 5150     |
+// | Total    | 4400     | 5100     |
 // +----------+----------+----------+
 //
 
 WaveSchedule
 {
-    StartingCurrency    400
+    StartingCurrency    600
     RespawnWaveTime    3
     CanBotsAttackWhileInSpawnRoom    no
     FixedRespawnWaveTime    Yes
@@ -1084,7 +1084,7 @@ WaveSchedule
 			SpawnCount 3
 			WaitBeforeStarting 4
 			WaitBetweenSpawns 5
-			TotalCurrency 50
+			TotalCurrency 75
 			TFBot
 			{
 				Class Heavyweapons
@@ -1146,7 +1146,7 @@ WaveSchedule
 			WaitBeforeStarting 5
 			WaitForAllSpawned w4b_tank
 			WaitBetweenSpawns 6
-			TotalCurrency 50
+			TotalCurrency 75
 			TFBot
 			{
 				Class Pyro
@@ -1743,7 +1743,7 @@ WaveSchedule
 			Name	W7-A2
 			WaitForAllSpawned	W7-A1
             Where spawnbot
-			TotalCurrency 50
+			TotalCurrency 25
             TotalCount 24
             MaxActive 6
             SpawnCount 2
@@ -1761,7 +1761,7 @@ WaveSchedule
 			WaitForAllDead	W7-A2
             Where spawnbot_left
 			Where spawnbot_right
-			TotalCurrency 50
+			TotalCurrency 25
 			RandomSpawn 1
             TotalCount 6
             MaxActive 2
@@ -1817,7 +1817,7 @@ WaveSchedule
 		{
 			Name	W7-A3
 			WaitForAllDead	W7-A2
-			TotalCurrency	150
+			TotalCurrency	100
 			TotalCount	1
 			MaxActive	1
 			SpawnCount	1
