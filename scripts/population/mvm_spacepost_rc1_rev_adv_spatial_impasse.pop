@@ -89,6 +89,14 @@ WaveSchedule
 	
 	PrecacheModel "models/props_mvm/mvm_revive_tombstone_blu.mdl"
 	
+	PrecacheSound "bomb_cartfall.wav"
+	PrecacheSound "bombcart_moving.wav"
+	PrecacheSound "endgame_music.wav"
+	PrecacheSound "fire_alarm.wav"
+	PrecacheSound "mvm_end_last_wave_short.wav"
+	PrecacheSound "reentry_gate_sound.wav"
+	PrecacheSound "sniper_cashteleport.wav"
+	
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal1.vmt"
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal2.vmt"
 	PrecacheGeneric "materials/sprites/bloodtank_blood_decal3.vmt"
@@ -1073,6 +1081,8 @@ WaveSchedule
 			{
 				Template T_TFBot_Giant_Heavyweapons
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
+				Tag avoid_upper_left
+				Tag avoid_upper_exit
 			}
 		}
 		// WaveSpawn
@@ -1897,7 +1907,7 @@ WaveSchedule
 			MaxActive 1
 			TotalCount 1
 			WaitForAllDead "W2-S3B-1"
-			WaitBeforeStarting 3
+			WaitBeforeStarting 15
 			WaitBetweenSpawns 0
 			TFBot
 			{
@@ -2727,7 +2737,7 @@ WaveSchedule
 		{
 			Name "W3-S3A-1"
 			TotalCurrency 0
-			Where spawnbot_red_17
+			Where spawnbot_red_13
 			SpawnCount 3
 			MaxActive 3
 			TotalCount 3
@@ -2769,7 +2779,7 @@ WaveSchedule
 		{
 			Name "W3-S3A-2"
 			TotalCurrency 0
-			Where spawnbot_red_18
+			Where spawnbot_red_3
 			SpawnCount 3
 			MaxActive 3
 			TotalCount 3
@@ -2782,6 +2792,10 @@ WaveSchedule
 				{
 					Template "T_TFBot_Giant_Soldier_Spammer_Reload"
 					Tag squad_leader
+					Tag avoid_walkdown_middle
+					Tag avoid_jumpdown_middle
+					Tag avoid_back_corridor_left
+					Tag avoid_back_overpass
 					CharacterAttributes
 					{
 						"hold fire until full reload" 1
@@ -2790,6 +2804,10 @@ WaveSchedule
 				TFBot
 				{
 					Template "T_TFBot_Giant_Soldier_Spammer_Reload"
+					Tag avoid_walkdown_middle
+					Tag avoid_jumpdown_middle
+					Tag avoid_back_corridor_left
+					Tag avoid_back_overpass
 					CharacterAttributes
 					{
 						"hold fire until full reload" 1
