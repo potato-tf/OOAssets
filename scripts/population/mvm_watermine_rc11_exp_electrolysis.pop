@@ -732,7 +732,7 @@ quepereza
 				"mins" "-300 -300 -750"
 				"maxs" "300 300 750"
 				"damagetype" "64"
-				"damage" "750"
+				"damage" "1250"
 				"StartDisabled" "1"
 				"spawnflags" "64"
 				"filtername" "redteam"

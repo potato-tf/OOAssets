@@ -4,7 +4,7 @@
 #base robot_standard.pop
 
 //
-// Starting Currency: 400
+// Starting Currency: 600
 //
 // +----------+----------+----------+
 // | Wave     | Currency | A+       |
@@ -15,15 +15,15 @@
 // | Wave 4   | 450      | 550      |
 // | Wave 5   | 650      | 750      |
 // | Wave 6   | 500      | 600      |
-// | Wave 7   | 800      | 900      |
+// | Wave 7   | 700      | 800      |
 // +----------+----------+----------+
-// | Total    | 4500     | 5200     |
+// | Total    | 4400     | 5100     |
 // +----------+----------+----------+
 //
 
 WaveSchedule
 {
-    StartingCurrency    400
+    StartingCurrency    600
     RespawnWaveTime    3
     CanBotsAttackWhileInSpawnRoom    no
     FixedRespawnWaveTime    Yes
@@ -230,8 +230,8 @@ WaveSchedule
         Where    Behind
         BeginAtWave    6
         RunForThisManyWaves    1
-        InitialCooldown    20
-        CooldownTime    20
+        InitialCooldown    25
+        CooldownTime    25
         DesiredCount    2
         TFBot
         {
@@ -267,8 +267,8 @@ WaveSchedule
         Where    Behind
         BeginAtWave    7
         RunForThisManyWaves    1
-        InitialCooldown    20
-        CooldownTime    20
+        InitialCooldown    25
+        CooldownTime    25
         DesiredCount    2
         TFBot
         {
@@ -314,6 +314,14 @@ WaveSchedule
             Target    wave_finished_relay
             Action    Trigger
         }
+		InitWaveOutPut
+		{
+  			Target wave_start_relay
+  			Action RunScriptCode
+  			Param "
+   			IncludeScript(`mvm_oilrig_rc5a_noflank`)
+  			"
+		}
         WaveSpawn //Tank 
         {    
 			Name wave1_tank
@@ -323,7 +331,7 @@ WaveSchedule
             Tank
             {
                 Name "tank1"
-                Health 12000                    
+                Health 10000                    
                 Speed 75                                
                 Name "tankboss"
                 StartingPathTrackNode "tank_path_a_1"
@@ -422,9 +430,10 @@ WaveSchedule
 			TotalCount 22
 			MaxActive 4
 			SpawnCount 2
-			WaitBeforeStarting 20
+			WaitBeforeStarting 5
 			WaitBetweenSpawns 6
 			Support 1
+			WaitForAllDead wave1_tank
 			TotalCurrency 25
 			TFBot
 			{
@@ -468,6 +477,14 @@ WaveSchedule
 		{
 			Target	wave_finished_relay
 			Action	Trigger
+		}
+		InitWaveOutPut
+		{
+  			Target wave_start_relay
+  			Action RunScriptCode
+  			Param "
+   			IncludeScript(`mvm_oilrig_rc5a_noflank`)
+  			"
 		}
 		WaveSpawn
 		{
@@ -665,7 +682,7 @@ WaveSchedule
             Param "
 				ClientPrint(null,3,`\x08FF54F1FFIf you hear a beeping noise then you should better watch your backs!`)
 				ClientPrint(null,3,`\x08FF54F1FFRemember that for later waves.`)
-
+				IncludeScript(`mvm_oilrig_rc5a_noflank`)
             "
 		}
 		WaveSpawn
@@ -926,6 +943,14 @@ WaveSchedule
 			Target	wave_finished_relay
 			Action	Trigger
 		}
+		InitWaveOutPut
+		{
+  			Target wave_start_relay
+  			Action RunScriptCode
+  			Param "
+   			IncludeScript(`mvm_oilrig_rc5a_noflank`)
+  			"
+		}
 		WaveSpawn
 		{
 			Name "w4a_ff_giant_demo"
@@ -1027,7 +1052,7 @@ WaveSchedule
 				TFBot
 				{
 					Class Soldier
-					Name "Extended Uncharged Conch Soldier"
+					Name "Extended Conch Soldier"
 					Skill Normal
 					Health 650
 					Scale 1.3
@@ -1059,7 +1084,7 @@ WaveSchedule
 			SpawnCount 3
 			WaitBeforeStarting 4
 			WaitBetweenSpawns 5
-			TotalCurrency 50
+			TotalCurrency 75
 			TFBot
 			{
 				Class Heavyweapons
@@ -1121,7 +1146,7 @@ WaveSchedule
 			WaitBeforeStarting 5
 			WaitForAllSpawned w4b_tank
 			WaitBetweenSpawns 6
-			TotalCurrency 50
+			TotalCurrency 75
 			TFBot
 			{
 				Class Pyro
@@ -1146,6 +1171,14 @@ WaveSchedule
 		{
 			Target	wave_finished_relay
 			Action	Trigger
+		}
+		InitWaveOutPut
+		{
+  			Target wave_start_relay
+  			Action RunScriptCode
+  			Param "
+   			IncludeScript(`mvm_oilrig_rc5a_noflank`)
+  			"
 		}
 		WaveSpawn
 		{
@@ -1306,6 +1339,14 @@ WaveSchedule
 		{
 			Target	wave_finished_relay
 			Action	Trigger
+		}
+		InitWaveOutPut
+		{
+  			Target wave_start_relay
+  			Action RunScriptCode
+  			Param "
+   			IncludeScript(`mvm_oilrig_rc5a_noflank`)
+  			"
 		}
 		WaveSpawn
 		{
@@ -1485,7 +1526,7 @@ WaveSchedule
 			MaxActive 5
 			SpawnCount 5
 			WaitForAllSpawned w6b_tank
-			WaitBeforeStarting 32
+			WaitBeforeStarting 35
 			TotalCurrency 25
 			Squad
 			{
@@ -1549,11 +1590,11 @@ WaveSchedule
 			Name "w6b_battalion_soldier"
 			Where spawnbot
 			TotalCount 22
-			MaxActive 2
+			MaxActive 1
 			SpawnCount 1
 			WaitForAllSpawned w6b_tank
 			WaitBeforeStarting 6
-			WaitBetweenSpawns 6
+			WaitBetweenSpawnsAfterDeath 4
 			Support 1
 			TFBot
 			{
@@ -1576,6 +1617,14 @@ WaveSchedule
             Target    wave_finished_relay
             Action    Trigger
         }
+		InitWaveOutPut
+		{
+  			Target wave_start_relay
+  			Action RunScriptCode
+  			Param "
+   			IncludeScript(`mvm_oilrig_rc5a_noflank`)
+  			"
+		}
 		WaveSpawn
 		{
 			Name	W7-A1
@@ -1694,7 +1743,7 @@ WaveSchedule
 			Name	W7-A2
 			WaitForAllSpawned	W7-A1
             Where spawnbot
-			TotalCurrency 50
+			TotalCurrency 25
             TotalCount 24
             MaxActive 6
             SpawnCount 2
@@ -1712,7 +1761,7 @@ WaveSchedule
 			WaitForAllDead	W7-A2
             Where spawnbot_left
 			Where spawnbot_right
-			TotalCurrency 50
+			TotalCurrency 25
 			RandomSpawn 1
             TotalCount 6
             MaxActive 2
@@ -1768,14 +1817,14 @@ WaveSchedule
 		{
 			Name	W7-A3
 			WaitForAllDead	W7-A2
-			TotalCurrency	150
+			TotalCurrency	100
 			TotalCount	1
 			MaxActive	1
 			SpawnCount	1
 			WaitBeforeStarting	6
 			Tank
 			{
-				Health	22000
+				Health	21000
 				Name	Tank
 				Speed	75
 				Skin	1
