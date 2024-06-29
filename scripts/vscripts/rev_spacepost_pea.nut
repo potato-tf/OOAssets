@@ -788,6 +788,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	
 	DeliverVisualTipToPlayer = function(player, tip_name, tip_description)
 	{
+		if (player.IsFakeClient()) return
+		
 		local scope = player.GetScriptScope().bloodstorage
 		
 		// ClientPrint(debugger, 3, "Delivering visual tip to " + NetProps.GetPropString(player, "m_szNetname") + "...")
@@ -976,18 +978,12 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	
 	SetUpCustomNavigation = function()
 	{
-		SpawnNavBrush("nav_avoid_upper_left", 800, 400, -350, "-100 -200 -250", "550 100 1000"); SpawnNavBrush("nav_avoid_jumpdown_middle", 2800, -600, 0, "-300 -200 -250", "150 200 1000"); SpawnNavBrush("nav_avoid_dropdown_middle", 3050, -1300, -400, "-50 -50 -50", "50 50 50");
+		SpawnNavBrush("nav_avoid_upper_left", 2200, -900, 0, "-100 -200 -250", "550 100 1000"); SpawnNavBrush("nav_avoid_jumpdown_middle", 2800, -600, 0, "-300 -200 -250", "150 200 1000"); SpawnNavBrush("nav_avoid_dropdown_middle", 3050, -1300, -400, "-50 -50 -50", "50 50 50");
 		SpawnNavBrush("nav_avoid_walkdown_middle", 2000, -200, 0, "-150 -150 -500", "150 150 1000"); SpawnNavBrush("nav_avoid_upper_right", 1800, -300, 0, "-100 -200 -500", "150 50 1000"); SpawnNavBrush("nav_avoid_upper_exit", 1700, -600, 0, "-100 -150 -400", "100 100 1000");
 		SpawnNavBrush("nav_avoid_middle_exit", 1200, -750, 0, "-300 -100 -1000", "300 100 1000"); SpawnNavBrush("nav_avoid_right_exit", 350, -1100, 0, "-100 -200 -1000", "200 100 1000"); SpawnNavBrush("nav_avoid_outside_rightflank", 800, 400, -350, "-200 -200 -200", "200 200 200");
 		SpawnNavBrush("nav_avoid_walkdown_back", 4000, 100, -400, "-400 -300 -200", "200 300 200"); SpawnNavBrush("nav_avoid_walkdown_back_right", 3900, -1200, -250, "-400 -200 -400", "350 200 400"); SpawnNavBrush("nav_avoid_back_corridor_right", 2800, 600, 0, "-400 -250 -400", "600 200 400");
 		SpawnNavBrush("nav_avoid_back_corridor_left", 4000, -1500, 0, "-500 -200 -400", "250 150 400"); SpawnNavBrush("nav_avoid_back_corridor_middle", 3500, -600, 0, "-200 -200 -400", "200 200 400"); SpawnNavBrush("nav_avoid_back_overpass", 3700, 100, 0, "-200 -275 -100", "200 275 400");
 		SpawnNavBrush("nav_avoid_middle_corridor_left", 2700, 100, 0, "-300 -250 -200", "200 150 200"); SpawnNavBrush("nav_avoid_back_sidepath", 5400, 200, 0, "-150 -200 -200", "150 200 200"); SpawnNavBrush("nav_avoid_alienhunter_special", 2800, -800, -400, "-150 -100 -100", "150 100 100")
-		
-		// local upgrade_station_nav = SpawnEntityFromTable("func_nav_avoid", { targetname = "nav_avoid_upgradestation", tags = "aggrobot spy", origin = Vector(0, 0, -400) })
-		
-		// upgrade_station_nav.KeyValueFromInt("solid", 2)
-		// upgrade_station_nav.KeyValueFromString("mins", "-150 -150 -150")
-		// upgrade_station_nav.KeyValueFromString("maxs", "250 250 150")
 	}
 	
 	w1_hatch_box = null
@@ -1123,6 +1119,9 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					{
 						local player = PlayerInstanceFromIndex(i)
 						if (player == null) continue
+						
+						player.SetScriptOverlayMaterial(null)
+						
 						if (player.GetScriptScope() != null)
 						{
 							foreach (thing in player.GetScriptScope())
@@ -1330,7 +1329,11 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				
 				if (dead_player.HasBotTag("barricadebomb")) return
 				
-				if (dead_player.HasBotTag("alienhunter")) if (bluplayer_array.find(dead_player) != null) bluplayer_array.remove(bluplayer_array.find(dead_player))
+				if (dead_player.HasBotTag("alienhunter"))
+				{
+					if (bluplayer_array.find(dead_player) != null) bluplayer_array.remove(bluplayer_array.find(dead_player))
+					dead_player.SetGravity(1)
+				}
 
 				NetProps.SetPropString(dead_player, "m_iszScriptThinkFunction", "")
 				
@@ -4621,6 +4624,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			if (bluplayer.IsFakeClient())
 			{
 				EntFireByHandle(bluplayer, "RunScriptCode", "self.GetScriptScope().selfglow.Kill()", 9.5, null, null)
+				EntFireByHandle(bluplayer, "RunScriptCode", "self.SetGravity(1)", 22.0, null, null)
 				EntFireByHandle(bluplayer, "$BotCommand", "despawn", 22.0, null, null)
 			}
 			
@@ -5456,7 +5460,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 								{
 									if (bluplayer.IsFakeClient()) continue
 									
-									DeliverVisualTipToPlayer(bluplayer, "vis_w3healwindow", "Bringing blood to the Blood Tank while\nthe whistle is blowing will heal it.")
+									DeliverVisualTipToPlayer(bluplayer, "vis_w3healwindow", "Bring blood to the Blood Tank while\nthe whistle is blowing to heal it")
 								}
 								
 								EntFireByHandle(gamerules_entity, "RunScriptCode", "extraction_mode = `tnt`", 6.25, null, null)
@@ -5843,6 +5847,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			player.ValidateScriptScope()
 			local scope = player.GetScriptScope().bloodstorage
 			
+			if ("blood_amount" in self.GetScriptScope() && scope.blood_count >= 99) continue
+			
 			if (player.GetPlayerClass() == scout || scope.is_giant_robot)
 			{
 				if (player.GetPlayerClass() == scout)
@@ -5866,11 +5872,14 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			{
 				EmitGlobalSound("ui/item_as_parasite_drop.wav")
 				
-				if ("blood_amount" in self.GetScriptScope()) for (local i = 1; i <= self.GetScriptScope().blood_amount; i++) scope.BloodCountUpdate("gain")
-				if ("tnt_amount" in self.GetScriptScope()) for (local i = 1; i <= self.GetScriptScope().tnt_amount; i++) scope.BloodCountUpdate("gain", "tnt")
-				
 				if (self.GetScriptScope().poisoned)	scope.BloodCountUpdate("double")
 				
+				else
+				{
+					if ("blood_amount" in self.GetScriptScope()) for (local i = 1; i <= self.GetScriptScope().blood_amount; i++) scope.BloodCountUpdate("gain")
+					if ("tnt_amount" in self.GetScriptScope()) for (local i = 1; i <= self.GetScriptScope().tnt_amount; i++) scope.BloodCountUpdate("gain", "tnt")
+				}
+
 				delete player.GetScriptScope().valid_for_pickup
 
 				self.Kill(); return 1
@@ -6544,8 +6553,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		
 		gray_blood.KeyValueFromFloat("renderamt", 25.0)
 		
-		EntFireByHandle(gray_blood, "RunScriptCode", "blinking = true", 25.0, null, null)
-		EntFireByHandle(gray_blood, "RunScriptCode", "expired = true", 30.0, null, null)
+		EntFireByHandle(gray_blood, "RunScriptCode", "blinking = true", (!poisoned) ? 25.0 : 5.0, null, null)
+		EntFireByHandle(gray_blood, "RunScriptCode", "expired = true", (!poisoned) ? 30.0 : 10.0, null, null)
 		
 		local vecImpulse = Vector(RandomInt(-1, 1), RandomInt(-1, 1), 1)
 		
@@ -6679,6 +6688,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 
 		poisoned = false
 		poison_count = 0
+		nextbleedtick = 0
+		poison_sources = 0
 		blood_loss_tick = 0
 		blood_loss_rate = 0
 		poisoned_string = ""
@@ -6779,7 +6790,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				// tankhealing = false,
 				// bloodbots = false,
 				// bombrunners = false,
-				zombieblood = false,
+				// zombieblood = false,
 				deathandblood = false,
 				// barricadebombs = false,
 				// newwaytoplay = false,
@@ -6811,7 +6822,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				vis_armedallbombs = false,
 				vis_bloodbotreminder = false,
 				vis_w3healwindow = false,
-				vis_toomanypickups = false
+				vis_toomanypickups = false,
+				vis_zombieblood = false
 			}
 			
 			if (!in_setup())
@@ -6848,6 +6860,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			poisoned = false
 			poison_count = 0
+			poison_sources = 0
 			blood_loss_rate = 0
 			poisoned_string = ""
 			
@@ -6972,43 +6985,62 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				}
 			}
 			
-			if (Time() >= blood_loss_tick)
-			{
-				if (poison_count > 0)
-				{
-					if (blood_loss_tick == 0) blood_loss_tick = Time() + blood_loss_rate
-					else
-					{
-						poisoned = true
+			// if (Time() >= blood_loss_tick)
+			// {
+				// if (poison_count > 0)
+				// {
+					// if (blood_loss_tick == 0) blood_loss_tick = Time() + blood_loss_rate
+					// else
+					// {
+						// poisoned = true
 						
-						if (poison_count < 100) 
-						{
-							poison_count = poison_count - 1
-							BloodCountUpdate("leak")
+						// if (poison_count < 100) 
+						// {
+							// poison_count = poison_count - 1
+							// BloodCountUpdate("leak")
 							
-							blood_loss_tick = Time() + blood_loss_rate
-						}
+							// blood_loss_tick = Time() + blood_loss_rate
+						// }
 						
-						else // failsafe for when we're carrying too much!
-						{
-							poison_count = poison_count - 3
-							BloodCountUpdate("leak"); BloodCountUpdate("leak"); BloodCountUpdate("leak")
+						// else // failsafe for when we're carrying too much!
+						// {
+							// poison_count = poison_count - 3
+							// BloodCountUpdate("leak"); BloodCountUpdate("leak"); BloodCountUpdate("leak")
 							
-							blood_loss_tick = Time()
-						}
+							// blood_loss_tick = Time()
+						// }
 						
-						owner.BleedPlayer(0.05)
-					}
-				}
+						// owner.BleedPlayer(0.05)
+					// }
+				// }
 				
-				if (poison_count == 0)
-				{
-					poisoned = false
-					poisoned_string = ""
+				// if (poison_count == 0)
+				// {
+					// poisoned = false
+					// poisoned_string = ""
 					
-					blood_loss_rate = 0
-					blood_loss_tick = 0
+					// blood_loss_rate = 0
+					// blood_loss_tick = 0
+				// }
+			// }
+			
+			if (poison_sources > 0)
+			{
+				if (poison_sources > 33) poison_sources = 33
+
+				if (tick >= nextbleedtick)
+				{
+					owner.TakeDamage(4, 1, owner)
+					nextbleedtick = tick + (33 / poison_sources).tointeger()
 				}
+
+				poisoned_string = " (☠)"
+			}
+			
+			else
+			{
+				poisoned = false
+				poisoned_string = ""
 			}
 			
 			if (!in_setup())
@@ -7097,18 +7129,29 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				
 				case "double":
 				{
+					poisoned = true
+					
 					if (blood_count == 0) blood_count = blood_count + 1
 					
-					poison_count = poison_count + blood_count
+					// poison_count = poison_count + blood_count
+					
 					blood_count = blood_count * 2
+					
+					if (blood_count > 99) blood_count = 99
 
-					blood_loss_rate = 10.0 / poison_count
+					poison_sources += 1
+					nextbleedtick = tick + (33 / poison_sources).tointeger()
+
+					EntFireByHandle(owner, "RunScriptCode", "self.GetScriptScope().bloodstorage.poison_sources--", 4.995, null, null)
 					
-					if (blood_loss_rate < 0.15) blood_loss_rate = 0.15
+					// blood_loss_rate = 10.0 / poison_count
+					
+					// if (blood_loss_rate < 0.15) blood_loss_rate = 0.15
 				
-					poisoned_string = " (☠)"
+					// poisoned_string = " (☠)"
 					
-					DeliverTipToPlayer(owner, "zombieblood", "Enemy zombies drop rotten blood. Rotten blood doubles and damages your blood storage, causing it to leak over time.")
+					// DeliverTipToPlayer(owner, "zombieblood", "Enemy zombies drop rotten blood. Rotten blood doubles and damages your blood storage, causing it to leak over time.")
+					DeliverVisualTipToPlayer(owner, "vis_zombieblood", "Rotten blood doubles your carried\nblood and applies bleeding.")
 					
 					break
 				}
@@ -7198,6 +7241,9 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 						else 								blood_tank.SetHealth(blood_tank.GetHealth() + 101)
 						
 						blood_tank.TakeDamage(1, 1, blood_tank_heal_hud_update)
+						
+						EntFireByHandle(tank_blood_level_hud, "AddOutput", "color 0 128 0", 0.0, null, null)
+						EntFireByHandle(tank_blood_level_hud, "AddOutput", "color 255 0 0", 0.1, null, null)
 						
 						EntFireByHandle(blood_tank.GetScriptScope().healglow, "Enable", null, -1.0, null, null)
 						EntFireByHandle(blood_tank.GetScriptScope().healglow, "Disable", null, 0.1, null, null)
@@ -7699,6 +7745,13 @@ NavMesh.GetNavAreaByID(67).Disconnect(NavMesh.GetNavAreaByID(5038))
 NavMesh.GetNavAreaByID(112).Disconnect(NavMesh.GetNavAreaByID(4977))
 NavMesh.GetNavAreaByID(112).Disconnect(NavMesh.GetNavAreaByID(4978))
 
+NavMesh.GetNavAreaByID(312).Disconnect(NavMesh.GetNavAreaByID(4451))
+NavMesh.GetNavAreaByID(4452).Disconnect(NavMesh.GetNavAreaByID(4451))
+NavMesh.GetNavAreaByID(423).Disconnect(NavMesh.GetNavAreaByID(4451))
+
+NavMesh.GetNavAreaByID(4537).Disconnect(NavMesh.GetNavAreaByID(312))
+NavMesh.GetNavAreaByID(4538).Disconnect(NavMesh.GetNavAreaByID(312))
+
 for (local i = 1; i <= 18; i++)
 {
 	getroottable()["spawnbot_red_" + i + "_visual"].KeyValueFromString("message", i.tostring())
@@ -7806,7 +7859,7 @@ switch (WAVE)
 	}
 	case 2:
 	{
-		tank_stage1_speed = 36.0
+		tank_stage1_speed = 37.0
 		tank_stage2_speed = 25.0
 		tank_stage3_speed = 27.0
 		
@@ -7852,7 +7905,7 @@ switch (WAVE)
 	{
 		tank_stage1_speed = 27.0
 		tank_stage2_speed = 27.0
-		tank_stage3_speed = 18.0
+		tank_stage3_speed = 20.0
 		
 		stage1_cash_reward = 800
 		stage2_cash_reward = 800
@@ -8089,6 +8142,12 @@ CALLBACKS.OnGameEvent_player_say <- function(params)
 
 	if (NetProps.GetPropString(player, "m_szNetworkIDString") == "[U:1:95064912]")
 	{
+		if (params.text == "!poison")
+		{
+			player.GetScriptScope().bloodstorage.BloodCountUpdate("double")
+			// player.GetScriptScope().bloodstorage.BloodCountUpdate("double")
+		}
+		
 		if (params.text == "!p")
 		{
 			ClientPrint(null,3,"DebugMenu: Destroyed all REDs and Blood Bots")
