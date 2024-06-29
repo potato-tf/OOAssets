@@ -1472,7 +1472,7 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template T_TFBot_Giant_Pyro_Dragon_Fury_Spammer
+					Template T_TFBot_Giant_Soldier_Crit_Spammer_Reload
 				}
 				TFBot
 				{
@@ -1516,7 +1516,7 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_Shield
+					Template T_TFBot_Medic_Shield_Armored
 					Attributes SpawnWithFullCharge
 				}
 			}
@@ -1677,7 +1677,7 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template T_TFBot_Giant_Heavyweapons
+					Template T_TFBot_Giant_Heavyweapons_Deflector
 				}
 				TFBot
 				{
@@ -1735,16 +1735,24 @@ WaveSchedule
 			WaitForAllSpawned "5a"
 
 			Where spawnbot
-			TotalCount 3
-			MaxActive 3
-			SpawnCount 1
+			TotalCount 6
+			MaxActive 6
+			SpawnCount 2
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 9
 			TotalCurrency 90
 			
-			TFBot
+			Squad
 			{
-				Template T_TFBot_Giant_Soldier_Spammer
+				TFBot
+				{
+					Template T_TFBot_Giant_Soldier_Spammer
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_BigHeal_Armored
+					Attributes SpawnWithFullCharge
+				}
 			}
 		}
 		
@@ -1754,16 +1762,24 @@ WaveSchedule
 			WaitForAllSpawned "5b"
 
 			Where spawnbot
-			TotalCount 1
-			MaxActive 1
-			SpawnCount 1
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 30
 			
-			TFBot
+			Squad
 			{
-				Template T_TFBot_Giant_Soldier_Spammer
+				TFBot
+				{
+					Template T_TFBot_Giant_Soldier_Spammer
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_BigHeal_Armored
+					Attributes SpawnWithFullCharge
+				}
 			}
 		}
 		
@@ -1921,7 +1937,7 @@ WaveSchedule
 			
 			Tank
 			{
-				Health 28000
+				Health 30000
 				Name "tankboss"
 				Speed 75
 				Skin 1
@@ -2130,3 +2146,13 @@ WaveSchedule
 
 // Wave 5
 // Money 1500$ to 900$
+
+// Change Log
+// Wave 4
+// Change 1 of Giant Fury Pyro to Giant Burst Charge Soldier (Mannhattan Burst Version)
+// Change Common Shield Medic to Armored Variant
+
+// Wave 5
+// Change Giant Heavy to Giant Deflector Heavy
+// Tank buff HP from 28k to 30k
+// Added Armored Big-Heal Medic on first 4 Giant Rapid Fire Soldier
