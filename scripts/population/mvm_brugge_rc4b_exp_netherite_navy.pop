@@ -2279,41 +2279,19 @@ WaveSchedule
 			WaitForAllDead 6a-2
 
 			Where spawnbot_surpised_attack
-			TotalCount 2
-			MaxActive 2
+			TotalCount 3
+			MaxActive 3
 			SpawnCount 1
 			WaitBeforeStarting 0
-			WaitBetweenSpawns 30
-			TotalCurrency 20
+			WaitBetweenSpawns 15
+			TotalCurrency 30
 			FirstSpawnWarningSound mvm/mvm_tele_deliver.wav
-			LastSpawnWarningSound mvm/mvm_tele_deliver.wav
 			
 			FirstSpawnOutPut
 			{
 				Target text_surprised_attack
 				Action Show
 			}
-			
-			TFBot
-			{
-				Template T_TFBot_Giant_DemoMan_PrinceTavish
-				AlwaysGlow 1
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name 6b
-			WaitForAllDead 6a-2
-
-			Where spawnbot_surpised_attack
-			TotalCount 1
-			MaxActive 1
-			SpawnCount 1
-			WaitBeforeStarting 15
-			WaitBetweenSpawns 0
-			TotalCurrency 10
-			FirstSpawnWarningSound mvm/mvm_tele_deliver.wav
 			
 			TFBot
 			{
