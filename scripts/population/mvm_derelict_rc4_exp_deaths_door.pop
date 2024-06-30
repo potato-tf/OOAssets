@@ -255,7 +255,7 @@ Die
 				"fire rate bonus" 0.25
 				"projectile spread angle penalty" 1.5
 				"Projectile speed increased"	1.4
-				"dmg penalty vs players" 1.4
+				"dmg penalty vs players" 1.25
 			}
 			CharacterAttributes
 			{
@@ -1883,7 +1883,7 @@ Die
 				Item "The Jupiter Jumpers"
 				Attributes HoldFireUntilFullReload
 				Name "Beam Soldier"
-				ClassIcon soldier_bison_b
+				ClassIcon soldier_bison
 				WeaponRestrictions SecondaryOnly
 				ItemAttributes
 				{
