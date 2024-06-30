@@ -5121,7 +5121,7 @@ WaveSchedule
 				trigger_teleport //how the fuck did anyone spawn here
 				{
 					targetname "w1_teleporter"
-					origin "-2395.03 -1255.59 6.54"
+					origin "-2614.7 -1303.11 9.71"
 					mins "-300 -5 -300"
 					maxs "300 5 300"
 					target "w1_teleporter_destination"
