@@ -95,10 +95,6 @@ WaveSchedule
 	DisableSound "Announcer.MVM_All_Dead"
 	PrecacheSound "tokamak_wind_up.wav" //precaches for tokamak
 	PrecacheSound "tokamak_wind_down.wav"
-	PrecacheSound "tokamak_equip.wav"
-	PrecacheSound "tokamak_fire.wav"
-	PrecacheSound "tokamak_fire_crit.wav"
-	PrecacheSound "tokamak_spin.wav"
 	PrecacheSound "madness_combat_remix_cheshyre_madness_clipped.mp3"
 	PrecacheSound "transformers_devastation_soundtrack_decepticon_sergeant_extended.mp3"
 	PrecacheSound "mobocracy/rescue.wav"
@@ -372,7 +368,7 @@ WaveSchedule
 			}			
 			InterruptAction //so he stays around the factory zone
 			{
-				Target "1326.03 735.52 83.54"
+				Target "1176.13 109.41 82.46"
 				Delay 0.1
 				Repeats 0
 				Cooldown 15
@@ -521,7 +517,8 @@ WaveSchedule
 				"increased air control" 20.0 //to help with disconnect issues
 				"increased jump height" 3
 				"boots falling stomp" 1
-				"cancel falling damage" 1				
+				"cancel falling damage" 1	
+				"health from healers reduced" 0	
 			}
 			SpawnTemplate
 			{
@@ -1017,6 +1014,7 @@ WaveSchedule
 								"sniper no headshots" 1 //dummy attrs to lock onto with lua.
 								"cancel falling damage" 1
 								"duckstreaks active" 1
+								"dmg taken mult from special damage type 2" 2.5
 							}
 							Item "Tyrantium Helmet"
 							ItemAttributes
@@ -1076,6 +1074,7 @@ WaveSchedule
 								"sniper no headshots" 1 //dummy attrs to lock onto with lua.
 								"duckstreaks active" 1
 								"cancel falling damage" 1
+								"dmg taken mult from special damage type 2" 2.5
 							}
 							Item "Tyrantium Helmet"
 							ItemAttributes
@@ -1135,6 +1134,7 @@ WaveSchedule
 								"sniper no headshots" 1 //dummy attrs to lock onto with lua.
 								"duckstreaks active" 1
 								"cancel falling damage" 1
+								"dmg taken mult from special damage type 2" 2.5
 							}
 							Item "Tyrantium Helmet"
 							ItemAttributes
@@ -1524,6 +1524,7 @@ WaveSchedule
 								"sniper no headshots" 1 //dummy attrs to lock onto with lua.
 								"cancel falling damage" 1
 								"duckstreaks active" 1
+								"dmg taken mult from special damage type 2" 2.5
 							}
 							Item "Tyrantium Helmet"
 							ItemAttributes
@@ -1583,6 +1584,7 @@ WaveSchedule
 								"sniper no headshots" 1 //dummy attrs to lock onto with lua.
 								"duckstreaks active" 1
 								"cancel falling damage" 1
+								"dmg taken mult from special damage type 2" 2.5
 							}
 							Item "Tyrantium Helmet"
 							ItemAttributes
@@ -1642,6 +1644,7 @@ WaveSchedule
 								"sniper no headshots" 1 //dummy attrs to lock onto with lua.
 								"duckstreaks active" 1
 								"cancel falling damage" 1
+								"dmg taken mult from special damage type 2" 2.5
 							}
 							Item "Tyrantium Helmet"
 							ItemAttributes
@@ -1746,10 +1749,63 @@ WaveSchedule
 	}
 	PlayerAttributes
 	{
+	Engineer
+	{
 	"max health additive bonus" 125
 	"mvm sentry ammo" 9999
 	"never gib" 1
 	"metal regen" 25
+	}
+		Scout
+		{
+			"max health additive bonus" -124
+			"damage penalty" 0.1
+			"health regen" -9001 //fucking die
+		}
+		Soldier
+		{
+			"max health additive bonus" -199
+			"damage penalty" 0.1
+			"health regen" -9001 //fucking die
+		}
+		Pyro
+		{
+			"max health additive bonus" -174
+			"damage penalty" 0.1
+			"health regen" -9001 //fucking die
+		}
+		Demoman
+		{
+			"max health additive bonus" -199
+			"damage penalty" 0.1
+			"health regen" -9001 //fucking die
+		}
+		Heavyweapons
+		{
+			"max health additive bonus" -299
+			"damage penalty" 0.1
+			"health regen" -9001 //fucking die
+		}	
+		Medic
+		{
+			"max health additive bonus" -149
+			"damage penalty" 0.1
+			"heal rate penalty" 0
+			"ubercharge rate penalty" 0
+			"health regen" -9001 //fucking die
+		}
+		Sniper
+		{
+			"max health additive bonus" -124
+			"damage penalty" 0.1
+			"health regen" -9001 //fucking die
+		}
+		Spy
+		{
+			"max health additive bonus" -124
+			"damage penalty" 0.1
+			"health regen" -9001 //fucking die
+		}	
 	}
 	
 	ItemAttributes
@@ -1769,6 +1825,7 @@ WaveSchedule
 	
 	"special item description" "Scout giants aren't the heavy hitters soldiers, demos, heavies and pyros are, so some of that beefiness goes onto you instead!"
 	"special item description 2" "[TIERS] 1: Giant Scout, 2: Giant Shortstop Scout, 3: Giant Shove-stop Scout, 4: Giant Giga Scout"
+	"special item description 3" "Wrench allies to heal them, hold reload with any active weapon to park your giant"
 	}
 	ItemAttributes
 	{
@@ -1782,6 +1839,7 @@ WaveSchedule
 	
 	"special item description" "Heavy giants are indomitable forces of destruction, you sacrifice 50 health in exchange for this awesome power!"
 	"special item description 2" "[TIERS] 1: Giant Heavy, 2: Giant Deflector Heavy, 3: Giant Heater Heavy, 4: Giant EMP Heavy"
+	"special item description 3" "Wrench allies to heal them, hold reload with any active weapon to park your giant"
 	}
 	ItemAttributes
 	{
@@ -1791,6 +1849,7 @@ WaveSchedule
 	
 	"special item description" "Demo giants pack significant firepower, but are a little less durable and a bit faster than their heavier soldier cousins"
 	"special item description 2" "[TIERS] 1: Giant Rapid Fire Demo, 2: Giant Hybrid Knight, 3: Giant Rammer Knight, 4: Giant Burst Knight"
+	"special item description 3" "Wrench allies to heal them, hold reload with any active weapon to park your giant"
 	}
 	ItemAttributes
 	{
@@ -1809,6 +1868,7 @@ WaveSchedule
 	
 	"special item description" "Pyro giants are strange, they are as durable as soldiers and as fast as demos, yet worse than both. You become exponentially stronger to compensate!"
 	"special item description 2" "[TIERS] 1: Giant Pyro, 2: Giant Airblast Pyro, 3: Giant Fuel Injected Pyro (fast), 4: Fury (Dragon's Fury that hits like a gigaburst)"
+	"special item description 3" "Wrench allies to heal them, hold reload with any active weapon to park your giant"
 	}
 	ItemAttributes
 	{
@@ -1817,7 +1877,18 @@ WaveSchedule
 	
 	"special item description" "Soldiers are middle of the road giants, good firepower, good speed (for their size), and good durability."
 	"special item description 2" "[TIERS] 1: Giant Soldier, 2: Giant Burst Soldier, 3: Giant Charged Soldier, 4: Giant Rapid Fire Soldier"
+	"special item description 3" "Wrench allies to heal them, hold reload with any active weapon to park your giant"
 	}
+	ItemAttributes
+	{
+	SimilarToItem "Gold Frying Pan"
+	"fire input on attack" "popscript^$checkIfMeleeHitAlly^"
+	
+	"special item description" "Soldiers are middle of the road giants, good firepower, good speed (for their size), and good durability."
+	"special item description 2" "[TIERS] 1: Giant Soldier, 2: Giant Burst Soldier, 3: Giant Charged Soldier, 4: Giant Rapid Fire Soldier"
+	"special item description 3" "Wrench allies to heal them, hold reload with any active weapon to park your giant"
+	}	
+	
 	
 	ExtraLoadoutItems
 	{	
@@ -1844,10 +1915,6 @@ WaveSchedule
 			"attack projectiles" 2
 			"custom kill icon" "firedeath"
 			"fire input on hit" "popscript^$pomsonEMPhit^"
-
-			"custom minigun spin sound" "=60|tokamak_spin.wav"
-			"custom weapon fire sound" "=60|tokamak_fire.wav"
-			"custom weapon deploy sound" "=60|tokamak_equip.wav"
 		}
 	}
 
@@ -2177,6 +2244,7 @@ WaveSchedule
 				"onspawn" "spawnbot_red*,Disable,,0,-1"
 				"onspawn" "carrier_door_trigger,enable,,0,1"
 				"onspawn" "carrier_door_clip,kill,,0,1"
+				"onspawn" "setup_teleporter,kill,0,1"
 				"onspawn" "bomb,Disable,,0,-1"
 				"onspawn" "spawnbot_blu_bomb_carrier,Disable,,0,-1"
 				"onspawn" "timer_relay,Trigger,,0,-1"
@@ -2258,56 +2326,6 @@ WaveSchedule
 				"OnTrigger" "A_B_C_blocker,Enable,,0,-1"
 				"OnTrigger" "tf_point_nav_interface,recomputeblockers,,0,-1"
 				}	
-				func_forcefield
-				{
-					"origin" "-630.7 1149.46 4.77"
-					"TeamNum" "2"
-					"targetname" "InverseFinalShields"
-					"mins" "-50 -750.85 -600"
-					"maxs" "5 1000 1000"
-					"StartDisabled" "1" //FIX
-				}
-				func_nobuild
-				{
-					"origin" "-630.7 1149.46 4.77"
-					"targetname" "InverseFinalShields"
-					"mins" "-100 -750.85 -600"
-					"maxs" "1300 1000 1000"
-					"StartDisabled" "1"
-				}			
-				prop_dynamic
-				{
-					modelscale 2.3
-					model "models/props_mvm/reversemvm_redwall_640x418.mdl"
-					//measurements 640X300 176X120 176X152 256X288
-					"origin" "-630.7 1149.46 4.77"
-					angles "0 270 0"
-					targetname "InverseFinalShields"
-					disableshadows 1
-					"StartDisabled" "1"
-				}
-				prop_dynamic
-				{
-					modelscale 2.3
-					model "models/props_mvm/reversemvm_redwall_640x418.mdl"
-					//measurements 640X300 176X120 176X152 256X288
-					"origin" "-630.7 1149.46 4.77"
-					angles "0 90 0"
-					targetname "InverseFinalShields"
-					disableshadows 1
-					"StartDisabled" "1"
-				}
-				trigger_teleport
-				{
-					targetname "InverseFinalShields"
-					"origin" "-630.7 1149.46 4.77"
-					"mins" "-50 -750.85 -500"
-					"maxs" "1300 1000 290"
-					target "InverseFinalShields_Destination"
-					"spawnflags" "1"
-					"filtername" "filter_blu" //map filter that happens to be laying around, how handy
-					StartDisabled 1
-				}
 				func_nav_avoid
 				{
 					"origin" "-586.82 946.95 198.10"
@@ -2315,29 +2333,7 @@ WaveSchedule
 					"maxs" "728.5 700.5 300"
 					"targetname" "InverseFinalShields"
 					StartDisabled 1
-				}				
-				trigger_teleport
-				{
-					targetname "InverseFinalShields"
-					"origin" "-2.27 8.38 4.77"
-					"mins" "-250 -300.85 -500"
-					"maxs" "250 300 290"
-					target "InverseFinalShields_Destination"
-					"spawnflags" "1"
-					"filtername" "filter_blu" //map filter that happens to be laying around, how handy
-					StartDisabled 1
-				}				
-				filter_activator_tfteam
-				{
-				"targetname" "filter_blu"
-				"teamnum" 3
-				}
-				info_teleport_destination
-				{
-					targetname "InverseFinalShields_Destination"
-					origin "-991.73 1380.27 159.56"
-					angles "0 -45 0"
-				}	
+				}						
 				
 			//contingency chief teleporter	
 			filter_tf_bot_has_tag 
@@ -2849,6 +2845,7 @@ WaveSchedule
 				"onspawn" "text2_init,Show,,0,-1"
 				"onspawn" "spawnbot_red*,Enable,,0,-1"
 				"onspawn" "carrier_door_clip,kill,,0,1"
+				"onspawn" "setup_teleporter,kill,0,1"
 				"onspawn" "bomb,Disable,,0,-1" //turn off bomb
 				"onspawn" "door_r_trigger_open,enable,,0,1" //whoops! trapped a whole bunch of people in spawn when I forgot this
 				"onspawn" "door_l_trigger_open,enable,,0,1"		
@@ -3577,12 +3574,15 @@ WaveSchedule
 				"onspawn" "carrier_door_trigger,enable,,0,1"
 				"onspawn" "A_route_wall_4_fix_relay,Trigger,,0,-1"
 				"onspawn" "carrier_door_clip,kill,,0,1"
+				"onspawn" "bomb,Disable,,0,-1"
+				"onspawn" "setup_teleporter,kill,0,1"
 				"onspawn" "spawnbot_blu_factory,Disable,,0,-1"
 				"onspawn" "spawnbot_red_factory,Disable,,0,-1"
 				"onspawn" "spawnbot_gry_monochrome,Disable,,0,-1"
 				"onspawn" "spawnbot_gry_monochrome_support1,Disable,,0,-1"
 				"onspawn" "spawnbot_gry_monochrome_support2,Disable,,0,-1"
 				"onspawn" "spawnbot_gry_monochrome_support3,Disable,,0,-1"
+				"onspawn" "spawnbot_blu_bomb_carrier,Disable,,0,-1"
 				"onspawn" "timer_relay,Trigger,,0,-1"
 				"onspawn" "relay_C,Trigger,,0,-1"
 				"onspawn" "bombpath_holograms_clear_relay,Trigger,,0.01,-1"
@@ -4436,7 +4436,9 @@ WaveSchedule
 				"OnCapTeam2" "player,$PlaySoundToSelf,ambient/energy/zap9.wav,0,-1"
 				"OnCapTeam2" "text3_3,Show,,0,1"
 				"OnCapTeam2" "spawnbot_red_mirror2*,Disable,,0,-1"
-				"OnCapTeam2" "spawnbot_red_mirror3*,Enable,,15,-1"	
+				"OnCapTeam2" "spawnbot_red_mirror3*,Enable,,15,-1"
+				"OnCapTeam2" "spawnbot_blu_bomb_carrier,Enable,,0.5,-1"
+				"OnCapTeam2" "bomb,Enable,,0,-1"
 				"OnCapTeam2" "player,$PlaySoundToSelf,mobocracy/rescue.wav,0,-1"
 				"OnCapTeam2" "relay_tank_hologram_A,Trigger,,0,-1"
 				"OnCapTeam2" "relay_tank_hologram_D,Trigger,,0,-1"
@@ -4686,7 +4688,6 @@ WaveSchedule
 			logic_relay
 			{
 				"targetname" wave3_hatch_close
-				"OnTrigger" "spawnbot_blu_bomb_carrier,Disable,,0,-1"
 				"OnTrigger" "barrier_hatch,Enable,,0,-1" //Raise shield
 				"OnTrigger" "tf_point_nav_interface,recomputeblockers,,0,-1"	
 			}
@@ -4894,9 +4895,9 @@ WaveSchedule
 				"origin" "-1027.63, 3823.31, 230.24"
 				"angles" "0, 0, 0"
 				"targetname" "informationText5"
-				"message" "Note: you can use your wrench to repair your allies."
+				"message" "Note: you can wrench your allies, hold reload to park your giant"
 				"font" "1"
-				"Color" "144 144 255 255"
+				"Color" "0 255 0 255"
 				"textsize" "6"
 				"orientation" "0"
 			}
@@ -4962,9 +4963,9 @@ WaveSchedule
 				"origin" "-2670.47, 2738.51, -88.58"
 				"angles" "0, 45, 0"
 				"targetname" "informationText5"
-				"message" "Note: you can use your wrench to repair your allies."
+				"message" "Note: you can wrench your allies, hold reload to park your giant"
 				"font" "1"
-				"Color" "144 144 255 255"
+				"Color" "0 255 0 255"
 				"textsize" "6"
 				"orientation" "0"
 			}
@@ -5031,9 +5032,9 @@ WaveSchedule
 				"origin" "-256.61, 2161.35, -146.63"
 				"angles" "0, -90, 0"
 				"targetname" "informationText5"
-				"message" "Note: you can use your wrench to repair your allies."
+				"message" "Note: you can wrench your allies, hold reload to park your giant"
 				"font" "1"
-				"Color" "144 144 255 255"
+				"Color" "0 255 0 255"
 				"textsize" "6"
 				"orientation" "0"
 			}
@@ -5068,7 +5069,6 @@ WaveSchedule
 				"OnTrigger" "informationText3SetTextOnce it reaches a ring, you must defend them for two minutes01"
 				"OnTrigger" "informationText4,SetText,Healing the VIP with dispensers and your wrench will be imperative to your survival,0,1"
 				"OnTrigger" "informationText4,SetColor,255 255 0,0,1"
-				"OnTrigger" "informationText5,SetText,,0,1"
 				"OnTrigger" "informationTextAllies,SetText,You have no allies this wave,0,1"
 				"OnTrigger" "informationTextAllies,SetColor,255 0 0,0,1"
 				}
@@ -5079,7 +5079,6 @@ WaveSchedule
 				"OnTrigger" "informationText2SetTextCapture 3 control points to unlock the hatch!01"
 				"OnTrigger" "informationText3SetTextThe factory point will also be guarded by greys, capping it gives more allies!01"
 				"OnTrigger" "informationText4SetTextYou have 10 minutes to perform this objective01"
-				"OnTrigger" "informationText5,SetText,,0,1"
 				"OnTrigger" "informationTextAlliesSetTextYour allies consist of: Super Scouts, Zweihander Knights, Rammer Demos, and Soldiers01"
 				}				
 			
@@ -5119,6 +5118,26 @@ WaveSchedule
 					"spawnflags" "1"
 					StartDisabled 0
 				}
+				trigger_teleport //how the fuck did anyone spawn here
+				{
+					targetname "w1_teleporter"
+					origin "-2395.03 -1255.59 6.54"
+					mins "-300 -5 -300"
+					maxs "300 5 300"
+					target "w1_teleporter_destination"
+					"spawnflags" "1"
+					StartDisabled 0
+				}				
+				trigger_teleport //spawning here at setup is bad
+				{
+					targetname "setup_teleporter"
+					origin "-259.03 2299.61 -190.18"
+					mins "-300 -5 -300"
+					maxs "300 5 300"
+					target "w1_teleporter_destination"
+					"spawnflags" "1"
+					StartDisabled 0
+				}				
 				trigger_teleport //a route giant spawn doesn't die fast enough
 				{				 //this is here to compensate for that
 					targetname "w1_teleporter"
@@ -6513,7 +6532,7 @@ WaveSchedule
 				Attribute "damage bonus"
 				Cap 2
 				Increment 0.25
-				Cost 150
+				Cost 200
 				Description "Increases damage to enemies and healing to allies"
 				AllowedWeapons
 				{
@@ -6526,7 +6545,7 @@ WaveSchedule
 				Attribute "disguise speed penalty"
 				Cap 4
 				Increment 1
-				Cost 150
+				Cost 300
 				SecondaryAttributes 
 				{
 				"fire input on hit" "popscript^$rescueDebuffOnHit^"
@@ -6574,7 +6593,7 @@ WaveSchedule
 				Description "Each tick adds +2 seconds of bleed duration, +50% bleed damage, and -0.1 bleed delay"
 				Cap 4
 				Increment 1
-				Cost 200
+				Cost 150
 				AllowedWeapons
 				{
 				ItemName "The Pomson 6000"
@@ -6598,7 +6617,7 @@ WaveSchedule
 				Description "Non-Giant robots dropped below 50% health by your weapon will be stunned for 2*Increment seconds."
 				Cap 4
 				Increment 1
-				Cost 150
+				Cost 100
 				AllowedWeapons
 				{
 				ItemName "The Pomson 6000"
@@ -6621,7 +6640,7 @@ WaveSchedule
 				Description "Deal less direct damage, but you can hit the same enemy multiple times."
 				Cap 1
 				Increment 1
-				Cost 200
+				Cost 100
 				AllowedWeapons
 				{
 				ItemName "The Pomson 6000"
@@ -6642,8 +6661,9 @@ WaveSchedule
 		}
 			panic_attack_accuracy
 			{
-				Name "15% Accuracy Increase"
+				Name "Accuracy Mastery"
 				Attribute "weapon spread bonus"
+				Description "Tightens your spread by 15% and also increases your damage by 20% per point"
 				Cap 0.4
 				Increment -0.15
 				Cost 100
@@ -6651,6 +6671,10 @@ WaveSchedule
 				{
 				ItemName "Panic Attack Shotgun"
 				}
+				SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
+				{
+					"damage bonus" 0.20
+				}				
 				DisallowedUpgrade
 				{
 					Upgrade panic_attack_bullets_per_shot // Name of the upgrade, as specified in the outer block
@@ -6659,10 +6683,10 @@ WaveSchedule
 			}
 			panic_attack_bullets_per_shot
 			{
-				Name "+25% Bullets Per Shot"
+				Name "+50% Bullets Per Shot"
 				Attribute "bullets per shot bonus"
-				Cap 2.5
-				Increment 0.25
+				Cap 3
+				Increment 0.50
 				Cost 100
 				AllowedWeapons
 				{
@@ -6693,10 +6717,10 @@ WaveSchedule
 			}
 			panic_attack_escape_plan
 			{
-				Name "+25% Movement Speed Increase with Reduced Health"
+				Name "+50% Movement Speed Increase with Reduced Health"
 				Attribute "move speed as health decreases"
-				Cap 1.5
-				Increment 0.25
+				Cap 3
+				Increment 0.50
 				Cost 200
 				AllowedWeapons
 				{
@@ -6724,7 +6748,8 @@ WaveSchedule
 				{
 					"weapon spread bonus" -1 //can never be too sure
 					"revolver use hit locations" 1
-					"damage bonus" 0.5
+					"damage bonus" 0.70
+					"can headshot" 1
 				}
 				DisallowedUpgrade
 				{
@@ -6753,8 +6778,9 @@ WaveSchedule
 				{
 					"weapon spread bonus" -1 //can never be too sure
 					"revolver use hit locations" 1
-					"mod ammo per shot" 60
-					"damage bonus" 0.25
+					"mod ammo per shot" 30
+					"damage bonus" 0.50
+					"can headshot" 1
 				}
 				DisallowedUpgrade
 				{
@@ -6785,7 +6811,7 @@ WaveSchedule
 				}
 				SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 				{
-					"damage bonus vs burning" 2
+					"damage bonus vs burning" 3
 					"bullets per shot bonus" -0.50
 				}
 				DisallowedUpgrade
@@ -6800,7 +6826,7 @@ WaveSchedule
 				Cap 1
 				Increment 1
 				Attribute "Set DamageType Ignite"
-				Description "Ignite enemies on hit, and minicrit burning enemies! You lose 50% of your bullets per shot however"
+				Description "Ignite enemies on hit, and both minicrit and deal 50% more damage to burning enemies! You lose 50% of your bullets per shot however"
 				Cost 0
 				AllowedWeapons
 				{
@@ -6810,6 +6836,7 @@ WaveSchedule
 				{
 					"bullets per shot bonus" -0.5
 					"minicrit vs burning player" 1
+					"damage bonus vs burning" 0.5
 				}
 				DisallowedUpgrade
 				{
@@ -6824,7 +6851,7 @@ WaveSchedule
 				Increment 0.25
 				Attribute "weapon burn dmg increased"
 				Description "Increase afterburn duration by 25% and afterburn damage by 15% per increment"
-				Cost 200
+				Cost 125
 				AllowedWeapons
 				{
 				SimilarToItem "TF_WEAPON_SHOTGUN_PRIMARY"
@@ -6851,7 +6878,7 @@ WaveSchedule
 				Increment 0.25
 				Attribute "weapon burn dmg increased"
 				Description "Increase afterburn duration by 25% and afterburn damage by 15% per increment"
-				Cost 100
+				Cost 75
 				AllowedWeapons
 				{
 				SimilarToItem "The Widowmaker"	
@@ -6875,10 +6902,10 @@ WaveSchedule
 			{
 				Name "Knockback Shells"
 				Description "Knock robots back based on damage dealt, works on ubered targets."
-				Cap 3
-				Increment 0.5
+				Cap 6
+				Increment 1
 				Attribute "damage blast push"
-				Cost 200
+				Cost 100
 				AllowedWeapons
 				{
 				SimilarToItem "The Frontier Justice"
@@ -6891,11 +6918,11 @@ WaveSchedule
 			}			
 			frontier_deflector
 			{
-				Name "Deflect Projectiles"
-				Description "Deflect projectiles, works just like it does on heavy's miniguns"
-				Cap 2
-				Increment 1
-				Attribute "attack projectiles"
+				Name "+25% Crit Damage Bonus"
+				Description "Increases the damage that all critical hits deal."
+				Cap 1.5
+				Increment 0.25
+				Attribute "mult crit dmg"
 				Cost 200
 				AllowedWeapons
 				{
@@ -7097,7 +7124,7 @@ WaveSchedule
 				Line "{CCCCFF}Your sentries have been replaced with powerful {00FF00}Giant Robots{FFFF00} Inspect your wrench!"
 				Line "{CCCCFF}The objective this wave is to repair 5 {00FF00}GIGA DISPENSERS{CCCCFF} around the map"
 				Line "{CCCCFF}You have {FF9999}six minutes {CCCCFF}to perform this objective"
-				Line "{CCCCFF}Note: {FFFF00}you can use your wrench to repair your allies."
+				Line "{CCCCFF}Note: {FFFF00}you can wrench your allies, hold reload to park your giant"
 				Line ""
 				Line "{CCCCFF}Your allies consist of: {00FF00}2 Giant Soldiers"
 				Line ""
@@ -7803,16 +7830,17 @@ WaveSchedule
 			Name "Giant VIP Heavy"
 			Item "Ol' Reliable"
 			Action Mobber
-			Health 10000
-			Scale 1.9
+			Health 15000
+			Scale 2.0
 			Tag bot_vip
 			Tag bot_giant
 			Item "Deflector"
 			ItemAttributes
 			{
 			ItemName "Deflector"
-			"heal on kill" 50
-			"attack projectiles" 1
+			"heal on kill" 75
+			"attack projectiles" 2
+			"damage bonus"	1.5
 			}
 			
 			ItemAttributes
@@ -9748,7 +9776,7 @@ WaveSchedule
 		}		
 		WaveSpawn
 		{
-			Where spawnbot_left
+			Where spawnbot_blu_bomb_carrier
 
 			TotalCount 999
 			MaxActive  1
@@ -10102,22 +10130,6 @@ WaveSchedule
 
 			RandomChoice
 			{
-				TFBot
-				{
-				Template T_TFBot_Grey_Chief
-				}
-				TFBot
-				{
-				Template T_TFBot_Grey_Chief
-				}
-				TFBot
-				{
-				Template T_TFBot_Grey_Chief
-				}
-				TFBot
-				{
-				Template T_TFBot_Grey_Chief
-				}
 				TFBot
 				{
 				Template T_TFBot_Grey_Chief
