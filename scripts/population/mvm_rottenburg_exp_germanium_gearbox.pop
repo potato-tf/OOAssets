@@ -1298,9 +1298,9 @@ population
 			Name	2g
 			WaitForAllSpawned	2a2
 			TotalCurrency	200
-			TotalCount	12
-			MaxActive	12
-			SpawnCount	3
+			TotalCount	8
+			MaxActive	8
+			SpawnCount	2
 			Where		Spawnbot
 			WaitBeforeStarting	8
 			Waitbetweenspawns	20
@@ -1312,11 +1312,11 @@ population
 				}
 				TFBot
 				{
-					Template	T_TFBot_Heavyweapons_Fist
-				}
-				TFBot
-				{
-					Template	T_TFBot_Heavyweapons_Fist
+					Template	T_TFBot_Medic_Shield
+					Name		"Armored Shield Medic"
+					Scale		1.5
+					Health		750
+					Classicon	medic_armoredshield_qf_mort
 				}
 			}
 		}
@@ -1962,41 +1962,6 @@ population
 		}
 		WaveSpawn
 		{
-			Name	4d
-			WaitForAllSpawned	4b3
-			TotalCurrency	200
-			TotalCount	21
-			MaxActive	9
-			SpawnCount	3
-			Where	spawnbot
-			WaitBeforeStarting	1
-			Waitbetweenspawns	10
-			TFBot
-			{
-				Template	T_TFBot_Demoman_Knight
-				Health		600
-				Scale		1.5
-				Name		"Armored Skullcutter Demo"
-				Classicon	demoknight_skullcutter_armored
-				Item		"The Scotsman's Skullcutter"
-				Item		"The Glasgow Great Helm"
-				Item		"The Dark Age Defender"
-				ItemAttributes
-				{
-					Itemname	"The Scotsman's Skullcutter"
-					"fire rate penalty"					1.5
-					"melee range multiplier"			1.5
-					"Attack not cancel charge"			1
-					"charge time increased"				2
-				}
-				CharacterAttributes
-				{
-					"hand scale"	1.5
-				}
-			}
-		}
-		WaveSpawn
-		{
 			Name	4c
 			WaitForAllSpawned	4b3
 			TotalCurrency	25
@@ -2104,6 +2069,64 @@ population
 						"move speed bonus"	1
 					}
 				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	4d
+			WaitForAllSpawned	4b3
+			TotalCurrency	150
+			TotalCount	14
+			MaxActive	6
+			SpawnCount	2
+			Where	spawnbot
+			WaitBeforeStarting	1
+			Waitbetweenspawns	10
+			TFBot
+			{
+				Template	T_TFBot_Demoman_Knight
+				Health		600
+				Scale		1.5
+				Name		"Armored Skullcutter Demo"
+				Classicon	demoknight_skullcutter_armored
+				Item		"The Scotsman's Skullcutter"
+				Item		"The Glasgow Great Helm"
+				Item		"The Dark Age Defender"
+				ItemAttributes
+				{
+					Itemname	"The Scotsman's Skullcutter"
+					"fire rate penalty"					1.5
+					"melee range multiplier"			1.5
+					"Attack not cancel charge"			1
+					"charge time increased"				2
+				}
+				CharacterAttributes
+				{
+					"hand scale"	1.5
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	4e
+			WaitForAllSpawned	4b3
+			TotalCurrency	50
+			TotalCount	7
+			MaxActive	4
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	1
+			Waitbetweenspawns	10
+			TFBot
+			{
+				Class	Heavy
+				Skill	Normal
+				Health	600
+				Scale	1.5
+				Name	"Armored Tomislav Heavy"
+				Item	"Tomislav"
+				Item	"Capone's Capper"
+				Classicon	heavy_armored_accurate_lite
 			}
 		}
 	}
