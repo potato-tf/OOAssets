@@ -246,7 +246,7 @@ WaveSchedule
 				}
 				CharacterAttributes
 				{
-				"deploy time increased" 0.01
+				"deploy time increased" 0.75
 				}
 				Item "Soldier's Stash"
 				ItemModel 
@@ -433,7 +433,7 @@ WaveSchedule
 				"damage force reduction" 0.4
 				"airblast vulnerability multiplier" 0.4
 				"airblast vertical vulnerability multiplier" 0.1
-				"deploy time increased" 0.01
+				"deploy time increased" 0.75
 			}					
 			SpawnTemplate
 			{
