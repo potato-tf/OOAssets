@@ -618,6 +618,8 @@ population
 				"dmg penalty vs buildings"		2
 				"use large smoke explosion"		1
 				"attach particle effect"		3129  //  Haunted cremation
+				"apply look velocity on damage"	1000
+				"apply z velocity on damage"	100
 			}
 		}
 		T_TFBot_Pyro_Diesel_Engine
@@ -1198,9 +1200,10 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Giant_Heavyweapons_Shotgun
-				Name		"Giant Bison Shotgun Heavy"
+				Name		"Giant Energy Shotgun Heavy"
 				Classicon	shotgun_plasma
 				Attributes	HoldFireUntilFullReload
+				Item		"The MK 50"
 				ItemAttributes
 				{
 					ItemName "TF_WEAPON_SHOTGUN_HWG"
@@ -1214,6 +1217,7 @@ population
 					"Reload time decreased"				6
 					"auto fires full clip"				1	//	These 2 attribs give the weapon 'beggars' effect
 					"auto fires when full"				1	//	These 2 attribs give the weapon 'beggars' effect
+					"attach particle effect"			704	//	Energy Orb
 				}
 			}
 		}
@@ -1280,8 +1284,8 @@ population
 		{
 			Name	sup2.1
 			WaitForAllSpawned	2c2
-			TotalCount	9
-			MaxActive	9
+			TotalCount	6
+			MaxActive	6
 			SpawnCount	3
 			Where		flankers
 			WaitBeforeStarting	2
@@ -1299,11 +1303,11 @@ population
 			WaitForAllSpawned	2a2
 			TotalCurrency	200
 			TotalCount	8
-			MaxActive	8
+			MaxActive	6
 			SpawnCount	2
 			Where		Spawnbot
 			WaitBeforeStarting	8
-			Waitbetweenspawns	20
+			Waitbetweenspawns	15
 			Squad
 			{
 				TFBot
@@ -1324,8 +1328,8 @@ population
 		{
 			Name	sup2.2
 			WaitForAllSpawned	2g
-			TotalCount	6
-			MaxActive	6
+			TotalCount	4
+			MaxActive	4
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	1
@@ -1481,9 +1485,7 @@ population
 				}
 				TFBot
 				{
-					Template	T_TFBot_Medic_BigHeal
-					Name		"Big-Heal Medic"
-					Item		"The Surgeon's Stahlhelm"
+					Template	T_TFBot_Medic_QuickFix
 				}
 			}
 		}
@@ -1542,9 +1544,7 @@ population
 				}
 				TFBot
 				{
-					Template	T_TFBot_Medic_BigHeal
-					Name		"Big-Heal Medic"
-					Item		"The Surgeon's Stahlhelm"
+					Template	T_TFBot_Medic_QuickFix
 				}
 			}
 		}
@@ -1568,9 +1568,7 @@ population
 				}
 				TFBot
 				{
-					Template	T_TFBot_Medic_BigHeal
-					Name		"Big-Heal Medic"
-					Item		"The Surgeon's Stahlhelm"
+					Template	T_TFBot_Medic_QuickFix
 				}
 			}
 		}
@@ -1578,9 +1576,9 @@ population
 		{
 			Name	3d
 			TotalCurrency	50
-			TotalCount	8
-			MaxActive	8
-			SpawnCount	4
+			TotalCount	4
+			MaxActive	4
+			SpawnCount	2
 			Where	Spawnbot
 			WaitBeforeStarting	15
 			Waitbetweenspawns	20
@@ -1593,18 +1591,6 @@ population
 					{
 						"increase buff duration"	9
 					}
-				}
-				TFBot
-				{
-					Template	T_TFBot_Medic_BigHeal
-					Name		"Big-Heal Medic"
-					Item		"The Surgeon's Stahlhelm"
-				}
-				TFBot
-				{
-					Template	T_TFBot_Medic_BigHeal
-					Name		"Big-Heal Medic"
-					Item		"The Surgeon's Stahlhelm"
 				}
 				TFBot
 				{
@@ -1643,7 +1629,7 @@ population
 			Waitbetweenspawns	0
 			Tank
 			{
-				Health	30000
+				Health	27500
 				Name	"TankBossA"
 				Speed	80
 				StartingPathTrackNode "tank_path_b_10"
@@ -2075,10 +2061,10 @@ population
 		{
 			Name	4d
 			WaitForAllSpawned	4b3
-			TotalCurrency	150
-			TotalCount	14
-			MaxActive	6
-			SpawnCount	2
+			TotalCurrency	75
+			TotalCount	7
+			MaxActive	3
+			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	1
 			Waitbetweenspawns	10
@@ -2099,6 +2085,43 @@ population
 					"melee range multiplier"			1.5
 					"Attack not cancel charge"			1
 					"charge time increased"				2
+					"critboost on kill"					5
+				}
+				CharacterAttributes
+				{
+					"hand scale"	1.5
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	4d2
+			WaitForAllSpawned	4b3
+			TotalCurrency	75
+			TotalCount	7
+			MaxActive	3
+			SpawnCount	1
+			Where	flankers
+			WaitBeforeStarting	1
+			Waitbetweenspawns	10
+			TFBot
+			{
+				Template	T_TFBot_Demoman_Knight
+				Health		600
+				Scale		1.5
+				Name		"Armored Skullcutter Demo"
+				Classicon	demoknight_skullcutter_armored
+				Item		"The Scotsman's Skullcutter"
+				Item		"The Glasgow Great Helm"
+				Item		"The Dark Age Defender"
+				ItemAttributes
+				{
+					Itemname	"The Scotsman's Skullcutter"
+					"fire rate penalty"					1.5
+					"melee range multiplier"			1.5
+					"Attack not cancel charge"			1
+					"charge time increased"				2
+					"critboost on kill"					5
 				}
 				CharacterAttributes
 				{
@@ -2502,7 +2525,7 @@ population
 					CharacterAttributes
 					{
 						"move speed bonus"	1
-						"bot medic uber health threshold"	500
+						"bot medic uber health threshold"	1000
 					}
 				}
 			}
@@ -2519,29 +2542,22 @@ population
 			Waitbetweenspawns	0
 			TFBot
 			{
-				Class Soldier
-				Name "Giant Hyper Soldier"
-				ClassIcon soldier_burstfire_hyper
-				Health 4200
-				Skill Expert
-				WeaponRestrictions PrimaryOnly
-				Attributes MiniBoss
-				Attributes HoldFireUntilFullReload
+				Template	T_TFBot_Giant_Soldier_SlowBarrage
+				Name		"Brigadier Barrage"
+				Classicon	soldier_bazooka
+				Item		"The Cloud Crasher"
 				ItemAttributes
 				{
 					ItemName "TF_WEAPON_ROCKETLAUNCHER"
-					"damage bonus" 2.0
-					"faster reload rate" 0.4
-					"fire rate bonus" 0.2
-					"clip size upgrade atomic" 5.0
+					"projectile spread angle penalty"	5
+					"faster reload rate"				0.3
+					"clip size upgrade atomic"			6
+					"fire rate bonus"    				0.05
 				}
 				CharacterAttributes
 				{
-					"move speed bonus"	0.5
-					"damage force reduction" 0.4
-					"airblast vulnerability multiplier" 0.4
-					"override footstep sound set" 3
-					"Projectile speed increased" 0.9
+					"airblast vertical vulnerability multiplier"	0.3
+					"airblast vulnerability multiplier"	0.1
 				}
 			}
 		}
@@ -2734,33 +2750,26 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	flankers
-			WaitBeforeStarting	5
+			WaitBeforeStarting	0
 			Waitbetweenspawns	0
 			TFBot
 			{
-				Class Soldier
-				Name "Giant Hyper Soldier"
-				ClassIcon soldier_burstfire_hyper
-				Health 4200
-				Skill Expert
-				WeaponRestrictions PrimaryOnly
-				Attributes MiniBoss
-				Attributes HoldFireUntilFullReload
+				Template	T_TFBot_Giant_Soldier_SlowBarrage
+				Name		"Brigadier Barrage"
+				Classicon	soldier_bazooka
+				Item		"The Cloud Crasher"
 				ItemAttributes
 				{
 					ItemName "TF_WEAPON_ROCKETLAUNCHER"
-					"damage bonus" 2.0
-					"faster reload rate" 0.4
-					"fire rate bonus" 0.2
-					"clip size upgrade atomic" 5.0
+					"projectile spread angle penalty"	5
+					"faster reload rate"				0.3
+					"clip size upgrade atomic"			6
+					"fire rate bonus"    				0.05
 				}
 				CharacterAttributes
 				{
-					"move speed bonus"	0.5
-					"damage force reduction" 0.4
-					"airblast vulnerability multiplier" 0.4
-					"override footstep sound set" 3
-					"Projectile speed increased" 0.9
+					"airblast vertical vulnerability multiplier"	0.3
+					"airblast vulnerability multiplier"	0.1
 				}
 			}
 		}
