@@ -403,6 +403,16 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		return 0.1
 	}
 	
+	ReloadMapForChanges = function()
+	{
+		ClientPrint(null,3,"\x07FFA500WARNING: This mission has received an update requiring a map reload, which will take place in 10 seconds.")
+		ClientPrint(null,4,"WARNING: This mission has received an update requiring a map reload, which will take place in 10 seconds.")
+		
+		EntFireByHandle(gamerules_entity, "$ChangeLevel", "mvm_spacepost_rc1", 10.0, null, null)
+		
+		EmitGlobalSound("ui/system_message_alert.wav")
+	}
+	
 	ResetTips = function()
 	{	
 		local scope = self.GetScriptScope().bloodstorage
@@ -1616,7 +1626,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				
 				scope.GiantRobot_Control("end_cooldown")
 			}
-			
+
 			EntFireByHandle(gamerules_entity, "CallScriptFunction", "UndoTipUnlocks", 0.03, null, null)
 		}
 		
@@ -8017,13 +8027,20 @@ PrecacheSound("mvm_end_last_wave_short.wav"); PrecacheScriptSound("Announcer.MVM
 PrecacheModel("models/bots/boss_bot/boss_tank.mdl"); PrecacheModel("models/bots/boss_bot/boss_tank_damage1.mdl"); PrecacheModel("models/bots/boss_bot/boss_tank_damage2.mdl"); PrecacheModel("models/bots/boss_bot/boss_tank_damage3.mdl"); PrecacheScriptSound("MVM.BombWarning")
 PrecacheScriptSound("mvm.cpoint_alarm"); PrecacheSound("ui/chat_display_text.wav"); PrecacheSound("misc/cp_harbor_red_whistle.wav"); PrecacheSound("vo/mvm_final_wave_end01.mp3"); PrecacheSound("vo/mvm_final_wave_end02.mp3"); PrecacheSound("vo/mvm_final_wave_end03.mp3")
 PrecacheSound("vo/mvm_final_wave_end04.mp3"); PrecacheSound("vo/mvm_final_wave_end05.mp3"); PrecacheSound("vo/mvm_final_wave_end06.mp3"); PrecacheScriptSound("Announcer.mvm_spybot_death_all"); PrecacheScriptSound("Announcer.MVM_Spy_Alert"); PrecacheScriptSound("Announcer.MVM_Wave_Lose")
-PrecacheSound("weapons/samurai/TF_marked_for_death_indicator.wav"); PrecacheScriptSound("music.mvm_end_tank_wave"); PrecacheSound("pl_hoodoo/alarm_clock_alarm_3.wav"); PrecacheSound("weapons/loose_cannon_explode.wav"); PrecacheSound("DisciplineDevice.PowerUp")
+PrecacheSound("weapons/samurai/TF_marked_for_death_indicator.wav"); PrecacheScriptSound("music.mvm_end_tank_wave"); PrecacheSound("pl_hoodoo/alarm_clock_alarm_3.wav"); PrecacheSound("weapons/loose_cannon_explode.wav"); PrecacheSound("DisciplineDevice.PowerUp"); PrecacheSound("ui/system_message_alert.wav")
 
 // PrecacheEntityFromTable({ classname = "instanced_scripted_scene", model = MODEL_NAME });(
 
 //////////////////////////////////////////////////
 //////////// AUTOEXECUTE
 //////////////////////////////////////////////////
+
+foreach (bluplayer in bluplayer_array)
+{
+	if (bluplayer.IsFakeClient()) continue
+	
+	if (!("vis_howtoplay" in bluplayer.GetScriptScope().bloodstorage.tip_table)) { ReloadMapForChanges(); break }
+}
 
 EntityOutputs.AddOutput(debug_menu, "OnCase02", "gamerules", "RunScriptCode", "if (debugger != null) ClientPrint(debugger,3,`` + (cur_tankspeed + tank_speedboost))", -1.0, -1)
 
