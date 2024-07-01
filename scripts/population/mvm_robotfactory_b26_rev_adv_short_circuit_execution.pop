@@ -41,6 +41,7 @@ WaveSchedule
 	AllowJoinTeamBlue 1 				
 	AllowMultipleSappers 0				
 	AllowBombBuffsForPlayerCarriers 0	
+	BotsUsePlayerTeleporters 0   // Should bots use player teleporter entrances (default: 1)
 	BodyPartScaleSpeed 100				
 	BluPlayersAreRobots 1 				
 	BluHumanFlagCapture 0				
@@ -9797,6 +9798,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 			"cannot taunt" 1
+			"cannot be teleported" 1
 			}			
 			}
 		}
