@@ -5197,8 +5197,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					if (WAVE != 3) bluplayer.SetScriptOverlayMaterial("spatial_impasse_overlays/tank_blood_storage_overlay")
 					else
 					{
-						if (extraction_mode == "tnt") bluplayer.SetScriptOverlayMaterial("spatial_impasse_overlays/w3_tnt_storage_overlay")
-						else						  bluplayer.SetScriptOverlayMaterial("spatial_impasse_overlays/w3_blood_storage_overlay")
+						if (extraction_mode == "tnt") bluplayer.SetScriptOverlayMaterial("spatial_impasse_overlays/w3_tnt_storage_overlay_2")
+						else						  bluplayer.SetScriptOverlayMaterial("spatial_impasse_overlays/w3_blood_storage_overlay_2")
 					}
 				}
 
