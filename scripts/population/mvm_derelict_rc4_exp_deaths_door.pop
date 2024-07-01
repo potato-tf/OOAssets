@@ -255,7 +255,7 @@ Die
 				"fire rate bonus" 0.25
 				"projectile spread angle penalty" 1.5
 				"Projectile speed increased"	1.4
-				"dmg penalty vs players" 1.4
+				"dmg penalty vs players" 1.25
 			}
 			CharacterAttributes
 			{
@@ -477,7 +477,7 @@ Die
 			Class Sniper
 			Name "Giant Bowman"
 			Skill Expert
-			ClassIcon sniper_bow_multi
+			ClassIcon sniper_bow_multi_penetrator
 			Health 2000
 			Attributes MiniBoss
 			WeaponRestrictions PrimaryOnly
@@ -1222,6 +1222,7 @@ Die
 			{
 				Template T_TFBot_Soldier_RocketShotgun
 				Attributes AlwaysCrit
+				Tag nav_avoid_front_flanks
 				Skill Normal
 			}
 		}
@@ -1432,7 +1433,7 @@ Die
 			SpawnCount 2
 			WaitBeforeStarting 25
 			WaitBetweenSpawns 15
-			TotalCurrency 50
+			TotalCurrency 150
 			WaitForAllSpawned "B"
 			Randomspawn 1
 			Squad
@@ -1458,7 +1459,7 @@ Die
 			SpawnCount 2
 			WaitBeforeStarting 38.5
 			WaitBetweenSpawns 10
-			TotalCurrency 150
+			TotalCurrency 200
 			WaitForAllSpawned "B"
 			Randomspawn 1
 			Squad
@@ -1763,7 +1764,7 @@ Die
 				Tag nav_avoid_front_flanks
 				Name "Chief Rapidfire Demoman"
 				ClassIcon demo_infinite
-				Health 14500
+				Health 14000
 				Scale 1.85
 				Attributes UseBossHealthBar
 				Attributes AlwaysCrit
@@ -1774,7 +1775,7 @@ Die
 				{
 					ItemName "TF_WEAPON_GRENADELAUNCHER"
 					"fire rate bonus" 0.4
-					"damage bonus" 1.25
+					"damage bonus" 1.1
 				}
 				CharacterAttributes
 				{
@@ -1808,7 +1809,7 @@ Die
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic
+					Template T_TFBot_Medic_Bigheal
 				}
 				TFBot
 				{
@@ -1882,7 +1883,7 @@ Die
 				Item "The Jupiter Jumpers"
 				Attributes HoldFireUntilFullReload
 				Name "Beam Soldier"
-				ClassIcon soldier_bison_b
+				ClassIcon soldier_bison
 				WeaponRestrictions SecondaryOnly
 				ItemAttributes
 				{
@@ -2001,7 +2002,7 @@ Die
 			SpawnCount 1
 			WaitBeforeStarting 28
 			WaitBetweenSpawns 2
-			TotalCurrency 35
+			TotalCurrency 100
 			RandomSpawn 1
 			WaitForAllSpawned "C"
 			TFBot
@@ -2060,7 +2061,7 @@ Die
 			SpawnCount 1
 			WaitBeforeStarting 36
 			WaitBetweenSpawns 2
-			TotalCurrency 40
+			TotalCurrency 100
 			RandomSpawn 1
 			WaitForAllSpawned "C"
 			TFBot
@@ -2116,7 +2117,7 @@ Die
 			SpawnCount 11
 			WaitBeforeStarting 8
 			WaitBetweenSpawns 6
-			TotalCurrency 75
+			TotalCurrency 100
 			RandomSpawn 1
 			WaitForAllSpawned "CB"
 			Support 1
@@ -2497,7 +2498,6 @@ Die
 				ClassIcon demo_infinite
 				Skill Hard
 				Name "Rapid Fire Demoman"
-				Attributes AlwaysCrit	
 				ItemAttributes
 				{
 					ItemName "TF_WEAPON_GRENADELAUNCHER"
@@ -2614,7 +2614,6 @@ Die
 					Template T_TFBot_Giant_Hyper_Demoman
 					Item "The Broadband Bonnet"
 					Item "The Juggernaut Jacket"
-					Attributes AlwaysCrit
 					Tag nav_avoid_front_flanks
 				}
 				TFBot
@@ -2646,7 +2645,6 @@ Die
 					Template T_TFBot_Giant_Hyper_Demoman
 					Item "The Broadband Bonnet"
 					Item "The Juggernaut Jacket"
-					Attributes AlwaysCrit
 					Tag nav_avoid_front_flanks
 				}
 				TFBot
@@ -2668,26 +2666,26 @@ Die
 			}
 		}
 
-		WaveSpawn //3 Giant crit Bison main (75)
-		{
-			Name "DB"
-			Where spawnbot
-			TotalCount 1
-			MaxActive 1
-			SpawnCount 1
-			WaitBeforeStarting 31.5
-			WaitBetweenSpawns 18.5
-			TotalCurrency 25
-			WaitForAllSpawned "C"
-			Squad
-			{
-				TFBot
-				{
-					Template T_TFBot_Giant_Heavyweapons_Deflector
-					Tag nav_avoid_front_flanks
-				}
-			}
-		}
+//		WaveSpawn //3 Giant crit Bison main (75)
+//		{
+//			Name "DB"
+//			Where spawnbot
+//			TotalCount 1
+//			MaxActive 1
+//			SpawnCount 1
+//			WaitBeforeStarting 31.5
+//			WaitBetweenSpawns 18.5
+//			TotalCurrency 25
+//			WaitForAllSpawned "C"
+//			Squad
+//			{
+//				TFBot
+//				{
+//					Template T_TFBot_Giant_Heavyweapons_Deflector
+//					Tag nav_avoid_front_flanks
+//				}
+//			}
+//		}
 
 		WaveSpawn //support heavies (50)
 		{

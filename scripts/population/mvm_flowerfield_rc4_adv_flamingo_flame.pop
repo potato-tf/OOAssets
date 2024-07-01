@@ -1347,7 +1347,7 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_Shield_Armored
+					Template T_TFBot_Medic_Shield
 					Attributes IgnoreEnemies
 				}
 			}
@@ -1373,7 +1373,7 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_Shield_Armored
+					Template T_TFBot_Medic_Shield
 					Attributes IgnoreEnemies
 				}
 			}
@@ -1411,7 +1411,7 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_Shield_Armored
+					Template T_TFBot_Medic_Shield
 					Attributes IgnoreEnemies
 				}
 			}
@@ -1461,13 +1461,13 @@ WaveSchedule
 			Name "5c"
 			WaitForAllSpawned "5b"
 			
-			Where spawnbot_flank
-			TotalCount 4
-			MaxActive 4
+			Where spawnbot
+			TotalCount 8
+			MaxActive 8
 			SpawnCount 4
 			WaitBeforeStarting 0
-			WaitBetweenSpawns 0
-			TotalCurrency 100
+			WaitBetweenSpawns 18
+			TotalCurrency 200
 			
 			Squad
 			{
@@ -1488,45 +1488,7 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_Shield_Armored
-					Attributes IgnoreEnemies
-				}
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name "5c"
-			WaitForAllSpawned "5b"
-			
-			Where spawnbot_flank_short
-			TotalCount 4
-			MaxActive 4
-			SpawnCount 4
-			WaitBeforeStarting 0
-			WaitBetweenSpawns 0
-			TotalCurrency 100
-			
-			Squad
-			{
-				TFBot
-				{
-					Template T_TFBot_Heavyweapons_Heater
-					Name "Giant Heater Heavy"
-				}
-				TFBot
-				{
-					Template T_TFBot_Pyro_Flaregun
-					Name "Flare Gun Pyro"
-				}
-				TFBot
-				{
-					Template T_TFBot_Pyro_Flaregun
-					Name "Flare Gun Pyro"
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_Shield_Armored
+					Template T_TFBot_Medic_Shield
 					Attributes IgnoreEnemies
 				}
 			}
@@ -2484,3 +2446,8 @@ WaveSchedule
 // Nerf
 // Wave 2
 // Change Spawncount from 1 to 5 but longer WaitBetweenSpawns from 1 to 8 and Change Pyro bot to Heavyweight Champ
+
+// Changelog
+// Nerf Wave 5
+// Change Armored Shield Medic to Common Variant 
+// Change the last 2 Gianr heavy to spawnbot with having WaitBetweenSpawns 18 seconds

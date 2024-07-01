@@ -2285,6 +2285,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 15
 			TotalCurrency 30
+			FirstSpawnWarningSound mvm/mvm_tele_deliver.wav
 			
 			FirstSpawnOutPut
 			{

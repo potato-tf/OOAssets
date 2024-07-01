@@ -98,6 +98,7 @@ local BOTS_VARIANTS = { --duplicate or redundant templates are here as parking s
 					["override footstep sound set"] = 3,
 					["cannot pick up intelligence"] = 1,
 					["health from healers increased"] = 3,
+					["special damage type"] = 2,
 				},
 			},
 			[4] = {
@@ -124,6 +125,7 @@ local BOTS_VARIANTS = { --duplicate or redundant templates are here as parking s
 					["override footstep sound set"] = 3,
 					["cannot pick up intelligence"] = 1,
 					["health from healers increased"] = 3,
+					["special damage type"] = 2,
 				},
 			},
 		},
@@ -235,6 +237,7 @@ local BOTS_VARIANTS = { --duplicate or redundant templates are here as parking s
 					["cannot pick up intelligence"] = 1,
 					["cannot taunt"] = 1,
 					["health from healers increased"] = 3,
+					["special damage type"] = 2,
 					
 				},
 			},
@@ -269,6 +272,7 @@ local BOTS_VARIANTS = { --duplicate or redundant templates are here as parking s
 					["cannot pick up intelligence"] = 1,
 					["cannot taunt"] = 1,
 					["health from healers increased"] = 3,
+					["special damage type"] = 2,
 					
 				},
 			},					
@@ -376,6 +380,7 @@ local BOTS_VARIANTS = { --duplicate or redundant templates are here as parking s
 					["airblast pushback scale"] = 2.0,
 					["mult airblast refire time"] = 1.25,
 					["airblast disabled"] = 0,
+					["special damage type"] = 2,
 				},
 			},
 			[4] = {
@@ -401,6 +406,7 @@ local BOTS_VARIANTS = { --duplicate or redundant templates are here as parking s
 					["faster reload rate"] = 0.6,
 					["mult_item_meter_charge_rate"] = 0.6, --repressurization rate
 					["damage bonus"] = 1.5,
+					["special damage type"] = 2,
 				},
 			},				
 		},
@@ -495,6 +501,7 @@ local BOTS_VARIANTS = { --duplicate or redundant templates are here as parking s
 					["stomp player force"] = 300,
 					["stomp player time"] = 2,
 					["health from healers increased"] = 3,
+					["special damage type"] = 2,
 				},
 			},
 			[4] = {
@@ -519,6 +526,7 @@ local BOTS_VARIANTS = { --duplicate or redundant templates are here as parking s
 					["stomp player damage"] = 200,
 					["stomp player force"] = 600,
 					["stomp player time"] = 2,
+					["special damage type"] = 2,
 				},
 			},					
 		},
@@ -610,6 +618,7 @@ local BOTS_VARIANTS = { --duplicate or redundant templates are here as parking s
 					["weapon burn dmg increased"] = 2,					
 					
 					["damage bonus"] = 1.1,	
+					["special damage type"] = 2,
 				},
 			},			
 			[4] = {
@@ -633,6 +642,7 @@ local BOTS_VARIANTS = { --duplicate or redundant templates are here as parking s
 					["cannot taunt"] = 1,
 					
 					["damage bonus"] = 1.1, --not as high as a real gheavy	
+					["special damage type"] = 2,
 				},
 			},			
 		},
@@ -654,6 +664,7 @@ local BOTS_ATTRIBUTES = {
 
 local BOTS_WRANGLED_ATTRIBUTES = {
 	["SET BONUS: move speed set bonus"] = 1.3,
+	["dmg taken increased"] = 0.35,
 }
 
 -- if owner has these conds, apply them on the bot
@@ -1462,6 +1473,10 @@ function SentrySpawned(_, building)
 		local cursorPos = Vector(0, 0, 0)
 
 		local lastWrangled = false
+			
+		local kneecapGiant = false	
+			
+		local kneecapCooldown = 0	
 
 		-- bot behavior
 		-- default behavior is always following you
@@ -1500,7 +1515,7 @@ function SentrySpawned(_, building)
 					return
 				end				
 
-					if botSpawn.m_flChargeMeter >= 100 then
+					if botSpawn.m_flChargeMeter >= 100 and kneecapGiant == false then
 						if botSpawn:GetPlayerItemBySlot(1) then		
 							if botSpawn:GetPlayerItemBySlot(1):GetItemName() == "The Splendid Screen" or botSpawn:GetPlayerItemBySlot(1):GetItemName() == "The Chargin' Targe" then 
 
@@ -1654,10 +1669,34 @@ function SentrySpawned(_, building)
 			end
 
 			local stringStart = "interrupt_action -switch_action Default"
+					
+				
+					
+			if owner.m_nButtons >= 8192 and kneecapCooldown <= 0 then
+						
+					if kneecapGiant == false then	
+						kneecapGiant = true		
+						owner:AcceptInput("$displaytextchat", "{FFFF00}Giant OS{reset} {FFFFFF} : Your giant is now {Blue}Parked")	
+						owner:PlaySoundToSelf("radio5.mp3")
+						owner:PlaySoundToSelf("mvm/giant_demoman/giant_demoman_step_01.wav")	
+					else
+						kneecapGiant = false	
+						owner:AcceptInput("$displaytextchat", "{FFFF00}Giant OS{reset} {FFFFFF} : Your giant is now {Green}Mobile")	
+						owner:PlaySoundToSelf("radio4.mp3")
+						owner:PlaySoundToSelf("sentry_spot_low.mp3")	
+					end
+				kneecapCooldown = 0.3		
+			end
+					
+			if kneecapCooldown > 0 then
+				kneecapCooldown = kneecapCooldown - 0.1		
+			end			
+					
 
-			-- don't move if already close
-			if distance <= 150 then
+			-- don't move if already close, or if you are told to not move
+			if distance <= 150 or kneecapGiant == true then
 				botSpawn:BotCommand(stringStart .. " -duration 0.1")
+				--print(owner.m_nButtons)
 				return
 			end
 
@@ -1851,9 +1890,9 @@ function checkIfMeleeHitAlly(param, activator, calller)
 			local METAL_TO_HEALTH_RATIO
 		
 			if hitEntity:GetPlayerName() == "Giant VIP Heavy" then
-				METAL_TO_HEALTH_RATIO = 4
-			else
 				METAL_TO_HEALTH_RATIO = 8
+			else
+				METAL_TO_HEALTH_RATIO = 16
 			end
 		
 			--print("Hit entity was healed!")

@@ -336,33 +336,38 @@ population
 
 	CustomWeapon [$SIGSEGV]
 	{
-		Name							"The Marble Zone"
-		OriginalItemName				"The Iron Bomber"
-		"special item description"		"[INFO] Burst fire, projectiles bounce off surfaces, gaining constant speed."
-		"fuse bonus"					1.6
-		"projectile speed decreased"	0.6
-		"grenade bounce speed"			1.15
-		"grenade bounce damage"			0.01	// 0.112
-		"damage penalty"				0.8	// 0.9
-		"fire rate bonus"				0.1
-		"reload time increased hidden"	3	// 6 //changed cause i removed clip upgrade
-		"reload full clip at once"		1
-		paintkit_proto_def_index		226
-		set_item_texture_wear			0
-		"mult projectile scale"			1.66
-		"blast radius decreased"		0.4
-		"explosion particle"			ExplosionCore_sapperdestroyed
-		"projectile trail particle"		rockettrail_airstrike_line
-		"custom projectile model"		models/weapons/c_models/c_xms_festive_ornament.mdl
-		"custom kill icon"				deflect_promode
-		"custom weapon reload sound"	=65|weapons/cow_mangler_reload_final.wav
+		Name								"The Marble Zone"
+		OriginalItemName					"The Iron Bomber"
+		"special item description"			"[INFO] Burst fire, projectiles bounce off surfaces, gaining constant speed."
+		"fuse bonus"						1.6
+		"projectile speed decreased"		0.6
+		"grenade bounce speed"				1.15
+		"grenade bounce damage"				0.112	// 0.01	// 0.112
+		"damage penalty"					0.95	// 0.8	// 0.9
+		// "fire rate bonus"					0.1
+		// "reload time increased hidden"	3	// 6 //changed cause i removed clip upgrade
+		// "reload full clip at once"		1
+		// changing this to beggars style now.
+		"fire rate bonus HIDDEN"			0.3
+		"auto fires full clip"				1
+		// "can overload"						1
+		"reload time increased hidden"		1.2
+		"projectile spread angle penalty"	3	// 5	// haha
+		paintkit_proto_def_index			226
+		set_item_texture_wear				0
+		"mult projectile scale"				1.66
+		"blast radius decreased"			0.4
+		"explosion particle"				ExplosionCore_sapperdestroyed
+		"projectile trail particle"			rockettrail_airstrike_line
+		"custom projectile model"			models/weapons/c_models/c_xms_festive_ornament.mdl
+		"custom kill icon"					deflect_promode
+		// "custom weapon reload sound"		=65|weapons/cow_mangler_reload.wav	// _final.wav
 	}
-
-	DisallowUpgrade	// OP/too hard to balance
-	{
-		Upgrade		"clip size upgrade atomic"
-		ItemName	"The Marble Zone"
-	}
+	// DisallowUpgrade	// OP/too hard to balance
+	// {
+	// Upgrade		"clip size upgrade atomic"
+	// ItemName	"The Marble Zone"
+	// }
 	// CustomWeapon [$SIGSEGV]
 	// {
 	// Name									"Signal Sterilizer"
@@ -434,15 +439,17 @@ population
 	{
 		Name							"Wild Revolver"
 		OriginalItemName				"Upgradeable TF_WEAPON_REVOLVER"
-		"special item description"		"[INFO] Shoots in a burst."
+		"special item description"		"[INFO] Beggars style revolver. Damage can be upgraded. Innate 50% damage bonus."
 		"auto fires full clip"			1
 		"auto fires when full"			1
-		"spread penalty"				2.2
+		// "spread penalty"				2.2 //fucking atrocity
 		"fire rate penalty hidden"		0.66
-		"reload time increased hidden"	1.3
+		"reload time increased hidden"	1.1	// 1.3
 		Paintkit_proto_def_index		403
 		Set_item_texture_wear			0
 		"crit mod disabled"				0
+		"clip size penalty"				0.5	// zooks idea.
+		"damage bonus HIDDEN"			1.5	// zooks idea.
 		"custom weapon fire sound"		=85|weapons/357_fire2.wav
 		"custom weapon reload sound"	=80|weapons/357/357_reload3.wav
 	}
@@ -545,7 +552,7 @@ population
 		{
 			Name		"High Noon"
 			Attribute	"killstreak tier"
-			Description	"Last shot always crits, damage increased even further."
+			Description	"Last shot always crits, damage increased by 35%."
 			Cap			2
 			Increment	2
 			Cost		650
