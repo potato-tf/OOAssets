@@ -2309,7 +2309,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				
 				if (bluplayer.GetScriptScope().bloodstorage.audio_excludelist.find("pl_hoodoo/alarm_clock_ticking_3.wav") != null) continue
 				
-				EmitSoundEx({ sound_name = "pl_hoodoo/alarm_clock_ticking_3.wav", filter_type = 5, entity = bluplayer, pitch = 175 - ((tank_objective_explosion_time - Time()).tofloat() * 9.375), flags = 2, channel = 6 })
+				EmitSoundEx({ sound_name = "pl_hoodoo/alarm_clock_ticking_3.wav", filter_type = 4, entity = bluplayer, pitch = 175 - ((tank_objective_explosion_time - Time()).tofloat() * 9.375), flags = 2, channel = 6 })
 			}
 			
 			if (tank_objective_explosion_time - Time() <= 1.5)
@@ -2322,7 +2322,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					
 					if (bluplayer.GetScriptScope().bloodstorage.audio_excludelist.find("pl_hoodoo/alarm_clock_alarm_3.wav") != null) continue
 					
-					EmitSoundEx({ sound_name = "pl_hoodoo/alarm_clock_alarm_3.wav", entity = bluplayer, filter_type = 5, pitch = 100, flags = 1, delay = -8, channel = 6 })
+					EmitSoundEx({ sound_name = "pl_hoodoo/alarm_clock_alarm_3.wav", entity = bluplayer, filter_type = 4, pitch = 100, flags = 1, delay = -8, channel = 6 })
 				}
 				
 			}
