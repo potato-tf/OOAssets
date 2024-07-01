@@ -109,8 +109,52 @@ population
 				"OnHitMax" "tank_boss,RemoveHealth,999999,0,-1"
 			}
 		}
+		NoMannPower
+        {
+            NoFixup 1
+            logic_timer
+            {
+                "targetname" "mannpower_kill"
+                "RefireTime" "0.01"
+                "spawnflags" "0"
+                "UseRandomTime" "0"
+                "OnTimer" "item_powerup_rune,kill,,0,-1"
+            }
+        }
 	}
 	SpawnTemplate	finalsubPT
+	SpawnTemplate	NoMannPower
+	
+	CustomWeapon [$SIGSEGV] //Allows you to use an alias for items with custom attributes
+	{
+		"The Overloader" // The name you would use in Item key in TFBot
+		{
+			OriginalItemname	"tf_weapon_medigun" // The item used as a base
+			"effect cond override" 91 // Attributes
+			"ubercharge rate bonus" 1.20
+			"special item description"	"Your Uber effect gives you and your patient the HASTE Mannpower powerup"
+			"Paintkit_proto_def_index"    230        //number of warpaint ID
+			"set_item_texture_wear"    0	       //sets to Factory New
+			"custom_paintkit_seed_lo" "x3729eaae"
+			"custom_paintkit_seed_hi" "x72050db2"
+		}
+	}
+	
+	ExtraLoadoutItems [$SIGSEGV] // Extra loadout items available after typing !missionitems in chat
+	{
+		AllowEquipOutsideSpawn 0 // Allow equipping items outside spawn
+		Medic
+		{
+			Secondary // Extended syntax, Item slot to use
+			{
+				Item  "The Overloader" // Item name, custom weapon names are available 
+				Cost 0 // The cost of the weapon (default: 0)
+				AllowedMinWave 1 //The wave at which the weapon is enabled (default: 1)
+				AllowRefund 1 //Allow refunding of the weapon (default: 1)
+				// Hidden 1 //If set, this item is only accessible via $AwardExtraItem input (default: 0)
+			}
+		}
+	}
 	
 	Templates
 	{
@@ -288,7 +332,7 @@ population
             DisableChildModels 1
 			NoCrushDamage 1
 			StartingPathTrackNode	monorail_path_B
-			ClassIcon	tank_monorail_cng
+			ClassIcon	monorail_tank
             Model   //Set custom model on tank. Will spit harmless errors on client console if the model does not have enough sequences
 			{
 				Default "models/robot_factory/monorail_tank.mdl"
@@ -476,7 +520,7 @@ population
 			}
 		}
 	}
-	Wave //WAVE 2 - CASH 1200
+	Wave //WAVE 2 - CASH 1000
 	{
 		WaitWhenDone	65
 		Checkpoint	Yes
@@ -498,7 +542,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1
-			TotalCurrency	125
+			TotalCurrency	25
 			TotalCount	3
 			MaxActive	2
 			SpawnCount	1
@@ -513,7 +557,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1b
-			TotalCurrency	125
+			TotalCurrency	25
 			TotalCount	27
 			MaxActive	12
 			SpawnCount	3
@@ -693,7 +737,7 @@ population
 			}
 		}
 	}
-	Wave //WAVE 3 - CASH 1000
+	Wave //WAVE 3 - CASH 800
 	{
 		WaitWhenDone	65
 		Checkpoint	Yes
@@ -715,7 +759,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	6
 			MaxActive	4
 			SpawnCount	3
@@ -728,8 +772,9 @@ population
 				{
 					Template	T_TFBot_Giant_Soldier
 					Item	"The Cow Mangler 5000"
-					ClassIcon	soldier_mangler_nolod
+					ClassIcon	soldier_mangler
 					Attributes	"HoldFireUntilFullReload"
+					Attributes	"AlwaysCrit"
 					FireWeapon
 					{
 						Delay 10 //Time before the first fire input starts (Default: 10)
@@ -759,7 +804,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	26
 			MaxActive	8
 			SpawnCount	2
@@ -776,7 +821,7 @@ population
 		WaveSpawn
 		{
 			WaitForAllSpawned	Main1
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	32
 			MaxActive	8
 			SpawnCount	4
@@ -803,7 +848,7 @@ population
 		{
 			WaitForAllDead	Main1
 			Name	Main2
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	6
 			MaxActive	3
 			SpawnCount	1
@@ -852,7 +897,7 @@ population
 			{
 				Template	MonorailTank
 				StartingPathTrackNode	monorail_path_B
-				Health	14500
+				Health	13000
 			}
 			FirstSpawnOutput                                                                                                                                                            
 			{
@@ -877,7 +922,7 @@ population
 			{
 				Template	MonorailTank
 				StartingPathTrackNode	monorail_path_E
-				Health	11500
+				Health	11000
 			}
 			FirstSpawnOutput                                                                                                                                                            
 			{
@@ -947,7 +992,7 @@ population
 			}
 		}
 	}
-	Wave //WAVE 4 - CASH 1100
+	Wave //WAVE 4 - CASH 900
 	{
 		WaitWhenDone	65
 		Checkpoint	Yes
@@ -969,7 +1014,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	3
 			MaxActive	2
 			SpawnCount	1
@@ -985,7 +1030,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	3
 			MaxActive	2
 			SpawnCount	1
@@ -1001,7 +1046,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1b
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	22
 			MaxActive	8
 			SpawnCount	2
@@ -1021,7 +1066,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1b
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	21
 			MaxActive	6
 			SpawnCount	3
@@ -1072,6 +1117,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Heavyweapons_Fist
+				Tag	bot_giant
 			}
 		}
 		WaveSpawn
@@ -1163,7 +1209,7 @@ population
 			}
 		}
 	}
-	Wave //WAVE 5 - CASH 1000
+	Wave //WAVE 5 - CASH 800
 	{
 		WaitWhenDone	65
 		Checkpoint	Yes
@@ -1202,7 +1248,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1b
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	24
 			MaxActive	9
 			SpawnCount	3
@@ -1240,7 +1286,7 @@ population
 			WaitForAllDead	Main1
 			WaitForAllSpawned	Main1b
 			Name	Main2
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	2
 			MaxActive	2
 			SpawnCount	1
@@ -1253,7 +1299,7 @@ population
 			{
 				StartingPathTrackNode	monorail_path_E
 				Template	MonorailTank
-				Health	20000
+				Health	18500
 			}
 			FirstSpawnOutput                                                                                                                                                            
 			{
@@ -1328,7 +1374,7 @@ population
 		{
 			WaitForAllDead	Main2
 			Name	Main3
-			TotalCurrency	150
+			TotalCurrency	50
 			TotalCount	4
 			MaxActive	4
 			SpawnCount	2
@@ -1340,7 +1386,8 @@ population
 			{
 				TFBot
 				{
-					Template	T_TFBot_Giant_Demo_RapidFire
+					Template	T_TFBot_Giant_Demoman
+					ClassIcon	demo_rapid_giant
 					Attributes	"AlwaysCrit"
 				}
 				TFBot
@@ -1409,7 +1456,7 @@ population
 			}
 		}
 	}
-	Wave //WAVE 6 - CASH 1200
+	Wave //WAVE 6 - CASH 1000
 	{
 		WaitWhenDone	65
 		Checkpoint	Yes
@@ -1431,7 +1478,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1
-			TotalCurrency	150
+			TotalCurrency	50
 			TotalCount	7
 			MaxActive	5
 			SpawnCount	1
@@ -1448,7 +1495,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	1
 			MaxActive	1
 			SpawnCount	1
@@ -1460,7 +1507,7 @@ population
 			Tank
 			{
 				StartingPathTrackNode	tank_path_D
-				Health	35000
+				Health	32000
 				OnKilledOutput
 				{
 					Target	boss_dead_relay
@@ -1543,7 +1590,7 @@ population
 		{
 			WaitForAllDead	Main1b
 			Name	Main2b
-			TotalCurrency	175
+			TotalCurrency	125
 			TotalCount	15
 			MaxActive	9
 			SpawnCount	3
@@ -1598,7 +1645,7 @@ population
 			{
 				Template	MonorailTank
 				StartingPathTrackNode	monorail_path_B
-				Health	26000
+				Health	23000
 			}
 			FirstSpawnOutput                                                                                                                                                            
 			{
@@ -1623,7 +1670,7 @@ population
 			{
 				Template	MonorailTank
 				StartingPathTrackNode	monorail_path_E
-				Health	21500
+				Health	19000
 			}
 			FirstSpawnOutput                                                                                                                                                            
 			{
@@ -1755,14 +1802,15 @@ population
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	8
 			RandomSpawn	1
-			Support limited
+			Support 1
 			TFBot
 			{
 				Template	T_TFBot_Heavyweapons_Fist
+				Tag	bot_giant
 			}
 		}
 	}
-	Wave //WAVE 7 - CASH 1300
+	Wave //WAVE 7 - CASH 1100
 	{
 		WaitWhenDone	65
 		Checkpoint	Yes
@@ -1789,9 +1837,9 @@ population
 		}
 		WaveSpawn
 		{
-			TotalCurrency	200
+			TotalCurrency	100
 			TotalCount	6
-			MaxActive	1
+			MaxActive	2
 			SpawnCount	1
 			Where	spawnbot_right
 			Where	spawnbot_left
@@ -1806,14 +1854,14 @@ population
 					Template	MonorailTank
 					StartingPathTrackNode	monorail_path_E
 					Speed	125
-					Health	12000
+					Health	10000
 				}
 				Tank
 				{
 					Template	MonorailTank
 					StartingPathTrackNode	monorail_path_B
 					Speed	125
-					Health	14000
+					Health	12000
 				}
 			}
 			FirstSpawnOutput                                                                                                                                                            
@@ -1863,7 +1911,7 @@ population
 		WaveSpawn
 		{
 			Name	Main1b
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	24
 			MaxActive	9
 			SpawnCount	3
@@ -1887,7 +1935,7 @@ population
 			WaitForAllDead	Main1
 			WaitForAllSpawned	Main1b
 			Name	Main3
-			TotalCurrency	150
+			TotalCurrency	100
 			TotalCount	8
 			MaxActive	6
 			SpawnCount	2
@@ -1961,10 +2009,17 @@ population
 				Target	FinalSubCheck
 				Action	Trigger
 			}
+			Squad
+			{
 			TFBot
 			{
 				Template	GiantHeavyDeflector
 				Attributes	"AlwaysCrit"
+			}
+//			TFBot
+//			{
+//				Template	GiantUberMedic
+//			}
 			}
 		}
 		WaveSpawn
