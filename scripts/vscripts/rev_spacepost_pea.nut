@@ -1177,9 +1177,9 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	w2_s3_minigame_bombcart_prop = null
 	w2_s3_minigame_bombcart_prop_bbox = null
 	
-	stage1_blockade_center = SpawnEntityFromTable("prop_dynamic", { origin = Vector(1400, -800, -325), model = "models/props_gameplay/security_fence512.mdl", solid = 6})
-	stage1_blockade_left = SpawnEntityFromTable("prop_dynamic", { origin = Vector(1700, -450, -150), angles = QAngle(0, 90, 0), model = "models/props_gameplay/security_fence512.mdl", solid = 6 })
-	stage1_blockade_right = SpawnEntityFromTable("prop_dynamic", { origin = Vector(450, -1150, -300), model = "models/props_gameplay/security_fence512.mdl", solid = 6 })
+	stage1_blockade_center = SpawnEntityFromTable("prop_dynamic", { origin = Vector(1400, -800, -325), model = "models/props_gameplay/security_fence512.mdl", solid = 6, disableshadows = 1 })
+	stage1_blockade_left = SpawnEntityFromTable("prop_dynamic", { origin = Vector(1700, -450, -150), angles = QAngle(0, 90, 0), model = "models/props_gameplay/security_fence512.mdl", solid = 6, disableshadows = 1 })
+	stage1_blockade_right = SpawnEntityFromTable("prop_dynamic", { origin = Vector(450, -1150, -300), model = "models/props_gameplay/security_fence512.mdl", solid = 6, disableshadows = 1 })
 
 	stage1_blockade_center_nobuild = SpawnEntityFromTable("func_nobuild", { origin = Vector(1214, -749, -380) })
 	stage1_blockade_left_nobuild = SpawnEntityFromTable("func_nobuild", { origin = Vector(1677, -620, -179) })
@@ -4306,6 +4306,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			model                   = "models/props_gameplay/security_fence512.mdl"
 			solid                   = 6
 			angles                  = QAngle(0, 90, 0)
+			disableshadows			= 1
 		})
 
 		local reentry_blockade_left_nobuild = SpawnEntityFromTable("func_nobuild", { origin = Vector(1677, -620, -179) })
@@ -4321,6 +4322,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			model                   = "models/props_gameplay/security_fence512.mdl"
 			solid                   = 6
 			angles                  = QAngle(0, 0, 0)
+			disableshadows			= 1
 		})
 
 		local reentry_blockade_right_nobuild = SpawnEntityFromTable("func_nobuild", { origin = Vector(376, -1125, -284) })
@@ -4336,6 +4338,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			model                   = "models/props_gameplay/security_fence256.mdl"
 			solid                   = 6
 			angles                  = QAngle(0, 90, 0)
+			disableshadows			= 1
 		})
 
 		local overpass_blockade = SpawnEntityFromTable("prop_dynamic",
@@ -4345,6 +4348,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			model                   = "models/props_gameplay/security_fence256.mdl"
 			solid                   = 6
 			angles                  = QAngle(0, 0, 0)
+			disableshadows			= 1
 		})
 		
 		AddThinkToEnt(reentry_blockade_center, "ReentryBlockadeFall_Think")
