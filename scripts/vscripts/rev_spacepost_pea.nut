@@ -7,7 +7,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	
 	debug = false
 	debug_stage = 2
-	debug_objective = true
+	debug_objective = false
 	
 	draw_worldtext = false
 	draw_debugchat = false
@@ -3605,6 +3605,14 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		
 		EntFireByHandle(gamerules_entity, "RunScriptCode", "EmitGlobalSound(`ambient/cp_harbor/furnace_1_shot_05.wav`)", 5.4, null, null)
 		
+		for (local i = 1; i <= MaxClients().tointeger(); i++)
+		{
+			local player = PlayerInstanceFromIndex(i)
+			if (player == null) continue
+			if (player.GetTeam() == 1) continue
+			if (player.IsFakeClient()) player.AddCondEx(71, 8.0, player)
+		}
+
 		foreach (bluplayer in bluplayer_array)
 		{
 			local scope = bluplayer.GetScriptScope().bloodstorage
