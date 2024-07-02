@@ -45,13 +45,6 @@ WaveSchedule
 	PrecacheGeneric "materials/spatial_impasse_overlays/w3_blood_storage_overlay_2.vmt"
 	PrecacheGeneric "materials/spatial_impasse_overlays/w3_blood_storage_overlay_2.vtf"
 	
-	PrecacheGeneric "spatial_impasse_overlays/tank_blood_storage_overlay.vmt"
-	PrecacheGeneric "spatial_impasse_overlays/tank_blood_storage_overlay.vtf"
-	PrecacheGeneric "spatial_impasse_overlays/w3_tnt_storage_overlay_2.vmt"
-	PrecacheGeneric "spatial_impasse_overlays/w3_tnt_storage_overlay_2.vtf"
-	PrecacheGeneric "spatial_impasse_overlays/w3_blood_storage_overlay_2.vmt"
-	PrecacheGeneric "spatial_impasse_overlays/w3_blood_storage_overlay_2.vtf"
-	
 	PrecacheModel "models/props_invader/saucer.mdl"
 	PrecacheModel "models/props_invader/saucer_phys.mdl"
 	
