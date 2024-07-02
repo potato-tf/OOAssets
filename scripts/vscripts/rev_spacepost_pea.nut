@@ -6,7 +6,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	mission = NetProps.GetPropString(Entities.FindByClassname(null, "tf_objective_resource"), "m_iszMvMPopfileName")
 	
 	debug = false
-	debug_stage = 3
+	debug_stage = 1
 	debug_objective = true
 	
 	draw_worldtext = false
@@ -3333,8 +3333,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			{
 				tnt_satisfied = false
 				
-				if (tank_tnt_level > 0 && tank_blood_level == 0) extraction_mode = "tnt"
-				if (tank_tnt_level == 0 && tank_blood_level > 0) extraction_mode = "blood"
+				if (tank_tnt_level > 0) extraction_mode = "tnt"
+				else					extraction_mode = "blood"
 			}
 		}
 		
@@ -6259,7 +6259,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			player_to_extract_from.ValidateScriptScope()
 			local player_scope = player_to_extract_from.GetScriptScope().bloodstorage
 			
-			if (player_scope.blood_count <= 0) return
+			if (player_scope.blood_count <= 0) continue
 			
 			if (scope.blood_required > 0)
 			{
@@ -7386,8 +7386,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 
 				if (tick >= nextbleedtick)
 				{
-					owner.TakeDamage(4, 1, owner)
 					nextbleedtick = tick + (33 / poison_sources).tointeger()
+					owner.TakeDamage(4, 1, owner)
 				}
 
 				poisoned_string = " (☠)"
