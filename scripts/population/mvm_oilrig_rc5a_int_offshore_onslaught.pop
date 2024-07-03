@@ -331,7 +331,7 @@ WaveSchedule
             Tank
             {
                 Name "tank1"
-                Health 10000                    
+                Health 11000                    
                 Speed 75                                
                 Name "tankboss"
                 StartingPathTrackNode "tank_path_a_1"
@@ -458,6 +458,7 @@ WaveSchedule
 			{
 				Class Soldier
 				Skill Normal
+				Item "The Liberty Launcher"
 			}
 		}
 	}
@@ -1841,5 +1842,6 @@ WaveSchedule
 				}
 			}
 		}
+		
 	}
 }
