@@ -6,8 +6,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	mission = NetProps.GetPropString(Entities.FindByClassname(null, "tf_objective_resource"), "m_iszMvMPopfileName")
 	
 	debug = false
-	debug_stage = 1
-	debug_objective = true
+	debug_stage = 2
+	debug_objective = false
 	
 	draw_worldtext = false
 	draw_debugchat = false
@@ -3608,44 +3608,41 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		for (local i = 1; i <= MaxClients().tointeger(); i++)
 		{
 			local player = PlayerInstanceFromIndex(i)
-			
 			if (player == null) continue
 			if (player.GetTeam() == 1) continue
-			if (player.IsFakeClient())
-			{
-				player.AddCondEx(71, 8.0, player)
-				continue
-			}
+			if (player.IsFakeClient()) player.AddCondEx(71, 8.0, player)
+		}
+
+		foreach (bluplayer in bluplayer_array)
+		{
+			local scope = bluplayer.GetScriptScope().bloodstorage
 			
-			player.ValidateScriptScope()
-			local scope = player.GetScriptScope().bloodstorage
+			if (NetProps.GetPropInt(bluplayer, "m_lifeState") != 0) scope.pos_before_iceblock_cutscene = Vector(100, 1700, 0) // prevent issues with dead spectator camera
+			else												 	scope.pos_before_iceblock_cutscene = bluplayer.GetOrigin()
 			
-			if (NetProps.GetPropInt(player, "m_lifeState") != 0) scope.pos_before_iceblock_cutscene = Vector(100, 1700, 0) // prevent issues with dead spectator camera
-			else												 scope.pos_before_iceblock_cutscene = player.GetOrigin()
+			EntFireByHandle(bluplayer, "RunScriptCode", "self.SetMoveType(0, 0)", -1.0, null, null)
 			
-			EntFireByHandle(player, "RunScriptCode", "self.SetMoveType(0, 0)", -1.0, null, null)
+			bluplayer.AddCustomAttribute("no_attack", 1, -1)
+			bluplayer.AddCustomAttribute("voice pitch scale", 0, -1)
 			
-			player.AddCustomAttribute("no_attack", 1, -1)
-			player.AddCustomAttribute("voice pitch scale", 0, -1)
+			EntFireByHandle(bluplayer, "RunScriptCode", "self.AddHudHideFlags(4)", -1.0, null, null)
 			
-			EntFireByHandle(player, "RunScriptCode", "self.AddHudHideFlags(4)", -1.0, null, null)
+			EntFireByHandle(bluplayer, "RunScriptCode", "self.Teleport(true, Vector(700, 1600, 0), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))", 1.0, null, null)
 			
-			EntFireByHandle(player, "RunScriptCode", "self.Teleport(true, Vector(700, 1600, 0), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))", 1.0, null, null)
+			EntFireByHandle(bluplayer, "RunScriptCode", "ScreenFade(self, 0, 0, 0, 255, 1.0, -1.0, 2)", -1.0, null, null)
+			EntFireByHandle(bluplayer, "RunScriptCode", "ScreenFade(self, 0, 0, 0, 255, 1.0, -1.0, 1)", 1.0, null, null)
 			
-			EntFireByHandle(player, "RunScriptCode", "ScreenFade(self, 0, 0, 0, 255, 1.0, -1.0, 2)", -1.0, null, null)
-			EntFireByHandle(player, "RunScriptCode", "ScreenFade(self, 0, 0, 0, 255, 1.0, -1.0, 1)", 1.0, null, null)
-			
-			EntFireByHandle(player, "RunScriptCode", "ScreenFade(self, 0, 0, 0, 255, 1.0, -1.0, 2)", 7.0, null, null)
-			EntFireByHandle(player, "RunScriptCode", "ScreenFade(self, 0, 0, 0, 255, 1.0, -1.0, 1)", 8.0, null, null)
+			EntFireByHandle(bluplayer, "RunScriptCode", "ScreenFade(self, 0, 0, 0, 255, 1.0, -1.0, 2)", 7.0, null, null)
+			EntFireByHandle(bluplayer, "RunScriptCode", "ScreenFade(self, 0, 0, 0, 255, 1.0, -1.0, 1)", 8.0, null, null)
 		
-			EntFireByHandle(player, "RunScriptCode", "self.RemoveHudHideFlags(4)", 8.0, null, null)
+			EntFireByHandle(bluplayer, "RunScriptCode", "self.RemoveHudHideFlags(4)", 8.0, null, null)
 			
-			EntFireByHandle(player, "RunScriptCode", "self.SetMoveType(2, 0)", 8.0, null, null)
+			EntFireByHandle(bluplayer, "RunScriptCode", "self.SetMoveType(2, 0)", 8.0, null, null)
 			
-			EntFireByHandle(player, "RunScriptCode", "self.RemoveCustomAttribute(`no_attack`)", 8.0, null, null)
-			EntFireByHandle(player, "RunScriptCode", "self.RemoveCustomAttribute(`voice pitch scale`)", 8.0, null, null)
+			EntFireByHandle(bluplayer, "RunScriptCode", "self.RemoveCustomAttribute(`no_attack`)", 8.0, null, null)
+			EntFireByHandle(bluplayer, "RunScriptCode", "self.RemoveCustomAttribute(`voice pitch scale`)", 8.0, null, null)
 			
-			EntFireByHandle(player, "RunScriptCode", "self.Teleport(true, self.GetScriptScope().bloodstorage.pos_before_iceblock_cutscene, false, QAngle(0, 0, 0), false, Vector(0, 0, 0))", 8.0, null, null)
+			EntFireByHandle(bluplayer, "RunScriptCode", "self.Teleport(true, self.GetScriptScope().bloodstorage.pos_before_iceblock_cutscene, false, QAngle(0, 0, 0), false, Vector(0, 0, 0))", 8.0, null, null)
 		}
 		
 		EntFireByHandle(iceblock_prop_dummy, "DisableMotion", null, -1.0, null, null)
