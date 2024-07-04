@@ -5897,7 +5897,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 						foreach (bluplayer in bluplayer_array)
 						{
 							if (bluplayer.IsFakeClient()) continue
-							DeliverVisualTipToPlayer(bluplayer, "vis_grouping", "Grouping together around the Blood Tank\nwill make it give and take more resources.")
+							DeliverVisualTipToPlayer(bluplayer, "vis_grouping", "Grouping together around the Blood Tank\nwill make it give and take more resources.", true, 180.0)
 						}
 					}
 
