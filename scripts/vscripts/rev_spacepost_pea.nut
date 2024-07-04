@@ -7069,9 +7069,11 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				model = "sprites/glow02.vmt"
 				origin = gray_blood.GetOrigin()
 				rendermode = 9
-				rendercolor = "200 30 30"
+				rendercolor = (!poisoned) ? "200 30 30" : "0 75 0"
 				scale = 1
 			})
+			
+			NetProps.SetPropBool(redmist, "m_bForcePurgeFixedupStrings", true)
 			
 			EntFireByHandle(redmist, "SetParent", "!activator", -1.0, gray_blood, null)
 		}
