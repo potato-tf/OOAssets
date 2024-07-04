@@ -1257,9 +1257,9 @@ WaveSchedule
 			WaitForAllSpawned 3a
 
 			Where spawnbot_side
-			TotalCount 3
-			MaxActive 3
-			SpawnCount 3
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 100
@@ -1273,10 +1273,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Medic_BigHeal_Armored
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_BigHeal_Armored
+					Attributes IgnoreEnemies
 				}
 			}
 		}
@@ -1361,9 +1358,9 @@ WaveSchedule
 			WaitForAllDead 3a
 
 			Where spawnbot_side
-			TotalCount 3
-			MaxActive 3
-			SpawnCount 3
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 0
 			TotalCurrency 100
@@ -1377,10 +1374,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Medic_BigHeal_Armored
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_BigHeal_Armored
+					Attributes IgnoreEnemies
 				}
 			}
 		}
@@ -1414,9 +1408,9 @@ WaveSchedule
 			WaitForAllSpawned 3b
 
 			Where spawnbot_side
-			TotalCount 3
-			MaxActive 3
-			SpawnCount 3
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 0
 			TotalCurrency 100
@@ -1430,10 +1424,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Medic_BigHeal_Armored
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_BigHeal_Armored
+					Attributes IgnoreEnemies
 				}
 			}
 		}
@@ -1796,11 +1787,11 @@ WaveSchedule
 			Name 5a
 
 			Where spawnbot_side
-			TotalCount 12
-			MaxActive 8
+			TotalCount 8
+			MaxActive 5
 			SpawnCount 2
 			WaitBeforeStarting 3
-			WaitBetweenSpawns 6
+			WaitBetweenSpawns 10
 			TotalCurrency 60
 			
 			Squad
@@ -1857,27 +1848,27 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 			}
 		}
@@ -1972,27 +1963,27 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 			}
 		}
@@ -2111,7 +2102,7 @@ WaveSchedule
 			SpawnCount 7
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 1
-			TotalCurrency 100
+			TotalCurrency 90
 			
 			TFBot
 			{
@@ -2127,89 +2118,104 @@ WaveSchedule
 			WaitForAllSpawned 6a
 
 			Where spawnbot
-			TotalCount 1
-			MaxActive 1
-			SpawnCount 1
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
-			TotalCurrency 50
+			TotalCurrency 60
 			
-			TFBot
+			Squad
 			{
-				Template T_TFBot_Giant_Soldier_Spammer
-				Name "1 2 4 can't count 3"
-				ClassIcon soldier_spammer_hyper_lite
-				Health 25000
-				Scale 1.75
-				Attributes UseBossHealthBar
-				//Attributes AutoJump
-					//AutoJumpMin 10
-					//AutoJumpMax 10
-				Item "Pestering Jester"
-				CharacterAttributes
+				TFBot
 				{
-					"increased jump height" 1.5
-					"cancel falling damage" 1
-					"blast dmg to self increased" 0
-				}
-				ChangeAttributes
-				{
-					Delay 0
-					Repeats 1
-					IfHealthBelow 16001
-					Name "phase1"
-				}
-				ChangeAttributes    
-				{
-					Delay 0.5
-					Repeats 1
-					IfHealthBelow 8001
-					Name "phase2"
-				}
-				EventChangeAttributes  
-				{                
-					phase1
+					Template T_TFBot_Giant_Soldier_Spammer
+					Name "1 2 4 can't count 3"
+					ClassIcon soldier_spammer_hyper_lite
+					Health 25000
+					Scale 1.75
+					Attributes UseBossHealthBar
+					//Attributes AutoJump
+						//AutoJumpMin 10
+						//AutoJumpMax 10
+					Item "Pestering Jester"
+					CharacterAttributes
 					{
-						Attributes HoldFireUntilFullReload
-						Skill Expert
-						ItemAttributes
+						"increased jump height" 1.5
+						"cancel falling damage" 1
+						"blast dmg to self increased" 0
+					}
+					ChangeAttributes
+					{
+						Delay 0
+						Repeats 1
+						IfHealthBelow 16001
+						Name "phase1"
+					}
+					ChangeAttributes    
+					{
+						Delay 0.5
+						Repeats 1
+						IfHealthBelow 8001
+						Name "phase2"
+					}
+					EventChangeAttributes  
+					{                
+						phase1
 						{
-							ItemName "TF_WEAPON_ROCKETLAUNCHER"
-							"fire rate bonus" 0.001
-							"clip size upgrade atomic" -2
-							"faster reload rate" 0.2
-							"projectile spread angle penalty" 3
-							"Projectile speed increased" 0.65
+							Attributes HoldFireUntilFullReload
+							Skill Expert
+							ItemAttributes
+							{
+								ItemName "TF_WEAPON_ROCKETLAUNCHER"
+								"fire rate bonus" 0.001
+								"clip size upgrade atomic" -2
+								"faster reload rate" 0.2
+								"projectile spread angle penalty" 3
+								"Projectile speed increased" 0.65
+							}
+							CharacterAttributes
+							{
+								"move speed bonus"	0.5
+								"damage force reduction" 0.4
+								"airblast vulnerability multiplier" 0.4
+								"override footstep sound set" 3
+								"increased jump height" 1.5
+								"cancel falling damage" 1
+								"blast dmg to self increased" 0
+							}
 						}
-						CharacterAttributes
+						
+						phase2
 						{
-							"move speed bonus"	0.5
-							"damage force reduction" 0.4
-							"airblast vulnerability multiplier" 0.4
-							"override footstep sound set" 3
-							"increased jump height" 1.5
-							"cancel falling damage" 1
-							"blast dmg to self increased" 0
+							Attributes HoldFireUntilFullReload
+							Skill Expert
+							Item "Giga Rapid Burst Rocket"
+							CharacterAttributes
+							{
+								"move speed bonus" 0.5
+								"damage force reduction" 0.4
+								"airblast vulnerability multiplier" 0.4
+								"override footstep sound set" 3
+								"airblast vertical vulnerability multiplier" 0.4
+								"increased jump height" 1.5
+								"cancel falling damage" 1
+								"blast dmg to self increased" 0
+							}
 						}
 					}
-					
-					phase2
-					{
-						Attributes HoldFireUntilFullReload
-						Skill Expert
-						Item "Giga Rapid Burst Rocket"
-						CharacterAttributes
-						{
-							"move speed bonus" 0.5
-							"damage force reduction" 0.4
-							"airblast vulnerability multiplier" 0.4
-							"override footstep sound set" 3
-							"airblast vertical vulnerability multiplier" 0.4
-							"increased jump height" 1.5
-							"cancel falling damage" 1
-							"blast dmg to self increased" 0
-						}
-					}
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_SlowRecharge_Armored
+					Attributes IgnoreEnemies
+					Name "Armored Uber Medic"
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_SlowRecharge_Armored
+					Attributes IgnoreEnemies
+					Name "Armored Uber Medic"
 				}
 			}
 		}
@@ -2390,11 +2396,11 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Soldier_Extended_Battalion_Bugfixed
+					Template T_TFBot_Soldier_Extended_Battalion_Armored
 				}
 				TFBot
 				{
-					Template T_TFBot_Soldier_Extended_Battalion_Bugfixed
+					Template T_TFBot_Soldier_Extended_Battalion_Armored
 				}
 			}
 		}
@@ -3186,3 +3192,15 @@ WaveSchedule
 // Post Beta Changelog
 // Wave 6
 // boss threholds hp is change from 12.5k to 16k and 5k to 8k (boss health still same)
+
+// Wave 3
+// Reduce Armored Big-Heal Medic from 2 to 1 per each and give Attributes IgnoreEnemies (I forgot to add this Attributes)
+
+// Wave 5
+// Change Quick-Uber Medic to Full Duration Uber Medic (Change T_TFBot_Medic_QuickUber to T_TFBot_Medic)
+// Reduce Armored Rapid Fire Demo + Armored Kritz from 6 pairs to 4 pairs (TotalCount from 12 to 8)
+// MaxActive from 8 to 5, WaitBetweenSpawns from 6 to 10
+
+// Wave 6
+// Added 2 Slow Recharge Armored Uber Medic on Boss Giant Soldier
+// Change Common Batt Soldier to Armored Variant
