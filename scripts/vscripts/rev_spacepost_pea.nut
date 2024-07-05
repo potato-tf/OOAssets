@@ -7,7 +7,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	
 	debug = false
 	debug_stage = 2
-	debug_objective = false
+	debug_objective = true
 	
 	draw_worldtext = false
 	draw_debugchat = false
@@ -95,6 +95,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 
 	barricade_destroyed_recently = false
 	
+	active_spawns = []
+	
 	pathbranch_array =
 	[
 		Entities.FindByName(null, "tank_path_a_31"), Entities.FindByName(null, "tank_path_a_11"), Entities.FindByName(null, "tank_path_a_34"), Entities.FindByName(null, "tank_path_a_35"), Entities.FindByName(null, "tank_path_a_36"), Entities.FindByName(null, "tank_path_a_12"),
@@ -139,12 +141,13 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	tnt_satisfied = false
 	tnt_cleanup = false
 
-	tntspot_amounts_array = [ 12, 12, 12, 12, 12, 12, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 5, 10 ]
+	tntspot_amounts_array = [ 12, 12, 12, 12, 12, 12, 9, 9, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10, 5, 10 ]
 
 	//////////// BLOOD BOTS
 
 	bloodbots_spawned = 0
 	bloodbots_alive = 0.0
+	max_bloodbot_count = 12
 	
 	bloodbot_dispatchtime = Time() + 99999
 	next_bloodbot_dispatchtime_min = 6.0
@@ -184,8 +187,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	obj_control_digit = 9
 	obj_control_holdtime = "0:10"
 	
-	obj_control_redcapture_rate = 4.0
-	obj_control_blucapture_rate = 8.0
+	obj_control_redcapture_rate = 3.5
+	obj_control_blucapture_rate = 7.0
 
 	obj_control_a_captured = false
 	obj_control_b_captured = false
@@ -218,35 +221,43 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	//////////// TIPS
 
 	tip_header = "\x07FFD700"
-	settings_tip_descriptions =
+	
+	settings_tip_descriptions_1 =
 	[
 		"Defend the Blood Tank from enemy RED attackers!"
 		"Pick up blood from killed enemies!"
 		"Take all blood you collect\nto the Blood Tank!"
 		"Carrying too much makes\nyou slow and fragile"
 		"Blood Tank drains its own health\nwhile it has no blood"
-		"Giving the Blood Tank more blood\nthan it can hold will heal it"
+		"Giving the Blood Tank more blood\nthan it can hold will heal and speed it up"
+		"Grouping together around the Blood Tank\nwill make it give and take more resources"
 		"Destroy Blood-Bots\nto get extra blood"
-		"You get 1 giant point each time\nyou put blood in the Blood Tank."
+		"You get 1 giant point each time\nyou put blood in the Blood Tank"
 		"Once you have 30 giant points, hold your\nProjectile Shield key to become giant!"
 		"While giant, hold the Projectile Shield\nkey again to turn back to normal"
+		"The 'Recall' canteen can teleport you between\nthe Blood Tank and the Upgrade Station"
 		"Bomb bots deal heavy damage to the\nBlood Tank when they get close!"
 		"Stationary bombs destroy the Blood\nTank whole when run over!"
-		"Rotten blood doubles your carried\nblood and applies bleeding."
-		
+		"Rotten blood doubles your carried\nblood and applies bleeding"
+	]
+	
+	settings_tip_descriptions_2 =
+	[
 		"Stand near the Blood Tank to get TNT"
 		"Carrying too much makes\nyou slow and fragile"
 		"Take all TNT you collect\nto any glowing barrel!"
 		"Fill all 20 barrels to beat the mission!"
+		"Grouping together around the Blood Tank\nwill make it give and take more resources."
 		"Pick up blood from killed enemies!"
 		"Take all blood you collect\nto the Blood Tank!"
 		"Bringing blood to the Blood Tank\nwill make it refill its TNT faster"
-		"Bringing blood to the Blood Tank while\nthe whistle is blowing will also heal it"
-		"While there are no barrels left to be filled, you\ncan still bring blood to the Blood Tank to heal it."
+		"Bringing blood to the Blood Tank while the whistle\nis blowing will also heal and speed it up"
+		"While there are no barrels left to be filled, you can still\nbring blood to the Blood Tank to heal and speed it up."
 		"Destroy Blood-Bots\nto get extra blood"
 		"You get 1 giant point each time\nyou arm a barrel with 1 TNT."
 		"Once you have 30 giant points, hold your\nProjectile Shield key to become giant!"
 		"While giant, hold the Projectile Shield\nkey again to turn back to normal"
+		"The 'Recall' canteen can teleport you between\nthe Blood Tank and the Upgrade Station"
 		"Blood Tank creates explosions\nwhile it's not moving"
 		"Bomb bots deal heavy damage to the\nBlood Tank when they get close!"
 		"Rotten blood doubles your carried\nblood and applies bleeding."
@@ -354,16 +365,18 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	{
 		targetname              = "infobooth_menu"
 		case16                  = "Welcome to the settings booth!|0|Cancel"
-		case01                  = "How to play"
-		case02                  = "Toggle robot viewmodels"
-		case03                  = "!All credit goes to CTriggerHurt for creating the viewmodels"
-		case04                  = "Audio settings (experimental)"
-		case05                  = "Reset all tips"
+		case01                  = "How to play (>)"
+		case02                  = "How to play (<)"
+		case03                  = "Toggle robot viewmodels"
+		case04                  = "!All credit goes to CTriggerHurt for creating the viewmodels"
+		case05                  = "Audio settings"
+		case06                  = "Reset all tips"
 		
-		OnCase01                = "!activator,CallScriptFunction,ReceiveRandomVisTip,0.0,-1"
-		OnCase02                = "!activator,CallScriptFunction,ToggleRobotViewmodels,0.0,-1"
-		OnCase04                = "!activator,CallScriptFunction,DisplayAudioSettings,0.0,-1"
-		OnCase05                = "resettips_prompt,$DisplayMenu,!activator,0.0,-1"
+		OnCase01                = "!activator,RunScriptCode,ReceiveRandomVisTip(0),0.0,-1"
+		OnCase02                = "!activator,RunScriptCode,ReceiveRandomVisTip(1),0.0,-1"
+		OnCase03                = "!activator,CallScriptFunction,ToggleRobotViewmodels,0.0,-1"
+		OnCase05                = "!activator,CallScriptFunction,DisplayAudioSettings,0.0,-1"
+		OnCase06                = "resettips_prompt,$DisplayMenu,!activator,0.0,-1"
 	})
 
 	infobooth2 = SpawnEntityFromTable("logic_case",
@@ -405,8 +418,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	
 	ReloadMapForChanges = function()
 	{
-		ClientPrint(null,3,"\x07FFA500WARNING: This mission has received an update requiring a map reload, which will take place in 10 seconds.")
-		ClientPrint(null,4,"WARNING: This mission has received an update requiring a map reload, which will take place in 10 seconds.")
+		ClientPrint(null,3,"\x07FFA500WARNING: This map will reload in 10 seconds. Typing '!continue' after you join back will restore your progress.")
+		ClientPrint(null,4,"WARNING: This map will reload in 10 seconds. Typing '!continue' after you join back will restore your progress.")
 		
 		EntFireByHandle(gamerules_entity, "$ChangeLevel", "mvm_spacepost_rc1", 10.0, null, null)
 		
@@ -532,16 +545,27 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		EntFire("infobooth_menu", "$DisplayMenu", "!activator", -1.0, self)
 	}
 	
-	ReceiveRandomVisTip = function()
+	ReceiveRandomVisTip = function(order)
 	{
 		local scope = self.GetScriptScope().bloodstorage
 		
-		if (WAVE == 3 && scope.current_settings_tip <= 12) scope.current_settings_tip = 13
+		local settings_tiptable = getroottable()["settings_tip_descriptions_" + ((WAVE < 3) ? 1 : 2)]
+		
+		if (scope.current_settings_tip != -1)
+		{
+			if (order == 0) scope.current_settings_tip++
+			if (order == 1) scope.current_settings_tip--
+		}
+		
+		else scope.current_settings_tip = 0
+
+		if (scope.current_settings_tip > (settings_tiptable.len() - 1)) scope.current_settings_tip = 0
+		if (scope.current_settings_tip < 0) scope.current_settings_tip = (settings_tiptable.len() - 1)
 		
 		SendGlobalGameEvent("show_annotation", 
 		{
 			id = scope.tutorial_box.entindex()
-			text = settings_tip_descriptions[scope.current_settings_tip]
+			text = settings_tiptable[scope.current_settings_tip]
 			follow_entindex = scope.tutorial_box.entindex()
 			visibilityBitfield = (1 << self.entindex())
 			play_sound = "misc/null.wav"
@@ -549,12 +573,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			show_effect = false
 			lifetime = 7.5
 		})
-		
-		scope.current_settings_tip++
-		
-		if (WAVE < 3 && scope.current_settings_tip > 11) scope.current_settings_tip = 0
-		if (WAVE == 3 && scope.current_settings_tip > 28) scope.current_settings_tip = 13
-		
+
 		EntFire("infobooth_menu", "$DisplayMenu", "!activator", -1.0, self)
 	}
 	
@@ -982,7 +1001,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		}
 	}
 	
-	DeliverVisualTipToPlayer = function(player, tip_name, tip_description)
+	DeliverVisualTipToPlayer = function(player, tip_name, tip_description, repeatable = false, repeat_cooldown = 0)
 	{
 		if (player.IsFakeClient()) return
 		
@@ -1012,6 +1031,12 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			scope.tip_table[tip_name] = true
 			scope.tips_unlocked_during_wave.append(tip_name)
+			
+			if (repeatable)
+			{
+				EntFireByHandle(player, "RunScriptCode", "self.GetScriptScope().bloodstorage.tip_table." + tip_name + " = false", repeat_cooldown, null, null)
+				scope.repeatable_tips.append(tip_name)
+			}
 			
 			scope.in_vistip_cooldown = true
 			EntFireByHandle(player, "RunScriptCode", "self.GetScriptScope().bloodstorage.in_vistip_cooldown = false", scope.desired_vistip_cooldown, null, null)
@@ -1284,6 +1309,15 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			SendGlobalGameEvent("hide_annotation", { id = bluplayer.entindex() })
 			SendGlobalGameEvent("hide_annotation", { id = bluplayer.entindex() * 500 })
 		}
+		
+		switch (WAVE)
+		{
+			case 1: active_spawns = [1, 2, 6, 8]; break
+			case 2: active_spawns = [1, 2, 3, 5, 9]; break
+			case 3: active_spawns = [1, 2, 3, 6, 12]; break
+		}
+		
+		UpdateSpawnIndicators()
 	}
 
 	bloodbot_path_p1_vectorarray = // bloodbot path a stays the same for all 3 waves
@@ -1394,20 +1428,19 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				}
 			}
 			
-			else
-			{
-				scope.bloodstorage.ResetBloodCounter()
-				
-				if (scope.bloodstorage.wants_robot_viewmodels) EntFireByHandle(spawned_player, "CallScriptFunction", "OverrideRobotArms", -1.0, null, null)
-			}
+			else scope.bloodstorage.ResetBloodCounter()
+			
+			scope = scope.bloodstorage
+
+			EntFireByHandle(spawned_player, "CallScriptFunction", "PostSpawnFunctions", 1.0, null, null)
+			
+			if (scope.wants_robot_viewmodels) EntFireByHandle(spawned_player, "CallScriptFunction", "OverrideRobotArms", -1.0, null, null)
 		
-			if (in_setup() && scope.bloodstorage.firsttimeplayer) EntFireByHandle(spawned_player, "CallScriptFunction", "ReceiveHowToPlayAnnotations", 0.1, null, null)
+			if (in_setup() && scope.firsttimeplayer) EntFireByHandle(spawned_player, "CallScriptFunction", "ReceiveHowToPlayAnnotations", 0.1, null, null)
 			
 			if (spawned_player.GetPlayerClass() == spy) EntFireByHandle(spawned_player, "CallScriptFunction", "OverrideSapper", -1.0, null, null)
 			
 			if (objective_type == "deliver") EntFireByHandle(gamerules_entity, "CallScriptFunction", "RefreshDeliverAnnotations", -1.0, null, null)
-
-			scope = scope.bloodstorage
 
 			if (scope.escaped != "[X]") spawned_player.Teleport(true, Vector(0, 1700, -300), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
 			
@@ -1714,6 +1747,13 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			if (params.object == 3) EntFireByHandle(gamerules_entity, "CallScriptFunction", "UnicornSapper", 0.1, null, null)
 		}
 	
+		OnGameEvent_object_destroyed = function(params)
+		{
+			if (bluplayer_array.find(GetPlayerFromUserID(params.attacker)) == null) return
+			
+			GetPlayerFromUserID(params.attacker).GetScriptScope().bloodstorage.bloodbots_destroyed++
+		}
+
 		OnGameEvent_npc_hurt = function(params)
 		{
 			local victim = EntIndexToHScript(params.entindex)
@@ -1727,6 +1767,39 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			}
 
 			if (params.weaponid == 18) victim.SetHealth(victim.GetHealth() + (params.damageamount.tofloat() * 0.75)) // minigun
+		}
+		
+		OnGameEvent_player_used_powerup_bottle = function(params)
+		{
+			local player = EntIndexToHScript(params.player)
+			
+			if (params.type == 3)
+			{
+				local soundscape = NetProps.GetPropInt(player, "m_Local.m_audio.soundscapeIndex")
+
+				if (soundscape == 154 || soundscape == 155) EntFireByHandle(player, "RunScriptCode", "RecallTeleport(true)", -1.0, null, null)
+				else										EntFireByHandle(player, "RunScriptCode", "RecallTeleport(false)", -1.0, null, null)
+			}
+		}
+	
+		OnGameEvent_teamplay_point_captured = function(params)
+		{
+			for (local ent; ent = Entities.FindByClassname(ent, "trigger_capture_area"); )
+			{
+				EntFireByHandle(ent, "Disable", null, 0.05, null, null)
+				EntFireByHandle(ent, "Enable", null, 0.1, null, null)
+			}
+		}
+	}
+	
+	RecallTeleport = function(was_outside)
+	{
+		if (in_setup()) self.Teleport(true, Vector(100, 100, -400), true, QAngle(0, -90, 0), false, Vector(0, 0, 0))
+		else
+		{
+			if (was_outside && NetProps.GetPropFloat(blood_tank, "m_speed") < 74.0) self.Teleport(true, blood_tank.GetOrigin() + Vector(0, 0, 100), true, blood_tank.GetAbsAngles(), false, Vector(0, 0, 0))
+
+			else self.Teleport(true, Vector(100, 100, -400), true, QAngle(0, -90, 0), false, Vector(0, 0, 0))
 		}
 	}
 
@@ -1833,6 +1906,11 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				weapon.AddAttribute("sapper damage penalty", 1, -1.0)
 			}
 		}
+	}
+	
+	PostSpawnFunctions = function()
+	{
+		if (current_stage == 2 || current_stage == 3) DeliverVisualTipToPlayer(self, "vis_recall", "The 'Recall' canteen can teleport you between\nthe Blood Tank and the Upgrade Station", true, 90.0)
 	}
 	
 	OverrideRobotArms = function()
@@ -2158,9 +2236,12 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		{
 			local scope = bluplayer.GetScriptScope().bloodstorage
 
-			if (previous_wave == WAVE) { foreach (tip in scope.tips_unlocked_during_wave) scope.tip_table[tip] = false }
+			if (previous_wave == WAVE) foreach (tip in scope.tips_unlocked_during_wave) scope.tip_table[tip] = false
+			
+			foreach (tip in scope.repeatable_tips) scope.tip_table[tip] = false
 
 			scope.tips_unlocked_during_wave.clear()
+			scope.repeatable_tips.clear()
 		}
 		
 		previous_wave = WAVE
@@ -2309,7 +2390,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				
 				if (bluplayer.GetScriptScope().bloodstorage.audio_excludelist.find("pl_hoodoo/alarm_clock_ticking_3.wav") != null) continue
 				
-				EmitSoundEx({ sound_name = "pl_hoodoo/alarm_clock_ticking_3.wav", filter_type = 4, entity = bluplayer, pitch = 175 - ((tank_objective_explosion_time - Time()).tofloat() * 9.375), flags = 2, channel = 6 })
+				EmitSoundEx({ sound_name = "pl_hoodoo/alarm_clock_ticking_3.wav", filter_type = 4, entity = bluplayer, volume = 0.6, pitch = 175 - ((tank_objective_explosion_time - Time()).tofloat() * 9.375), flags = 2, channel = 6 })
 			}
 			
 			if (tank_objective_explosion_time - Time() <= 1.5)
@@ -2322,7 +2403,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					
 					if (bluplayer.GetScriptScope().bloodstorage.audio_excludelist.find("pl_hoodoo/alarm_clock_alarm_3.wav") != null) continue
 					
-					EmitSoundEx({ sound_name = "pl_hoodoo/alarm_clock_alarm_3.wav", entity = bluplayer, filter_type = 4, pitch = 100, flags = 1, delay = -8, channel = 6 })
+					EmitSoundEx({ sound_name = "pl_hoodoo/alarm_clock_alarm_3.wav", entity = bluplayer, volume = 0.6, filter_type = 4, pitch = 100, flags = 1, delay = -8, channel = 6 })
 				}
 				
 			}
@@ -2653,6 +2734,45 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		AddThinkToEnt(think_objective_status, "ObjectiveStatus_Think")
 		
 		MarkRemainingEnemies()
+		
+		switch (WAVE)
+		{
+			case 1:
+			{
+				switch (current_stage)
+				{
+					case 1: active_spawns = [6, 8]; break
+					case 2: active_spawns = [3, 4, 5, 12]; break
+					case 3: active_spawns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16]; break
+				}
+				
+				break
+			}
+			case 2:
+			{
+				switch (current_stage)
+				{
+					case 1: active_spawns = [6, 12, 13]; break
+					case 2: active_spawns = [11]; break
+					case 3: active_spawns = [16, 17, 18]; break
+				}
+				
+				break
+			}
+			case 3:
+			{
+				switch (current_stage)
+				{
+					case 1: active_spawns = [11, 13]; break
+					case 2: active_spawns = [4, 11]; break
+					case 3: active_spawns = [17, 18]; break
+				}
+				
+				break
+			}
+		}
+		
+		UpdateSpawnIndicators()
 	}
 	
 	// SpeedUpTank = function(stage)
@@ -3175,7 +3295,11 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			if (bluplayer.GetScriptScope().bloodstorage.firsttimeplayer) bluplayer.GetScriptScope().bloodstorage.firsttimeplayer = false
 		}
 
-		if (current_stage < 3) EntFireByHandle(gamerules_entity, "CallScriptFunction", "StageCompleteReward", 5.0, null, null)
+		if (current_stage < 3)
+		{
+			EntFireByHandle(gamerules_entity, "CallScriptFunction", "StageCompleteReward", 5.0, null, null)
+			max_bloodbot_count += 2
+		}
 
 		switch (objective_type)
 		{
@@ -3341,6 +3465,42 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		MarkRemainingEnemies()
 
 		current_stage = current_stage + 1
+		
+		switch (WAVE)
+		{
+			case 1:
+			{
+				switch (current_stage)
+				{
+					case 2: active_spawns = [9, 10, 11, 12]; break
+					case 3: active_spawns = [5, 9, 11, 13]; break
+				}
+				
+				break
+			}
+			case 2:
+			{
+				switch (current_stage)
+				{
+					case 2: active_spawns = [10, 11, 12, 13]; break
+					case 3: active_spawns = [16, 17, 18]; break
+				}
+				
+				break
+			}
+			case 3:
+			{
+				switch (current_stage)
+				{
+					case 2: active_spawns = [6, 11, 12, 13]; break
+					case 3: active_spawns = [4, 13, 15, 17, 18]; break
+				}
+				
+				break
+			}
+		}
+		
+		UpdateSpawnIndicators()
 	}
 	
 	MarkRemainingEnemies = function()
@@ -3358,6 +3518,43 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			player.AddCustomAttribute("damage bonus HIDDEN", 0.5, -1)
 			
 			if (player.IsMiniBoss()) player.AddCustomAttribute("is suicide counter", 250, -1)
+		}
+	}
+	
+	SetUpSpawnIndicators = function()
+	{
+		for (local i = 1; i <= 18; i++)
+		{
+			local spawn = Entities.FindByName(null, "spawnbot_red_" + i)
+
+			local tracetable =
+			{
+				start = spawn.GetOrigin() + Vector(0, 0, 100)
+				end = spawn.GetOrigin() - Vector(0, 0, 500)
+				ignore = spawn
+			}
+
+			TraceLineEx(tracetable)
+
+			local indicator = SpawnEntityFromTable("prop_dynamic",
+			{
+				origin 	   = tracetable.pos
+				model  	   = "models/props_mvm/robot_spawnpoint.mdl"
+				targetname = "red_indicator_" + i
+			})
+			
+			indicator.DisableDraw()
+		}
+	}
+	
+	UpdateSpawnIndicators = function()
+	{
+		for (local i = 1; i <= 18; i++)
+		{
+			local indicator = Entities.FindByName(null, "red_indicator_" + i)
+			
+			if (active_spawns.find(i) == null) indicator.DisableDraw()
+			else							   indicator.EnableDraw()
 		}
 	}
 
@@ -5096,7 +5293,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			local scope = bluplayer.GetScriptScope().bloodstorage
 
-			if (scope.in_vistip_cooldown || scope.life_tick < 1000)
+			if (scope.in_vistip_cooldown || scope.life_tick < 333)
 			{
 				trigger_bloodtutorial = false
 				break
@@ -5104,8 +5301,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			else
 			{
-				if (WAVE != 3) { if (!scope.tip_table["vis_collectblood"] && !scope.in_vistip_cooldown && scope.life_tick >= 1000) trigger_bloodtutorial = true }
-				else 		   { if (!scope.tip_table["vis_collecttnt"] && !scope.in_vistip_cooldown && scope.life_tick >= 1000) trigger_bloodtutorial = true }
+				if (WAVE != 3) { if (!scope.tip_table["vis_collectblood"] && !scope.in_vistip_cooldown && scope.life_tick >= 333) trigger_bloodtutorial = true }
+				else 		   { if (!scope.tip_table["vis_collecttnt"] && !scope.in_vistip_cooldown && scope.life_tick >= 333) trigger_bloodtutorial = true }
 			}
 		}
 		
@@ -5117,7 +5314,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				
 				for (local ent; ent = Entities.FindByName(ent, "gray_blood*"); ) gray_bloods_found++
 				
-				if (gray_bloods_found >= 5)
+				if (gray_bloods_found >= 3)
 				{
 					foreach (bluplayer in bluplayer_array) DeliverVisualTipToPlayer(bluplayer, "vis_collectblood", "Pick up blood from killed enemies!")
 					
@@ -5683,7 +5880,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 						
 						if (current_stage > 1 && tank_blood_level > 0) DeliverTipToBLU("bloodtankisdispenser", "The Blood Tank functions as a Level 1 Dispenser while it has any amount of blood in it.")
 						
-						if (WAVE == 3) blu_players_near_bloodtank = blu_players_near_bloodtank + 1
+						blu_players_near_bloodtank = blu_players_near_bloodtank + 1
 						
 						if (player_to_extract_from.GetPlayerClass() == scout || scope.is_giant_robot)
 						{
@@ -5693,7 +5890,16 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 						}
 					}
 					
-					if (WAVE == 3 && blu_players_near_bloodtank >= 2) DeliverTipToBLU("multipleextractors", "The Blood Tank always loses only 1 TNT per extraction, regardless of how many players were near it at the time.")
+					// if (WAVE == 3 && blu_players_near_bloodtank >= 2) DeliverTipToBLU("multipleextractors", "The Blood Tank always loses only 1 TNT per extraction, regardless of how many players were near it at the time.")
+					
+					if (blu_players_near_bloodtank >= 2)
+					{
+						foreach (bluplayer in bluplayer_array)
+						{
+							if (bluplayer.IsFakeClient()) continue
+							DeliverVisualTipToPlayer(bluplayer, "vis_grouping", "Grouping together around the Blood Tank\nwill make it give and take more resources.", true, 180.0)
+						}
+					}
 
 					if (extraction_mode == "tnt" && blu_players_near_bloodtank > 0)
 					{
@@ -5733,7 +5939,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 								{
 									if (bluplayer.IsFakeClient()) continue
 									
-									DeliverVisualTipToPlayer(bluplayer, "vis_w3healwindow", "Bring blood to the Blood Tank while\nthe whistle is blowing to heal it")
+									DeliverVisualTipToPlayer(bluplayer, "vis_w3healwindow", "Bring blood to the Blood Tank while the\nwhistle is blowing to heal and speed it up")
 								}
 								
 								EntFireByHandle(gamerules_entity, "RunScriptCode", "extraction_mode = `tnt`", 6.25, null, null)
@@ -5757,7 +5963,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 							{
 								if (bluplayer.IsFakeClient()) continue
 								
-								DeliverVisualTipToPlayer(bluplayer, "vis_armedallbombs", "No barrels left to fill. Bring blood\nto the Blood Tank to heal it.")
+								DeliverVisualTipToPlayer(bluplayer, "vis_armedallbombs", "No barrels left to fill. Bring blood to\nthe Blood Tank to heal and speed it up.")
 								
 								bluplayer.ValidateScriptScope()
 								local scope = bluplayer.GetScriptScope().bloodstorage
@@ -5829,8 +6035,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 							NetProps.SetPropEntity(ent, "m_hFilter", red_filter)
 							NetProps.SetPropFloat(ent, "m_flCapTime", obj_control_redcapture_rate)
 							
-							EntFireByHandle(ent, "Disable", null, -1.0, null, null)
-							EntFireByHandle(ent, "Enable", null, 0.03, null, null)
+							// EntFireByHandle(ent, "Disable", null, -1.0, null, null)
+							// EntFireByHandle(ent, "Enable", null, 0.03, null, null)
 						}
 					}
 					
@@ -5853,8 +6059,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 							NetProps.SetPropEntity(ent, "m_hFilter", red_filter)
 							NetProps.SetPropFloat(ent, "m_flCapTime", obj_control_redcapture_rate)
 							
-							EntFireByHandle(ent, "Disable", null, -1.0, null, null)
-							EntFireByHandle(ent, "Enable", null, 0.03, null, null)
+							// EntFireByHandle(ent, "Disable", null, -1.0, null, null)
+							// EntFireByHandle(ent, "Enable", null, 0.03, null, null)
 						}
 					}
 					else
@@ -5876,8 +6082,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 							NetProps.SetPropEntity(ent, "m_hFilter", red_filter)
 							NetProps.SetPropFloat(ent, "m_flCapTime", obj_control_redcapture_rate)
 							
-							EntFireByHandle(ent, "Disable", null, -1.0, null, null)
-							EntFireByHandle(ent, "Enable", null, 0.03, null, null)
+							// EntFireByHandle(ent, "Disable", null, -1.0, null, null)
+							// EntFireByHandle(ent, "Enable", null, 0.03, null, null)
 						}
 					}
 					else
@@ -6084,7 +6290,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			local scope = player.GetScriptScope().bloodstorage
 			
-			if (DeliverVisualTipToPlayer(player, "vis_destroybloodbots", "Destroy Blood-Bots\nto get extra blood")) HighlightBloodBots()
+			if (scope.bloodbots_destroyed < 10) { if (DeliverVisualTipToPlayer(player, "vis_destroybloodbots", "Destroy Blood-Bots\nto get extra blood", true, 60.0)) HighlightBloodBots() }
 		}
 		
 		return RandomFloat(2.5, 7.5)
@@ -6675,7 +6881,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 
 	DispatchBloodBot = function()
 	{
-		if (bloodbots_alive >= 12.0 || in_endgame || WAVE > 3 || current_stage > 3) return
+		if (bloodbots_alive >= max_bloodbot_count || in_endgame || WAVE > 3 || current_stage > 3) return
 		
 		bloodbots_spawned = bloodbots_spawned + 1
 		if (draw_debugchat) ClientPrint(null,3,"dispatched")
@@ -6773,8 +6979,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		
 		bloodbots_alive = bloodbots_alive + 1.0
 		
-		next_bloodbot_dispatchtime_min = 6.0 + bloodbots_alive
-		next_bloodbot_dispatchtime_max = 10.0 + bloodbots_alive
+		next_bloodbot_dispatchtime_min = 6.0 + (bloodbots_alive * 0.8)
+		next_bloodbot_dispatchtime_max = 10.0 + (bloodbots_alive * 0.8)
 	
 		// if (bloodbot_number >= 3) DeliverTipToBLU("bloodbots", "Blood-Bots are mobile blood dispensers. Destroy them to gain extra blood to give to the Blood Tank.")
 		if (current_stage > 1) DeliverTipToBLU("betterbloodbots", "Blood-Bots become more durable and profitable as the Blood Tank advances further into the enemy base.")
@@ -6857,6 +7063,19 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			EntFireByHandle(embers, "StartTouch", "!activator", -1, gray_blood, gray_blood)
 			EntFireByHandle(embers, "Kill", null, -1, null, null)
+			
+			local redmist = SpawnEntityFromTable("env_sprite",
+			{
+				model = "sprites/glow02.vmt"
+				origin = gray_blood.GetOrigin()
+				rendermode = 9
+				rendercolor = (!poisoned) ? "200 30 30" : "0 75 0"
+				scale = 1
+			})
+			
+			NetProps.SetPropBool(redmist, "m_bForcePurgeFixedupStrings", true)
+			
+			EntFireByHandle(redmist, "SetParent", "!activator", -1.0, gray_blood, null)
 		}
 		
 		NetProps.SetPropBool(gray_blood, "m_bForcePurgeFixedupStrings", true)
@@ -6963,6 +7182,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		giant_points = 0
 
 		tnt_count = 0
+		tnt_arm_count = 0
 
 		poisoned = false
 		poison_count = 0
@@ -6990,6 +7210,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		
 		received_stage1_cash_reward = false
 		received_stage2_cash_reward = false
+		
+		bloodbots_destroyed = 0
 
 		/////////////// OBJECTIVE VARS (DEFINITIONS)
 
@@ -7034,6 +7256,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 
 		tip_table = {}
 		tips_unlocked_during_wave = []
+		repeatable_tips = []
 		
 		hasyettoturngiant = true
 		turngiantreminder_cooldown = 60
@@ -7049,7 +7272,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		wants_robot_viewmodels = false
 		
 		reading_infobooth = false
-		current_settings_tip = 0
+		current_settings_tip = -1
 		
 		life_tick = 0
 		
@@ -7079,7 +7302,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				// newwaytoplay = false,
 				nobloodexcess = false,
 				// refueling = false,
-				multipleextractors = false,
+				// multipleextractors = false,
 				// volatilebloodtank = false,
 				// armedallbombs = false,
 				// voluntarygiantexit = false,
@@ -7107,7 +7330,9 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				vis_bloodbotreminder = false,
 				vis_w3healwindow = false,
 				vis_toomanypickups = false,
-				vis_zombieblood = false
+				vis_zombieblood = false,
+				vis_grouping = false,
+				vis_recall = false
 			}
 			
 			audio_preferences =
@@ -7184,7 +7409,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			in_vistip_cooldown = false
 			
 			reading_infobooth = false
-			current_settings_tip = 0
+			current_settings_tip = -1
 			
 			InitializeBloodCounter()
 			
@@ -7399,17 +7624,17 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			if (!in_setup())
 			{
 				if (WAVE < 3 && blood_count >= 5) DeliverVisualTipToPlayer(owner, "vis_deliverblood", "Take all blood you collect\nto the Blood Tank!")
-				if (tnt_count >= 5)	DeliverVisualTipToPlayer(owner, "vis_armbarrels", "Take all TNT you collect\nto any glowing barrel!")
+				if (tnt_count >= 5 && tnt_arm_count < 20) DeliverVisualTipToPlayer(owner, "vis_armbarrels", "You picked up some TNT! Take\nit to any glowing barrel!", true, 30.0)
 				if (bombs_satisfied > 0) DeliverVisualTipToPlayer(owner, "vis_armallbarrels", "Fill all 20 barrels to beat the mission!")
-				if (giant_points >= 30 && !was_giant_robot) { if (DeliverVisualTipToPlayer(owner, "vis_giantpoints", "Hold your Projectile Shield\nkey to become giant!")) EntFireByHandle(owner, "RunScriptCode", "self.GetScriptScope().bloodstorage.tip_table[`vis_giantpoints`] = false", 90.0, null, null) }
+				if (giant_points >= 30 && !was_giant_robot) DeliverVisualTipToPlayer(owner, "vis_giantpoints", "Hold your Projectile Shield\nkey to become giant!", true, 90.0)
 				if (is_giant_robot) DeliverVisualTipToPlayer(owner, "vis_giantpoints_turnback", "Hold the same key again\nto turn back to normal")
 				if (excess_stage > 0) DeliverVisualTipToPlayer(owner, "vis_bloodexcess", "Carrying too much makes\nyou slow and fragile")
 				if (WAVE < 3 && tank_blood_level == 0) DeliverVisualTipToPlayer(owner, "vis_tankhasnoblood", "Blood Tank drains its own health\nwhile it has no blood")
-				if (blood_tank_healthdrain_dmg >= 3) { if (DeliverVisualTipToPlayer(owner, "vis_bloodbotreminder", "Blood-Bots contain blood that\ncan be given to the Blood Tank.")) HighlightBloodBots() }
+				if (blood_tank_healthdrain_dmg >= 3) { if (DeliverVisualTipToPlayer(owner, "vis_bloodbotreminder", "Blood-Bots contain blood that\ncan be given to the Blood Tank.", true, 60.0)) HighlightBloodBots() }
 				if (excess_stage == 5 && NetProps.GetPropInt(owner, "m_afButtonLast") & 1)
 				{
-					if (WAVE < 3) DeliverVisualTipToPlayer(owner, "vis_toomanypickups", "You are carrying way too much!\nBring your blood to the Blood Tank!")
-					else		  DeliverVisualTipToPlayer(owner, "vis_toomanypickups", "You are carrying way too much!\nBring your TNT to any glowing barrel!")
+					if (WAVE < 3) DeliverVisualTipToPlayer(owner, "vis_toomanypickups", "You are carrying way too much!\nBring your blood to the Blood Tank!", true, 60.0)
+					else		  DeliverVisualTipToPlayer(owner, "vis_toomanypickups", "You are carrying way too much!\nBring your TNT to any glowing barrel!", true, 30.0)
 				}
 
 				if (WAVE == 3 && extraction_mode == "blood") DeliverVisualTipToPlayer(owner, "vis_bloodconversion", "Bringing blood to the Blood Tank\nwill make it refill its TNT faster")
@@ -7457,7 +7682,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 
 			if (escaped == "[✔]") owner.AddCustomAttribute("healing received penalty", 0, -1.0)
 
-			if (NetProps.GetPropInt(owner, "m_lifeState") == 0) life_tick++
+			if (NetProps.GetPropInt(owner, "m_lifeState") == 0 && !in_setup()) life_tick++
 
 			return -1
 		}
@@ -7504,7 +7729,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					// poisoned_string = " (☠)"
 					
 					// DeliverTipToPlayer(owner, "zombieblood", "Enemy zombies drop rotten blood. Rotten blood doubles and damages your blood storage, causing it to leak over time.")
-					DeliverVisualTipToPlayer(owner, "vis_zombieblood", "Rotten blood doubles your carried\nblood and applies bleeding.")
+					DeliverVisualTipToPlayer(owner, "vis_zombieblood", "Rotten blood doubles your carried\nblood and applies bleeding.", true, 60.0)
 					
 					break
 				}
@@ -7639,6 +7864,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					if (tnt_count > 0)
 					{
 						tnt_count = tnt_count - 1
+						tnt_arm_count = tnt_arm_count + 1
 						EmitSoundEx({ sound_name = "ui/item_helmet_pickup.wav", filter_type = 4, flags = 0, entity = owner, channel = 6 })
 					}
 					
@@ -8006,7 +8232,7 @@ AddThinkToEnt(gamerules_entity, "Global_Think")
 //////////// PRECACHES
 //////////////////////////////////////////////////
 
-PrecacheModel("models/props_halloween/flask_vial.mdl")
+PrecacheModel("models/props_halloween/flask_vial.mdl"); PrecacheModel("materials/sprites/light_glow03.vmt")
 PrecacheModel("models/bots/bot_worker/bot_worker.mdl"); PrecacheModel("models/bots/bot_worker/bot_worker2.mdl"); PrecacheModel("models/bots/bot_worker/bot_worker3.mdl"); PrecacheModel("models/bots/spy/bot_spy.mdl"); PrecacheModel("models/bots/heavy_boss/bot_heavy_boss.mdl")
 PrecacheModel("models/workshop/player/items/all_class/hw2013_the_magical_mercenary/hw2013_the_magical_mercenary_scout.mdl")
 PrecacheSound("mvm/giant_heavy/giant_heavy_entrance.wav"); PrecacheSound("mvm/mvm_bomb_warning.wav"); PrecacheSound("mvm/mvm_bought_upgrade.wav")
@@ -8036,7 +8262,7 @@ foreach (bluplayer in bluplayer_array)
 {
 	if (bluplayer.IsFakeClient()) continue
 	
-	if (!("vis_howtoplay" in bluplayer.GetScriptScope().bloodstorage.tip_table)) { ReloadMapForChanges(); break }
+	if (!("vis_grouping" in bluplayer.GetScriptScope().bloodstorage.tip_table)) { ReloadMapForChanges(); break }
 }
 
 EntityOutputs.AddOutput(debug_menu, "OnCase02", "gamerules", "RunScriptCode", "if (debugger != null) ClientPrint(debugger,3,`` + (cur_tankspeed + tank_speedboost))", -1.0, -1)
@@ -8096,6 +8322,8 @@ if (WAVE == 3)
 
 EntFire("spawnbot_boss", "Disable")
 
+SetUpSpawnIndicators()
+
 NavMesh.GetNavAreaByID(4509).UnblockArea(); NavMesh.GetNavAreaByID(4510).UnblockArea(); NavMesh.GetNavAreaByID(4511).UnblockArea(); NavMesh.GetNavAreaByID(4512).UnblockArea()
 NavMesh.GetNavAreaByID(4703).UnblockArea(); NavMesh.GetNavAreaByID(4704).UnblockArea(); NavMesh.GetNavAreaByID(4705).UnblockArea(); NavMesh.GetNavAreaByID(4706).UnblockArea()
 NavMesh.GetNavAreaByID(4721).UnblockArea(); NavMesh.GetNavAreaByID(4722).UnblockArea(); NavMesh.GetNavAreaByID(4723).UnblockArea(); NavMesh.GetNavAreaByID(4724).UnblockArea()
@@ -8154,7 +8382,7 @@ for (local ent; ent = Entities.FindByClassname(ent, "point_worldtext"); )
 	}
 }
 
-for (local ent; ent = Entities.FindByModel(ent, "models/props_mvm/robot_spawnpoint.mdl"); ) ent.DisableDraw()
+// for (local ent; ent = Entities.FindByModel(ent, "models/props_mvm/robot_spawnpoint.mdl"); ) ent.DisableDraw()
 for (local ent; ent = Entities.FindByModel(ent, "models/props_mvm/hologram_projector.mdl"); ) ent.Kill()
 for (local ent; ent = Entities.FindByModel(ent, "models/props_mvm/robot_hologram.mdl"); ) ent.Kill()
 

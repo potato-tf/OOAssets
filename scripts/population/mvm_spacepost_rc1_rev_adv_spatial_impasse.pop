@@ -836,7 +836,7 @@ WaveSchedule
 				CharacterAttributes
 				{
 					"dmg taken increased" 0.2
-					"move speed penalty" 0.5
+					"move speed penalty" 0.6
 					"health from healers reduced" 0.1
 				} 
 			}
@@ -984,12 +984,15 @@ WaveSchedule
 			TotalCount 16
 			WaitForAllDead "W1-S3A-2"
 			WaitBeforeStarting 10
-			WaitBetweenSpawns 7
+			WaitBetweenSpawns 8
 			TFBot
 			{
 				Class Pyro
 				Skill Easy
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
+				Tag avoid_back_sidepath
+				Tag avoid_back_overpass
+				Tag avoid_walkdown_back_right
 			}
 		}
 		WaveSpawn
@@ -1880,11 +1883,11 @@ WaveSchedule
 			TotalCount 20
 			WaitForAllDead "W2-S3A-2"
 			WaitBeforeStarting 20
-			WaitBetweenSpawns 10
+			WaitBetweenSpawns 12
 			TFBot
 			{
 				Class Pyro
-				Skill Normal
+				Skill Easy
 				
 				Tag avoid_back_overpass
 				Tag avoid_back_corridor_right
@@ -1953,11 +1956,11 @@ WaveSchedule
 			TotalCurrency 0
 			Where spawnbot_red_16
 			SpawnCount 1
-			MaxActive 2
-			TotalCount 2
+			MaxActive 1
+			TotalCount 1
 			StartDisabled 1
-			WaitBeforeStarting 15
-			WaitBetweenSpawns 10
+			WaitBeforeStarting 25
+			WaitBetweenSpawns 0
 			TFBot
 			{
 				Template "T_TFBot_Giant_Scout_Fast"
