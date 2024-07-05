@@ -92,6 +92,7 @@ WaveSchedule
 			//"passive reload" 2
 			"ragdolls become ash" 1
 			"projectile penetration" 1
+			"crits_become_minicrits" 1
 			//"mult crit dmg" 0.3334
 		}
 		
