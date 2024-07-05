@@ -133,6 +133,16 @@ WaveSchedule
 			ClassIcon scout_bat_nys
 		}
 		
+		T_TFBot_Scout_Candy_Cane
+		{
+			Class Scout
+			Skill Hard // increased to improve ability to hit with melee
+			ClassIcon scout_cane_lite
+			WeaponRestrictions MeleeOnly
+			Item "The Candy Cane"
+			Item "Citizen Cane"
+		}
+		
 		T_TFBot_Scout_Fast
 		{
 			Class Scout
@@ -1187,8 +1197,8 @@ WaveSchedule
 			Tag bot_giant
 			CharacterAttributes
 			{
-				"airblast vulnerability multiplier" 0.8
-				"damage force reduction" 0.8
+				"airblast vulnerability multiplier" 0.7
+				"damage force reduction" 0.7
 				"cancel falling damage" 1
 			}
 		}
@@ -1831,6 +1841,87 @@ WaveSchedule
 			}
 		}
 		
+		T_TFBot_Medic_Bullet_VAC_Armored
+		{
+			Template T_TFBot_Medic_Armored
+			Name "Armored Bullet VAC Medic"
+			Skill Expert
+			ClassIcon medic_bullet_armored_lite
+			WeaponRestrictions SecondaryOnly
+			Attributes SpawnWithFullCharge
+			Attributes VaccinatorBullets
+			Attributes IgnoreEnemies
+			Item "TF_WEAPON_MEDIGUN"
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_MEDIGUN"
+				"lunchbox adds minicrits" 3
+				"heal rate bonus" 10
+				"medigun bullet resist deployed" 0.75
+				"medigun bullet resist passive" 0.75
+				"medigun charge is resists" 3
+			}
+			CharacterAttributes
+			{
+				"bot medic uber health threshold" 9999
+				"ubercharge rate bonus" 999
+			}
+		}
+		
+		T_TFBot_Medic_Blast_VAC_Armored
+		{
+			Template T_TFBot_Medic_Armored
+			Name "Armored Blast VAC Medic"
+			Skill Expert
+			ClassIcon medic_blast_armored_lite
+			WeaponRestrictions SecondaryOnly
+			Attributes SpawnWithFullCharge
+			Attributes VaccinatorBlast
+			Attributes IgnoreEnemies
+			Item "TF_WEAPON_MEDIGUN"
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_MEDIGUN"
+				"lunchbox adds minicrits" 3
+				"heal rate bonus" 10
+				"medigun blast resist deployed" 0.75
+				"medigun blast resist passive" 0.75
+				"medigun charge is resists" 4
+			}
+			CharacterAttributes
+			{
+				"bot medic uber health threshold" 9999
+				"ubercharge rate bonus" 999
+			}
+		}
+		
+		T_TFBot_Medic_Fire_VAC_Armored
+		{
+			Template T_TFBot_Medic_Armored
+			Name "Armored Fire VAC Medic"
+			Skill Expert
+			ClassIcon medic_fire_armored_lite
+			WeaponRestrictions SecondaryOnly
+			Attributes SpawnWithFullCharge
+			Attributes VaccinatorFire
+			Attributes IgnoreEnemies
+			Item "TF_WEAPON_MEDIGUN"
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_MEDIGUN"
+				"lunchbox adds minicrits" 3
+				"heal rate bonus" 10
+				"medigun fire resist deployed" 0.75
+				"medigun fire resist passive" 0.75
+				"medigun charge is resists" 5
+			}
+			CharacterAttributes
+			{
+				"bot medic uber health threshold" 9999
+				"ubercharge rate bonus" 999
+			}
+		}
+		
 		T_TFBot_Sniper_Huntsman_Spammer_Penetration
 		{
 			Class Sniper
@@ -2190,9 +2281,8 @@ WaveSchedule
 			ItemAttributes
 			{
 				ItemName "The Original"
-				"fire rate bonus" 4
+				"fire rate bonus" 5
 				"Projectile speed increased" 0.15
-				"damage bonus" 12
 				"use large smoke explosion" 1
 			}
 			CharacterAttributes
@@ -2203,6 +2293,8 @@ WaveSchedule
 				"override footstep sound set" 3
 				"cancel falling damage" 1
 				"blast dmg to self increased" 0
+				"dmg penalty vs players" 1000000
+				"dmg bonus vs buildings" 1000000
 			}
 		}
 		
@@ -2666,7 +2758,7 @@ WaveSchedule
 		{
 			Class Soldier
 			Name "Giga Burst Fire Soldier"
-			ClassIcon soldier_burstfire_hyper_giant
+			ClassIcon soldier_burstfire_hyper_lite
 			Health 4200
 			Skill Expert
 			WeaponRestrictions PrimaryOnly
@@ -2696,7 +2788,7 @@ WaveSchedule
 		{
 			Class Soldier
 			Name "Giga Burst Fire Soldier"
-			ClassIcon soldier_burstfire_hyper_giant
+			ClassIcon soldier_burstfire_hyper_lite
 			Health 4200
 			Skill Expert
 			WeaponRestrictions PrimaryOnly
@@ -3447,6 +3539,33 @@ WaveSchedule
 			Attributes HoldFireUntilFullReload
 			Attributes MiniBoss
 			Tag bot_giant
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_GRENADELAUNCHER"
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.5
+				"airblast vulnerability multiplier" 0.5
+				"override footstep sound set" 4
+				"cancel falling damage" 1
+				"blast dmg to self increased" 0
+			}
+		}
+		
+		T_TFBot_Giant_Demoman_Targe_No_RapidFire
+		{
+			Class Demoman
+			Name "Giant Targe Grenade Demoman"
+			ClassIcon demo_targe_nys_giant
+			Skill Expert
+			Health 3000
+			WeaponRestrictions PrimaryOnly
+			Attributes HoldFireUntilFullReload
+			Attributes MiniBoss
+			Tag bot_giant
+			Item "The Chargin' Targe"
 			ItemAttributes
 			{
 				ItemName "TF_WEAPON_GRENADELAUNCHER"
