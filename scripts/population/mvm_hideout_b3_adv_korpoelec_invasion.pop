@@ -131,7 +131,6 @@ WaveSchedule
 	// WAVE 1 // Currency 750 //
 	Wave
 	{
-
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -291,7 +290,6 @@ WaveSchedule
 	// WAVE 2 // Currency 850 //
 	Wave
 	{
-
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -580,7 +578,6 @@ WaveSchedule
 	// WAVE 3 // Currency 1300 //
 	Wave
 	{
-
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -612,10 +609,11 @@ WaveSchedule
 				Attributes		AlwaysFireWeapon
 				ItemAttributes
 				{
-					ItemName		"The Burping Blaster"
-					"damage penalty"	0.75
-					"auto fires full clip"	0
-					"killstreak tier"	0
+					ItemName			"The Burping Blaster"
+					"damage penalty"		0.75
+					"auto fires full clip"		0
+					"killstreak tier"		0
+					"max health additive penalty"	0
 				}
 			}
 		}
@@ -844,7 +842,6 @@ WaveSchedule
 	// WAVE 4 // Currency 1600 //
 	Wave
 	{
-
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -1059,7 +1056,6 @@ WaveSchedule
 	// WAVE 5 // Currency 1000 //
 	Wave
 	{
-
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -1137,13 +1133,15 @@ WaveSchedule
 					Attributes		UseBossHealthBar
 					ItemAttributes
 					{
-						ItemName		"The Full Throttle"
-						"damage bonus"		1.5
-						"fire rate bonus"	0.6
-						"reload time decreased"	0
-						"weapon spread bonus"	0.5
-						"ragdolls become ash"	1
-						"killstreak tier"	0
+						ItemName				"The Full Throttle"
+						"damage bonus"				1.5
+						"fire rate bonus"			0.6
+						"reload time decreased"			0
+						"weapon spread bonus"			0.5
+						"ragdolls become ash"			1
+						"fire rate bonus with reduced health"	0.3
+						"killstreak tier"			0
+						"fire rate penalty"			1.6
 					}
 					CharacterAttributes
 					{
@@ -1155,7 +1153,7 @@ WaveSchedule
 						"rage giving scale"				0.1
 						"override footstep sound set"			2
 					}
-					WeaponResist  
+					WeaponResist [$SIGSEGV]
 					{
 						"tf_weapon_knife"	0.72
 					}
@@ -1178,13 +1176,12 @@ WaveSchedule
 					{
 						ItemName			"The Fan O'War"
 						"attach particle effect"	2
-						"weapon burn dmg increased"	1.25
+						"weapon burn dmg increased"	1.5
 						"dmg bonus vs buildings"	5
 						"set damagetype ignite"		1
 						"melee range multiplier"	1.5
 						"mult dmg vs tanks"		5
 						"damage penalty"		1
-						"fire rate penalty"		2
 					}
 					CharacterAttributes
 					{
@@ -1196,7 +1193,7 @@ WaveSchedule
 						"rage giving scale"				0.1
 						"override footstep sound set"			6
 					}
-					WeaponResist  
+					WeaponResist [$SIGSEGV]
 					{
 						"tf_weapon_knife"	0.72
 					}
@@ -1209,7 +1206,7 @@ WaveSchedule
 			Where			spawnbot
 			TotalCurrency		100
 			TotalCount		20
-			MaxActive		9
+			MaxActive		10
 			SpawnCount		1
 			WaitBeforeStarting	15
 			WaitBetweenSpawns	3
@@ -1232,7 +1229,7 @@ WaveSchedule
 			Where			spawnbot
 			TotalCurrency		100
 			TotalCount		10
-			MaxActive		4
+			MaxActive		5
 			SpawnCount		1
 			WaitBeforeStarting	15
 			WaitBetweenSpawns	2
