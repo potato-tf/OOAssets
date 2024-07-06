@@ -163,7 +163,7 @@ WaveSchedule
 			Class Medic
 			Name "Uber Shield Medic"
 			Skill Expert
-			Health 900
+			Health 750
 			Scale 1.4
 			ClassIcon medic_jug_amputator_uber
 			WeaponRestrictions MeleeOnly
@@ -2292,31 +2292,22 @@ WaveSchedule
 			Name "W3-O1"
 			TotalCurrency 0
 			Where spawnbot_red_13
-			SpawnCount 2
-			MaxActive 2
-			TotalCount 2
+			SpawnCount 1
+			MaxActive 1
+			TotalCount 1
 			StartDisabled 1
-			WaitBeforeStarting 15
+			WaitBeforeStarting 5
 			WaitBetweenSpawns 0
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template "T_TFBot_Giant_Boxing_Heavy"
-					Tag bombrunner
-					Tag squad_leader
-					
-					Tag avoid_back_overpass
-					Tag avoid_back_sidepath
-					Tag avoid_back_corridor_right
-					Tag avoid_upper_exit
-					Tag avoid_right_exit
-				}
-				TFBot
-				{
-					Template "T_TFBot_Giant_Medic_Kritzkrieg"
-					Tag support
-				}
+				Template "T_TFBot_Giant_Boxing_Heavy"
+				Tag bombrunner
+				
+				Tag avoid_back_overpass
+				Tag avoid_back_sidepath
+				Tag avoid_back_corridor_right
+				Tag avoid_upper_exit
+				Tag avoid_right_exit
 			}
 		}
 		WaveSpawn
@@ -2694,12 +2685,12 @@ WaveSchedule
 			Name "W3-O2"
 			TotalCurrency 0
 			Where spawnbot_red_4
-			SpawnCount 3
-			MaxActive 9
+			SpawnCount 4
+			MaxActive 8
 			TotalCount 30
 			StartDisabled 1
 			WaitBeforeStarting 0
-			WaitBetweenSpawns 8
+			WaitBetweenSpawns 15
 			RandomChoice
 			{
 				NextSpawnerClone 6
