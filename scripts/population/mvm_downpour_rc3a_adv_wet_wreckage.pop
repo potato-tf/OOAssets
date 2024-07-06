@@ -225,7 +225,7 @@ population
 		"ammo regen"				0.25
 		"health regen"				10
 		"custom item model"			models/workshop/player/items/engineer/dec15_winter_backup/dec15_winter_backup.mdl
-		"special item description"	"[INFO] Aggressive playstyle. Increases primary firing speed, reload speed, reserve ammo and health/ammo regeneration."
+		"special item description"	"[INFO] Aggressive playstyle. Increases primary firing speed by 30%, reload speed by 70% and provides health/ammo regeneration."
 	}
 
 	PlayerItemEquipSpawnTemplate
@@ -274,13 +274,14 @@ population
 	{
 		Name						"Baby Face's Blaster 2012 (OG)"
 		OriginalItemName			"Baby Face's Blaster"
-		"special item description"	"V1 BFB; no drain no jumping more accurate weak shots."
+		"special item description"	"[INFO] V1 BFB; no drain no jumping more accurate weak shots. Adjusted to only provide speed and remove jumps when active."
 		// "set_item_texture_wear" 1 //Battle Scarred, cause it's old y'know? //doesn't work without a skin, zad.
 		"lose hype on take damage"	0
 		"clip size penalty"			1
 		"damage penalty"			0.7
 		"weapon spread bonus"		0.6
 		no_jump						1
+		"provide on active"			1
 	}
 	// WEAPONS BY PDA Expert (used with permission)
 
@@ -1262,7 +1263,6 @@ population
 				TFBot
 				{
 					Template	T_TFBot_Heavyweapons_Fist
-					ClassIcon heavy_steelfist_nys_nolod
 					Attributes	AlwaysCrit
 				}
 
