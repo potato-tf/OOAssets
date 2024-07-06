@@ -7,7 +7,7 @@
 // spawnbot_tunnel
 
 //WizardII/Dylan_is_Legend OO Derelict EXP
-// Nerfed Final Wave final sub a bit.
+// Made some bots more stupid
 
 Die
 {
@@ -764,26 +764,50 @@ Die
 				TFBot
 				{
 					Template T_TFBot_Medic
+					CharacterAttributes
+					{
+						"mod weapon blocks healing" 1
+					}
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic
+					CharacterAttributes
+					{
+						"mod weapon blocks healing" 1
+					}
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic
+					CharacterAttributes
+					{
+						"mod weapon blocks healing" 1
+					}
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic
+					CharacterAttributes
+					{
+						"mod weapon blocks healing" 1
+					}
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic
+					CharacterAttributes
+					{
+						"mod weapon blocks healing" 1
+					}
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic
+					CharacterAttributes
+					{
+						"mod weapon blocks healing" 1
+					}
 				}
 			}
 		}
@@ -819,6 +843,7 @@ Die
 				{
 					Class Scout
 					Skill Normal
+					AimTrackingInterval 0.4
 				}
 			}
 		}
@@ -839,6 +864,7 @@ Die
 				Class Pyro
 				Skill Normal
 				Tag nav_avoid_front_flanks
+				AimTrackingInterval 0.4
 				CharacterAttributes
 				{
 					"airblast disabled" 1
@@ -919,6 +945,7 @@ Die
 			{
 				Template T_TFBot_Heavyweapons_Shotgun
 				Skill Normal
+				AimTrackingInterval 0.4
 			}
 		}
 
@@ -1028,6 +1055,7 @@ Die
 			TFBot
 			{
 				Template T_TFBot_Sniper_Huntsman
+				Skill Normal
 			}
 		}
 
@@ -1048,6 +1076,7 @@ Die
 					Class Heavyweapons
 					Skill Normal
 					Tag nav_avoid_front_flanks
+					AimTrackingInterval 0.4
 				}
 				TFBot
 				{
@@ -1224,6 +1253,7 @@ Die
 				Attributes AlwaysCrit
 				Tag nav_avoid_front_flanks
 				Skill Normal
+				AimTrackingInterval 0.4
 			}
 		}
 
@@ -1495,6 +1525,7 @@ Die
 				{
 					Class Heavyweapons
 					Skill Normal
+					AimTrackingInterval 0.4 
 					Item "tomislav"
 					Name "Tomislav Heavy"
 					classicon heavy_accurate_lite
@@ -1566,11 +1597,13 @@ Die
 				{
 					Template T_TFBot_Pyro_Fury
 					Skill Normal
+					AimTrackingInterval 0.4
 				}
 				TFBot
 				{
 					Template T_TFBot_Pyro_Fury
 					Skill Normal
+					AimTrackingInterval 0.4
 				}
 				TFBot
 				{
@@ -1704,6 +1737,7 @@ Die
 			{
 				Class Heavyweapons
 				Skill Normal
+				AimTrackingInterval 0.4
 			}
 		}
 
@@ -1764,7 +1798,7 @@ Die
 				Tag nav_avoid_front_flanks
 				Name "Chief Rapidfire Demoman"
 				ClassIcon demo_infinite
-				Health 14000
+				Health 12500
 				Scale 1.85
 				Attributes UseBossHealthBar
 				Attributes AlwaysCrit
@@ -1847,7 +1881,7 @@ Die
 			TFBot
 			{
 				Class Scout
-				Skill Expert
+				Skill Normal
 				Attributes AlwaysCrit
 				Item "The Holy Mackerel"
 				Name "Fast Scout"
@@ -1876,7 +1910,7 @@ Die
 			TFBot
 			{
 				Class Soldier
-				Skill Expert
+				Skill Normal
 				Attributes AlwaysCrit
 				Item "The Righteous Bison"
 				Item "The Space Bracers"
@@ -1964,6 +1998,7 @@ Die
 			TFBot
 			{
 				Template T_TFBot_Sniper_Huntsman
+				Skill Normal
 			}
 		}
 
@@ -1983,7 +2018,7 @@ Die
 			TFBot
 			{
 				Class Pyro
-				Skill Hard
+				Skill Normal
 				Attributes AlwaysCrit
 				CharacterAttributes
 				{
@@ -2124,7 +2159,7 @@ Die
 			TFBot
 			{
 				Template T_TFBot_Demo_Burst
-				Skill Hard
+				Skill Normal
 			}
 		}							
 	}
@@ -2228,6 +2263,7 @@ Die
 				{
 					Class Scout
 					Skill Normal
+					AimTrackingInterval 0.4
 				}
 			}
 		}
@@ -2400,6 +2436,7 @@ Die
 				{
 					Template T_TFBot_Pyro_Fury
 					Skill Normal
+					AimTrackingInterval 0.4
 					Attributes AlwaysFireWeapon
 				}
 				TFBot
@@ -2412,11 +2449,13 @@ Die
 				{
 					Template T_TFBot_Pyro_Fury
 					Skill Normal
+					AimTrackingInterval 0.4
 				}
 				TFBot
 				{
 					Template T_TFBot_Pyro_Fury
 					Skill Normal
+					AimTrackingInterval 0.4
 				}
 				TFBot
 				{
@@ -2496,7 +2535,7 @@ Die
 			{
 				Class Demoman
 				ClassIcon demo_infinite
-				Skill Hard
+				Skill Normal
 				Name "Rapid Fire Demoman"
 				ItemAttributes
 				{
@@ -2704,7 +2743,8 @@ Die
 				TFBot
 				{
 					Class Heavyweapons
-					Skill Normal		
+					Skill Normal
+					AimTrackingInterval 0.4		
 				}
 				TFBot
 				{
@@ -2731,7 +2771,8 @@ Die
 				TFBot
 				{
 					Class Heavyweapons
-					Skill Normal		
+					Skill Normal
+					AimTrackingInterval 0.4	
 				}
 				TFBot
 				{
