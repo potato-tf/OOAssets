@@ -51,12 +51,7 @@ WaveSchedule
 		SimilarToItem	"Rocket Jumper"
 		SimilarToItem	"Stickybomb Jumper"
 	}
-	DisallowUpgrade // Moved to 'Player Upgrade'.
-	{
-		Upgrade		"damage force reduction"
-		Classname	"tf_wearable_demoshield"
-	}
-	DisallowUpgrade // Replaced by 'Fast Food' and 'Backstab Immunity' upgrades.
+	DisallowUpgrade // Replaced by 'Fast Food' and 'Cannot Be Backstabbed' upgrades.
 	{
 		Upgrade		"mult_item_meter_charge_rate"
 		Classname	"tf_weapon_lunchbox"
@@ -91,7 +86,7 @@ WaveSchedule
 	}
 	ExtendedUpgrades
 	{
-//	Player Upgrades. (Total 4)
+//	Player Upgrades. (Total 3)
 		player_upgrade1
 		{
 			Name			"Custom Upgrade: +20% melee damage resistance on wearer."
@@ -103,26 +98,17 @@ WaveSchedule
 		}
 		player_upgrade2
 		{
-			Name			"Custom Upgrade: -25% reduction in push force taken from damage."
-			Attribute		"damage force reduction"
-			Increment		-0.25
-			Cap			0
-			Cost			75
+			Name			"Custom Upgrade: +50% afterburn damage bonus."
+			Attribute		"weapon burn dmg increased"
+			Increment		0.5
+			Cap			3
+			Cost			200
+			AllowPlayerClass	Pyro
 			PlayerUpgrade		1
 		}
 		player_upgrade3
 		{
-			Name			"Custom Upgrade: +25% afterburn damage bonus."
-			Attribute		"weapon burn dmg increased"
-			Increment		0.25
-			Cap			2
-			Cost			100
-			AllowPlayerClass	Pyro
-			PlayerUpgrade		1
-		}
-		player_upgrade4
-		{
-			Name			"Custom Upgrade: +1 Disposable-Sentry."
+			Name			"Custom Upgrade: +1 disposable-sentry."
 			Attribute		"engy disposable sentries"
 			Increment		1
 			Cap			2
@@ -130,10 +116,10 @@ WaveSchedule
 			AllowPlayerClass	Engineer
 			PlayerUpgrade		1
 		}
-//	Repair Upgrades. (Total 26)
+//	Repair Upgrades. (Total 33)
 		repair_upgrade1
 		{
-			Name			"Bad Weapon Repair Upgrade! | (Pre Gun Mettle) Baby Face's Blaster"
+			Name			"Bad Weapon Repair Upgrade! | (Pre Gun Mettle) Baby Face's Blaster."
 			Description		"Only loses 25% 'Boost' on air jumps and no loses 'Boost' when attacked."
 			Attribute		"hype resets on jump"
 			Increment		-50
@@ -169,7 +155,21 @@ WaveSchedule
 		repair_upgrade3
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"No self bleed damage but has +50% damage to self."
+			Description		"Adds: Wearer never takes falling damage."
+			Attribute		"cancel falling damage"
+			Increment		1
+			Cap			1
+			Cost			0
+			AllowedWeapons
+			{
+				ItemName	"The Winger"
+				ItemName	"The Gunboats"
+			}
+		}
+		repair_upgrade4
+		{
+			Name			"Bad Weapon Repair Upgrade!"
+			Description		"No self bleed damage but takes more self damage on miss."
 			Attribute		"no self effect"
 			Increment		1
 			Cap			1
@@ -181,13 +181,13 @@ WaveSchedule
 			}
 			SecondaryAttributes
 			{
-				"blast dmg to self increased"	0.5
+				"blast dmg to self increased"	0.7
 			}
 		}
-		repair_upgrade4
+		repair_upgrade5
 		{
-			Name			"Bad Weapon Repair Upgrade! | (Pre Über Update) Liberty Launcher"
-			Description		"Only has +40% projectile speed and -25% clip size."
+			Name			"Bad Weapon Repair Upgrade! | (Pre Über Update) Liberty Launcher."
+			Description		"Pre Stats: +40% projectile speed and -25% clip size."
 			Attribute		"clip size penalty"
 			Increment		-0.25
 			Cap			0.75
@@ -198,15 +198,16 @@ WaveSchedule
 			}
 			SecondaryAttributes
 			{
+			// Removed Attributes.
+				"damage penalty"		0.25
 				"clip size bonus"		-0.25
 				"rocket jump damage reduction"	0.25
-				"damage penalty"		0.25
 			}
 		}
-		repair_upgrade5
+		repair_upgrade6
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Also deals mini-crits targets when fired at their back from close range."
+			Description		"Adds: Mini-crits targets when fired at their back from close range. Increases weapon deploy bonus to 50%."
 			Attribute		"closerange backattack minicrits"
 			Increment		1
 			Cap			1
@@ -215,11 +216,15 @@ WaveSchedule
 			{
 				ItemName	"The Reserve Shooter"
 			}
+			SecondaryAttributes
+			{
+				"single wep deploy time decreased"	-0.3
+			}
 		}
-		repair_upgrade6
+		repair_upgrade7
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds Allows infinite mid-air parachute redeploying and +200% increased air control when blast jumping."
+			Description		"Adds: Allows infinite mid-air parachute redeploying and +300% increased air control when blast jumping."
 			Attribute		"parachute redeploy"
 			Increment		1
 			Cap			1
@@ -230,26 +235,13 @@ WaveSchedule
 			}
 			SecondaryAttributes
 			{
-				"mod_air_control_blast_jump"	2
-			}
-		}
-		repair_upgrade7
-		{
-			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds Wearer never takes falling damage."
-			Attribute		"cancel falling damage"
-			Increment		1
-			Cap			1
-			Cost			0
-			AllowedWeapons
-			{
-				ItemName	"The Gunboats"
+				"mod_air_control_blast_jump"	3
 			}
 		}
 		repair_upgrade8
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds +15% faster move speed on wearer."
+			Description		"Adds: +15% faster move speed on wearer."
 			Attribute		"move speed bonus"
 			Increment		0.15
 			Cap			1.15
@@ -262,10 +254,10 @@ WaveSchedule
 		repair_upgrade9
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds +20% damage bonus."
+			Description		"Adds: +30% damage bonus."
 			Attribute		"damage bonus"
-			Increment		0.2
-			Cap			1.2
+			Increment		0.3
+			Cap			1.3
 			Cost			0
 			AllowedWeapons
 			{
@@ -275,7 +267,7 @@ WaveSchedule
 		repair_upgrade10
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds Aura Money: Full credit collection radius."
+			Description		"Adds: Aura Money: Full credit collection range without additional health."
 			Attribute		"mult credit collect range"
 			Increment		3
 			Cap			4
@@ -288,7 +280,7 @@ WaveSchedule
 		repair_upgrade11
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds All players connected via medigun beams are hit and +50% increased melee attack range."
+			Description		"Adds: All players connected via medigun beams are hit and +50% increased melee attack range."
 			Attribute		"damage all connected"
 			Increment		1
 			Cap			1
@@ -325,7 +317,7 @@ WaveSchedule
 		repair_upgrade13
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds Attacks pierce damage resistance effects and bonuses and has random critical hits."
+			Description		"Adds: Attacks pierce damage resistance effects and bonuses and +100% afterburn damage bonus. Has random critical hits."
 			Attribute		"dmg pierces resists absorbs"
 			Increment		1
 			Cap			1
@@ -336,13 +328,14 @@ WaveSchedule
 			}
 			SecondaryAttributes
 			{
-				"crit mod disabled"	1
+				"weapon burn dmg increased"	1
+				"crit mod disabled"		1
 			}
 		}
 		repair_upgrade14
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Changes to 100% critical hit vs burning players and extinguishes them and no weapon holster penalty."
+			Description		"Changes to crits burning targets and extinguishes them and removes weapon holster penalty."
 			Attribute		"crit vs burning players"
 			Increment		1
 			Cap			1
@@ -362,7 +355,21 @@ WaveSchedule
 		repair_upgrade15
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds +50% increased melee attack range."
+			Description		"Adds: +60% damage vs tanks."
+			Attribute		"mult dmg vs tanks"
+			Increment		0.6
+			Cap			1.6
+			Cost			0
+			AllowedWeapons
+			{
+				ItemName	"The Homewrecker"
+				ItemName	"The Maul"
+			}
+		}
+		repair_upgrade16
+		{
+			Name			"Bad Weapon Repair Upgrade! | Long Range Weapon Model Logic."
+			Description		"Adds: +50% increased melee attack range."
 			Attribute		"melee range multiplier"
 			Increment		0.5
 			Cap			1.5
@@ -373,10 +380,10 @@ WaveSchedule
 				ItemName	"Promo Neon Annihilator"
 			}
 		}
-		repair_upgrade16
+		repair_upgrade17
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds Attacks all enemies in range and increases to 3 seconds of speed boost on hit."
+			Description		"Adds: Cleave Attack: Slap all enemies in range. Increases to 3 seconds of speed boost on slap."
 			Attribute		"melee cleave attack"
 			Increment		1
 			Cap			1
@@ -390,9 +397,9 @@ WaveSchedule
 				"speed_boost_on_hit_enemy"	2
 			}
 		}
-		repair_upgrade17
+		repair_upgrade18
 		{
-			Name			"Bad Weapon Repair Upgrade! | (Pre Gun Mettle) Loch-n-Load"
+			Name			"Bad Weapon Repair Upgrade! | (Pre Gun Mettle) Loch-n-Load."
 			Description		"Changes to +20% damage bonus."
 			Attribute		"card: damage bonus"
 			Increment		0.2
@@ -407,10 +414,10 @@ WaveSchedule
 				"dmg bonus vs buildings"	-0.2
 			}
 		}
-		repair_upgrade18
+		repair_upgrade19
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds Stickybombs stick on enemies, increases max charge time to 87.5% and reduces clip size penalty to -25%."
+			Description		"Adds: Stickybombs stick to enemies. Increases max charge time to 87.5% and reduces to -25% clip size penalty."
 			Attribute		"stickybomb stick to enemies"
 			Increment		1
 			Cap			1
@@ -425,7 +432,20 @@ WaveSchedule
 				"clip size penalty"		0.25
 			}
 		}
-		repair_upgrade19
+		repair_upgrade20
+		{
+			Name			"Bad Weapon Repair Upgrade! | Long Range Weapon Model Logic."
+			Description		"Adds: +25% increased melee attack range."
+			Attribute		"melee range multiplier"
+			Increment		0.25
+			Cap			1.25
+			Cost			0
+			AllowedWeapons
+			{
+				ItemName	"The Claidheamohmor"
+			}
+		}
+		repair_upgrade21
 		{
 			Name			"Bad Weapon Repair Upgrade!"
 			Description		"Reduces to -15% damage penalty."
@@ -438,10 +458,10 @@ WaveSchedule
 				ItemName	"Natascha"
 			}
 		}
-		repair_upgrade20
+		repair_upgrade22
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds Can holster while spin-up and increases to 40% faster spin-up time and 40% more accurate."
+			Description		"Adds: Can holster while spinning. Increases to 40% faster spin-up time and to 40% more accurate."
 			Attribute		"mod minigun can holster while spinning"
 			Increment		1
 			Cap			1
@@ -456,13 +476,26 @@ WaveSchedule
 				"weapon spread bonus"		-0.2
 			}
 		}
-		repair_upgrade21
+		repair_upgrade23
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Crits now deals mini-crits damage and adds +100% taunt damage bonus."
-			Attribute		"crits_become_minicrits"
+			Description		"Adds: Gain 3 seconds of speed boost on kill."
+			Attribute		"speed_boost_on_kill"
+			Increment		3
+			Cap			3
+			Cost			0
+			AllowedWeapons
+			{
+				ItemName	"The Family Business"
+			}
+		}
+		repair_upgrade24
+		{
+			Name			"Bad Weapon Repair Upgrade!"
+			Description		"Adds: +100% taunt damage bonus. Changes to critical hits does mini-crits damage."
+			Attribute		"dmg penalty vs players"
 			Increment		1
-			Cap			1
+			Cap			2
 			Cost			0
 			AllowedWeapons
 			{
@@ -470,15 +503,15 @@ WaveSchedule
 			}
 			SecondaryAttributes
 			{
-				"crit does no damage"		-1
 				"damage penalty"		-0.5
-				"dmg penalty vs players"	1
+				"crits_become_minicrits"	1
+				"crit does no damage"		-1
 			}
 		}
-		repair_upgrade22
+		repair_upgrade25
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds No damage falloff or rampup."
+			Description		"Adds: No damage falloff or rampup."
 			Attribute		"no damage falloff"
 			Increment		1
 			Cap			1
@@ -488,10 +521,10 @@ WaveSchedule
 				ItemName	"The Pomson 6000"
 			}
 		}
-		repair_upgrade23
+		repair_upgrade26
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds +1 Disposable-Sentry, +50% Mini-Sentry range and +50% Mini-Sentry ammo capacity."
+			Description		"Adds: +1 disposable-sentry, +50% mini-sentry range and +50% mini-sentry ammo."
 			Attribute		"engy disposable sentries"
 			Increment		1
 			Cap			1
@@ -506,13 +539,26 @@ WaveSchedule
 				"mvm sentry ammo"		0.5
 			}
 		}
-		repair_upgrade24
+		custom_upgrade27
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Can headshot when not fully charged and changes to -10% damage penalty."
-			Attribute		"sniper no headshot without full charge"
-			Increment		-1
-			Cap			0
+			Description		"Adds: +200% bleed damage bonus."
+			Attribute		"mult bleeding dmg"
+			Increment		2
+			Cap			3
+			Cost			0
+			AllowedWeapons
+			{
+				ItemName	"The Southern Hospitality"
+			}
+		}
+		repair_upgrade28
+		{
+			Name			"Bad Weapon Repair Upgrade!"
+			Description		"Changes to -10% damage penalty and removes no headshots when not fully charged."
+			Attribute		"damage penalty"
+			Increment		-0.1
+			Cap			0.9
 			Cost			0
 			AllowedWeapons
 			{
@@ -520,14 +566,47 @@ WaveSchedule
 			}
 			SecondaryAttributes
 			{
-				"damage penalty"		-0.1
-				"damage penalty on bodyshot"	0.1
+				"sniper no headshot without full charge"	-1
+				"damage penalty on bodyshot"			0.1
 			}
 		}
-		repair_upgrade25
+		repair_upgrade29
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Adds +50% increased melee attack range and increases/decreases to +30%/-15% in damage when health is less/more than 50% of max."
+			Description		"Changes to cannot be backstabbed and removes overheal penalty."
+			Attribute		"cannot be backstabbed"
+			Increment		1
+			Cap			1
+			Cost			0
+			AllowedWeapons
+			{
+				ItemName	"The Razorback"
+			}
+			SecondaryAttributes
+			{
+				"backstab shield"		-1
+				"item_meter_charge_rate"	-30
+				"item_meter_charge_type"	-1
+				"patient overheal penalty"	1
+			}
+		}
+		custom_upgrade30
+		{
+			Name			"Bad Weapon Repair Upgrade!"
+			Description		"Adds: +300% bleed damage bonus."
+			Attribute		"mult bleeding dmg"
+			Increment		3
+			Cap			4
+			Cost			0
+			AllowedWeapons
+			{
+				ItemName	"The Tribalman's Shiv"
+			}
+		}
+		repair_upgrade31
+		{
+			Name			"Bad Weapon Repair Upgrade!"
+			Description		"Adds: +50% increased melee attack range. Increases/decreases to +30%/-15% in damage when health is less/more than 50% of max."
 			Attribute		"melee range multiplier"
 			Increment		0.5
 			Cap			1.5
@@ -542,13 +621,13 @@ WaveSchedule
 				"dmg penalty while half alive"	0.1
 			}
 		}
-		repair_upgrade26
+		repair_upgrade32
 		{
 			Name			"Bad Weapon Repair Upgrade!"
-			Description		"Changes to +10% damage bonus and adds On Kill: Gain Mini-crits for 6 seconds."
-			Attribute		"card: damage bonus"
-			Increment		0.1
-			Cap			1.1
+			Description		"Adds: On Kill: Gain Mini-crits for 6 seconds. Changes to +10% damage bonus."
+			Attribute		"minicritboost on kill"
+			Increment		6
+			Cap			6
 			Cost			0
 			AllowedWeapons
 			{
@@ -556,8 +635,31 @@ WaveSchedule
 			}
 			SecondaryAttributes
 			{
+				"card: damage bonus"		0.1
 				"damage bonus while disguised"	-0.2
-				"minicritboost on kill"		6
+			}
+		}
+		repair_upgrade33
+		{
+			Name			"Bad Weapon Repair Upgrade!"
+			Description		"Adds: Money Watch: Mid credit collection range with additional health and +25 max health on wearer."
+			Attribute		"mult credit collect range"
+			Increment		1.5
+			Cap			2.5
+			Cost			0
+			AllowPlayerClass	Spy
+			AllowedWeapons
+			{
+				Classname	"tf_weapon_invis"
+			}
+			DisallowedWeapons
+			{
+				ItemName	"The Dead Ringer"
+			}
+			SecondaryAttributes
+			{
+				"health from credits"		50
+				"max health additive bonus"	25
 			}
 		}
 //	Ghost Upgrades. (Total 5)
@@ -578,7 +680,7 @@ WaveSchedule
 		ghost_upgrade2
 		{
 			Name			"Ghost Upgrade: +5% increase in recharge rate."
-			Description		"Note: Requires default level 2 'Recharge Rate' upgrade."
+			Description		"Note: Only requires buy level 2 'Recharge Rate' default upgrade to buy this upgrade, not what it says above."
 			Attribute		"effect bar recharge rate increased"
 			Increment		-0.05
 			Cap			0.4
@@ -596,7 +698,7 @@ WaveSchedule
 		ghost_upgrade3
 		{
 			Name			"Ghost Upgrade: +5% faster firing speed."
-			Description		"Note: Requires default level 2 'Firing Speed' upgrade."
+			Description		"Note: Only requires buy level 2 'Firing Speed' default upgrade to buy this upgrade, not what it says above."
 			Attribute		"fire rate bonus"
 			Increment		-0.05
 			Cap			0.6
@@ -615,7 +717,7 @@ WaveSchedule
 		ghost_upgrade4
 		{
 			Name			"Ghost Upgrade: +5% faster firing speed."
-			Description		"Note: Requires default level 1 'Firing Speed' upgrade."
+			Description		"Note: Only requires buy level 1 'Firing Speed' default upgrade to buy this upgrade, not what it says above."
 			Attribute		"fire rate bonus"
 			Increment		-0.05
 			Cap			0.6
@@ -633,7 +735,7 @@ WaveSchedule
 		ghost_upgrade5
 		{
 			Name			"Ghost Upgrade: +8% ÜberCharge rate."
-			Description		"Note: Requires default level 1 'ÜberCharge rate' upgrade."
+			Description		"Note: Only requires buy level 1 'ÜberCharge Rate' default upgrade to buy this upgrade, not what it says above."
 			Attribute		"ubercharge rate bonus"
 			Increment		0.08
 			Cap			2
@@ -659,11 +761,7 @@ WaveSchedule
 			AllowPlayerClass	Demoman
 			AllowedWeapons
 			{
-				Slot		"Melee"
-			}
-			DisallowedWeapons
-			{
-				ItemName	"The Ullapool Caber"
+				Classname	"tf_weapon_bottle"
 			}
 		}
 		missing_upgrade1.1
@@ -673,9 +771,10 @@ WaveSchedule
 			Increment		0.25
 			Cap			2
 			Cost			400
+			AllowPlayerClass	Demoman
 			AllowedWeapons
 			{
-				ItemName	"The Ullapool Caber"
+				Classname	"tf_weapon_stickbomb"
 			}
 		}
 		missing_upgrade2
@@ -693,7 +792,7 @@ WaveSchedule
 		missing_upgrade2.1
 		{
 			Name			"Missing Upgrade: +10% faster melee attack speed."
-			Description		"Note: For some strange reason this upgrade never added on default upgrade station."
+			Description		"Note: For some strange reason, this upgrade never added on default upgrade station."
 			Attribute		"melee attack rate bonus"
 			Increment		-0.1
 			Cap			0.6
@@ -707,20 +806,16 @@ WaveSchedule
 		missing_upgrade3
 		{
 			Name			"Missing Upgrade: +15% increase in recharge rate."
-			Description		"Note: For some strange reason this upgrade never added on default upgrade station."
+			Description		"Note: For some strange reason, this upgrade never added on default upgrade station."
 			Attribute		"effect bar recharge rate increased"
 			Increment		-0.15
 			Cap			0.4
 			Cost			250
+			AllowPlayerClass	Spy
 			AllowedWeapons
 			{
-				ItemName	"tf_weapon_builder_spy"
-				ItemName	"upgradeable tf_weapon_builder_spy"
-				ItemName	"Festive Sapper"
-				ItemName	"The Ap-Sap"
-				ItemName	"The Snack Attack"
-				ItemName	"The Red-Tape Recorder"
-				ItemName	"Promo Red-Tape Recorder"
+				Classname	"tf_weapon_builder"
+				Classname	"tf_weapon_sapper"
 			}
 		}
 		missing_upgrade4
@@ -800,7 +895,7 @@ WaveSchedule
 		extra_upgrade1
 		{
 			Name			"Extra Upgrade: +25% damage bonus."
-			Description		"Note: Requires default level 3 'Damage Bonus' upgrade."
+			Description		"Note: Only requires buy level 3 'Damage Bonus' default upgrade to buy this upgrade, not what it says above."
 			Attribute		"damage bonus"
 			Increment		0.05
 			Cap			2
@@ -833,33 +928,23 @@ WaveSchedule
 		}
 		extra_upgrade2
 		{
-			Name			"Extra Upgrade: +50% max secondary ammo on wearer."
-			Attribute		"maxammo secondary increased"
-			Increment		0.5
-			Cap			4
+			Name			"Extra Upgrade: +100% max secondary ammo on wearer."
+			Attribute		"hidden secondary max ammo penalty"
+			Increment		1
+			Cap			2
 			Cost			125
 			AllowPlayerClass	Scout
 			AllowPlayerClass	Sniper
 			AllowedWeapons
 			{
-				Slot		"Secondary"
+				Classname	"tf_weapon_pistol_scout"
+				Classname	"tf_weapon_handgun_scout_secondary"
+				Classname	"tf_weapon_smg"
+				Classname	"tf_weapon_charged_smg"
 			}
 			DisallowedWeapons
 			{
-				ItemName	"Bonk! Atomic Punch"
-				ItemName	"Festive Bonk 2014"
-				ItemName	"Crit-a-Cola"
-				ItemName	"Mad Milk"
-				ItemName	"Mutated Milk"
-				ItemName	"The Flying Guillotine"
-				ItemName	"Promo Flying Guillotine"
 				ItemName	"The Burping Blaster"
-				ItemName	"Jarate"
-				ItemName	"Festive Jarate"
-				ItemName	"The Self-Aware Beauty Mark"
-				ItemName	"The Razorback"
-				ItemName	"Darwin's Danger Shield"
-				ItemName	"The Cozy Camper"
 			}
 		}
 		extra_upgrade2.1
@@ -877,9 +962,9 @@ WaveSchedule
 		extra_upgrade2.2
 		{
 			Name			"Extra Upgrade: +50% max secondary ammo on wearer."
-			Attribute		"maxammo secondary increased"
+			Attribute		"hidden secondary max ammo penalty"
 			Increment		0.5
-			Cap			3
+			Cap			1.5
 			Cost			125
 			AllowPlayerClass	Spy
 			AllowedWeapons
@@ -887,7 +972,7 @@ WaveSchedule
 				Slot		"Secondary"
 			}
 		}
-//	Custom Upgrades. (Total 27)
+//	Custom Upgrades. (Total 23)
 		custom_upgrade1
 		{
 			Name			"Custom Upgrade: +25% damage bonus."
@@ -975,6 +1060,18 @@ WaveSchedule
 		}
 		custom_upgrade1.3
 		{
+			Name			"Custom Upgrade: +15% damage bonus."
+			Attribute		"damage bonus"
+			Increment		0.15
+			Cap			1.6
+			Cost			200
+			AllowedWeapons
+			{
+				ItemName	"The Widowmaker"
+			}
+		}
+		custom_upgrade1.4
+		{
 			Name			"Custom Upgrade: +25% damage bonus."
 			Attribute		"card: damage bonus"
 			Increment		0.25
@@ -985,7 +1082,7 @@ WaveSchedule
 				ItemName	"The Winger"
 			}
 		}
-		custom_upgrade1.4
+		custom_upgrade1.5
 		{
 			Name			"Custom Upgrade: +50% damage and bleed damage bonus."
 			Attribute		"dmg penalty vs players"
@@ -998,22 +1095,22 @@ WaveSchedule
 				ItemName	"Promo Flying Guillotine"
 			}
 		}
-		custom_upgrade1.5
+		custom_upgrade1.6
 		{
-			Name			"Custom Upgrade: +30% damage bonus vs sentry target players."
-			Attribute		"damage bonus bullet vs sentry target"
-			Increment		0.3
-			Cap			2
-			Cost			150
+			Name			"Custom Upgrade: +100% stomp damage bonus."
+			Attribute		"dmg penalty vs players"
+			Increment		1
+			Cap			5
+			Cost			100
 			AllowedWeapons
 			{
-				ItemName	"The Widowmaker"
+				ItemName	"The Mantreads"
 			}
 		}
 		custom_upgrade2
 		{
 			Name			"Custom Upgrade: Instant Recharge Rate."
-			Description		"Note: Before buy it, don't buy default recharge rate upgrade to avoid wasting credits."
+			Description		"Note: Make sure you haven't bought 'Recharge Rate' default upgrade to avoid wasting credits."
 			Attribute		"effect bar recharge rate increased"
 			Increment		-0.99
 			Cap			0.01
@@ -1046,11 +1143,11 @@ WaveSchedule
 		custom_upgrade4
 		{
 			Name			"Custom Upgrade: Traveling Jump."
-			Description		"50% faster weapon switch, +50% faster firing speed, +50% faster reload time and +200% increased air control when blast jumping."
+			Description		"+50% faster weapon switch, firing speed and reload time, +50% self damage force and +200% increased air control when blast jumping."
 			Attribute		"deploy time decreased"
 			Increment		-0.5
 			Cap			0.5
-			Cost			200
+			Cost			250
 			AllowedWeapons
 			{
 				ItemName	"Rocket Jumper"
@@ -1059,6 +1156,7 @@ WaveSchedule
 			{
 				"melee attack rate bonus"	-0.5
 				"reload time decreased"		-0.5
+				"self dmg push force increased"	0.5
 				"mod_air_control_blast_jump"	2
 				"cannot pick up intelligence"	-1
 			}
@@ -1066,11 +1164,11 @@ WaveSchedule
 		custom_upgrade4.1
 		{
 			Name			"Custom Upgrade: Traveling Jump."
-			Description		"50% faster weapon switch, +50% faster firing speed, +50% faster reload time and +200% increased air control when blast jumping."
+			Description		"+50% faster weapon switch, firing speed and reload time, +50% self damage force and +200% increased air control when blast jumping."
 			Attribute		"deploy time decreased"
 			Increment		-0.5
 			Cap			0.5
-			Cost			200
+			Cost			250
 			AllowedWeapons
 			{
 				ItemName	"Stickybomb Jumper"
@@ -1079,6 +1177,7 @@ WaveSchedule
 			{
 				"melee attack rate bonus"	-0.5
 				"reload time decreased"		-0.5
+				"self dmg push force increased"	0.5
 				"mod_air_control_blast_jump"	2
 				"stickybomb charge rate"	-1
 				"cannot pick up intelligence"	-1
@@ -1099,7 +1198,7 @@ WaveSchedule
 		}
 		custom_upgrade6
 		{
-			Name			"Custom Upgrade: Black Project"
+			Name			"Custom Upgrade: Black Project."
 			Description		"Able to re-launch while already in-flight, +25 max health on wearer, +50% faster recharge rate and reduces to 0.5 seconds locked holster penalty."
 			Attribute		"thermal_thruster_air_launch"
 			Increment		1
@@ -1118,7 +1217,7 @@ WaveSchedule
 		}
 		custom_upgrade6.1
 		{
-			Name			"Note: If you bought default upgrade Able to re-launch while already in-flight, refund and buy this upgrade."
+			Name			"^ Note: Make sure you haven't bought 'Able to re-launch while already in-flight' default upgrade."
 			Attribute		"damage penalty"
 			Increment		0
 			Cap			1
@@ -1130,8 +1229,8 @@ WaveSchedule
 		}
 		custom_upgrade7
 		{
-			Name			"Custom Upgrade: (Pre Meet Your Match) Ali Baba's Wee Booties / Bootlegger"
-			Description		"Removes shield requirement on move speed bonus."
+			Name			"Custom Upgrade: (Pre Meet Your Match) Ali Baba's Wee Booties / Bootlegger."
+			Description		"Removes shield requirement on 'move speed bonus' attribute."
 			Attribute		"move speed bonus"
 			Increment		0.1
 			Cap			1.1
@@ -1182,24 +1281,6 @@ WaveSchedule
 		}
 		custom_upgrade10
 		{
-			Name			"Custom Upgrade: (Pre Tough Break) Claidheamh Mòr"
-			Description		"-15 max health instead of damage vulnerability and removes when weapon is active."
-			Attribute		"max health additive penalty"
-			Increment		-15
-			Cap			-15
-			Cost			50
-			AllowedWeapons
-			{
-				ItemName	"The Claidheamohmor"
-			}
-			SecondaryAttributes
-			{
-				"dmg taken increased"	-0.15
-				"provide on active"	-1
-			}
-		}
-		custom_upgrade11
-		{
 			Name			"Custom Upgrade: +50% afterburn damage bonus."
 			Attribute		"weapon burn dmg increased"
 			Increment		0.5
@@ -1211,14 +1292,14 @@ WaveSchedule
 				ItemName	"Promo Huo Long Heatmaker"
 			}
 		}
-		custom_upgrade12
+		custom_upgrade11
 		{
 			Name			"Custom Upgrade: Fast Food."
-			Description		"100% faster eating speed, food deploys and holsters 50% faster and recharges in 4.5 seconds."
+			Description		"+100% faster eating speed, food deploys and holsters 50% faster and recharges in 4.5 seconds."
 			Attribute		"provide on active"
 			Increment		1
 			Cap			1
-			Cost			300
+			Cost			200
 			AllowedWeapons
 			{
 				ItemName	"The Sandvich"
@@ -1234,14 +1315,14 @@ WaveSchedule
 				"item_meter_charge_rate"		-25.5
 			}
 		}
-		custom_upgrade12.1
+		custom_upgrade11.1
 		{
 			Name			"Custom Upgrade: Fast Food."
-			Description		"100% faster eating speed, food deploys and holsters 50% faster, recharges in 4.5 seconds and no damage damage vulnerability while under effect."
+			Description		"+100% faster eating speed, food deploys and holsters 50% faster, recharges in 4.5 seconds and no damage damage vulnerability while under effect."
 			Attribute		"provide on active"
 			Increment		1
 			Cap			1
-			Cost			300
+			Cost			200
 			AllowedWeapons
 			{
 				ItemName	"The Buffalo Steak Sandvich"
@@ -1255,14 +1336,14 @@ WaveSchedule
 				"energy buff dmg taken multiplier"	-0.2
 			}
 		}
-		custom_upgrade12.2
+		custom_upgrade11.2
 		{
 			Name			"Custom Upgrade: Fast Food."
-			Description		"100% faster eating speed, food deploys and holsters 50% faster and recharges in 2.25 seconds."
+			Description		"+100% faster eating speed, food deploys and holsters 50% faster and recharges in 2.25 seconds."
 			Attribute		"provide on active"
 			Increment		1
 			Cap			1
-			Cost			300
+			Cost			200
 			AllowedWeapons
 			{
 				ItemName	"The Dalokohs Bar"
@@ -1277,14 +1358,14 @@ WaveSchedule
 				"item_meter_charge_rate"		-7.75
 			}
 		}
-		custom_upgrade12.3
+		custom_upgrade11.3
 		{
 			Name			"Custom Upgrade: Fast Food."
-			Description		"100% faster eating speed, food deploys and holsters 50% faster and recharges in 2.25 seconds."
+			Description		"+100% faster eating speed, food deploys and holsters 50% faster and recharges in 2.25 seconds."
 			Attribute		"provide on active"
 			Increment		1
 			Cap			1
-			Cost			300
+			Cost			200
 			AllowedWeapons
 			{
 				ItemName	"The Second Banana"
@@ -1299,14 +1380,14 @@ WaveSchedule
 				"item_meter_charge_rate"		-7.75
 			}
 		}
-		custom_upgrade13
+		custom_upgrade12
 		{
-			Name			"Custom Upgrade: (Pre Jungle Inferno) Gloves of Running Urgently / Bread Bite"
+			Name			"Custom Upgrade: (Pre Jungle Inferno) Gloves of Running Urgently / Bread Bite."
 			Description		"You are Marked-for-Death while active with -25% damage penalty instead of max health drain."
 			Attribute		"self mark for death"
 			Increment		1
 			Cap			1
-			Cost			200
+			Cost			100
 			AllowedWeapons
 			{
 				ItemName	"Gloves of Running Urgently"
@@ -1319,14 +1400,14 @@ WaveSchedule
 				"mod_maxhealth_drain_rate"	-10
 			}
 		}
-		custom_upgrade14
+		custom_upgrade13
 		{
-			Name			"Custom Upgrade: (Pre Jungle Inferno) Eviction Notice"
+			Name			"Custom Upgrade: (Pre Jungle Inferno) Eviction Notice."
 			Description		"+20% damage vulnerability while active instead of max health drain."
 			Attribute		"mult_dmgtaken_active"
 			Increment		0.2
 			Cap			1.2
-			Cost			100
+			Cost			50
 			AllowedWeapons
 			{
 				ItemName	"The Eviction Notice"
@@ -1337,10 +1418,10 @@ WaveSchedule
 				"mod_maxhealth_drain_rate"	-5
 			}
 		}
-		custom_upgrade15
+		custom_upgrade14
 		{
-			Name			"Custom Upgrade: (Pre Jungle Inferno) Panic Attack"
-			Description		"Hold fire to load up to 4 shells, 20% faster reload time, (Hidden) +30% faster firing speed and fire rate & spread increases as health decreases."
+			Name			"Custom Upgrade: (Pre Jungle Inferno) Panic Attack."
+			Description		"Pre Stats: Hold fire to load up to 4 shells, +50% faster reload time, +30% faster firing speed, and fire rate & weapon spread increases as health decreases."
 			Attribute		"panic_attack"
 			Increment		1
 			Cap			1
@@ -1353,69 +1434,75 @@ WaveSchedule
 			{
 				"auto fires full clip penalty"		1
 				"clip size penalty HIDDEN"		-0.34
-				"reload time decreased"			-0.2
+				"reload time decreased"			-0.5
 				"fire rate bonus HIDDEN"		-0.3
 				"fire rate bonus with reduced health"	-0.5
-				"panic_attack_negative"			1.75
+				"panic_attack_negative"			1.5
+			// Removed Attributes.
 				"damage penalty"			0.2
 				"bullets per shot bonus"		-0.5
 				"mult_spread_scales_consecutive"	-1
 				"fixed_shot_pattern"			-1
 			}
 		}
-		custom_upgrade16
+		custom_upgrade15
 		{
-			Name			"Custom Upgrade: +25% Mini-Sentry damage bonus."
+			Name			"Custom Upgrade: +25% mini-sentry damage bonus."
 			Attribute		"engy sentry damage bonus"
 			Increment		0.25
 			Cap			2
-			Cost			300
+			Cost			400
 			AllowedWeapons
 			{
 				ItemName	"The Gunslinger"
 			}
 		}
-		custom_upgrade17
+		custom_upgrade16
 		{
 			Name			"Custom Upgrade: Upgrade building levels in 4 hits."
 			Attribute		"upgrade rate decrease"
 			Increment		1
 			Cap			2
 			Cost			200
+			AllowPlayerClass	Engineer
 			AllowedWeapons
 			{
-				ItemName	"tf_weapon_pda_engineer_build"
-				ItemName	"upgradeable tf_weapon_pda_engineer_build"
+				Classname	"tf_weapon_pda_engineer_build"
 			}
 		}
-		custom_upgrade18
+		custom_upgrade17
 		{
 			Name			"Custom Upgrade: +20% faster build speed."
 			Attribute		"build rate bonus"
 			Increment		-0.2
 			Cap			0.4
 			Cost			100
+			AllowPlayerClass	Engineer
 			AllowedWeapons
 			{
-				ItemName	"tf_weapon_pda_engineer_build"
-				ItemName	"upgradeable tf_weapon_pda_engineer_build"
+				Classname	"tf_weapon_pda_engineer_build"
 			}
 		}
-		custom_upgrade19
+		custom_upgrade18
 		{
 			Name			"Custom Upgrade: Reloads full clip at once."
-			Description		"Note: On buy this upgrade, will disable faster reload speed default upgrade.."
-			Attribute		"reload full clip at once"
-			Increment		1
-			Cap			1
+			Description		"Note: Make sure you haven't bought 'Reload Speed' default upgrade."
+			Attribute		"faster reload rate"
+			Increment		-0.2
+			Cap			0.8
 			Cost			400
 			AllowedWeapons
 			{
 				ItemName	"The Crusader's Crossbow"
 				ItemName	"Festive Crusader's Crossbow"
 			}
+			SecondaryAttributes
+			{
+				"reload time increased"		0.25
+				"reload full clip at once"	1
+			}
 		}
-		custom_upgrade20
+		custom_upgrade19
 		{
 			Name			"Custom Upgrade: On Hit: +25% ÜberCharge added."
 			Attribute		"add uber charge on hit"
@@ -1435,7 +1522,7 @@ WaveSchedule
 				ItemName	"The Vita-Saw"
 			}
 		}
-		custom_upgrade20.1
+		custom_upgrade19.1
 		{
 			Name			"Custom Upgrade: On Hit: +20% ÜberCharge added."
 			Attribute		"add uber charge on hit"
@@ -1448,7 +1535,7 @@ WaveSchedule
 				ItemName	"The Vita-Saw"
 			}
 		}
-		custom_upgrade21
+		custom_upgrade20
 		{
 			Name			"Custom Upgrade: Gain Focus on kills and assists."
 			Description		"Press 'Reload' to activate focus mode, when in focus mode: +25% faster charge and no unscoping."
@@ -1477,7 +1564,7 @@ WaveSchedule
 				"rage on assists"		15
 			}
 		}
-		custom_upgrade21.1
+		custom_upgrade20.1
 		{
 			Name			"Custom Upgrade: Gain Focus on kills and assists."
 			Description		"Press 'Reload' to activate focus mode, when in focus mode: +25% faster charge and no unscoping."
@@ -1497,9 +1584,9 @@ WaveSchedule
 				"special item description"	"Note: 'Focus' hud are not visible for Bazaar Bargain due conflict with 'Heads' hud."
 			}
 		}
-		custom_upgrade21.2
+		custom_upgrade20.2
 		{
-			Name			"Note: 'Focus' hud are not visible for Bazaar Bargain due conflict with 'Heads' hud."
+			Name			"^ Note: 'Focus' hud are not visible for Bazaar Bargain due conflict with 'Heads' hud."
 			Attribute		"damage penalty"
 			Increment		0
 			Cap			1
@@ -1509,7 +1596,7 @@ WaveSchedule
 				ItemName	"The Bazaar Bargain"
 			}
 		}
-		custom_upgrade22
+		custom_upgrade21
 		{
 			Name			"Custom Upgrade: +50% bleed damage bonus."
 			Attribute		"mult bleeding dmg"
@@ -1521,30 +1608,9 @@ WaveSchedule
 				ItemName	"The Huntsman"
 				ItemName	"Festive Huntsman"
 				ItemName	"The Fortified Compound"
-				ItemName	"The Tribalman's Shiv"
-				ItemName	"The Southern Hospitality"
 			}
 		}
-		custom_upgrade23
-		{
-			Name			"Custom Upgrade: Backstab immunity and no overheal penalty."
-			Attribute		"cannot be backstabbed"
-			Increment		1
-			Cap			1
-			Cost			150
-			AllowedWeapons
-			{
-				ItemName	"The Razorback"
-			}
-			SecondaryAttributes
-			{
-				"backstab shield"		-1
-				"item_meter_charge_rate"	-30
-				"item_meter_charge_type"	-1
-				"patient overheal penalty"	1
-			}
-		}
-		custom_upgrade24
+		custom_upgrade22
 		{
 			Name			"Custom Upgrade: +25 max health on wearer."
 			Attribute		"max health additive bonus"
@@ -1556,22 +1622,10 @@ WaveSchedule
 				ItemName	"Darwin's Danger Shield"
 			}
 		}
-		custom_upgrade25
-		{
-			Name			"Custom Upgrade: Knockback immunity while aiming."
-			Attribute		"aiming knockback resistance"
-			Increment		-0.8
-			Cap			0
-			Cost			50
-			AllowedWeapons
-			{
-				ItemName	"The Cozy Camper"
-			}
-		}
-		custom_upgrade26
+		custom_upgrade23
 		{
 			Name			"Custom Upgrade: Explosive Headshot."
-			Description		"Adds headshot explosion radius that's deal 150 damage to nearby enemies and instantly collect currency on kill."
+			Description		"Adds headshot explosion radius that's deal 150 damage to nearby enemies and instantly collects currency on kill."
 			Attribute		"explosive sniper shot"
 			Increment		1
 			Cap			1
@@ -1585,28 +1639,6 @@ WaveSchedule
 			{
 				"crit_dmg_falloff"		-1
 				"collect currency on kill"	1
-			}
-		}
-		custom_upgrade27
-		{
-			Name			"Custom Upgrade: Money Watch."
-			Description		"Half credit collection radius with additional health gained from collecting credits and +25 max health on wearer."
-			Attribute		"mult credit collect range"
-			Increment		1.5
-			Cap			2.5
-			Cost			250
-			AllowedWeapons
-			{
-				ItemName	"tf_weapon_invis"
-				ItemName	"upgradeable tf_weapon_invis"
-				ItemName	"TTG Watch"
-				ItemName	"The Quackenbirdt"
-				ItemName	"The Cloak and Dagger"
-			}
-			SecondaryAttributes
-			{
-				"health from credits"		50
-				"max health additive bonus"	25
 			}
 		}
 	}

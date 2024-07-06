@@ -618,8 +618,7 @@ population
 				"dmg penalty vs buildings"		2
 				"use large smoke explosion"		1
 				"attach particle effect"		3129  //  Haunted cremation
-				"apply look velocity on damage"	1000
-				"apply z velocity on damage"	100
+				"damage causes airblast" 		1
 			}
 		}
 		T_TFBot_Pyro_Diesel_Engine
@@ -1644,6 +1643,12 @@ population
 					Action Trigger
 				}
 			}
+			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
+			{
+				Target	wave_start_relay_classic
+				Action	RunScriptCode
+				Param	"ClientPrint(null,3,`\x07E7EE0A A tank has been deployed with 27,500 HP!`)"
+			}
 		}
 		WaveSpawn
 		{
@@ -2132,7 +2137,7 @@ population
 		WaveSpawn
 		{
 			Name	4e
-			WaitForAllSpawned	4b3
+			//WaitForAllSpawned	4b3
 			TotalCurrency	50
 			TotalCount	7
 			MaxActive	4
@@ -2149,6 +2154,7 @@ population
 				Name	"Armored Tomislav Heavy"
 				Item	"Tomislav"
 				Item	"Capone's Capper"
+				Item	"Immobile Suit"
 				Classicon	heavy_armored_accurate_lite
 			}
 		}
@@ -2326,6 +2332,12 @@ population
 					Action Trigger
 				}
 			}
+			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
+			{
+				Target	wave_start_relay_classic
+				Action	RunScriptCode
+				Param	"ClientPrint(null,3,`\x07E7EE0A A tank has been deployed with 32,500 HP!`)"
+			}
 		}
 		WaveSpawn
 		{
@@ -2353,6 +2365,12 @@ population
 					Target boss_deploy_relay
 					Action Trigger
 				}
+			}
+			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
+			{
+				Target	wave_start_relay_classic
+				Action	RunScriptCode
+				Param	"ClientPrint(null,3,`\x07E7EE0A A tank has been deployed with 27,500 HP!`)"
 			}
 		}
 		WaveSpawn
@@ -2823,6 +2841,12 @@ population
 					Action Trigger
 				}
 			}
+			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
+			{
+				Target	wave_start_relay_classic
+				Action	RunScriptCode
+				Param	"ClientPrint(null,3,`\x07E7EE0A A tank has been deployed with 30,000 HP!`)"
+			}
 		}
 		WaveSpawn
 		{
@@ -2851,6 +2875,12 @@ population
 					Target boss_deploy_relay
 					Action Trigger
 				}
+			}
+			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
+			{
+				Target	wave_start_relay_classic
+				Action	RunScriptCode
+				Param	"ClientPrint(null,3,`\x07E7EE0A A final tank has been deployed with 30,000 HP!`)"
 			}
 		}
 		WaveSpawn
@@ -2986,12 +3016,14 @@ population
 		{
 			Name	Mission_end__voice_relay_6.1
 			WaitForAllDead		6e
+			WaitBeforeStarting	2
 			FirstSpawnWarningSound	"ui\itemcrate_smash_ultrarare_fireworks.wav"	//	Australium unbox fireworks sound
 		}
 		WaveSpawn
 		{
 			Name	Mission_end__voice_relay_6.1
 			WaitForAllDead		6e
+			WaitBeforeStarting	2
 			FirstSpawnWarningSound	"ui\itemcrate_smash_ultrarare_fireworks.wav"	//	Australium unbox fireworks sound
 		}
 	}

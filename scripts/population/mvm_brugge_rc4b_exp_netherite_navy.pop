@@ -92,6 +92,7 @@ WaveSchedule
 			//"passive reload" 2
 			"ragdolls become ash" 1
 			"projectile penetration" 1
+			"crits_become_minicrits" 1
 			//"mult crit dmg" 0.3334
 		}
 		
@@ -2118,104 +2119,89 @@ WaveSchedule
 			WaitForAllSpawned 6a
 
 			Where spawnbot
-			TotalCount 3
-			MaxActive 3
-			SpawnCount 3
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 60
-			
-			Squad
+
+			TFBot
 			{
-				TFBot
+				Template T_TFBot_Giant_Soldier_Spammer
+				Name "1 2 4 can't count 3"
+				ClassIcon soldier_spammer_hyper_lite
+				Health 25000
+				Scale 1.75
+				Attributes UseBossHealthBar
+				//Attributes AutoJump
+					//AutoJumpMin 10
+					//AutoJumpMax 10
+				Item "Pestering Jester"
+				CharacterAttributes
 				{
-					Template T_TFBot_Giant_Soldier_Spammer
-					Name "1 2 4 can't count 3"
-					ClassIcon soldier_spammer_hyper_lite
-					Health 25000
-					Scale 1.75
-					Attributes UseBossHealthBar
-					//Attributes AutoJump
-						//AutoJumpMin 10
-						//AutoJumpMax 10
-					Item "Pestering Jester"
-					CharacterAttributes
+					"increased jump height" 1.5
+					"cancel falling damage" 1
+					"blast dmg to self increased" 0
+				}
+				ChangeAttributes
+				{
+					Delay 0
+					Repeats 1
+					IfHealthBelow 16001
+					Name "phase1"
+				}
+				ChangeAttributes    
+				{
+					Delay 0.5
+					Repeats 1
+					IfHealthBelow 8001
+					Name "phase2"
+				}
+				EventChangeAttributes  
+				{                
+					phase1
 					{
-						"increased jump height" 1.5
-						"cancel falling damage" 1
-						"blast dmg to self increased" 0
-					}
-					ChangeAttributes
-					{
-						Delay 0
-						Repeats 1
-						IfHealthBelow 16001
-						Name "phase1"
-					}
-					ChangeAttributes    
-					{
-						Delay 0.5
-						Repeats 1
-						IfHealthBelow 8001
-						Name "phase2"
-					}
-					EventChangeAttributes  
-					{                
-						phase1
+						Attributes HoldFireUntilFullReload
+						Skill Expert
+						ItemAttributes
 						{
-							Attributes HoldFireUntilFullReload
-							Skill Expert
-							ItemAttributes
-							{
-								ItemName "TF_WEAPON_ROCKETLAUNCHER"
-								"fire rate bonus" 0.001
-								"clip size upgrade atomic" -2
-								"faster reload rate" 0.2
-								"projectile spread angle penalty" 3
-								"Projectile speed increased" 0.65
-							}
-							CharacterAttributes
-							{
-								"move speed bonus"	0.5
-								"damage force reduction" 0.4
-								"airblast vulnerability multiplier" 0.4
-								"override footstep sound set" 3
-								"increased jump height" 1.5
-								"cancel falling damage" 1
-								"blast dmg to self increased" 0
-							}
+							ItemName "TF_WEAPON_ROCKETLAUNCHER"
+							"fire rate bonus" 0.001
+							"clip size upgrade atomic" -2
+							"faster reload rate" 0.2
+							"projectile spread angle penalty" 3
+							"Projectile speed increased" 0.65
 						}
+						CharacterAttributes
+						{
+							"move speed bonus"	0.5
+							"damage force reduction" 0.4
+							"airblast vulnerability multiplier" 0.4
+							"override footstep sound set" 3
+							"increased jump height" 1.5
+							"cancel falling damage" 1
+							"blast dmg to self increased" 0
+						}
+					}
 						
-						phase2
+					phase2
+					{
+						Attributes HoldFireUntilFullReload
+						Skill Expert
+						Item "Giga Rapid Burst Rocket"
+						CharacterAttributes
 						{
-							Attributes HoldFireUntilFullReload
-							Skill Expert
-							Item "Giga Rapid Burst Rocket"
-							CharacterAttributes
-							{
-								"move speed bonus" 0.5
-								"damage force reduction" 0.4
-								"airblast vulnerability multiplier" 0.4
-								"override footstep sound set" 3
-								"airblast vertical vulnerability multiplier" 0.4
-								"increased jump height" 1.5
-								"cancel falling damage" 1
-								"blast dmg to self increased" 0
-							}
+							"move speed bonus" 0.5
+							"damage force reduction" 0.4
+							"airblast vulnerability multiplier" 0.4
+							"override footstep sound set" 3
+							"airblast vertical vulnerability multiplier" 0.4
+							"increased jump height" 1.5
+							"cancel falling damage" 1
+							"blast dmg to self increased" 0
 						}
 					}
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_SlowRecharge_Armored
-					Attributes IgnoreEnemies
-					Name "Armored Uber Medic"
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_SlowRecharge_Armored
-					Attributes IgnoreEnemies
-					Name "Armored Uber Medic"
 				}
 			}
 		}
@@ -2301,8 +2287,9 @@ WaveSchedule
 			
 			TFBot
 			{
-				Template T_TFBot_Giant_DemoMan_PrinceTavish
+				Template T_TFBot_Giant_Demoman_Targe_No_RapidFire
 				AlwaysGlow 1
+				Attributes AlwaysCrit
 			}
 		}
 		
@@ -2321,8 +2308,9 @@ WaveSchedule
 			
 			TFBot
 			{
-				Template T_TFBot_Giant_DemoMan_PrinceTavish
+				Template T_TFBot_Giant_Demoman_Targe_No_RapidFire
 				AlwaysGlow 1
+				Attributes AlwaysCrit
 			}
 		}
 		
@@ -3204,3 +3192,7 @@ WaveSchedule
 // Wave 6
 // Added 2 Slow Recharge Armored Uber Medic on Boss Giant Soldier
 // Change Common Batt Soldier to Armored Variant
+
+// Wave 6
+// Remove Armored Uber Medic
+// Change Giant Demoknight to Crit Giant Targe Grenade Demo
