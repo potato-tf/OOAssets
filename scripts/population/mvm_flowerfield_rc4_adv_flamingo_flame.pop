@@ -6,20 +6,20 @@
 #base robot_lyney.pop
 
 // WAVE 1 Current Money: 250$
-// WAVE 2 Current Money: 250$ + 650$ + 100$ Bonus = 1000$ (No Bonus: 900$)
-// WAVE 3 Current Money: 1000$ + 700$ + 100$ Bonus = 1800$ (No Bonus: 1600$)
-// WAVE 4 Current Money: 1800$ + 600$ + 100$ Bonus = 2500$ (No Bonus: 2200$)
-// WAVE 5 Current Money: 2500$ + 600$ + 100$ Bonus = 3200$ (No Bonus: 2800$)
-// WAVE 6 Current Money: 3200$ + 500$ + 100$ Bonus = 3800$ (No Bonus: 3300$)
-// WAVE 7 Current Money: 3800$ + 400$ + 100$ Bonus = 4300$ (No Bonus: 3700$)
-// WAVE 8 Current Money: 4300$ + 600$ + 100$ Bonus = 5000$ (No Bonus: 4300$)
-// WAVE 9 Current Money: 5000$ + 500$ + 100$ Bonus = 5600$ (No Bonus: 4800$)
+// WAVE 2 Current Money: 250$ + 850$ + 100$ Bonus = 1200$ (No Bonus: 1100$)
+// WAVE 3 Current Money: 1200$ + 500$ + 100$ Bonus = 1800$ (No Bonus: 1600$)
+// WAVE 4 Current Money: 1800$ + 800$ + 100$ Bonus = 2700$ (No Bonus: 2400$)
+// WAVE 5 Current Money: 2700$ + 400$ + 100$ Bonus = 3200$ (No Bonus: 2800$)
+// WAVE 6 Current Money: 3200$ + 700$ + 100$ Bonus = 4000$ (No Bonus: 3500$)
+// WAVE 7 Current Money: 4000$ + 300$ + 100$ Bonus = 4400$ (No Bonus: 3800$)
+// WAVE 8 Current Money: 4400$ + 700$ + 100$ Bonus = 5200$ (No Bonus: 4500$)
+// WAVE 9 Current Money: 5200$ + 300$ + 100$ Bonus = 5600$ (No Bonus: 4800$)
 // Total Possible Money: 5600$ + 900$ = 6500$ (No Bonus: 5700$)
 
 WaveSchedule
 {
 	StartingCurrency 250
-	RespawnWaveTime 4
+	RespawnWaveTime 3
 	CanBotsAttackWhileInSpawnRoom no
 	WaveStartCountdown 3
 	PrecacheSound "flowerfieldupgradestation.mp3"
@@ -247,7 +247,7 @@ WaveSchedule
 	SpawnTemplate UpgradeStationMusicFront
 	SpawnTemplate UpgradeStationMusicFront
 
-	//WAVE 1 (650$)
+	//WAVE 1 (850$)
 	Wave
     {
 		WaitWhenDone 65
@@ -316,7 +316,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 0
-			TotalCurrency 50
+			TotalCurrency 100
 			
 			Squad
 			{
@@ -345,7 +345,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
-			TotalCurrency 50
+			TotalCurrency 100
 			
 			Squad
 			{
@@ -374,7 +374,7 @@ WaveSchedule
 			MaxActive 4
 			SpawnCount 2
 			WaitBeforeStarting 0
-			WaitBetweenSpawns 5
+			WaitBetweenSpawns 10
 			TotalCurrency 150
 			
 			Support 1
@@ -393,9 +393,9 @@ WaveSchedule
 			WaitForAllDead "1a"
 
 			Where spawnbot
-			TotalCount 20
-			MaxActive 7
-			SpawnCount 5
+			TotalCount 16
+			MaxActive 6
+			SpawnCount 4
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 6
 			TotalCurrency 100
@@ -418,7 +418,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 22
 			WaitBetweenSpawns 0
-			TotalCurrency 50
+			TotalCurrency 100
 			
 			Squad
 			{
@@ -448,7 +448,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
-			TotalCurrency 50
+			TotalCurrency 100
 			
 			Squad
 			{
@@ -470,7 +470,7 @@ WaveSchedule
 		
 		
 	
-	//WAVE 2 (700$)
+	//WAVE 2 (500$)
 	Wave
     {
 		Checkpoint	Yes
@@ -481,8 +481,13 @@ WaveSchedule
 		}
         Initwaveoutput
         {
-            Target bombpath_flank
-            Action Trigger
+            Target wave_start_noreset_relay
+            Action RunScriptCode
+			Param 
+			"
+                EntFire(`bombpath_flank`, `Trigger`)
+				IncludeScript(`disablesquad`)
+            "
         }
 		DoneOutput
 		{
@@ -497,6 +502,7 @@ WaveSchedule
             TotalCount 1
             WaitBeforeStarting 0
 			TotalCurrency 100
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
             Tank
             {
@@ -528,7 +534,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
-			TotalCurrency 50
+			TotalCurrency 90
 			
 			TFBot
 			{
@@ -580,12 +586,12 @@ WaveSchedule
 			WaitForAllSpawned "2a"
 
 			Where spawnbot_flank_short
-			TotalCount 9
-			MaxActive 4
-			SpawnCount 3
+			TotalCount 6
+			MaxActive 3
+			SpawnCount 2
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 15
-			TotalCurrency 270
+			TotalCurrency 60
 			
 			Squad
 			{
@@ -596,11 +602,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Medic_BigHeal
-					Name "Big-Heal Medic"
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_BigHeal
+					Attributes IgnoreEnemies
 					Name "Big-Heal Medic"
 				}
 			}
@@ -637,10 +639,10 @@ WaveSchedule
 			Where spawnbot_flank_short
 			TotalCount 30
 			MaxActive 7
-			SpawnCount 1
+			SpawnCount 5
 			WaitBeforeStarting 2
-			WaitBetweenSpawns 1
-			TotalCurrency 60
+			WaitBetweenSpawns 8
+			TotalCurrency 30
 			
 			Support 1
 			
@@ -648,13 +650,30 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Class Pyro
-					Skill Easy
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ
+					Tag disband_squad
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ
+					Tag disband_squad
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ
+					Tag disband_squad
 				}
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Shotgun
 					Name "Shotgun Heavy"
+					Tag disband_squad
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Shotgun
+					Name "Shotgun Heavy"
+					Tag disband_squad
 				}
 			}
 		}
@@ -679,7 +698,7 @@ WaveSchedule
 		}
 	}
 	
-	//WAVE 3 (600$)
+	//WAVE 3 (800$)
 	Wave
     {
 		Checkpoint	Yes
@@ -714,7 +733,7 @@ WaveSchedule
 			SpawnCount 6
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 15
-			TotalCurrency 50
+			TotalCurrency 110
 			
 			TFBot
 			{
@@ -732,7 +751,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 9
 			WaitBetweenSpawns 4
-			TotalCurrency 50
+			TotalCurrency 120
 			
 			TFBot
 			{
@@ -814,7 +833,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 4
-			TotalCurrency 50
+			TotalCurrency 120
 			
 			Squad
 			{
@@ -930,7 +949,7 @@ WaveSchedule
 		}
 	}
 	
-	//WAVE 4 (600$)
+	//WAVE 4 (400$)
 	Wave
     {
 		Checkpoint	Yes
@@ -998,7 +1017,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 8
 			WaitBetweenSpawns 3
-			TotalCurrency 100
+			TotalCurrency 80
 			
 			Squad
 			{
@@ -1035,7 +1054,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
-			TotalCurrency 80
+			TotalCurrency 40
 			
 			Squad
 			{
@@ -1052,16 +1071,19 @@ WaveSchedule
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
 			}
 		}
@@ -1077,7 +1099,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
-			TotalCurrency 80
+			TotalCurrency 40
 			
 			Squad
 			{
@@ -1094,40 +1116,20 @@ WaveSchedule
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic_QuickUber
 					Attributes IgnoreEnemies
+					Name "Quick-Uber Medic"
 				}
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name "4b-Support"
-			WaitForAllDead "4a"
-			
-			Where spawnbot
-			Where spawnbot_flank
-			Where spawnbot_flank_short
-			TotalCount 8
-			MaxActive 4
-			SpawnCount 4
-			WaitBeforeStarting 0
-			WaitBetweenSpawns 3
-			TotalCurrency 8
-			
-			Support 1
-			
-			TFBot
-			{
-				Template T_TFBot_Pyro_DF
 			}
 		}
 		
@@ -1144,7 +1146,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 1
-			TotalCurrency 16
+			TotalCurrency 24
 			
 			Support Limited
 			
@@ -1161,7 +1163,7 @@ WaveSchedule
 			
 			Where spawnbot_flank_hard
 			TotalCount 64
-			MaxActive 4
+			MaxActive 3
 			SpawnCount 1
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 1
@@ -1209,7 +1211,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 0
-			TotalCurrency 40
+			TotalCurrency 20
 			
 			TFBot
 			{
@@ -1230,7 +1232,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 20
-			TotalCurrency 80
+			TotalCurrency 40
 
 			TFBot
 			{
@@ -1249,7 +1251,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 23
 			WaitBetweenSpawns 0
-			TotalCurrency 40
+			TotalCurrency 20
 			
 			TFBot
 			{
@@ -1270,7 +1272,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 40
 			WaitBetweenSpawns 0
-			TotalCurrency 40
+			TotalCurrency 20
 			
 			TFBot
 			{
@@ -1281,7 +1283,7 @@ WaveSchedule
 		}
 	}
 	
-	//WAVE 5 (500$)
+	//WAVE 5 (700$)
 	Wave
     {
 		Checkpoint	Yes
@@ -1345,7 +1347,7 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_Shield_Armored
+					Template T_TFBot_Medic_Shield
 					Attributes IgnoreEnemies
 				}
 			}
@@ -1371,7 +1373,7 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_Shield_Armored
+					Template T_TFBot_Medic_Shield
 					Attributes IgnoreEnemies
 				}
 			}
@@ -1388,7 +1390,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 14
-			TotalCurrency 100
+			TotalCurrency 200
 			
 			Squad
 			{
@@ -1409,7 +1411,7 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_Shield_Armored
+					Template T_TFBot_Medic_Shield
 					Attributes IgnoreEnemies
 				}
 			}
@@ -1459,13 +1461,13 @@ WaveSchedule
 			Name "5c"
 			WaitForAllSpawned "5b"
 			
-			Where spawnbot_flank
-			TotalCount 4
-			MaxActive 4
+			Where spawnbot
+			TotalCount 8
+			MaxActive 8
 			SpawnCount 4
 			WaitBeforeStarting 0
-			WaitBetweenSpawns 0
-			TotalCurrency 50
+			WaitBetweenSpawns 18
+			TotalCurrency 200
 			
 			Squad
 			{
@@ -1486,45 +1488,7 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_Shield_Armored
-					Attributes IgnoreEnemies
-				}
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name "5c"
-			WaitForAllSpawned "5b"
-			
-			Where spawnbot_flank_short
-			TotalCount 4
-			MaxActive 4
-			SpawnCount 4
-			WaitBeforeStarting 0
-			WaitBetweenSpawns 0
-			TotalCurrency 50
-			
-			Squad
-			{
-				TFBot
-				{
-					Template T_TFBot_Heavyweapons_Heater
-					Name "Giant Heater Heavy"
-				}
-				TFBot
-				{
-					Template T_TFBot_Pyro_Flaregun
-					Name "Flare Gun Pyro"
-				}
-				TFBot
-				{
-					Template T_TFBot_Pyro_Flaregun
-					Name "Flare Gun Pyro"
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_Shield_Armored
+					Template T_TFBot_Medic_Shield
 					Attributes IgnoreEnemies
 				}
 			}
@@ -1555,7 +1519,7 @@ WaveSchedule
 		}
 	}
 	
-	//WAVE 6 (400$)
+	//WAVE 6 (300$)
 	Wave
     {
 		Checkpoint	Yes
@@ -1642,7 +1606,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 14
-			TotalCurrency 50
+			TotalCurrency 30
 			
 			TFBot
 			{
@@ -1658,6 +1622,7 @@ WaveSchedule
             TotalCount 1
             WaitBeforeStarting 0
 			TotalCurrency 111
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
             Tank
             {
@@ -1690,7 +1655,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 33
-			TotalCurrency 100
+			TotalCurrency 20
 			
 			Squad
 			{
@@ -1713,10 +1678,10 @@ WaveSchedule
 			
 			Where spawnbot
 			TotalCount 50
-			MaxActive 8
+			MaxActive 5
 			SpawnCount 2
 			WaitBeforeStarting 0
-			WaitBetweenSpawns 3
+			WaitBetweenSpawns 5
 			TotalCurrency 50
 			
 			Support 1
@@ -1733,7 +1698,7 @@ WaveSchedule
 		}
 	}
 	
-	//WAVE 7 (600$)
+	//WAVE 7 (700$)
 	Wave
     {
 		Checkpoint	Yes
@@ -1828,7 +1793,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 15
-			TotalCurrency 60
+			TotalCurrency 80
 			
 			TFBot
 			{
@@ -1851,7 +1816,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 2
-			TotalCurrency 80
+			TotalCurrency 160
 			
 			TFBot
 			{
@@ -1993,7 +1958,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 11
-			TotalCurrency 100
+			TotalCurrency 30
 			
 			Squad
 			{
@@ -2070,7 +2035,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 7
-			TotalCurrency 60
+			TotalCurrency 30
 			
 			Support 1
 			
@@ -2091,7 +2056,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 0
-			TotalCurrency 100
+			TotalCurrency 50
 
 			Squad
 			{
@@ -2124,7 +2089,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 32
 			WaitBetweenSpawns 0
-			TotalCurrency 100
+			TotalCurrency 50
 
 			Squad
 			{
@@ -2229,12 +2194,14 @@ WaveSchedule
             TotalCount 1
             WaitBeforeStarting 15
 			TotalCurrency 200
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
             Tank
             {
                 Health 20000
                 Name "tankboss"
                 Speed 75
+				Skin 1
                 StartingPathTrackNode "boss_path_0_1"
 
                 OnKilledOutput
@@ -2444,3 +2411,43 @@ WaveSchedule
 
 // Wave 2
 // Reduce Pyro and Shotgun Heavy RandomChoice Support MaxActive from 10 to 7
+
+// Changelog
+// Nerf
+// Wave 1
+// Crit Bat Scout Longer Between Spawn From 5 to 10 Seconds
+// Wave 2
+// Big Heal Medic now reduced from 2 to 1
+// Money Change
+// Wave 1 Change Money from 650 to 850 (To get Wave 2 have 1200$ instead 1000$)
+// Wave 2 Change Money from 700 to 500 (To get Wave 3 have 1800$ same as previous version since completed rate is already 85%+)
+// Wave 3 Change Money from 600 to 800 (To get Wave 4 have 2700$ instead 2500$)
+// Wave 4 Change Money from 600 to 400 (To get Wave 5 have 3200$ same as previous version since completed rate is already 85%+)
+// Wave 5 Change Money from 500 to 700 (To get Wave 6 have 4000$ instead 3800$)
+// Wave 6 Change Money from 400 to 300 
+// Wave 7 Change Money from 600 to 700 
+// Wave 8 Change Money from 500 to 300 (To get Wave 9 have 5600$ same as previous version since completed rate is already 85%+)
+
+// Nerf
+// Reduced RespawnWaveTime from 4 to 3
+// Wave 1
+// Soldier bot reduce TotalCount from 20 to 16, MaxActive from 7 to 6, SpawnCount from 5 to 4
+
+// Wave 4
+// Support
+// Remove DF Pyro
+// Fury Pyro Reduce MaxActive from 4 to 2 and Ignite GRU Heavy MaxActive from 4 to 3
+
+// Wave 6
+// Support
+// Ignited Soldier Reduce MaxActive from 8 to 5, WaitBetweenSpawns from 3 to 5
+
+// Changelog
+// Nerf
+// Wave 2
+// Change Spawncount from 1 to 5 but longer WaitBetweenSpawns from 1 to 8 and Change Pyro bot to Heavyweight Champ
+
+// Changelog
+// Nerf Wave 5
+// Change Armored Shield Medic to Common Variant 
+// Change the last 2 Gianr heavy to spawnbot with having WaitBetweenSpawns 18 seconds

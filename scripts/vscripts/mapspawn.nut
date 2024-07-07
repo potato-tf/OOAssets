@@ -152,6 +152,13 @@
                 // Fix bad collision on tank barricade
                 EntFire("Barricade", "DisableCollision")
                 break
+
+            // Lotus
+            case "mvm_lotus_b6":
+                // Fix bot spawnroom holograms from incorrectly rendering behind props
+                for (local vis; vis = Entities.FindByClassname(vis, "func_respawnroomvisualizer");)
+                    NetProps.SetPropInt(vis, "m_nRenderMode", Constants.ERenderMode.kRenderTransColor)
+                break
         }
     }
 

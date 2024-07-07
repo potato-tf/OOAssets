@@ -5,10 +5,10 @@
 
 WaveSchedule
 {
-	StartingCurrency 400
+	StartingCurrency 500
 	RespawnWaveTime 4
 	CanBotsAttackWhileInSpawnRoom no
-
+	
 	Mission
 	{
 		Objective	DestroySentries
@@ -18,13 +18,14 @@ WaveSchedule
 		CooldownTime	30
 		DesiredCount	1
 		Where	spawnbot_mission_sentrybuster
-
+		
 		TFBot
 		{
 			Template	T_TFBot_SentryBuster
+			Tag bot_giant
 		}
 	}
-
+	
 	Mission
 	{
 		BeginAtWave	2
@@ -38,8 +39,8 @@ WaveSchedule
 		{
 			Template	T_TFBot_Sniper
 		}
-	}
-
+	}	
+	
 	Mission
 	{
 		BeginAtWave	3
@@ -53,8 +54,8 @@ WaveSchedule
 		{
 			Template	T_TFBot_Spy
 		}
-	}
-
+	}	
+	
 	Mission
 	{
 
@@ -70,9 +71,9 @@ WaveSchedule
 			Template T_TFBot_Engineer_Sentry_Battle_TeleIn
 
 		}
-	}
-
-	Wave	//wave 1	~~~900 cash~~~
+	}	
+	
+	Wave	//wave 1	~~~800 cash~~~
 	{
 
 		StartWaveOutput
@@ -85,7 +86,7 @@ WaveSchedule
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-
+		
 		WaveSpawn
 		{
 			Name	w1a
@@ -102,9 +103,9 @@ WaveSchedule
 				Template	T_TFBot_Giant_Pyro
 				Tag bot_giant
 				Attributes	AlwaysFireWeapon
-			}
+			}	
 		}
-
+		
 		WaveSpawn
 		{
 			Name	w1a
@@ -115,19 +116,19 @@ WaveSchedule
 			WaitBeforeStarting	2
 			WaitBetweenSpawns	2.5
 			Where	spawnbot_side
-
+			
 			Squad
 			{
 				TFBot
 				{
-
+				
 					Class Heavyweapons
 					ClassIcon 	heavy_shotgun_buff_lite
 					Name "Extended Heavy Shotgun"
-
+					
 
 					EventChangeAttributes
-					{
+					{			
 						Default
 						{
 							Skill Expert
@@ -143,7 +144,7 @@ WaveSchedule
 								{
 									"increase buff duration"	9.0
 								}
-
+	
 							ItemAttributes
 							{
 								ItemName "TF_WEAPON_SHOTGUN_HWG"
@@ -152,7 +153,7 @@ WaveSchedule
 								"bullets per shot bonus" 3
 								"damage bonus" 0.33
 							}
-						}
+						}		
 						RevertGateBotsBehavior
 						{
 							Item "MvM GateBot Light Heavy"
@@ -160,7 +161,7 @@ WaveSchedule
 							Attributes SpawnWithFullCharge
 							Skill Expert
 							WeaponRestrictions SecondaryOnly
-
+								
 								ItemAttributes               // turn off light hat
 								{
 									ItemName "MvM GateBot Light Heavy"
@@ -175,28 +176,28 @@ WaveSchedule
 									"bullets per shot bonus" 3
 									"damage penalty" 0.33
 								}
-
+								
 								CharacterAttributes
 								{
 									"increase buff duration"	9.0
 								}
 						}
-					}
-				}
-
+					}		
+				}	
+				
 				TFBot
 				{
 					Template	T_TFBot_Medic_QuickFix
 					Tag	bot_squad_member
-
+					
 					ItemAttributes
 					{
 						ItemName "The Quick-Fix"
 						"ubercharge rate bonus" 0.1
 					}
 				}
-			}
-		}
+			}	
+		}	
 
 		WaveSpawn
 		{
@@ -213,8 +214,8 @@ WaveSchedule
 			TFBot
 			{
 				Class Scout
-				ClassIcon	scout_bat_nys
-
+				ClassIcon	scout_bat_nys	
+					
 				EventChangeAttributes
 				{
 					Default
@@ -250,9 +251,9 @@ WaveSchedule
 						WeaponRestrictions MeleeOnly
 					}
 				}
-			}
-		}
-
+			}	
+		}	
+		
 		WaveSpawn
 		{
 			Name	w1b
@@ -269,14 +270,14 @@ WaveSchedule
 			{
 				Template	T_TFBot_Giant_Soldier
 				Tag bot_giant
-			}
+			}	
 		}
 
 		WaveSpawn
 		{
 			Name	w1b
 			WaitForAllSpawned w1a
-			TotalCurrency	400
+			TotalCurrency	300
 			TotalCount	1
 			MaxActive	1
 			SpawnCount	1
@@ -288,7 +289,7 @@ WaveSchedule
 				Target boss_spawn_relay
 				Action Trigger
 			}
-
+			
 			Tank
 			{
 				Name "Tank"
@@ -307,7 +308,7 @@ WaveSchedule
 				}
 			}
 		}
-
+		
 		WaveSpawn
 		{
 			Name	w1c
@@ -324,9 +325,9 @@ WaveSchedule
 			{
 				Template	T_TFBot_Giant_Scout_FAN
 				Tag bot_giant
-			}
-		}
-
+			}	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w1c
@@ -343,10 +344,10 @@ WaveSchedule
 			TFBot
 			{
 				Class Demoman
-			}
+			}	
 		}
-	}
-
+	}	
+		
 	Wave	//wave 2	~~~1000 cash~~~
 	{
 
@@ -360,7 +361,7 @@ WaveSchedule
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-
+		
 		WaveSpawn
 		{
 			Name	w2a
@@ -374,11 +375,11 @@ WaveSchedule
 
 			TFBot
 			{
-				Template	T_TFBot_Giant_DemoMan_PrinceTavish
+				Template	T_TFBot_Giant_Soldier_Crit
 				Tag bot_giant
-			}
-		}
-
+			}	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w2a
@@ -420,9 +421,9 @@ WaveSchedule
 						Skill Normal
 					}
 				}
-			}
-		}
-
+			}	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w2a
@@ -437,9 +438,9 @@ WaveSchedule
 			TFBot
 			{
 				Template	T_TFBot_Sniper_Huntsman
-			}
-		}
-
+			}	
+		}	
+		
 		WaveSpawn
 		{
 			Name	w2b
@@ -450,8 +451,8 @@ WaveSchedule
 			SpawnCount	2
 			WaitBeforeStarting	7
 			WaitBetweenSpawns	15
-			Where	spawnbot
-
+			Where	spawnbot_side
+			
 			Squad
 			{
 				TFBot
@@ -521,15 +522,25 @@ WaveSchedule
 						}
 					}
 				}
-
+				
 				TFBot
 				{
 					Template	T_TFBot_Medic_QuickUber
 					Tag bot_squad_member
-				}
-			}
-		}
-
+					Scale	1.25
+					Health	300
+					ClassIcon	medic_uber_armored
+					Name	"Armored Quick-Uber Medic"
+					Tag	bot_squad_member
+					
+					CharacterAttributes
+					{
+						"bot medic uber health threshold" 150
+					}
+				}	
+			}		
+		}	
+		
 		WaveSpawn
 		{
 			Name	w2b
@@ -541,20 +552,20 @@ WaveSchedule
 			WaitBeforeStarting	7
 			WaitBetweenSpawns	0
 			Where	spawnbot_side
-
+			
 			RandomChoice
-			{
+			{	
 				TFBot
 				{
 					Template	T_TFBot_Heavyweapons_Heavyweight_Champ
-				}
+				}	
 				TFBot
 				{
 					Template	T_TFBot_Soldier_Extended_Concheror
 				}
 			}
 		}
-
+		
 		WaveSpawn
 		{
 			Name	w2c
@@ -564,16 +575,16 @@ WaveSchedule
 			MaxActive	2
 			SpawnCount	1
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	20
+			WaitBetweenSpawns	12
 			Where	spawnbot
-
+		
 			TFBot
 			{
 				Template	T_TFBot_Giant_Heavyweapons
 				Tag bot_giant
 			}
-		}
-
+		}		
+		
 		WaveSpawn
 		{
 			Name	w2c
@@ -586,14 +597,14 @@ WaveSchedule
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	5
 			Where	spawnbot_invasion
-
+		
 			TFBot
 			{
 				Template	T_TFBot_Soldier_RocketShotgun
 			}
 		}
-	}
-
+	}	
+		
 	Wave	//wave 3	~~~900 cash~~~
 	{
 
@@ -607,7 +618,7 @@ WaveSchedule
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-
+		
 		WaveSpawn
 		{
 			Name	w3a-1
@@ -623,9 +634,9 @@ WaveSchedule
 			{
 				Class	Heavy
 				Skill	Easy
-			}
-		}
-
+			}	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w3a-2
@@ -640,7 +651,7 @@ WaveSchedule
 				Target boss_spawn_relay
 				Action Trigger
 			}
-
+			
 			Tank
 			{
 				Name "Tank"
@@ -658,9 +669,9 @@ WaveSchedule
 					Target boss_deploy_relay
 					Action Trigger
 				}
-			}
-		}
-
+			}	
+		}	
+		
 		WaveSpawn
 		{
 			Name	w3b
@@ -675,11 +686,11 @@ WaveSchedule
 
 			TFBot
 			{
-				Template	T_TFBot_Scout_Sandman_FastCharge
-
-			}
-		}
-
+				Template	T_TFBot_Demo_Burst
+				
+			}	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w3b
@@ -700,10 +711,10 @@ WaveSchedule
 				Item "Bonk Helm"
 				WeaponRestrictions PrimaryOnly
 				ClassIcon scout_bonk
-				Name "Bonk Scout"
-			}
-		}
-
+				Name "Bonk Scout"	
+			}	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w3b
@@ -720,9 +731,10 @@ WaveSchedule
 			{
 				Template		T_TFBot_Giant_Soldier_Spammer_Reload
 				Tag bot_giant
-			}
-		}
-
+				Attributes	AlwaysCrit
+			}	
+		}	
+		
 		WaveSpawn
 		{
 			Name	w3c
@@ -740,9 +752,9 @@ WaveSchedule
 				Template		T_TFBot_Heavyweapons_Heater
 				Name "Giant Heater Heavy"
 				Tag bot_giant
-			}
-		}
-
+			}	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w3c
@@ -759,9 +771,9 @@ WaveSchedule
 			{
 				Template		T_TFBot_Giant_Soldier
 				Tag bot_giant
-			}
-		}
-
+			}	
+		}			
+		
 		WaveSpawn
 		{
 			Name	w3c
@@ -777,9 +789,9 @@ WaveSchedule
 			TFBot
 			{
 				Template		T_TFGateBot_Pyro_Flaregun
-			}
-		}
-
+			}	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w3d
@@ -791,27 +803,27 @@ WaveSchedule
 			WaitBeforeStarting	7
 			WaitBetweenSpawns	3.5
 			Where	spawnbot_side
-
+			
 			Squad
 			{
 				TFBot
 				{
 					Template		T_TFBot_Giant_Soldier_Extended_Buff_Banner
 					Tag bot_giant
-				}
+				}	
 				TFBot
 				{
 					Template		T_TFBot_Medic_QuickUber
 					Tag bot_squad_member
-				}
+				}			
 				TFBot
 				{
 					Template		T_TFBot_Medic_QuickUber
 					Tag bot_squad_member
-				}
-			}
-		}
-
+				}				
+			}	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w3d
@@ -828,8 +840,8 @@ WaveSchedule
 			TFBot
 			{
 				Template		T_TFBot_Sniper_Huntsman
-			}
-		}
+			}	
+		}	
 	}
 
 	Wave	//wave 4	~~~1200 cash~~~
@@ -845,7 +857,7 @@ WaveSchedule
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-
+		
 		WaveSpawn
 		{
 			Name	w4a
@@ -862,30 +874,39 @@ WaveSchedule
 				Template	T_TFBot_Scout_FAN
 				Attributes	AlwaysCrit
 			}
-		}
-
+		}		
+		
 		WaveSpawn
 		{
 			Name	w4a
 			TotalCurrency	100
 			TotalCount	50
 			MaxActive	10
-			SpawnCount	5
+			SpawnCount	6
 			WaitBeforeStarting	1
 			WaitBetweenSpawns	3
-			Where	spawnbot
-
-			TFBot
+			Where	spawnbot_side
+			
+			Squad
 			{
-				Class	Pyro
-				ClassIcon	pyro_dragon_fury_swordstone
-				Name	"Dragon's Fury Pyro"
-				Item	"The Dragon's Fury"
-				Skill	Expert
-				Item	"The Rusty Reaper"
-			}
-		}
-
+				TFBot
+				{
+					Class	Pyro
+					ClassIcon	pyro_dragon_fury_swordstone
+					Name	"Dragon's Fury Pyro"
+					Item	"The Dragon's Fury" 
+					Skill	Expert
+					Item	"The Rusty Reaper"
+				}
+				
+				TFBot
+				{
+					Template	T_TFBot_Medic_QuickUber
+					Tag bot_squad_member
+				}
+			}	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w4a
@@ -902,8 +923,8 @@ WaveSchedule
 				Template	T_TFGateBot_Giant_Soldier_Spammer
 				Tag bot_giant
 			}
-		}
-
+		}		
+		
 		WaveSpawn
 		{
 			Name	w4b
@@ -971,9 +992,9 @@ WaveSchedule
 						}
 					}
 				}
-			}
-		}
-
+			}	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w4b
@@ -990,7 +1011,7 @@ WaveSchedule
 			{
 				Class Soldier
 				Skill Hard
-				WeaponRestrictions PrimaryOnly
+				WeaponRestrictions PrimaryOnly		
 				Name "Burst Soldier"
 				ClassIcon soldier_burstfire
 				Attributes HoldFireUntilFullReload
@@ -1001,9 +1022,9 @@ WaveSchedule
 					"faster reload rate" 1.5
 					"projectile spread angle penalty" 2
 				}
-			}
-		}
-
+			}	
+		}			
+	
 		WaveSpawn
 		{
 			Name	w4b-1
@@ -1020,11 +1041,11 @@ WaveSchedule
 				Target boss_spawn_relay
 				Action Trigger
 			}
-
+			
 			Tank
 			{
 				Name "Tank"
-				Health 22000
+				Health 32000
 				Speed 75
 				StartingPathTrackNode tank_path_1
 				OnKilledOutput
@@ -1039,7 +1060,7 @@ WaveSchedule
 				}
 			}
 		}
-
+		
 		WaveSpawn
 		{
 			Name	w4c
@@ -1058,31 +1079,31 @@ WaveSchedule
 					Template	T_TFBot_Giant_Demo_Burst
 					Tag bot_giant
 					Attributes	AlwaysCrit
-				}
+				}			
 				TFBot
 				{
 					Template	T_TFBot_Soldier_Extended_Concheror
 					Tag bot_squad_member
-
+						
 					CharacterAttributes
 					{
 						"switch from wep deploy time decreased" 2
 					}
-
-				}
+					
+				}				
 				TFBot
 				{
 					Template	T_TFBot_Soldier_Extended_Battalion
 					Tag bot_squad_member
-
+					
 					CharacterAttributes
 					{
 						"switch from wep deploy time decreased" 2
-					}
+					}	
 				}
-			}
-		}
-
+			}	
+		}		
+	
 		WaveSpawn
 		{
 			Name	w4c
@@ -1095,13 +1116,13 @@ WaveSchedule
 			WaitBeforeStarting	7
 			WaitBetweenSpawns	2.5
 			Where	spawnbot_side
-
+			
 			TFBot
 			{
 				Template	T_TFBot_Scout_Sandman_FastCharge
 				Attributes	AlwaysCrit
 			}
-		}
+		}		
 	}
 
 	Wave	//wave 5	~~~1500 cash~~~
@@ -1117,7 +1138,7 @@ WaveSchedule
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-
+		
 		WaveSpawn
 		{
 			Name	w5a
@@ -1128,13 +1149,13 @@ WaveSchedule
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	0.5
 			Where	spawnbot_invasion
-
+			
 			TFBot
 			{
 				Template	T_TFBot_Soldier_Extended_Concheror
 				Attributes	AlwaysCrit
 			}
-		}
+		}		
 
 
 		WaveSpawn
@@ -1147,13 +1168,13 @@ WaveSchedule
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	20
 			Where	spawnbot_side
-
+		
 			TFBot
 			{
 				Template	T_TFGateBot_Giant_Soldier_Spammer
 			}
-		}
-
+		}		
+		
 		WaveSpawn
 		{
 			Name	w5b
@@ -1165,23 +1186,23 @@ WaveSchedule
 			WaitBeforeStarting	7
 			WaitBetweenSpawns	25
 			Where	spawnbot_side
-
+				
 			Squad
-			{
+			{			
 				TFBot
 				{
 					Template	T_TFBot_Giant_Heavyweapons_Deflector
 					Tag bot_giant
-				}
+				}					
 				TFBot
 				{
 					Template	T_TFBot_Giant_Medic_Regen
 					Tag bot_giant
 					Tag	bot_squad_member
-				}
+				}		
 			}
-		}
-
+		}		
+		
 		WaveSpawn
 		{
 			Name	w5b
@@ -1193,23 +1214,23 @@ WaveSchedule
 			WaitBeforeStarting	7
 			WaitBetweenSpawns	1
 			Where	spawnbot
-
+				
 			RandomChoice
-			{
+			{			
 				TFBot
 				{
-					Template	T_TFGateBot_Pyro_Expert
-				}
+					Template	T_TFGateBot_Pyro_Expert	
+				}					
 				TFBot
 				{
 					Class	Soldier
 					Skill	Hard
 					Item "The Direct Hit"
 					ClassIcon	soldier_directhit_lite
-				}
+				}		
 			}
-		}
-
+		}		
+		
 		WaveSpawn
 		{
 			Name	w5c
@@ -1227,8 +1248,8 @@ WaveSchedule
 				Template	T_TFBot_Giant_Heavyweapons_Shotgun
 				ClassIcon	heavy_shotgun_giant
 				Tag bot_giant
-			}
-		}
+			}	
+		}	
 
 		WaveSpawn
 		{
@@ -1242,15 +1263,15 @@ WaveSchedule
 			WaitBetweenSpawns	0
 			Where	spawnbot_side
 
-			TFBot
-			{
-				Template	T_TFBot_Giant_Heavyweapons_Shotgun
-				ClassIcon	heavy_shotgun_giant
-				Tag bot_giant
-			}
-
-		}
-
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons_Shotgun
+					ClassIcon	heavy_shotgun_giant
+					Tag bot_giant
+				}		
+	
+		}		
+		
 		WaveSpawn
 		{
 			Name	w5c
@@ -1263,21 +1284,21 @@ WaveSchedule
 			WaitBeforeStarting	7
 			WaitBetweenSpawns	0
 			Where	spawnbot_side
-
+			
 			RandomChoice
 			{
 				TFBot
 				{
 					Template	T_TFBot_Demo_Burst
 					Attributes	AlwaysCrit
-				}
+				}			
 				TFBot
 				{
 					Template	T_TFBot_Sniper_Huntsman
 					Attributes	AlwaysCrit
-				}
+				}		
 			}
-		}
+		}				
 	}
 
 	Wave	//wave 6	~~~900 cash~~~
@@ -1308,11 +1329,11 @@ WaveSchedule
 				Target boss_spawn_relay
 				Action Trigger
 			}
-
+			
 			Tank
 			{
 				Name "Tank"
-				Health 32000
+				Health 45000
 				Speed 75
 				Skin 1
 				StartingPathTrackNode tank_boss_path_1
@@ -1326,9 +1347,9 @@ WaveSchedule
 					Target boss_deploy_relay
 					Action Trigger
 				}
-			}
-		}
-
+			}	
+		}	
+		
 		WaveSpawn
 		{
 			Name	w6a-boss
@@ -1340,13 +1361,13 @@ WaveSchedule
 			WaitBetweenSpawns	0
 			Where	spawnbot_boss
 			FirstSpawnWarningSound "vo/mvm/norm/soldier_mvm_specialcompleted04.mp3"
-
+			
 			TFBot
 			{
 				Template	T_TFBot_Chief_Soldier_Atomic
 				ClassIcon	soldier_major_crits
 			}
-		}
+		}	
 
 		WaveSpawn
 		{
@@ -1359,14 +1380,14 @@ WaveSchedule
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	1
 			Where	spawnbot_invasion
-
-
+	
+			
 			TFBot
 			{
-				Template	T_TFBot_Demo_Burst
+				Template	T_TFBot_Demo_Burst			
 			}
-		}
-
+		}		
+		
 		WaveSpawn
 		{
 			Name	w6a-2
@@ -1378,15 +1399,15 @@ WaveSchedule
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	1
 			Where	spawnbot_invasion
-
-
+	
+			
 			TFBot
 			{
 				Class	Heavy
-				Skill	Expert
+				Skill	Expert			
 			}
-		}
-
+		}		
+		
 		WaveSpawn
 		{
 			Name	w6a-2
@@ -1398,8 +1419,8 @@ WaveSchedule
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	1
 			Where	spawnbot_invasion
-
-
+	
+			
 			TFBot
 			{
 				Class	Soldier
@@ -1407,4 +1428,4 @@ WaveSchedule
 			}
 		}
 	}
-}
+}	

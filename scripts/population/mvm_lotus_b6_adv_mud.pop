@@ -11,9 +11,6 @@ WaveSchedule
 	RespawnWaveTime	4
 	CanBotsAttackWhileInSpawnRoom	no
 	
-	// Add to download list
-	PrecacheSound "pizza_tower_war.mp3" [$SIGSEGV]
-
 	Mission
 	{
 		Objective	DestroySentries
@@ -39,6 +36,21 @@ WaveSchedule
 		InitialCooldown	30
 		CooldownTime	30
 		DesiredCount	2
+		TFBot
+		{
+			Template	T_TFBot_Spy
+		}
+	}		
+	
+	Mission
+	{
+		BeginAtWave	6
+		RunForThisManyWaves	1
+		Objective	Spy
+		Where	spawnbot_mission_spy
+		InitialCooldown	20
+		CooldownTime	20
+		DesiredCount	4
 		TFBot
 		{
 			Template	T_TFBot_Spy
@@ -488,7 +500,7 @@ WaveSchedule
 		{
 			Name	w3a-0
 			TotalCurrency	200
-			TotalCount	8
+			TotalCount	6
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot_middle
@@ -1265,8 +1277,8 @@ WaveSchedule
 			SpawnCount	1
 			Support	1
 			Where	spawnbot
-			WaitBeforeStarting	5
-			WaitBetweenSpawns	3
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	2
 
 			RandomChoice
 			{
@@ -1274,28 +1286,28 @@ WaveSchedule
 				{	
 					Class	Demoman
 					Skill	Expert
-
+					Attributes	AlwaysCrit
 				}	
 				
 				TFBot
 				{	
 					Class	Soldier
 					Skill	Expert
-
+					Attributes	AlwaysCrit
 				}	
 				
 				TFBot
 				{	
 					Class	Heavy
 					Skill	Expert
-
+					Attributes	AlwaysCrit
 				}	
 				
 				TFBot
 				{	
 					Class	Pyro
 					Skill	Expert
-
+					Attributes	AlwaysCrit
 				}
 			}	
 		}

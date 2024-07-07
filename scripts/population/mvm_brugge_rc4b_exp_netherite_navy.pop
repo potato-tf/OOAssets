@@ -52,10 +52,10 @@ WaveSchedule
 		"The Iron Sneakers"
 		{
 			OriginalItemName "The Gunboats"
-			"special item description"	"Reduced 36% All Damage Type Taken."
+			"special item description"	"Reduced 36% All Damage Type Taken Including Melee Damage, and Max HP +15."
 			"rocket jump damage reduction" 1
-			"no double jump" 1
 			"dmg taken increased" 0.64
+			"max health additive bonus" 15
 			"provide on active" 1
 		}
 		
@@ -89,9 +89,10 @@ WaveSchedule
 			"no crit boost" 1
 			"crit mod disabled" 1
 			"cannot be upgraded" 1
-			"passive reload" 2
+			//"passive reload" 2
 			"ragdolls become ash" 1
 			"projectile penetration" 1
+			"crits_become_minicrits" 1
 			//"mult crit dmg" 0.3334
 		}
 		
@@ -883,6 +884,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 150
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{
@@ -1256,9 +1258,9 @@ WaveSchedule
 			WaitForAllSpawned 3a
 
 			Where spawnbot_side
-			TotalCount 3
-			MaxActive 3
-			SpawnCount 3
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 100
@@ -1272,10 +1274,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Medic_BigHeal_Armored
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_BigHeal_Armored
+					Attributes IgnoreEnemies
 				}
 			}
 		}
@@ -1332,6 +1331,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 50
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{
@@ -1359,9 +1359,9 @@ WaveSchedule
 			WaitForAllDead 3a
 
 			Where spawnbot_side
-			TotalCount 3
-			MaxActive 3
-			SpawnCount 3
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 0
 			TotalCurrency 100
@@ -1375,10 +1375,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Medic_BigHeal_Armored
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_BigHeal_Armored
+					Attributes IgnoreEnemies
 				}
 			}
 		}
@@ -1412,9 +1409,9 @@ WaveSchedule
 			WaitForAllSpawned 3b
 
 			Where spawnbot_side
-			TotalCount 3
-			MaxActive 3
-			SpawnCount 3
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 0
 			TotalCurrency 100
@@ -1428,10 +1425,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Medic_BigHeal_Armored
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_BigHeal_Armored
+					Attributes IgnoreEnemies
 				}
 			}
 		}
@@ -1556,6 +1550,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 100
+			FirstSpawnWarningSound	"misc\doomsday_lift_warning.wav"
 			
 			FirstSpawnOutPut
 			{
@@ -1602,6 +1597,7 @@ WaveSchedule
             TotalCount 1
             WaitBeforeStarting 15
 			TotalCurrency 90
+			FirstSpawnWarningSound	"misc\doomsday_lift_warning.wav"
 			
 			FirstSpawnOutPut
 			{
@@ -1792,11 +1788,11 @@ WaveSchedule
 			Name 5a
 
 			Where spawnbot_side
-			TotalCount 12
-			MaxActive 8
+			TotalCount 8
+			MaxActive 5
 			SpawnCount 2
 			WaitBeforeStarting 3
-			WaitBetweenSpawns 6
+			WaitBetweenSpawns 10
 			TotalCurrency 60
 			
 			Squad
@@ -1853,27 +1849,27 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 			}
 		}
@@ -1968,27 +1964,27 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber
+					Template T_TFBot_Medic
 					Attributes IgnoreEnemies
-					Name "Quick-Uber Medic"
+					Name "Uber Medic"
 				}
 			}
 		}
@@ -2107,7 +2103,7 @@ WaveSchedule
 			SpawnCount 7
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 1
-			TotalCurrency 100
+			TotalCurrency 90
 			
 			TFBot
 			{
@@ -2128,8 +2124,8 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
-			TotalCurrency 50
-			
+			TotalCurrency 60
+
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Spammer
@@ -2188,7 +2184,7 @@ WaveSchedule
 							"blast dmg to self increased" 0
 						}
 					}
-					
+						
 					phase2
 					{
 						Attributes HoldFireUntilFullReload
@@ -2281,6 +2277,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 15
 			TotalCurrency 30
+			FirstSpawnWarningSound mvm/mvm_tele_deliver.wav
 			
 			FirstSpawnOutPut
 			{
@@ -2290,8 +2287,9 @@ WaveSchedule
 			
 			TFBot
 			{
-				Template T_TFBot_Giant_DemoMan_PrinceTavish
+				Template T_TFBot_Giant_Demoman_Targe_No_RapidFire
 				AlwaysGlow 1
+				Attributes AlwaysCrit
 			}
 		}
 		
@@ -2310,8 +2308,9 @@ WaveSchedule
 			
 			TFBot
 			{
-				Template T_TFBot_Giant_DemoMan_PrinceTavish
+				Template T_TFBot_Giant_Demoman_Targe_No_RapidFire
 				AlwaysGlow 1
+				Attributes AlwaysCrit
 			}
 		}
 		
@@ -2385,11 +2384,11 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Soldier_Extended_Battalion_Bugfixed
+					Template T_TFBot_Soldier_Extended_Battalion_Armored
 				}
 				TFBot
 				{
-					Template T_TFBot_Soldier_Extended_Battalion_Bugfixed
+					Template T_TFBot_Soldier_Extended_Battalion_Armored
 				}
 			}
 		}
@@ -2514,12 +2513,14 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 18
 			TotalCurrency 50
+			FirstSpawnWarningSound	"mvm\mvm_tank_start.wav"
 			
 			Tank
 			{
 				Health 30000
 				Name "tankboss"
 				Speed 75
+				Skin 1
 				StartingPathTrackNode "tank_path_bridge1"
 
 				OnKilledOutput
@@ -2627,6 +2628,7 @@ WaveSchedule
 			TotalCount 1
 			WaitBeforeStarting 0
 			TotalCurrency 60
+			FirstSpawnWarningSound	"misc\doomsday_lift_warning.wav"
 			
 			FirstSpawnOutPut
 			{
@@ -3178,3 +3180,19 @@ WaveSchedule
 // Post Beta Changelog
 // Wave 6
 // boss threholds hp is change from 12.5k to 16k and 5k to 8k (boss health still same)
+
+// Wave 3
+// Reduce Armored Big-Heal Medic from 2 to 1 per each and give Attributes IgnoreEnemies (I forgot to add this Attributes)
+
+// Wave 5
+// Change Quick-Uber Medic to Full Duration Uber Medic (Change T_TFBot_Medic_QuickUber to T_TFBot_Medic)
+// Reduce Armored Rapid Fire Demo + Armored Kritz from 6 pairs to 4 pairs (TotalCount from 12 to 8)
+// MaxActive from 8 to 5, WaitBetweenSpawns from 6 to 10
+
+// Wave 6
+// Added 2 Slow Recharge Armored Uber Medic on Boss Giant Soldier
+// Change Common Batt Soldier to Armored Variant
+
+// Wave 6
+// Remove Armored Uber Medic
+// Change Giant Demoknight to Crit Giant Targe Grenade Demo

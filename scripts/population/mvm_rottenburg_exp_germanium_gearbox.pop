@@ -76,7 +76,7 @@ population
 		RunForThisManyWaves	1
 		InitialCooldown	30
 		CooldownTime	40
-		DesiredCount	3
+		DesiredCount	1
 		TFBot
 		{
 			Template	T_TFBot_Sniper
@@ -102,9 +102,9 @@ population
 		Where	flankers
 		BeginAtWave	3
 		RunForThisManyWaves	1
-		InitialCooldown	25
+		InitialCooldown	35
 		CooldownTime	40
-		DesiredCount	2
+		DesiredCount	1
 		TFBot
 		{
 			Template	T_TFBot_Sniper_Sydney_Sleeper
@@ -618,6 +618,7 @@ population
 				"dmg penalty vs buildings"		2
 				"use large smoke explosion"		1
 				"attach particle effect"		3129  //  Haunted cremation
+				"damage causes airblast" 		1
 			}
 		}
 		T_TFBot_Pyro_Diesel_Engine
@@ -942,9 +943,9 @@ population
 			Name	1a2
 			WaitForAllSpawned	1a1
 			TotalCurrency	140
-			TotalCount	20
-			MaxActive	12
-			SpawnCount	4
+			TotalCount	15
+			MaxActive	9
+			SpawnCount	3
 			Where	flankers
 			WaitBeforeStarting	4
 			Waitbetweenspawns	7
@@ -967,7 +968,7 @@ population
 			Waitbetweenspawns	0
 			TFBot
 			{
-				Template	T_TFBot_Giant_Soldier_RocketShotgun
+				Template	T_TFBot_Giant_Soldier_Extended_Buff_Banner
 			}
 		}
 		WaveSpawn
@@ -1198,9 +1199,10 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Giant_Heavyweapons_Shotgun
-				Name		"Giant Bison Shotgun Heavy"
+				Name		"Giant Energy Shotgun Heavy"
 				Classicon	shotgun_plasma
 				Attributes	HoldFireUntilFullReload
+				Item		"The MK 50"
 				ItemAttributes
 				{
 					ItemName "TF_WEAPON_SHOTGUN_HWG"
@@ -1214,6 +1216,7 @@ population
 					"Reload time decreased"				6
 					"auto fires full clip"				1	//	These 2 attribs give the weapon 'beggars' effect
 					"auto fires when full"				1	//	These 2 attribs give the weapon 'beggars' effect
+					"attach particle effect"			704	//	Energy Orb
 				}
 			}
 		}
@@ -1280,8 +1283,8 @@ population
 		{
 			Name	sup2.1
 			WaitForAllSpawned	2c2
-			TotalCount	9
-			MaxActive	9
+			TotalCount	6
+			MaxActive	6
 			SpawnCount	3
 			Where		flankers
 			WaitBeforeStarting	2
@@ -1298,23 +1301,34 @@ population
 			Name	2g
 			WaitForAllSpawned	2a2
 			TotalCurrency	200
-			TotalCount	4
-			MaxActive	4
-			SpawnCount	1
+			TotalCount	8
+			MaxActive	6
+			SpawnCount	2
 			Where		Spawnbot
 			WaitBeforeStarting	8
-			Waitbetweenspawns	20
-			TFBot
+			Waitbetweenspawns	15
+			Squad
 			{
-				Template	T_TFBot_Giant_Soldier_Crit
+				TFBot
+				{
+					Template	T_TFBot_Giant_Soldier_Crit
+				}
+				TFBot
+				{
+					Template	T_TFBot_Medic_Shield
+					Name		"Armored Shield Medic"
+					Scale		1.5
+					Health		750
+					Classicon	medic_armoredshield_qf_mort
+				}
 			}
 		}
 		WaveSpawn
 		{
 			Name	sup2.2
 			WaitForAllSpawned	2g
-			TotalCount	6
-			MaxActive	6
+			TotalCount	4
+			MaxActive	4
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	1
@@ -1470,9 +1484,7 @@ population
 				}
 				TFBot
 				{
-					Template	T_TFBot_Medic_BigHeal
-					Name		"Big-Heal Medic"
-					Item		"The Surgeon's Stahlhelm"
+					Template	T_TFBot_Medic_QuickFix
 				}
 			}
 		}
@@ -1480,9 +1492,9 @@ population
 		{
 			Name	3a2
 			TotalCurrency	50
-			TotalCount	10
-			MaxActive	6
-			SpawnCount	2
+			TotalCount	6
+			MaxActive	3
+			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	2
 			Waitbetweenspawns	5
@@ -1531,9 +1543,7 @@ population
 				}
 				TFBot
 				{
-					Template	T_TFBot_Medic_BigHeal
-					Name		"Big-Heal Medic"
-					Item		"The Surgeon's Stahlhelm"
+					Template	T_TFBot_Medic_QuickFix
 				}
 			}
 		}
@@ -1557,9 +1567,7 @@ population
 				}
 				TFBot
 				{
-					Template	T_TFBot_Medic_BigHeal
-					Name		"Big-Heal Medic"
-					Item		"The Surgeon's Stahlhelm"
+					Template	T_TFBot_Medic_QuickFix
 				}
 			}
 		}
@@ -1567,9 +1575,9 @@ population
 		{
 			Name	3d
 			TotalCurrency	50
-			TotalCount	8
-			MaxActive	8
-			SpawnCount	4
+			TotalCount	4
+			MaxActive	4
+			SpawnCount	2
 			Where	Spawnbot
 			WaitBeforeStarting	15
 			Waitbetweenspawns	20
@@ -1582,18 +1590,6 @@ population
 					{
 						"increase buff duration"	9
 					}
-				}
-				TFBot
-				{
-					Template	T_TFBot_Medic_BigHeal
-					Name		"Big-Heal Medic"
-					Item		"The Surgeon's Stahlhelm"
-				}
-				TFBot
-				{
-					Template	T_TFBot_Medic_BigHeal
-					Name		"Big-Heal Medic"
-					Item		"The Surgeon's Stahlhelm"
 				}
 				TFBot
 				{
@@ -1632,7 +1628,7 @@ population
 			Waitbetweenspawns	0
 			Tank
 			{
-				Health	30000
+				Health	27500
 				Name	"TankBossA"
 				Speed	80
 				StartingPathTrackNode "tank_path_b_10"
@@ -1646,6 +1642,12 @@ population
 					Target boss_deploy_relay
 					Action Trigger
 				}
+			}
+			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
+			{
+				Target	wave_start_relay_classic
+				Action	RunScriptCode
+				Param	"ClientPrint(null,3,`\x07E7EE0A A tank has been deployed with 27,500 HP!`)"
 			}
 		}
 		WaveSpawn
@@ -1774,7 +1776,7 @@ population
 			MaxActive 	3
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	30
+			WaitBeforeStarting	25
 			WaitBetweenSpawns	20
 			TFBot
 			{
@@ -1951,41 +1953,6 @@ population
 		}
 		WaveSpawn
 		{
-			Name	4d
-			WaitForAllSpawned	4b3
-			TotalCurrency	200
-			TotalCount	21
-			MaxActive	9
-			SpawnCount	3
-			Where	spawnbot
-			WaitBeforeStarting	1
-			Waitbetweenspawns	10
-			TFBot
-			{
-				Template	T_TFBot_Demoman_Knight
-				Health		600
-				Scale		1.5
-				Name		"Armored Skullcutter Demo"
-				Classicon	demoknight_skullcutter_armored
-				Item		"The Scotsman's Skullcutter"
-				Item		"The Glasgow Great Helm"
-				Item		"The Dark Age Defender"
-				ItemAttributes
-				{
-					Itemname	"The Scotsman's Skullcutter"
-					"fire rate penalty"					1.5
-					"melee range multiplier"			1.5
-					"Attack not cancel charge"			1
-					"charge time increased"				2
-				}
-				CharacterAttributes
-				{
-					"hand scale"	1.5
-				}
-			}
-		}
-		WaveSpawn
-		{
 			Name	4c
 			WaitForAllSpawned	4b3
 			TotalCurrency	25
@@ -2093,6 +2060,102 @@ population
 						"move speed bonus"	1
 					}
 				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	4d
+			WaitForAllSpawned	4b3
+			TotalCurrency	75
+			TotalCount	7
+			MaxActive	3
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	1
+			Waitbetweenspawns	10
+			TFBot
+			{
+				Template	T_TFBot_Demoman_Knight
+				Health		600
+				Scale		1.5
+				Name		"Armored Skullcutter Demo"
+				Classicon	demoknight_skullcutter_armored
+				Item		"The Scotsman's Skullcutter"
+				Item		"The Glasgow Great Helm"
+				Item		"The Dark Age Defender"
+				ItemAttributes
+				{
+					Itemname	"The Scotsman's Skullcutter"
+					"fire rate penalty"					1.5
+					"melee range multiplier"			1.5
+					"Attack not cancel charge"			1
+					"charge time increased"				2
+					"critboost on kill"					5
+				}
+				CharacterAttributes
+				{
+					"hand scale"	1.5
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	4d2
+			WaitForAllSpawned	4b3
+			TotalCurrency	75
+			TotalCount	7
+			MaxActive	3
+			SpawnCount	1
+			Where	flankers
+			WaitBeforeStarting	1
+			Waitbetweenspawns	10
+			TFBot
+			{
+				Template	T_TFBot_Demoman_Knight
+				Health		600
+				Scale		1.5
+				Name		"Armored Skullcutter Demo"
+				Classicon	demoknight_skullcutter_armored
+				Item		"The Scotsman's Skullcutter"
+				Item		"The Glasgow Great Helm"
+				Item		"The Dark Age Defender"
+				ItemAttributes
+				{
+					Itemname	"The Scotsman's Skullcutter"
+					"fire rate penalty"					1.5
+					"melee range multiplier"			1.5
+					"Attack not cancel charge"			1
+					"charge time increased"				2
+					"critboost on kill"					5
+				}
+				CharacterAttributes
+				{
+					"hand scale"	1.5
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	4e
+			//WaitForAllSpawned	4b3
+			TotalCurrency	50
+			TotalCount	7
+			MaxActive	4
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	1
+			Waitbetweenspawns	10
+			TFBot
+			{
+				Class	Heavy
+				Skill	Normal
+				Health	600
+				Scale	1.5
+				Name	"Armored Tomislav Heavy"
+				Item	"Tomislav"
+				Item	"Capone's Capper"
+				Item	"Immobile Suit"
+				Classicon	heavy_armored_accurate_lite
 			}
 		}
 	}
@@ -2269,6 +2332,12 @@ population
 					Action Trigger
 				}
 			}
+			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
+			{
+				Target	wave_start_relay_classic
+				Action	RunScriptCode
+				Param	"ClientPrint(null,3,`\x07E7EE0A A tank has been deployed with 32,500 HP!`)"
+			}
 		}
 		WaveSpawn
 		{
@@ -2296,6 +2365,12 @@ population
 					Target boss_deploy_relay
 					Action Trigger
 				}
+			}
+			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
+			{
+				Target	wave_start_relay_classic
+				Action	RunScriptCode
+				Param	"ClientPrint(null,3,`\x07E7EE0A A tank has been deployed with 27,500 HP!`)"
 			}
 		}
 		WaveSpawn
@@ -2462,33 +2537,13 @@ population
 				}
 				TFBot
 				{
-					Class	Medic
-					Name	"Giant Uber Flashing Medic"
-					Skill	Expert
-					Health	4500
-					ClassIcon	medic_uber_quick_giant
-					Attributes	MiniBoss
-					Attributes	SpawnWithFullCharge
+					Template	T_TFBot_Giant_Medic
 					Attributes	IgnoreEnemies
-					WeaponRestrictions SecondaryOnly
-					Item	"gentlemanne_medigun_highrollers"
-					Item	"The Virus Doctor"
-					Item	"Burly Beast"
-					ItemAttributes
-					{
-						ItemName "gentlemanne_medigun_highrollers"
-						"ubercharge rate bonus"	20
-						"uber duration bonus"	-6
-						"heal rate bonus"		500
-					}
+					Classicon	medic_pop_giant
 					CharacterAttributes
 					{
-						"attach particle effect"			66	//	Overclock
-						"move speed bonus"					1.5
-						"damage force reduction"			0.6
-						"airblast vulnerability multiplier" 0.6
-						"bot medic uber health threshold"	100000
-						"heal rate bonus"					200
+						"move speed bonus"	1
+						"bot medic uber health threshold"	1000
 					}
 				}
 			}
@@ -2505,16 +2560,22 @@ population
 			Waitbetweenspawns	0
 			TFBot
 			{
-				Template	T_TFBot_Giant_Heavyweapons_Deflector
-				Name		"Giant Deflector Pusher Heavy"
-				Classicon	heavy_deflector_push_giant
-				Item		"gentlemanne_minigun_topshelf"
+				Template	T_TFBot_Giant_Soldier_SlowBarrage
+				Name		"Brigadier Barrage"
+				Classicon	soldier_bazooka
+				Item		"The Cloud Crasher"
 				ItemAttributes
 				{
-					Itemname	"gentlemanne_minigun_topshelf"
-					"attack projectiles"				1
-					"apply look velocity on damage"		400
-					"attach particle effect"			704		//	Energy Orb
+					ItemName "TF_WEAPON_ROCKETLAUNCHER"
+					"projectile spread angle penalty"	5
+					"faster reload rate"				0.3
+					"clip size upgrade atomic"			6
+					"fire rate bonus"    				0.05
+				}
+				CharacterAttributes
+				{
+					"airblast vertical vulnerability multiplier"	0.3
+					"airblast vulnerability multiplier"	0.1
 				}
 			}
 		}
@@ -2707,20 +2768,26 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	flankers
-			WaitBeforeStarting	5
+			WaitBeforeStarting	0
 			Waitbetweenspawns	0
 			TFBot
 			{
-				Template	T_TFBot_Giant_Heavyweapons_Deflector
-				Name		"Giant Deflector Pusher Heavy"
-				Classicon	heavy_deflector_push_giant
-				Item		"gentlemanne_minigun_topshelf"
+				Template	T_TFBot_Giant_Soldier_SlowBarrage
+				Name		"Brigadier Barrage"
+				Classicon	soldier_bazooka
+				Item		"The Cloud Crasher"
 				ItemAttributes
 				{
-					Itemname	"gentlemanne_minigun_topshelf"
-					"attack projectiles"				1
-					"apply look velocity on damage"		400
-					"attach particle effect"			704		//	Energy Orb
+					ItemName "TF_WEAPON_ROCKETLAUNCHER"
+					"projectile spread angle penalty"	5
+					"faster reload rate"				0.3
+					"clip size upgrade atomic"			6
+					"fire rate bonus"    				0.05
+				}
+				CharacterAttributes
+				{
+					"airblast vertical vulnerability multiplier"	0.3
+					"airblast vulnerability multiplier"	0.1
 				}
 			}
 		}
@@ -2774,6 +2841,12 @@ population
 					Action Trigger
 				}
 			}
+			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
+			{
+				Target	wave_start_relay_classic
+				Action	RunScriptCode
+				Param	"ClientPrint(null,3,`\x07E7EE0A A tank has been deployed with 30,000 HP!`)"
+			}
 		}
 		WaveSpawn
 		{
@@ -2802,6 +2875,12 @@ population
 					Target boss_deploy_relay
 					Action Trigger
 				}
+			}
+			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
+			{
+				Target	wave_start_relay_classic
+				Action	RunScriptCode
+				Param	"ClientPrint(null,3,`\x07E7EE0A A final tank has been deployed with 30,000 HP!`)"
 			}
 		}
 		WaveSpawn
@@ -2851,7 +2930,7 @@ population
 			MaxActive	9
 			SpawnCount	3
 			Where	Spawnbot
-			WaitBeforeStarting	25
+			WaitBeforeStarting	17
 			Waitbetweenspawns	5
 			TFBot
 			{
@@ -2937,12 +3016,14 @@ population
 		{
 			Name	Mission_end__voice_relay_6.1
 			WaitForAllDead		6e
+			WaitBeforeStarting	2
 			FirstSpawnWarningSound	"ui\itemcrate_smash_ultrarare_fireworks.wav"	//	Australium unbox fireworks sound
 		}
 		WaveSpawn
 		{
 			Name	Mission_end__voice_relay_6.1
 			WaitForAllDead		6e
+			WaitBeforeStarting	2
 			FirstSpawnWarningSound	"ui\itemcrate_smash_ultrarare_fireworks.wav"	//	Australium unbox fireworks sound
 		}
 	}

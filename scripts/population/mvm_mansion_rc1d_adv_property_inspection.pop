@@ -7,7 +7,7 @@ WaveSchedule
 	CanBotsAttackWhileInSpawnRoom	no
 	FixedRespawnWaveTime	Yes
 	Advanced	1
-	NoRomevisionCosmetics 1  
+	NoRomevisionCosmetics 1 [$SIGSEGV]
 	Templates
 	{
 		Inky_Scout
@@ -274,7 +274,7 @@ WaveSchedule
 			Name "Property Inspector"
 			Class Soldier
 			Skill Expert
-			Health 40000
+			Health 44444
 			ClassIcon soldier_burstfire
 			//Item "The Battalion's Backup"
 			Attributes MiniBoss
@@ -300,7 +300,7 @@ WaveSchedule
 				"damage force reduction" 0.4
 				"move speed bonus" 0.5
 				"override footstep sound set" 3
-				"health regen" 100
+				"health regen" 108
 				//"increase buff duration" 88.0
 				//"single wep deploy time increased" 0.5
 				"rage giving scale" 0.1
@@ -476,7 +476,7 @@ WaveSchedule
 		BeginAtWave	8
 		RunForThisManyWaves	1
 		InitialCooldown	20
-		CooldownTime	30
+		CooldownTime	10
 		DesiredCount	2
 		TFBot
 		{
@@ -490,8 +490,8 @@ WaveSchedule
 		Where spawnbot
 		BeginAtWave 8
 		RunForThisManyWaves 1
-		InitialCooldown	30
-		CooldownTime	30
+		InitialCooldown	20
+		CooldownTime	10
 		DesiredCount 1
 		TFBot
 		{
@@ -970,7 +970,7 @@ WaveSchedule
 			WaitForAllSpawned	3b
 			TotalCurrency	100
 			TotalCount	25
-			MaxActive	12
+			MaxActive	16
 			SpawnCount	1
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	1
@@ -986,46 +986,20 @@ WaveSchedule
 			Name	3c
 			WaitForAllSpawned	3b
 			TotalCurrency	100
-			TotalCount	6
-			MaxActive	6
-			SpawnCount	6
+			TotalCount	2
+			MaxActive	2
+			SpawnCount	2
 			WaitBeforeStarting	15
 			Where	spawnbot_main
 			Squad
 			{
 				TFBot
 				{
-					Template	T_TFBot_Giant_Heavyweapons
+					Template	T_TFBot_Giant_Heavyweapons_Deflector
 				}
 				TFBot
 				{
-					Template	T_TFBot_Medic_BigHeal
-					Name "Big-Heal Medic"
-					Item "The Surgeon's Stahlhelm"
-				}
-				TFBot
-				{
-					Template	T_TFBot_Medic_BigHeal
-					Name "Big-Heal Medic"
-					Item "The Surgeon's Stahlhelm"
-				}
-				TFBot
-				{
-					Template	T_TFBot_Medic_BigHeal
-					Name "Big-Heal Medic"
-					Item "The Surgeon's Stahlhelm"
-				}
-				TFBot
-				{
-					Template	T_TFBot_Medic_BigHeal
-					Name "Big-Heal Medic"
-					Item "The Surgeon's Stahlhelm"
-				}
-				TFBot
-				{
-					Template	T_TFBot_Medic_BigHeal
-					Name "Big-Heal Medic"
-					Item "The Surgeon's Stahlhelm"
+					Template	Inky_Giant_FlashUber_Medic
 				}
 			}
 		}
@@ -1140,7 +1114,7 @@ WaveSchedule
 		}
 		WaveSpawn
 		{
-			Name	4a1
+			Name	support4
 			TotalCurrency	200
 			TotalCount	40
 			MaxActive	10
@@ -1148,6 +1122,7 @@ WaveSchedule
 			WaitBeforeStarting	3
 			WaitBetweenSpawns	3
 			Where	spawnbot
+			Support	1
 			TFBot
 			{
 				Template	Inky_Soldier
@@ -1212,10 +1187,10 @@ WaveSchedule
 			WaitForAllSpawned	4a2
 			TotalCurrency	200
 			TotalCount	10
-			MaxActive	6
+			MaxActive	10
 			SpawnCount	2
-			WaitBeforeStarting	12
-			WaitBetweenSpawns	12
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	10
 			Where	spawnbot_main
 			Squad
 			{
@@ -1417,7 +1392,7 @@ WaveSchedule
 			Where	spawnbot
 			Tank
 			{
-				Health	15000
+				Health	16000
 				Name	tankboss
 				Speed	75
 				StartingPathTrackNode	boss_path_1
@@ -1444,10 +1419,10 @@ WaveSchedule
 			WaitBeforeStarting	30
 			Tank
 			{
-				Health	15000
+				Health	17000
 				Name	tankboss
 				Speed	75
-				StartingPathTrackNode	boss_path_3
+				StartingPathTrackNode	boss_path_4
 				OnKilledOutput
 				{
 					Target	boss_dead_relay
@@ -1471,10 +1446,10 @@ WaveSchedule
 			WaitBeforeStarting	60
 			Tank
 			{
-				Health	15000
+				Health	18000
 				Name	tankboss
 				Speed	75
-				StartingPathTrackNode	boss_path_2
+				StartingPathTrackNode	boss_path_3
 				OnKilledOutput
 				{
 					Target	boss_dead_relay
@@ -1498,10 +1473,10 @@ WaveSchedule
 			WaitBeforeStarting	90
 			Tank
 			{
-				Health	15000
+				Health	19000
 				Name	tankboss
 				Speed	75
-				StartingPathTrackNode	boss_path_4
+				StartingPathTrackNode	boss_path_2
 				OnKilledOutput
 				{
 					Target	boss_dead_relay
@@ -1715,8 +1690,8 @@ WaveSchedule
 			Name	7b
 			WaitForAllSpawned	7a
 			TotalCurrency	200
-			TotalCount	15
-			MaxActive	7
+			TotalCount	20
+			MaxActive	10
 			SpawnCount	1
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	5
@@ -1732,6 +1707,7 @@ WaveSchedule
 				{
 					"increase buff duration" 9.0
 					"single wep deploy time increased" 0.5
+					"health regen" 40
 				}
 			}
 		}
@@ -1747,7 +1723,7 @@ WaveSchedule
 			WaitBeforeStarting	20
 			Tank
 			{
-				Health	25000
+				Health	30000
 				Name	tankboss
 				Speed	75
 				Skin	1
@@ -1776,7 +1752,7 @@ WaveSchedule
 			WaitBeforeStarting	25
 			Tank
 			{
-				Health	25000
+				Health	30000
 				Name	tankboss
 				Speed	75
 				Skin	1
@@ -1818,7 +1794,7 @@ WaveSchedule
 			FirstSpawnWarningSound "misc\halloween\hwn_wheel_of_fate.wav"
 			DoneOutput
 			{			
-				Target	relay_spell_milk_repeat
+				Target	relay_spell_milk
 				Action	Trigger
 			}
 		}
@@ -1864,6 +1840,13 @@ WaveSchedule
 			TFBot
 			{
 				Template	Inky_Bonk_Popper_Scout
+				Skill Hard
+				CharacterAttributes
+				{
+					"damage bonus" 2.0
+					"effect bar recharge rate increased" 0.4
+					"move speed bonus" 1.3
+				}
 			}
 		}
 		WaveSpawn
@@ -1880,6 +1863,14 @@ WaveSchedule
 			TFBot
 			{
 				Template	Inky_Ricochet_Pyro
+				Skill Hard
+				CharacterAttributes
+				{
+					"damage bonus" 2.0
+					"weapon burn dmg increased" 2
+					"weapon burn time increased" 2
+					"move speed bonus" 1.3
+				}
 			}
 		}
 		WaveSpawn
@@ -1889,17 +1880,23 @@ WaveSchedule
 			TotalCount	5
 			MaxActive	2
 			SpawnCount	1
-			WaitBeforeStarting	20
+			WaitBeforeStarting	10
 			WaitBetweenSpawns	10
 			Where	spawnbot
 			Support	1
 			TFBot
 			{
 				Template	T_TFBot_Soldier_Extended_Battalion
+				Skill Hard
 				Attributes	HoldFireUntilFullReload
 				CharacterAttributes
 				{
+					"damage bonus" 2.0
+					"faster reload rate" 0.4
+					"fire rate bonus" 0.6
+					"rocket specialist" 1
 					"single wep deploy time increased" 0.5
+					"move speed bonus" 1.3
 				}
 			}
 		}
