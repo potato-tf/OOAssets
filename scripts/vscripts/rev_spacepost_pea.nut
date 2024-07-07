@@ -7356,7 +7356,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				"[✔]" // explosions
 			]
 			
-			if (!in_setup())
+			if (!in_setup() && !game_over)
 			{
 				SendGlobalGameEvent("show_annotation", 
 				{
