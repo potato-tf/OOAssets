@@ -5887,7 +5887,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 						foreach (bluplayer in bluplayer_array)
 						{
 							if (bluplayer.IsFakeClient()) continue
-							DeliverVisualTipToPlayer(bluplayer, "vis_grouping", "Grouping together around the Blood Tank\nwill make it give and take more resources.", true, 120.0)
+							DeliverVisualTipToPlayer(bluplayer, "vis_grouping", "Grouping together around the Blood Tank\nwill make it give and take more resources.", true, 180.0)
 						}
 					}
 
@@ -7356,7 +7356,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				"[✔]" // explosions
 			]
 			
-			if (!in_setup())
+			if (!in_setup() && !game_over)
 			{
 				SendGlobalGameEvent("show_annotation", 
 				{
@@ -7628,7 +7628,6 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			{
 				if (WAVE < 3 && blood_count >= 5) DeliverVisualTipToPlayer(owner, "vis_deliverblood", "Take all blood you collect\nto the Blood Tank!")
 				if (tnt_count >= 1 && tnt_arm_count < 20) DeliverVisualTipToPlayer(owner, "vis_armbarrels", "You have some TNT! Take\nit to any glowing barrel!", true, 30.0)
-				if (tnt_count == 0 && tnt_arm_count < 20) DeliverVisualTipToPlayer(owner, "vis_collecttnt", "Stand near the Blood Tank to get TNT", true, 45.0)
 				if (bombs_satisfied > 0) DeliverVisualTipToPlayer(owner, "vis_armallbarrels", "Fill all 20 barrels to beat the mission!")
 				if (giant_points >= 30 && !was_giant_robot && life_tick > 1000) DeliverVisualTipToPlayer(owner, "vis_giantpoints", "Hold your Projectile Shield\nkey to become giant!", true, 90.0)
 				if (is_giant_robot) DeliverVisualTipToPlayer(owner, "vis_giantpoints_turnback", "Hold the same key again\nto turn back to normal")
@@ -7641,6 +7640,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					else		  DeliverVisualTipToPlayer(owner, "vis_toomanypickups", "You are carrying way too much!\nBring your TNT to any glowing barrel!", true, 5.0)
 				}
 
+				if (tnt_count == 0 && tnt_arm_count < 20 && extraction_mode == "tnt") DeliverVisualTipToPlayer(owner, "vis_collecttnt", "Stand near the Blood Tank to get TNT", true, 45.0)
 				if (WAVE == 3 && extraction_mode == "blood") DeliverVisualTipToPlayer(owner, "vis_bloodconversion", "Bringing blood to the Blood Tank\nwill make it refill its TNT faster")
 				if (WAVE == 3 && objective_type != null) DeliverVisualTipToPlayer(owner, "vis_wave3objective", "Blood Tank creates explosions\nwhile it's not moving")
 			}
