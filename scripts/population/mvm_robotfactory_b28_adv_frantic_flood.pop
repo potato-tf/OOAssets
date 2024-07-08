@@ -1669,12 +1669,12 @@ population
 			Tank
 			{
 				Template	MonorailTank
-				StartingPathTrackNode	monorail_path_E
+				StartingPathTrackNode	monorail_path_D
 				Health	19000
 			}
 			FirstSpawnOutput                                                                                                                                                            
 			{
-				Target relay_monorail_hologram_E
+				Target relay_monorail_hologram_D
 				Action Trigger
 			}
 			DoneOutput
@@ -1733,7 +1733,7 @@ population
 			Where	spawnbot_right
 			Where	spawnbot_left
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	30
+			WaitBetweenSpawns	31
 			RandomSpawn	1
 			Squad
 			{
