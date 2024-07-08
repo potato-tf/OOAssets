@@ -897,7 +897,7 @@ WaveSchedule
         WaveSpawn
         {
             Name "wave03"
-            TotalCount 24
+            TotalCount 18
             MaxActive 8
             SpawnCount 2
 
@@ -1167,7 +1167,7 @@ WaveSchedule
 
         WaveSpawn
         {
-            TotalCount 14
+            TotalCount 10
             MaxActive 6
             SpawnCount 2
 
