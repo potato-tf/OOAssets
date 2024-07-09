@@ -824,6 +824,30 @@ WaveSchedule
 			Item "The Gunslinger"
 		}
 		
+		T_TFBot_Medic_BigHeal_FixedRange
+		{
+			Class Medic
+			Name "Quick-Fix Medic"
+			Skill Normal
+			Item "The Quick-Fix"
+			ItemAttributes
+			{
+				ItemName "The Quick-Fix"
+				"ubercharge rate bonus" 0.1
+			}
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_SYRINGEGUN_MEDIC"
+				"damage penalty" 0.1
+			}
+			CharacterAttributes
+			{
+				"heal rate bonus" 10
+				"bot medic uber deploy delay duration" 9999
+				"cancel falling damage" 1
+			}
+		}
+		
 		T_TFBot_Medic_QuickUber_Quickfix
 		{
 			Class Medic
@@ -1709,7 +1733,7 @@ WaveSchedule
 			ItemAttributes
 			{
 				ItemName "The Quick-Fix"
-				"ubercharge rate bonus" 0.1
+				"ubercharge rate bonus" 0.01
 			}
 			ItemAttributes
 			{
@@ -1718,6 +1742,7 @@ WaveSchedule
 			}
 			CharacterAttributes
 			{
+				"bot medic uber deploy delay duration" 9999
 				"heal rate bonus" 999
 			}
 		}
@@ -4012,6 +4037,7 @@ WaveSchedule
 				"damage force reduction" 0.6
 				"airblast vulnerability multiplier" 0.6
 				"heal rate bonus" 200 // only works on mediguns that have this attribute ie quickfix
+				"bot medic uber deploy delay duration" 9999
 				"cancel falling damage" 1
 			}
 		}
