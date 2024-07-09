@@ -6,7 +6,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	mission = NetProps.GetPropString(Entities.FindByClassname(null, "tf_objective_resource"), "m_iszMvMPopfileName")
 	
 	debug = false
-	debug_stage = 1
+	debug_stage = 3
 	debug_objective = true
 	
 	draw_worldtext = false
@@ -587,7 +587,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		[
 			"ui/item_as_parasite_drop.wav",
 			"passtime/ball_dropped.wav",
-			"weapons/samurai/TF_marked_for_death_indicator.wav",
+			[ "weapons/samurai/TF_marked_for_death_indicator.wav", "player/pl_impact_stun.wav" ]
 			"misc/rd_finale_beep01.wav",
 			"MVM.BombWarning",
 			"mvm.cpoint_alarm",
@@ -1310,6 +1310,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			SendGlobalGameEvent("hide_annotation", { id = bluplayer.entindex() })
 			SendGlobalGameEvent("hide_annotation", { id = bluplayer.entindex() * 500 })
+			SendGlobalGameEvent("hide_annotation", { id = bluplayer.entindex() * 1000 })
 		}
 		
 		switch (WAVE)
@@ -1430,8 +1431,13 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				}
 			}
 			
-			else scope.bloodstorage.ResetBloodCounter()
-			
+			else
+			{
+				if (scope.bloodstorage.used_recall) { scope.bloodstorage.used_recall = false; return }
+
+				scope.bloodstorage.ResetBloodCounter()
+			}
+
 			scope = scope.bloodstorage
 
 			EntFireByHandle(spawned_player, "CallScriptFunction", "PostSpawnFunctions", 1.0, null, null)
@@ -1774,9 +1780,11 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		OnGameEvent_player_used_powerup_bottle = function(params)
 		{
 			local player = EntIndexToHScript(params.player)
-			
+
 			if (params.type == 3)
 			{
+				player.GetScriptScope().bloodstorage.used_recall = true
+				
 				local soundscape = NetProps.GetPropInt(player, "m_Local.m_audio.soundscapeIndex")
 
 				if (soundscape == 154 || soundscape == 155) EntFireByHandle(player, "RunScriptCode", "RecallTeleport(true)", -1.0, null, null)
@@ -1796,6 +1804,16 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 	
 	RecallTeleport = function(was_outside)
 	{
+		local scope = self.GetScriptScope().bloodstorage
+		
+		if (in_endgame)
+		{
+			if (scope.escaped == "[X]") self.Teleport(true, Vector(4100, 2200, 100), true, QAngle(0, -90, 0), false, Vector(0, 0, 0))
+			else						self.Teleport(true, Vector(1150, -400, -400), true, QAngle(0, -90, 0), false, Vector(0, 0, 0))
+		
+			return
+		}
+		
 		if (in_setup()) self.Teleport(true, Vector(100, 100, -400), true, QAngle(0, -90, 0), false, Vector(0, 0, 0))
 		else
 		{
@@ -2119,6 +2137,20 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			worldPosX = blu_spawn_2_booth.GetOrigin().x
 			worldPosY = blu_spawn_2_booth.GetOrigin().y
 			worldPosZ = blu_spawn_2_booth.GetOrigin().z + 225
+			visibilityBitfield = (1 << self.entindex())
+			play_sound = "misc/null.wav"
+			show_distance = false
+			show_effect = false
+			lifetime = -1
+		})
+		
+		SendGlobalGameEvent("show_annotation", 
+		{
+			id = self.entindex() * 1000
+			text = "Upgrade Station"
+			worldPosX = 60
+			worldPosY = -150
+			worldPosZ = -280
 			visibilityBitfield = (1 << self.entindex())
 			play_sound = "misc/null.wav"
 			show_distance = false
@@ -5837,7 +5869,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 						
 						// DeliverTipToBLU("refueling", "When the Blood Tank runs out of TNT, it takes a while to refuel itself. Delivering blood speeds up this process.")
 						
-						deplete_blood_cooldown = Time() + 3.5
+						deplete_blood_cooldown = Time() + 4
 					}
 				}
 			}
@@ -7214,6 +7246,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		received_stage1_cash_reward = false
 		received_stage2_cash_reward = false
 		
+		used_recall = false
+		
 		bloodbots_destroyed = 0
 
 		/////////////// OBJECTIVE VARS (DEFINITIONS)
@@ -7266,8 +7300,11 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		was_giant_robot = false
 		
 		blood_carried_hud = null
+		blood_carried_hud_2 = null
 		tutorial_box = null
 		audiosettings = null
+		excesspenalty_stunmarker = null
+		
 		audio_preferences = []
 		audio_excludelist = []
 		audio_excludelist_toggledoff = false
@@ -7358,19 +7395,22 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			if (!in_setup() && !game_over)
 			{
-				SendGlobalGameEvent("show_annotation", 
+				if (Entities.FindByName(null, "blood_tank") != null)
 				{
-					id = player.entindex()
-					text = "Blood Tank"
-					follow_entindex = blood_tank.entindex()
-					visibilityBitfield = (1 << player.entindex())
-					play_sound = "misc/null.wav"
-					show_distance = true
-					show_effect = false
-					lifetime = 3600
-				})
-				
-				firsttimeplayer = false
+					SendGlobalGameEvent("show_annotation", 
+					{
+						id = player.entindex()
+						text = "Blood Tank"
+						follow_entindex = blood_tank.entindex()
+						visibilityBitfield = (1 << player.entindex())
+						play_sound = "misc/null.wav"
+						show_distance = true
+						show_effect = false
+						lifetime = 3600
+					})
+					
+					firsttimeplayer = false
+				}
 			}
 			
 			AddThinkToEnt(player, "BLUPlayer_Think")
@@ -7416,6 +7456,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			
 			InitializeBloodCounter()
 			
+			if (NetProps.GetPropBool(excesspenalty_stunmarker, "m_bActive")) EntFireByHandle(excesspenalty_stunmarker, "Stop", null, -1.0, null, null)
+			
 			life_tick = 0
 		}
 		
@@ -7452,9 +7494,27 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			}
 		}
 	
-		ResetBloodHUD = function()
+		ResetPlayerEntities = function()
 		{
 			owner.GetScriptScope().blood_carried_hud <- SpawnEntityFromTable("game_text", 
+			{
+				targetname   = "bloodhud_counter"
+				channel      = 3
+				color        = "255 255 255"
+				effect       = 0
+				fadein       = 0
+				fadeout      = 0
+				fxtime       = 0
+				message      = "sdasdasda"
+				holdtime     = 1.0
+				spawnflags   = 0
+				x            = 0.850
+				y            = 0.714
+			})
+			
+			blood_carried_hud = owner.GetScriptScope().blood_carried_hud
+
+			owner.GetScriptScope().blood_carried_hud_2 <- SpawnEntityFromTable("game_text", 
 			{
 				targetname   = "bloodhud_counter"
 				channel      = 1
@@ -7469,12 +7529,9 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				x            = 0.756
 				y            = 0.677
 			})
+
+			blood_carried_hud_2 = owner.GetScriptScope().blood_carried_hud_2
 			
-			blood_carried_hud = owner.GetScriptScope().blood_carried_hud
-		}
-	
-		ResetTutorialBox = function()
-		{
 			owner.GetScriptScope().tutorial_box <- SpawnEntityFromTable("prop_dynamic",
 			{
 				origin         = owner.EyePosition() + (owner.EyeAngles().Forward() * 400)
@@ -7488,10 +7545,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			tutorial_box = owner.GetScriptScope().tutorial_box
 
 			EntFireByHandle(tutorial_box, "SetParent", "!activator", 0, owner, owner)
-		}
-		
-		ResetMenus = function()
-		{
+			
 			owner.GetScriptScope().audiosettings <- SpawnEntityFromTable("logic_case",
 			{
 				targetname              = "resettips_prompt"
@@ -7535,23 +7589,43 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				if (i < 10) audiosettings.KeyValueFromString("case0" + i, audio_preferences[i - 2] + " " + NetProps.GetPropString(audiosettings, "m_nCase[" + (i - 1) + "]"))
 				else		audiosettings.KeyValueFromString("case" + i, audio_preferences[i - 2] + " " + NetProps.GetPropString(audiosettings, "m_nCase[" + (i - 1) + "]"))
 			}
+			
+			owner.GetScriptScope().excesspenalty_stunmarker <- SpawnEntityFromTable("info_particle_system",
+			{
+				effect_name = "conc_stars"
+				start_active = 0
+				flag_as_weather = 0
+			})
+			
+			excesspenalty_stunmarker = owner.GetScriptScope().excesspenalty_stunmarker
+			
+			EntFireByHandle(excesspenalty_stunmarker, "SetParent", "!activator", -1.0, owner, owner)
+			EntFireByHandle(excesspenalty_stunmarker, "SetParentAttachment", "head", 0.1, owner, owner)
 		}
-		
+
 		GlobalThinker = function()
 		{
-			if 		 (blood_carried_hud == null) ResetBloodHUD()
-			else if (!blood_carried_hud.IsValid()) ResetBloodHUD()
-			
-			if 		 (tutorial_box == null) ResetTutorialBox()
-			else if (!tutorial_box.IsValid()) ResetTutorialBox()
-			
-			if 		 (audiosettings == null) ResetMenus()
-			else if (!audiosettings.IsValid()) ResetMenus()
+			if 		 (blood_carried_hud == null) ResetPlayerEntities()
+			else if (!blood_carried_hud.IsValid()) ResetPlayerEntities()
 		
-			if (WAVE == 3) NetProps.SetPropString(blood_carried_hud, "m_iszMessage", "   " + giant_points + hud_separate_giantpoints_from_bloodheld + "   " + message_format + poisoned_string + "\n" + SmallDigits(owner.GetCurrency()) + SmallDigits(blood_count, "blood") + SmallDigits(bombs_satisfied, "tnt") + "₂₀")
-			else		   NetProps.SetPropString(blood_carried_hud, "m_iszMessage", "   " + giant_points + hud_separate_giantpoints_from_bloodheld + "   " + message_format + poisoned_string + "\n" + SmallDigits(owner.GetCurrency()))
+			if (WAVE == 3)
+			{
+				NetProps.SetPropString(blood_carried_hud, "m_iszMessage", "" + message_format + poisoned_string)
+				NetProps.SetPropString(blood_carried_hud_2  , "m_iszMessage", "   " + giant_points + hud_separate_giantpoints_from_bloodheld + "   \n" + SmallDigits(owner.GetCurrency()) + SmallDigits(blood_count, "blood") + SmallDigits(bombs_satisfied, "tnt") + "₂₀")
+			}
+			else
+			{
+				NetProps.SetPropString(blood_carried_hud, "m_iszMessage", "" + message_format + poisoned_string)
+				NetProps.SetPropString(blood_carried_hud_2, "m_iszMessage", "   " + giant_points + hud_separate_giantpoints_from_bloodheld + "   \n" + SmallDigits(owner.GetCurrency()))
+			}
+		
+			blood_carried_hud.KeyValueFromString("color", hud_color)
 			
-			if (!in_setup() && !in_cutscene && !in_endgame) EntFireByHandle(blood_carried_hud, "Display", null, -1.0, owner, owner)
+			if (!in_setup() && !in_cutscene && !in_endgame)
+			{
+				EntFireByHandle(blood_carried_hud, "Display", null, -1.0, owner, owner)
+				EntFireByHandle(blood_carried_hud_2, "Display", null, -1.0, owner, owner)
+			}
 
 			if (Time() >= giantpoints_nextdraintime)
 			{
@@ -7634,7 +7708,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				if (excess_stage > 0) DeliverVisualTipToPlayer(owner, "vis_bloodexcess", "Carrying too much makes\nyou slow and fragile")
 				if (WAVE < 3 && tank_blood_level == 0) DeliverVisualTipToPlayer(owner, "vis_tankhasnoblood", "Blood Tank drains its own health\nwhile it has no blood")
 				if (blood_tank_healthdrain_dmg >= 3) { if (DeliverVisualTipToPlayer(owner, "vis_bloodbotreminder", "Blood-Bots contain blood that\ncan be given to the Blood Tank.", true, 60.0)) HighlightBloodBots() }
-				if (excess_stage == 5 && NetProps.GetPropInt(owner, "m_afButtonLast") & 1)
+				if (excess_stage == 5)
 				{
 					if (WAVE < 3) DeliverVisualTipToPlayer(owner, "vis_toomanypickups", "You are carrying way too much!\nBring your blood to the Blood Tank!", true, 60.0)
 					else		  DeliverVisualTipToPlayer(owner, "vis_toomanypickups", "You are carrying way too much!\nBring your TNT to any glowing barrel!", true, 5.0)
@@ -7941,15 +8015,39 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					owner.RemoveCond(30)
 					owner.RemoveCustomAttribute("CARD: move speed bonus")
 					owner.RemoveCustomAttribute("dmg taken increased")
+					hud_color = "255 255 255"
 				}
 				if (excess_stage >= 1 && !owner.InCond(30)) owner.AddCond(30)
-				if (excess_stage == 2) owner.AddCustomAttribute("dmg taken increased", 1.25, -1)
-				if (excess_stage == 3) owner.AddCustomAttribute("dmg taken increased", 1.25, -1)
-				if (excess_stage == 4) owner.AddCustomAttribute("dmg taken increased", 1.5, -1)
-				if (excess_stage == 5) { owner.AddCustomAttribute("dmg taken increased", 2, -1); owner.AddCustomAttribute("no_attack", 1, -1) }
-				if (excess_stage < 5) owner.RemoveCustomAttribute("no_attack")
-
-				if (prev_excess_stage < excess_stage) EmitSoundEx({sound_name = "weapons/samurai/TF_marked_for_death_indicator.wav", channel = 1, entity = owner, pitch = 95 + excess_stage * 5, filter_type = 4, volume = (audio_excludelist.find("weapons/samurai/TF_marked_for_death_indicator.wav") == null) ? 1 : 0, sound_level = 100})
+				if (excess_stage == 1) hud_color = "255 204 0"
+			
+				if (excess_stage == 2) { owner.AddCustomAttribute("dmg taken increased", 1.25, -1); hud_color = "255 153 0" }
+				if (excess_stage == 3) { owner.AddCustomAttribute("dmg taken increased", 1.25, -1); hud_color = "255 102 0" }
+				if (excess_stage == 4) { owner.AddCustomAttribute("dmg taken increased", 1.5, -1); hud_color = "255 51 0" }
+				if (excess_stage == 5)
+				{
+					owner.AddCustomAttribute("dmg taken increased", 2, -1)
+					owner.AddCustomAttribute("no_attack", 1, -1)
+					hud_color = "255 0 0"
+					owner.SetForcedTauntCam(1)
+					if (!NetProps.GetPropBool(excesspenalty_stunmarker, "m_bActive")) EntFireByHandle(excesspenalty_stunmarker, "Start", null, -1.0, null, null)
+					
+					if (prev_excess_stage < excess_stage) EmitSoundEx({sound_name = "player/pl_impact_stun.wav", channel = 1, entity = owner, filter_type = 4, volume = (audio_excludelist.find("player/pl_impact_stun.wav") == null) ? 1 : 0, sound_level = 100})
+				}
+			
+				if (excess_stage < 5)
+				{
+					owner.RemoveCustomAttribute("no_attack")
+					owner.SetForcedTauntCam(0)
+					if (NetProps.GetPropBool(excesspenalty_stunmarker, "m_bActive")) EntFireByHandle(excesspenalty_stunmarker, "Stop", null, -1.0, null, null)
+					
+					if (excess_stage > 0 && prev_excess_stage < excess_stage) EmitSoundEx({sound_name = "weapons/samurai/TF_marked_for_death_indicator.wav", channel = 1, entity = owner, pitch = 95 + excess_stage * 5, filter_type = 4, volume = (audio_excludelist.find("weapons/samurai/TF_marked_for_death_indicator.wav") == null) ? 1 : 0, sound_level = 100})
+				}
+			}
+			
+			else
+			{
+				owner.SetForcedTauntCam(0)
+				if (NetProps.GetPropBool(excesspenalty_stunmarker, "m_bActive")) EntFireByHandle(excesspenalty_stunmarker, "Stop", null, -1.0, null, null)
 			}
 			
 			if (draw_debugchat) ClientPrint(null,3,"" + pickup_count)
@@ -7980,6 +8078,10 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				owner.RemoveCustomAttribute("CARD: move speed bonus")
 				owner.RemoveCustomAttribute("dmg taken increased")
 				owner.RemoveCustomAttribute("no_attack")
+				
+				owner.SetForcedTauntCam(0)
+				
+				if (NetProps.GetPropBool(excesspenalty_stunmarker, "m_bActive")) EntFireByHandle(excesspenalty_stunmarker, "Stop", null, -1.0, null, null)
 
 				if (tf_class != scout && tf_class != engineer && tf_class != spy) owner.AddCustomAttribute("CARD: move speed bonus", 0.5, -1)
 				
@@ -8255,6 +8357,7 @@ PrecacheModel("models/bots/boss_bot/boss_tank.mdl"); PrecacheModel("models/bots/
 PrecacheScriptSound("mvm.cpoint_alarm"); PrecacheSound("ui/chat_display_text.wav"); PrecacheSound("misc/cp_harbor_red_whistle.wav"); PrecacheSound("vo/mvm_final_wave_end01.mp3"); PrecacheSound("vo/mvm_final_wave_end02.mp3"); PrecacheSound("vo/mvm_final_wave_end03.mp3")
 PrecacheSound("vo/mvm_final_wave_end04.mp3"); PrecacheSound("vo/mvm_final_wave_end05.mp3"); PrecacheSound("vo/mvm_final_wave_end06.mp3"); PrecacheScriptSound("Announcer.mvm_spybot_death_all"); PrecacheScriptSound("Announcer.MVM_Spy_Alert"); PrecacheScriptSound("Announcer.MVM_Wave_Lose")
 PrecacheSound("weapons/samurai/TF_marked_for_death_indicator.wav"); PrecacheScriptSound("music.mvm_end_tank_wave"); PrecacheSound("pl_hoodoo/alarm_clock_alarm_3.wav"); PrecacheSound("weapons/loose_cannon_explode.wav"); PrecacheSound("DisciplineDevice.PowerUp"); PrecacheSound("ui/system_message_alert.wav")
+PrecacheSound("player/pl_impact_stun.wav")
 
 // PrecacheEntityFromTable({ classname = "instanced_scripted_scene", model = MODEL_NAME });(
 
@@ -8266,7 +8369,7 @@ foreach (bluplayer in bluplayer_array)
 {
 	if (bluplayer.IsFakeClient()) continue
 	
-	if (!("vis_grouping" in bluplayer.GetScriptScope().bloodstorage.tip_table)) { ReloadMapForChanges(); break }
+	if (!("used_recall" in bluplayer.GetScriptScope().bloodstorage)) { ReloadMapForChanges(); break }
 }
 
 EntityOutputs.AddOutput(debug_menu, "OnCase02", "gamerules", "RunScriptCode", "if (debugger != null) ClientPrint(debugger,3,`` + (cur_tankspeed + tank_speedboost))", -1.0, -1)
@@ -8692,36 +8795,32 @@ for (local ent; ent = Entities.FindByClassname(ent, "team_control_point_master")
 
 seterrorhandler(function(e)
 {
-	for (local player; player = Entities.FindByClassname(player, "player");)
-	{
-		if (NetProps.GetPropString(player, "m_szNetworkIDString") == "[U:1:95064912]")
-		{
-			local Chat = @(m) (printl(m), ClientPrint(player, 2, m))
-			ClientPrint(player, 3, format("\x07FF0000AN ERROR HAS OCCURRED [%s].\nCheck console for details", e))
-			
-			Chat(format("\n====== TIMESTAMP: %g ======\nAN ERROR HAS OCCURRED [%s]", Time(), e))
-			Chat("CALLSTACK")
-			local s, l = 2
-			while (s = getstackinfos(l++)) Chat(format("*FUNCTION [%s()] %s line [%d]", s.func, s.src, s.line))
+	local Chat = @(m) (printl(m), ClientPrint(null, 2, m))
+	ClientPrint(null, 3, format("\x07FF0000AN ERROR HAS OCCURRED [%s].\nCheck console for details", e))
+	
+	Chat(format("\n====== TIMESTAMP: %g ======\nAN ERROR HAS OCCURRED [%s]", Time(), e))
+	Chat("CALLSTACK")
+	local s, l = 2
+	while (s = getstackinfos(l++)) Chat(format("*FUNCTION [%s()] %s line [%d]", s.func, s.src, s.line))
 
-			Chat("LOCALS")
-			
-			if (s = getstackinfos(2))
-			{
-				foreach (n, v in s.locals) 
-				{
-					local t = type(v)
-					t ==    "null" ? Chat(format("[%s] NULL"  , n))    :
-					t == "integer" ? Chat(format("[%s] %d"    , n, v)) :
-					t ==   "float" ? Chat(format("[%s] %.14g" , n, v)) :
-					t ==  "string" ? Chat(format("[%s] \"%s\"", n, v)) :
-									 Chat(format("[%s] %s %s" , n, t, v.tostring()))
-				}
-			}
-			
-			return
+	Chat("LOCALS")
+	
+	if (s = getstackinfos(2))
+	{
+		foreach (n, v in s.locals) 
+		{
+			local t = type(v)
+			t ==    "null" ? Chat(format("[%s] NULL"  , n))    :
+			t == "integer" ? Chat(format("[%s] %d"    , n, v)) :
+			t ==   "float" ? Chat(format("[%s] %.14g" , n, v)) :
+			t ==  "string" ? Chat(format("[%s] \"%s\"", n, v)) :
+							 Chat(format("[%s] %s %s" , n, t, v.tostring()))
 		}
 	}
+	
+	ClientPrint(null, 3, "\x07FF0000If you see this message, report it on Potato's Discord server!")
+	
+	return
 })
 
 SetGravityMultiplier(1)
@@ -8787,6 +8886,11 @@ CALLBACKS.OnGameEvent_player_say <- function(params)
 
 			ClientPrint(null,3,"DebugMenu: Healed Blood Tank")
 		}
+		
+		// if (params.text == "!g")
+		// {
+			// player.GetScriptScope().bloodstorage.giant_points = 500
+		// }
 	}
 }
 
