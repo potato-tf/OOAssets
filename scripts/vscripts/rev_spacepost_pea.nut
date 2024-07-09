@@ -8818,8 +8818,6 @@ seterrorhandler(function(e)
 		}
 	}
 	
-	ClientPrint(null, 3, "\x07FF0000If you see this message, report it on Potato's Discord server!")
-	
 	return
 })
 
