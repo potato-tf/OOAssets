@@ -2137,7 +2137,7 @@ population
 		WaveSpawn
 		{
 			Name	4e
-			//WaitForAllSpawned	4b3
+			WaitForAllSpawned	4b3
 			TotalCurrency	50
 			TotalCount	7
 			MaxActive	4
@@ -2154,7 +2154,6 @@ population
 				Name	"Armored Tomislav Heavy"
 				Item	"Tomislav"
 				Item	"Capone's Capper"
-				Item	"Immobile Suit"
 				Classicon	heavy_armored_accurate_lite
 			}
 		}
@@ -2563,14 +2562,18 @@ population
 				Template	T_TFBot_Giant_Soldier_SlowBarrage
 				Name		"Brigadier Barrage"
 				Classicon	soldier_bazooka
+				Item		"The Beggar's Bazooka"
 				Item		"The Cloud Crasher"
 				ItemAttributes
 				{
-					ItemName "TF_WEAPON_ROCKETLAUNCHER"
+					ItemName	"The Beggar's Bazooka"
+					"Projectile speed increased"		2
 					"projectile spread angle penalty"	5
 					"faster reload rate"				0.3
 					"clip size upgrade atomic"			6
 					"fire rate bonus"    				0.05
+					"auto fires full clip"				0	//	Beggars attrbute for an already present Beggars gun
+					"can overload"						0	//	Beggars attrbute for an already present Beggars gun
 				}
 				CharacterAttributes
 				{
@@ -2775,14 +2778,18 @@ population
 				Template	T_TFBot_Giant_Soldier_SlowBarrage
 				Name		"Brigadier Barrage"
 				Classicon	soldier_bazooka
+				Item		"The Beggar's Bazooka"
 				Item		"The Cloud Crasher"
 				ItemAttributes
 				{
-					ItemName "TF_WEAPON_ROCKETLAUNCHER"
+					ItemName	"The Beggar's Bazooka"
+					"Projectile speed increased"		2
 					"projectile spread angle penalty"	5
 					"faster reload rate"				0.3
 					"clip size upgrade atomic"			6
 					"fire rate bonus"    				0.05
+					"auto fires full clip"				0	//	Beggars attrbute for an already present Beggars gun
+					"can overload"						0	//	Beggars attrbute for an already present Beggars gun
 				}
 				CharacterAttributes
 				{
