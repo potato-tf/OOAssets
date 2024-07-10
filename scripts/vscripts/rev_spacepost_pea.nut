@@ -5330,6 +5330,12 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		
 		foreach (bluplayer in bluplayer_array)
 		{
+			if (!bluplayer.IsValid())
+			{
+				bluplayer_array.remove(bluplayer_array.find(bluplayer))
+				return -1
+			}
+			
 			if (bluplayer.IsFakeClient()) continue
 			
 			local scope = bluplayer.GetScriptScope().bloodstorage
