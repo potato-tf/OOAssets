@@ -4872,8 +4872,10 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		
 		foreach (bluplayer in bluplayer_array)
 		{	
-			local bluplayer_gravity = Entities.FindByName(null, "gravity_mixup_" + NetProps.GetPropString(bluplayer, "m_szNetname"))
+			local bluplayer_gravity
 			
+			(bluplayer.IsFakeClient()) ? bluplayer_gravity = Entities.FindByName(null, "gravity_mixup_Alien Hunter") : bluplayer_gravity = Entities.FindByName(null, "gravity_mixup_" + NetProps.GetPropString(bluplayer, "m_szNetname"))
+
 			local player_scope = bluplayer.GetScriptScope().bloodstorage
 
 			if (player_scope.escaped != "[X]")
@@ -5328,6 +5330,12 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		
 		foreach (bluplayer in bluplayer_array)
 		{
+			if (!bluplayer.IsValid())
+			{
+				bluplayer_array.remove(bluplayer_array.find(bluplayer))
+				return -1
+			}
+			
 			if (bluplayer.IsFakeClient()) continue
 			
 			local scope = bluplayer.GetScriptScope().bloodstorage
@@ -7807,7 +7815,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 					// poisoned_string = " (☠)"
 					
 					// DeliverTipToPlayer(owner, "zombieblood", "Enemy zombies drop rotten blood. Rotten blood doubles and damages your blood storage, causing it to leak over time.")
-					DeliverVisualTipToPlayer(owner, "vis_zombieblood", "Rotten blood doubles your carried\nblood and applies bleeding.", true, 60.0)
+					DeliverVisualTipToPlayer(owner, "vis_zombieblood", "Rotten blood doubles your carried\nblood and applies bleeding.", true, 90.0)
 					
 					break
 				}
@@ -8884,11 +8892,6 @@ CALLBACKS.OnGameEvent_player_say <- function(params)
 
 			ClientPrint(null,3,"DebugMenu: Healed Blood Tank")
 		}
-		
-		// if (params.text == "!g")
-		// {
-			// player.GetScriptScope().bloodstorage.giant_points = 500
-		// }
 	}
 }
 
