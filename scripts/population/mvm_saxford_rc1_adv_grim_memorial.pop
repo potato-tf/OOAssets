@@ -20,6 +20,7 @@ WaveSchedule
     StartingCurrency 520
     RespawnWaveTime 2
     CanBotsAttackWhileInSpawnRoom	no
+    FixHuntsmanDamageBonus 1
 
     Templates
     {
@@ -506,12 +507,12 @@ WaveSchedule
         BeginAtWave 5
         RunForThisManyWaves 1
 
-        InitialCooldown 5
-        CooldownTime 30
-        DesiredCount 2
+        InitialCooldown 20
+        CooldownTime 15
+        DesiredCount 1
         TFBot
         {
-            Template T_TFBot_Engineer_Sentry_Tele_Battle
+            Template T_TFBot_Engineer_Sentry_Teleporter
             Name "Teleporter Heavy"
 
             TeleportWhere spawnbot_side
