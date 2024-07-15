@@ -8429,7 +8429,7 @@ foreach (bluplayer in bluplayer_array)
 {
 	if (bluplayer.IsFakeClient()) continue
 	
-	if (!("used_recall" in bluplayer.GetScriptScope().bloodstorage)) { ReloadMapForChanges(); break }
+	if (!("scout_collection_radius" in bluplayer.GetScriptScope().bloodstorage)) { ReloadMapForChanges(); break }
 }
 
 EntityOutputs.AddOutput(debug_menu, "OnCase02", "gamerules", "RunScriptCode", "if (debugger != null) ClientPrint(debugger,3,`` + (cur_tankspeed + tank_speedboost))", -1.0, -1)
