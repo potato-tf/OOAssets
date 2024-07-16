@@ -404,6 +404,7 @@ population
 				EntFire(`placeholder_relay_killer_disable_all`, `Trigger`)
 				EntFire(`spawnbot_placeholder4`, `Disable`)
 				EntFire(`gamerules`, `RunScriptFile`, `exp_pyro_spawner.nut`, 1)
+				EntFire(`tutorial_relay`, `Trigger`)
 			"
 		}
 		StartWaveOutput
