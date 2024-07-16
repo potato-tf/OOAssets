@@ -590,13 +590,16 @@ WaveSchedule
 					Template T_TFBot_Demoman_Knight
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					
-					Tag avoid_upper_exit
 					Tag avoid_walkdown_back
 					Tag avoid_walkdown_back_right
 					Tag avoid_back_corridor_right
 					Tag avoid_back_corridor_left
 					Tag avoid_dropdown_middle
 					Tag avoid_walkdown_middle
+					
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				
 				NextSpawnerClone 8
@@ -623,6 +626,10 @@ WaveSchedule
 					Tag avoid_walkdown_back_right
 					Tag avoid_back_corridor_left
 					Tag avoid_back_corridor_middle
+					
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				Shuffle 1
 			}
@@ -772,6 +779,10 @@ WaveSchedule
 				Tag avoid_back_corridor_right
 				Tag avoid_back_corridor_middle
 				Tag avoid_back_corridor_left
+				
+				Tag avoid_upper_exit
+				Tag avoid_right_exit
+				Tag avoid_middle_exit
 			}
 		}
 		WaveSpawn
@@ -809,9 +820,12 @@ WaveSchedule
 					
 					Tag avoid_jumpdown_middle
 					Tag avoid_dropdown_middle
-					Tag avoid_upper_exit
 					Tag avoid_walkdown_back
 					Tag avoid_back_corridor_middle
+					
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				Shuffle 1
 			}
@@ -962,6 +976,10 @@ WaveSchedule
 					Tag squad_leader
 					
 					Tag avoid_back_corridor_right
+					
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				NextSpawnerClone 2
 				TFBot
@@ -971,6 +989,10 @@ WaveSchedule
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					
 					Tag avoid_back_corridor_right
+					
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 			}
 		}
@@ -980,11 +1002,11 @@ WaveSchedule
 			TotalCurrency 0
 			Where spawnbot_red_9
 			SpawnCount 2
-			MaxActive 8
+			MaxActive 6
 			TotalCount 16
 			WaitForAllDead "W1-S3A-2"
 			WaitBeforeStarting 10
-			WaitBetweenSpawns 8
+			WaitBetweenSpawns 10
 			TFBot
 			{
 				Class Pyro
@@ -993,6 +1015,10 @@ WaveSchedule
 				Tag avoid_back_sidepath
 				Tag avoid_back_overpass
 				Tag avoid_walkdown_back_right
+				
+				Tag avoid_upper_exit
+				Tag avoid_right_exit
+				Tag avoid_middle_exit
 			}
 		}
 		WaveSpawn
@@ -1002,9 +1028,6 @@ WaveSchedule
 			
 			Where spawnbot_red_1
 			Where spawnbot_red_2
-			Where spawnbot_red_3
-			Where spawnbot_red_4
-			Where spawnbot_red_5
 			Where spawnbot_red_6
 			Where spawnbot_red_7
 			Where spawnbot_red_8
@@ -1013,7 +1036,6 @@ WaveSchedule
 			Where spawnbot_red_11
 			Where spawnbot_red_12
 			Where spawnbot_red_13
-			Where spawnbot_red_14
 			Where spawnbot_red_16
 			RandomSpawn 1
 			
@@ -1049,6 +1071,10 @@ WaveSchedule
 					Tag squad_leader
 					
 					Tag avoid_back_corridor_right
+					
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				NextSpawnerClone 2
 				TFBot
@@ -1058,6 +1084,10 @@ WaveSchedule
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
 					
 					Tag avoid_back_corridor_right
+					
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 			}
 		}
@@ -1078,7 +1108,10 @@ WaveSchedule
 				Template T_TFBot_Giant_Heavyweapons
 				AddTemplate "T_TFBot_REDBehavior_Aggro"
 				Tag avoid_upper_left
+				
 				Tag avoid_upper_exit
+				Tag avoid_right_exit
+				Tag avoid_middle_exit
 			}
 		}
 		// WaveSpawn
@@ -1545,6 +1578,10 @@ WaveSchedule
 					Tag avoid_back_corridor_middle
 					Tag avoid_back_overpass
 					Tag avoid_walkdown_back
+				
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				NextSpawnerClone 4
 				TFBot
@@ -1557,6 +1594,10 @@ WaveSchedule
 					Tag avoid_back_corridor_middle
 					Tag avoid_back_overpass
 					Tag avoid_walkdown_back
+					
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				Shuffle 1
 			}
@@ -1628,6 +1669,10 @@ WaveSchedule
 				Tag avoid_back_corridor_right
 				Tag avoid_back_overpass
 				Tag avoid_walkdown_back_right
+				
+				Tag avoid_upper_exit
+				Tag avoid_right_exit
+				Tag avoid_middle_exit
 			}
 		}
 		WaveSpawn
@@ -1700,6 +1745,10 @@ WaveSchedule
 				Tag avoid_back_overpass
 				Tag avoid_walkdown_back
 				Tag avoid_walkdown_back_right
+				
+				Tag avoid_upper_exit
+				Tag avoid_right_exit
+				Tag avoid_middle_exit
 			}
 		}
 		WaveSpawn
@@ -1726,6 +1775,10 @@ WaveSchedule
 					Tag avoid_back_overpass
 					Tag avoid_walkdown_back_right
 					Tag avoid_walkdown_back
+				
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				NextSpawnerClone 12
 				TFBot
@@ -1806,6 +1859,10 @@ WaveSchedule
 				Tag avoid_back_corridor_right
 				Tag avoid_walkdown_back
 				Tag avoid_back_corridor_middle
+				
+				Tag avoid_upper_exit
+				Tag avoid_right_exit
+				Tag avoid_middle_exit
 			}
 		}
 		WaveSpawn
@@ -1871,6 +1928,10 @@ WaveSchedule
 				Tag avoid_back_sidepath
 				Tag avoid_back_corridor_right
 				Tag avoid_walkdown_back
+				
+				Tag avoid_upper_exit
+				Tag avoid_right_exit
+				Tag avoid_middle_exit
 			}
 		}
 		WaveSpawn
@@ -2448,6 +2509,10 @@ WaveSchedule
 					Tag avoid_back_sidepath
 					Tag avoid_back_overpass
 					Tag avoid_back_corridor_right
+				
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				NextSpawnerClone 5
 				TFBot
@@ -2459,6 +2524,10 @@ WaveSchedule
 					Tag avoid_back_sidepath
 					Tag avoid_back_overpass
 					Tag avoid_back_corridor_right
+				
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 			}
 		}
@@ -2519,6 +2588,10 @@ WaveSchedule
 					Tag avoid_back_corridor_left
 					Tag avoid_back_corridor_middle
 					Tag avoid_back_sidepath
+				
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				NextSpawnerClone 7
 				TFBot
@@ -2530,6 +2603,10 @@ WaveSchedule
 					Tag avoid_back_corridor_left
 					Tag avoid_back_corridor_middle
 					Tag avoid_back_sidepath
+				
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 			}
 		}
@@ -2595,6 +2672,10 @@ WaveSchedule
 					Tag avoid_back_corridor_right
 					Tag avoid_dropdown_middle
 					Tag avoid_walkdown_middle
+				
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				NextSpawnerClone 4
 				TFBot
@@ -2608,6 +2689,10 @@ WaveSchedule
 					Tag avoid_back_corridor_right
 					Tag avoid_dropdown_middle
 					Tag avoid_jumpdown_middle
+				
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				NextSpawnerClone 6
 				TFBot
@@ -2738,6 +2823,10 @@ WaveSchedule
 				{
 					Template "T_TFBot_Giant_Soldier_Spammer_Reload"
 					AddTemplate "T_TFBot_REDBehavior_Aggro"
+				
+					Tag avoid_upper_exit
+					Tag avoid_right_exit
+					Tag avoid_middle_exit
 				}
 				TFBot
 				{
