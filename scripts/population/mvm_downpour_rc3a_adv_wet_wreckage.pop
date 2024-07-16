@@ -445,7 +445,7 @@ population
 		"auto fires when full"			1
 		// "spread penalty"				2.2 //fucking atrocity
 		"fire rate penalty hidden"		0.66
-		"reload time increased hidden"	1.1	// 1.3
+		"reload time increased hidden"	1.2	// 1.1	// 1.3
 		Paintkit_proto_def_index		403
 		Set_item_texture_wear			0
 		"crit mod disabled"				0
@@ -548,46 +548,40 @@ population
 				ItemName	"Wild Revolver"
 			}
 		}
-
-		Wildrevolver_Special
-		{
-			Name		"High Noon"
-			Attribute	"killstreak tier"
-			Description	"Last shot always crits, damage increased by 35%."
-			Cap			2
-			Increment	2
-			Cost		650
-
-			AllowedWeapons
-			{
-				ItemName	"Wild Revolver"
-			}
-
-			SecondaryAttributes
-			{
-				"killstreak idleeffect"	2
-				"CARD: damage bonus"	0.35
-				"last shot crits"		1
-			}
-
-			RequiredUpgrade
-			{
-				Upgrade	Wildrevolver_Damage
-				Level	4
-			}
-
-			OnApply
-			{
-				OutPut	"!activator,$giveitem,Texas Ten Gallon,0,0"
-			}
-
-			OnUpgrade
-			{
-				Output	!activator,$playsoundtoself,weapons/saxxy_impact_gen_06.wav,0
-				Output	!activator,speakresponseconcept,TLK_MVM_LOOT_RARE,1.5
-				OutPut	"!activator,$giveitem,Texas Ten Gallon,0,0"
-			}
-		}
+		// Wildrevolver_Special
+		// {
+		// Name		"High Noon"
+		// Attribute	"killstreak tier"
+		// Description	"Last shot always crits, damage increased by 35%."
+		// Cap			2
+		// Increment	2
+		// Cost		650
+		// AllowedWeapons
+		// {
+		// ItemName	"Wild Revolver"
+		// }
+		// SecondaryAttributes
+		// {
+		// "killstreak idleeffect"	2
+		// "CARD: damage bonus"	0.35
+		// "last shot crits"		1
+		// }
+		// RequiredUpgrade
+		// {
+		// Upgrade	Wildrevolver_Damage
+		// Level	4
+		// }
+		// OnApply
+		// {
+		// OutPut	"!activator,$giveitem,Texas Ten Gallon,0,0"
+		// }
+		// OnUpgrade
+		// {
+		// Output	!activator,$playsoundtoself,weapons/saxxy_impact_gen_06.wav,0
+		// Output	!activator,speakresponseconcept,TLK_MVM_LOOT_RARE,1.5
+		// OutPut	"!activator,$giveitem,Texas Ten Gallon,0,0"
+		// }
+		// }
 	}
 	// RAFMOD END
 	// WAVE 1 //////////CURRENCY 1100///////////////////////////////////
