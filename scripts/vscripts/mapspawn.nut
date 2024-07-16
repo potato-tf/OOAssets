@@ -11,11 +11,22 @@
     // True if the server is running the sigsegv-mvm extension.
     IsSigmod = Convars.GetInt("sig_color_console") != null ? true : false
 
+    ValvePops = [
+        "intermediate",
+        "intermediate2",
+        "advanced",
+        "advanced1",
+        "advanced2",
+        "advanced3",
+        "ironman",
+        "expert1"
+    ]
+
     // Mapping for difficulty phrases to respective display name.
     difficultyMap = {
-        "nor": "(nor) "
-        "int": "(int) "
-        "adv": "(adv) "
+        "nor": "(nor) ",
+        "int": "(int) ",
+        "adv": "(adv) ",
         "exp": "(exp) "
     }
     // Phrases to ignore when formatting mission display name.
@@ -31,6 +42,7 @@
      * @param str newname
      */
     function SetMissionName(newname) {
+        if (newname == null) return
         if (this.IsSigmod == true) {
             // This is done because the Potato plugin that serves the mission name to the
             // website retrieves the popfile name directly from this NetProp, causing the website
@@ -50,13 +62,21 @@
      *
      * @param str popname   Mission name to format.
      * @param bool end      Set to true to use end card formatting (no difficulty).
+     * @return str|null     Formatted mission name if successful, otherwise null.
      */
     function FormatMissionName(popname, end = false) {
+        // Don't format mission name if we're on a 'normal' pop ("mvm_bigrock.pop"), as there
+        //  is no mission name to format.
+        if (popname.slice(19 + __potato.len_mapname, 20 + __potato.len_mapname) != "_") return null
+
         // Split:
         //  "scripts/population/mvm_condemned_b3_adv_unholy_undead.pop"
         // To:
         //  ["adv", "unholy", "undead"]
         local strings = split(popname.slice(20 + __potato.len_mapname, -4), "_")
+
+        // Don't format mission name if we're probably on a Valve mission
+        if (strings.len() == 1 && ValvePops.find(strings[0]) != null) return null
 
         local name = ""  // Mission display name
         local difficulty = ""   // Mission display difficulty tag
@@ -89,16 +109,14 @@
         switch (__potato.mapname) {
             // Oilrig
             case "mvm_oilrig_rc5a":
-                // Rain particles fix - replace missing rain particles with sawmill rain.
-                // Kill broken rain particles
+                // Rain particles fix - replaces missing rain particles with sawmill rain.
+                // Kill old broken rain particles
                 for (local particlesystem; particlesystem = Entities.FindByClassname(particlesystem, "info_particle_system");) {
                     if (particlesystem.GetName() == "end_pit_destroy_particle") continue
-                    // Kill() and Destroy() methods will cause this to iterate ~300 times,
-                    //  so must EntFire() instead
                     EntFireByHandle(particlesystem, "Kill", "", 0, null, null)
                 }
 
-                // Spawn replacement rain; looks bad if we just use the position of the old particle systems
+                // Spawn hand-placed new rain
                 local rain2 = [Vector(-508, -2608, 1800), Vector(789, -2290, 1800), Vector(-324, -2694, 1800), Vector(-320, -3360, 1800)]
                 local rain = [Vector(-2848, 384, 8810), Vector(-1200, 1924, 3620),
                     Vector(282, 1924, 3620), Vector(882, 1924, 3620), Vector(-366, -608, 3620), Vector(528, -608, 4100),
@@ -122,22 +140,23 @@
                     })
                 }
 
-                // Tank spawn fixes
-                // Add missing func_respawnroom to tank spawn.
+                // Middle spawn fixes
+                // Add missing func_respawnroom.
                 local tankspawn = SpawnEntityFromTable("func_respawnroom", {
                     origin = Vector(-520, -5450, 1063)
                     TeamNum = Constants.ETFTeam.TF_TEAM_BLUE
                 })
                 // Some properties are reset when spawn is dispatched, so they must be set
-                //  post-spawn.
+                //  post-spawn here.
                 tankspawn.SetSize(Vector(), Vector(400, 410, 200))
                 tankspawn.SetSolid(Constants.ESolidType.SOLID_BBOX)
-                // Mark tank spawn nav to properly provide bot uber.
+
+                // Properly mark the middle spawn nav as an invaders spawn room.
                 local tanknav = NavMesh.GetNavAreaByID(27)
                 tanknav.SetAttributeTF(Constants.FTFNavAttributeType.TF_NAV_SPAWN_ROOM_BLUE)
                 tanknav.ClearAttributeTF(Constants.FTFNavAttributeType.TF_NAV_BOMB_CAN_DROP_HERE)
 
-                // Collect dropped cash in tank spawn.
+                // Auto-collect cash dropped in tank spawn
                 local tankcollect = SpawnEntityFromTable("trigger_hurt", {
                     origin = Vector(-520, -5450, 1063)
                 })
@@ -147,15 +166,22 @@
 
             // Rottenburg
             case "mvm_rottenburg":
-                // Fix tank barricade turning invisible
+                // Fix the tank barricade turning invisible.
                 EntFire("Barricade", "SetParent", "Tank_Barricade_Particle")
-                // Fix bad collision on tank barricade
+                // Fix prediction errors on the tank barricade.
                 EntFire("Barricade", "DisableCollision")
                 break
 
             // Lotus
             case "mvm_lotus_b6":
-                // Fix bot spawnroom holograms from incorrectly rendering behind props
+                // Fix spawnroom blockers incorrectly rendering behind props.
+                for (local vis; vis = Entities.FindByClassname(vis, "func_respawnroomvisualizer");)
+                    NetProps.SetPropInt(vis, "m_nRenderMode", Constants.ERenderMode.kRenderTransColor)
+                break
+
+            // Mansion
+            case "mvm_mansion_rc1d":
+                // Fix spawnroom blockers incorrectly rendering behind props.
                 for (local vis; vis = Entities.FindByClassname(vis, "func_respawnroomvisualizer");)
                     NetProps.SetPropInt(vis, "m_nRenderMode", Constants.ERenderMode.kRenderTransColor)
                 break
