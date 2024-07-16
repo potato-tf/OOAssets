@@ -2011,23 +2011,6 @@ population
 		}
 		WaveSpawn
 		{
-			Name	sup4.1
-			WaitForAllSpawned	4c3
-			TotalCount	9
-			MaxActive	9
-			SpawnCount	3
-			Where	flankers
-			WaitBeforeStarting	0
-			Waitbetweenspawns	5
-			Support 1
-			TFBot
-			{
-				Class	Scout
-				Skill	Easy
-			}
-		}
-		WaveSpawn
-		{
 			Name	4c3
 			WaitForAllSpawned	4c2
 			TotalCurrency	25
@@ -2058,6 +2041,37 @@ population
 					CharacterAttributes
 					{
 						"move speed bonus"	1
+					}
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	sup4.1
+			WaitForAllSpawned	4c3
+			TotalCount	9
+			MaxActive	9
+			SpawnCount	3
+			Where	flankers
+			WaitBeforeStarting	0
+			Waitbetweenspawns	5
+			Support 1
+			RandomChoice
+			{
+				TFBot
+				{
+					Class	Scout
+					Skill	Easy
+				}
+				TFBot
+				{
+					Class	Pyro
+					Skill	Hard
+					Item	"Upgradeable TF_WEAPON_FLAMETHROWER"
+					ItemAttributes
+					{
+						Itemname	"Upgradeable TF_WEAPON_FLAMETHROWER"
+						"airblast disabled"	1
 					}
 				}
 			}
@@ -2539,6 +2553,13 @@ population
 					Template	T_TFBot_Giant_Medic
 					Attributes	IgnoreEnemies
 					Classicon	medic_pop_giant
+					Item		"Platinum Pickelhaube"
+					Item		"Coldfront Carapace"
+					ItemAttributes
+					{
+						Itemname	"Platinum Pickelhaube"
+						"set item tint rgb"		15132390	//	An Abundance of Tinge
+					}
 					CharacterAttributes
 					{
 						"move speed bonus"	1
@@ -2585,7 +2606,7 @@ population
 		WaveSpawn
 		{
 			Name	6b
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	15
 			MaxActive	10
 			SpawnCount	1
@@ -2605,6 +2626,37 @@ population
 				CharacterAttributes
 				{
 					"increase buff duration"	9.0
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	6b2
+			TotalCurrency	50
+			TotalCount	12
+			MaxActive	6
+			SpawnCount	2
+			Where	flankers
+			WaitBeforeStarting	8
+			Waitbetweenspawns	4
+			TFBot
+			{
+				Class		Pyro
+				Skill		Hard
+				Name		"Backburner Pyro"
+				Classicon	pyro_backburner_nys
+				Attributes	AlwaysFireWeapon
+				Item		"The Backburner"
+				Item		"The Rusty Reaper"
+				ItemAttributes
+				{
+					ItemName	"The Rusty Reaper"
+					"set item tint rgb"		15185211	//	Australium Gold
+				}
+				ItemAttributes
+				{
+					Itemname	"The Backburner"
+					"lunchbox adds minicrits"	2
 				}
 			}
 		}
@@ -2941,14 +2993,23 @@ population
 			Waitbetweenspawns	5
 			TFBot
 			{
-				Class	Pyro
-				Skill	Normal
-				MaxVisionRange 1000
-				Name	"Dragon Fury Pyro"
-				Item	"The Dragon's Fury"
-				Item	"Pyromancer's Mask"
-				ClassIcon	pyro_dragon_fury_swordstone
-				Attributes	AlwaysCrit
+				Class		Pyro
+				Skill		Hard
+				Name		"Backburner Pyro"
+				Classicon	pyro_backburner_nys
+				Attributes	AlwaysFireWeapon
+				Item		"The Backburner"
+				Item		"The Rusty Reaper"
+				ItemAttributes
+				{
+					ItemName	"The Rusty Reaper"
+					"set item tint rgb"		15185211	//	Australium Gold
+				}
+				ItemAttributes
+				{
+					Itemname	"The Backburner"
+					"lunchbox adds minicrits"	2
+				}
 			}
 		}
 		WaveSpawn
@@ -3023,14 +3084,12 @@ population
 		{
 			Name	Mission_end__voice_relay_6.1
 			WaitForAllDead		6e
-			WaitBeforeStarting	2
 			FirstSpawnWarningSound	"ui\itemcrate_smash_ultrarare_fireworks.wav"	//	Australium unbox fireworks sound
 		}
 		WaveSpawn
 		{
 			Name	Mission_end__voice_relay_6.1
 			WaitForAllDead		6e
-			WaitBeforeStarting	2
 			FirstSpawnWarningSound	"ui\itemcrate_smash_ultrarare_fireworks.wav"	//	Australium unbox fireworks sound
 		}
 	}
