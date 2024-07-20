@@ -1,6 +1,6 @@
 //tf_mvm_popfile int_calendartillery; wait 200; tf_mvm_jump_to_wave 3
 //Calendartillery, an intermediate mission by That Hat Guy and Seelpit
-//For the ?? campaign of Potato MvM
+//For the Osmium Ordinance campaign of Potato MvM
 	
 //Dependecies:
 //seel_ins.nut - Script file by yours truly for icon manipulation.
@@ -22,60 +22,77 @@
 
 
 //Notes from test
-//Make asset pack
 //W1
-//Add an extra spawn of Powder Hound Scouts from the flank?
+//- 
 
 //W2
-//Maybe shuffle GPyro to flankers spawn?
-//Support Grease Fire Pyros can spawn earlier!
+//- 
 
 //W3
+//- Sub 1 is a bit weak in terms of pushing, could try spawning tank earlier while having a bit more health again.
+//- Or maybe add 2nd tank!
+//- Can try making support a little tougher by making them 50/50 split of Scatters and Bats?
+//	FaNs, maybe?
+
+
 //TODO (cosmetic): add Northern Lights.
 
 //W4
+//- Make more demos spawn in.
+//- Sub 2 is a bit too weak healthwise. Players do die, but the subwave doesn't capitalize on it.
+//	Add something that can capitalize on this a bit more...maybe a GScout variant of the Ruffian?
+//- Final sub *can* be quite strong...but maybe just a taaad more health for Morozko...?
 
 //W5
+//- 
 
 //W6
 //TODO: add Northern Lights.
 
-//CHANGELOG v4
+//CHANGELOG v6
 //W1:
-//- Handed the Pyros their intended weapons, decorated and unable to airblast.
+//- Buffed Sticky Demo range slightly (0.28x --> 0.33x), increased reload rate, and reduced max stickies active at once
+//- Powder Hound Scouts (Scattergun) fire slightly faster (1.25x --> 1.2x penalty)
 
 //W2:
-//- Giant Fury Pyros now have sliiightly more vision (500 -> 700).
-//- Outlawed the Grease Fire Pyros from airblasting. In exchange, their weapon now looks glazed by fire.
-//- Added a few more Grease Fire Pyros to start spawning once the mainwave squad is done spawning.
+//- The second Giant Demo + Air Strike Soldier squad spawns a little earlier (WBS 3 -> 2)
+//- Chief Sandvich Heavy now has 12k health
+//- Caffei-Nuisance Scouts (Cola) fire slightly faster (1.3x --> 1.2x penalty)
+//- Soda Jerks fire just as fast as their Cola counterparts (1x --> 1.2x penalty)
+//- Both soft drink enjoyers now spawn as streams (2 per 2s --> 1 per 0.75s)
+//- Slightly altered spawn conditions of the A-Nahuatl-Ator Heavies and Gas Pyros
 
 //W3:
-//- The Siberian Singorienses have elected to fire explosive armaments with spiders attached to them after one too many an "explosive spider" incident.
+//- Spies now use Support Limited and show up as Mission Support
+//- Giant Fireball Demoknights now deal more damage but have a slower projectile (damage penalty 0.5 -> 0.75, projectile speed 1 --> 0.7).
+//	In addition, they fire more frequently (7.5s --> 5s between spells), and spawn from the flank at first
+//- Wolf Demos now move even faster (1.2x -> 1.4x), spawn faster (WaitBetweenSpawns 2.5 -> 1.5), and there are more in total (30 -> 45)
+//- Tank spawns earlier, now time-based rather than spawn-based
+//- Finale Support now has Soda Popper Scouts included
 
 //W4:
-//- The tank model properly exists now thanks to rafmod's PrecacheModel! I also precached the damaged models, which should prevent sudden error appearances.
-//- Deadly Morozko now wears his Santa hat properly, no longer losing it in the explosive aftermath of his sleigh.
+//- Giant Neon Demos now spawn with 2 max from both spawns, and immediately start spawning from both sides.
+//	In addition, their damage penalty has been removed and they reload slightly faster (0.65 -> 1, 0.65 -> 0.6)
+//- Added Giant Scouts to subwave 2, one spawning after all Neon Demos per side die, plus one after all minigiants have spawned (3 total)
+//- Deadly Morozko (Giant Crit Canteen Heavy) is now a chief of sorts with 10k health. Health threshold for its crit canteen is still 55%.
+//- The bomb's path is now always over the bridge, matching the sleigh tank's path.
 
 //W5:
-//- Armored Medics now heal faster (5x from template -> 25x)
+//- 
 
 //W6:
-//- War Buddy Medics now heal faster (5x -> 10x).
-//- Updated icon to heavy_ultimate_v2, the crisp, mipmapless version of the original icon. So long, Madness-vs-Machines-era icon!
-//- Slightly reduced the massive damage negation the General gets in his kneeling position.
-//- Added an extra message to hint towards picking up the Golden Pan.
+//- 
 
 WaveSchedule
 {
 	StartingCurrency 1000
 	RespawnWaveTime 2
 	CanBotsAttackWhileInSpawnRoom no
-	
-	PrecacheModel "models/bots/boss_bot/robo_sleigh/robo_sleigh.mdl"   //Ensures file is downloaded.
-	PrecacheModel "models/bots/boss_bot/robo_sleigh/robo_sleigh_damage1.mdl"
-	PrecacheModel "models/bots/boss_bot/robo_sleigh/robo_sleigh_damage2.mdl"
-	PrecacheModel "models/bots/boss_bot/robo_sleigh/robo_sleigh_damage3.mdl"
-	PrecacheGeneric "materials/hud/leaderboard_class_heavy_robosandvich_nys"
+	ForceHoliday 2 [$SIGSEGV]
+	PrecacheModel "models/bots/boss_bot/robo_sleigh/robo_sleigh.mdl" [$SIGSEGV]   //Ensures file is downloaded.
+	PrecacheModel "models/bots/boss_bot/robo_sleigh/robo_sleigh_damage1.mdl" [$SIGSEGV]
+	PrecacheModel "models/bots/boss_bot/robo_sleigh/robo_sleigh_damage2.mdl" [$SIGSEGV]
+	PrecacheModel "models/bots/boss_bot/robo_sleigh/robo_sleigh_damage3.mdl" [$SIGSEGV]
 	
 	Templates
 	{
@@ -162,7 +179,7 @@ WaveSchedule
 				"Set_item_texture_wear" 0
 				"custom_paintkit_seed_lo" "x3729eaae" //May need new seed
 				"custom_paintkit_seed_hi" "x72050db2"
-				"fire rate penalty" 1.25			//Makes them slightly less scary; Normal tracking is deceptively good on Scouts
+				"fire rate penalty" 1.2				//Makes them slightly less scary; Normal tracking is deceptively good on Scouts
 			}
 		}
 		
@@ -297,8 +314,9 @@ WaveSchedule
 				"custom_paintkit_seed_lo" "x1f9105d"
 				"custom_paintkit_seed_hi" "x2449b10d"
 				"stickybomb charge rate" 0.001
-				"projectile range decreased" 0.28
-				"faster reload rate" 0.5
+				"projectile range decreased" 0.33
+				"faster reload rate" 0.3
+				"max pipebombs decreased" -4
 			}
 			ItemAttributes
 			{
@@ -319,7 +337,7 @@ WaveSchedule
 			Item "Scourge of the Sky"
 			Item "Medical Emergency"
 			WeaponRestrictions PrimaryOnly
-			Action FetchFlag  
+			Action FetchFlag [$SIGSEGV] 
 			ItemAttributes
 			{
 				ItemName "Upgradeable TF_WEAPON_SYRINGEGUN_MEDIC"
@@ -352,6 +370,7 @@ WaveSchedule
 				"Set_item_texture_wear" 0
 				"custom_paintkit_seed_lo" "x1f7789d6"
 				"custom_paintkit_seed_hi" "x6a479cab"
+				"fire rate penalty" 1.2
 			}
 		}
 		
@@ -377,7 +396,7 @@ WaveSchedule
 				"custom_paintkit_seed_hi" "x6a479cab"
 				"killstreak tier" 2
 				"killstreak idleeffect" 6
-				"fire rate penalty" 1.3
+				"fire rate penalty" 1.2
 			}
 			ItemAttributes
 			{
@@ -552,7 +571,7 @@ WaveSchedule
 			Template T_TFBot_Giant_Heavyweapons
 			Name "Chief Picnic Heavy"
 			Attributes UseBossHealthBar
-			Health 9000
+			Health 12000
 			WeaponRestrictions MeleeOnly
 			Item "Upgradeable TF_WEAPON_MINIGUN"
 			// Item "The Robo-Sandvich"
@@ -606,89 +625,6 @@ WaveSchedule
 		///////////////////////////////////////////////////////////////////
         ///////////////////////        Halloween Bots        //////////////
         ///////////////////////////////////////////////////////////////////
-		Halloween_Demo_Fist
-		{
-			Class Demoman
-			ClassIcon heavy_fist_nys //temp; final may be demo_fast //we might need a more suitable icon for this
-			Name "Creature of the Night"
-			Skill Hard
-			// Tag "popext_giveweapon|tf_weapon_fists|5" //Fists
-			Tag "popext_customweaponmodel|models/empty.mdl"
-			Tag "wolfhair"
-			Item "Hair of the Dog"
-			Item "Scottish Snarl"
-			Item "Pickled Paws"
-			Item "Dynamite Abs"
-			Item "TF_WEAPON_FISTS"  
-			WeaponRestrictions MeleeOnly
-			CharacterAttributes
-			{
-				"move speed bonus" 1.2
-			}
-			Template Human_Generic
-		}
-		
-		Halloween_Giant_Heavy_Shotgun
-		{
-			Template T_TFBot_Giant_Heavyweapons
-			Name "Tsar Caesarion"
-			ClassIcon heavy_shotgun_burst_lite
-			Item "Zombie Heavy"
-			Item "TF_WEAPON_SHOTGUN_HWG"
-			Item "The Crown of the Old Kingdom"
-			Item "Kapitan's Kaftan"
-			WeaponRestrictions SecondaryOnly
-			ItemAttributes
-			{
-				ItemName "TF_WEAPON_SHOTGUN_HWG"
-				//can't have skins on shotguns cause they refuse attributes then 8|
-				// "Paintkit_proto_def_index" 163
-				// "Set_item_texture_wear" 0
-				// "custom_paintkit_seed_lo" "x38f5b2c5"
-				// "custom_paintkit_seed_hi" "x6271e027"
-				
-				"bullets per shot bonus" 2 //might already be overkill, but let's pretend it's not.
-				"fire rate bonus" 0.25
-				"auto fires when full" 1
-				"auto fires full clip" 1
-				"clip size penalty" 0.67
-			}
-			Tag "popext_usehumanmodel"
-			CharacterAttributes
-			{
-				"override footstep sound set" 0
-			}
-		}
-		
-		Halloween_Giant_Medic_Shield
-		{
-			Template T_TFBot_Giant_Medic
-			Name "Expired Warranty Shield Medic"
-			ClassIcon medic_shield
-			Item "Zombie Medic"
-			Item "Upgradeable TF_WEAPON_MEDIGUN"
-			Item "Teutonkahmun"
-			Item "Ramses' Regalia"
-			Attributes ProjectileShield
-			Tag destructible_shield
-			ItemAttributes
-			{
-				ItemName "Upgradeable TF_WEAPON_MEDIGUN"
-				"generate rage on heal" 2
-				"increase buff duration" 9.0
-				"Paintkit_proto_def_index" 268
-				"Set_item_texture_wear" 0
-				"custom_paintkit_seed_lo" "x7002f11e"
-				"custom_paintkit_seed_hi" "x1258367e"
-			}
-			Tag "popext_usehumanmodel"
-			// NoIdleSound 1  
-			CharacterAttributes
-			{
-				"bot medic uber deploy delay duration" 99
-				"override footstep sound set" 0
-			}
-		}
 		
 		Halloween_Scout_Melee
 		{
@@ -706,7 +642,35 @@ WaveSchedule
 				"override footstep sound set" 0
 			}
 		}
-		
+		Halloween_Scout_Popper
+		{
+			Class Scout
+			Name "Jumping Jackal"
+			Skill Normal
+			ClassIcon scout_popper2
+			Item "The Soda Popper"
+			Item "The Baphomet Trotters"
+			Item "The Crown of the Old Kingdom"
+			Item "Hundekopf"
+			Tag "popext_usehumanmodel"
+			ItemAttributes
+			{
+				ItemName "The Soda Popper"
+				"Set_item_texture_wear" 0
+				"paintkit_proto_def_index" 268 //Mummified Mimic
+				"custom_paintkit_seed_lo" "x5da92e48"
+				"custom_paintkit_seed_hi" "x58a7eaed"
+			}
+			ItemAttributes
+			{
+				ItemName "Hundekopf"
+				"set item tint RGB" "1315860" //Distinct Lack Of Hue, AKA black
+			}
+			CharacterAttributes
+			{
+				"override footstep sound set" 0
+			}
+		}
 		Halloween_Scout_Fast
 		{
 			Class Scout
@@ -735,6 +699,49 @@ WaveSchedule
 				"override footstep sound set" 0
 				"move speed bonus" 1.3
 			}
+		}
+		
+		Halloween_Demo_Fist
+		{
+			Class Demoman
+			ClassIcon heavy_fist_nys //temp; final may be demo_fast //we might need a more suitable icon for this
+			Name "Creature of the Night"
+			Skill Hard
+			// Tag "popext_giveweapon|tf_weapon_fists|5" //Fists
+			Tag "popext_customweaponmodel|models/empty.mdl"
+			Tag "wolfhair"
+			Item "Hair of the Dog"
+			Item "Scottish Snarl"
+			Item "Pickled Paws"
+			Item "Dynamite Abs"
+			Item "TF_WEAPON_FISTS"  
+			WeaponRestrictions MeleeOnly
+			CharacterAttributes
+			{
+				"move speed bonus" 1.4
+			}
+			Template Human_Generic
+		}
+		
+		Halloween_Spy
+		{
+			Class Spy
+			Skill Expert
+			Name "All-Seeing Spy"
+			Item "Upgradeable TF_WEAPON_KNIFE"
+			Item "Six-Eyed Specs"
+			Item "Spyder"
+			Item "Terror-antula"
+			Item "Creepy Crawlers"
+			ItemAttributes
+			{
+				ItemName "Upgradeable TF_WEAPON_KNIFE"
+				"Paintkit_proto_def_index" 269
+				"Set_item_texture_wear" 0
+				"custom_paintkit_seed_lo" "x335c0c4c"
+				"custom_paintkit_seed_hi" "x68faa0ef"
+			}
+			Template Zombie_Spy
 		}
 		
 		
@@ -772,20 +779,14 @@ WaveSchedule
 			ItemAttributes
 			{
 				ItemName "TF_WEAPON_SPELLBOOK"
-				// "mod projectile heat seek power" 15  
 				"deploy time decreased" 0.01
 				"fire rate bonus" 0.01    
 				"projectile spread angle penalty" 4
-				"dmg penalty vs players" 0.5
-				// "Projectile speed increased" 0.7 //Covered in tag
-				// "projectile trail particle" spell_fireball_small_red  
+				"dmg penalty vs players" 0.75
+				"Projectile speed increased" 0.7
 			}
-			Tag "popext_spell|0|7.5|3" // Gives specified spell to bots. 0 = Fireball|cooldown|delay
+			Tag "popext_spell|0|5|3" // Gives specified spell to bots. 0 = Fireball|cooldown|delay
 			// Tag "popext_homingprojectile|15|0.7" / Very, very laggy. May not be worth it :<
-			
-			// Repeats 0 //How many times spell charges are given (0 - Infinite)
-			// IfSeeTarget 1 //activates only when bot can see target (0 - Always activate)
-			// Charges 1
 			CharacterAttributes
 			{
 				"move speed bonus" 0.5
@@ -796,25 +797,67 @@ WaveSchedule
 			Template Zombie_Demo
 		}
 		
-		Halloween_Spy
+		Halloween_Giant_Heavy_Shotgun
 		{
-			Class Spy
-			Skill Expert
-			Name "All-Seeing Spy"
-			Item "Upgradeable TF_WEAPON_KNIFE"
-			Item "Six-Eyed Specs"
-			Item "Spyder"
-			Item "Terror-antula"
-			Item "Creepy Crawlers"
+			Template T_TFBot_Giant_Heavyweapons
+			Name "Tsar Caesarion"
+			ClassIcon heavy_shotgun_burst_lite
+			Item "Zombie Heavy"
+			Item "TF_WEAPON_SHOTGUN_HWG"
+			Item "The Crown of the Old Kingdom"
+			Item "Kapitan's Kaftan"
+			WeaponRestrictions SecondaryOnly
 			ItemAttributes
 			{
-				ItemName "Upgradeable TF_WEAPON_KNIFE"
-				"Paintkit_proto_def_index" 269
-				"Set_item_texture_wear" 0
-				"custom_paintkit_seed_lo" "x335c0c4c"
-				"custom_paintkit_seed_hi" "x68faa0ef"
+				ItemName "TF_WEAPON_SHOTGUN_HWG"
+				//can't have skins on shotguns cause they refuse attributes then 8|
+				// "Paintkit_proto_def_index" 163
+				// "Set_item_texture_wear" 0
+				// "custom_paintkit_seed_lo" "x38f5b2c5"
+				// "custom_paintkit_seed_hi" "x6271e027"
+				
+				"bullets per shot bonus" 2 //might already be overkill, but let's pretend it's not.
+				"fire rate bonus" 0.25
+				"faster reload rate" 0.65
+				"auto fires when full" 1
+				"auto fires full clip" 1
+				// "clip size penalty" 0.67
 			}
-			Template Zombie_Spy
+			Tag "popext_usehumanmodel"
+			CharacterAttributes
+			{
+				"override footstep sound set" 0
+			}
+		}
+		
+		Halloween_Giant_Medic_Shield
+		{
+			Template T_TFBot_Giant_Medic
+			Name "Expired Warranty Shield Medic"
+			ClassIcon medic_shield
+			Item "Upgradeable TF_WEAPON_MEDIGUN"
+			Item "Teutonkahmun"
+			Item "Ramses' Regalia"
+			Item "Zombie Medic"
+			Attributes ProjectileShield
+			Tag destructible_shield
+			ItemAttributes
+			{
+				ItemName "Upgradeable TF_WEAPON_MEDIGUN"
+				"generate rage on heal" 2
+				"increase buff duration" 9.0
+				"Paintkit_proto_def_index" 268
+				"Set_item_texture_wear" 0
+				"custom_paintkit_seed_lo" "x7002f11e"
+				"custom_paintkit_seed_hi" "x1258367e"
+			}
+			Tag "popext_usehumanmodel"
+			// NoIdleSound 1  
+			CharacterAttributes
+			{
+				"bot medic uber deploy delay duration" 99
+				"override footstep sound set" 0
+			}
 		}
 		
 		///////////////////////////////////////////////////////////////////
@@ -936,9 +979,9 @@ WaveSchedule
 				"custom projectile model" "models/weapons/c_models/c_madmilk/c_madmilk.mdl"
 				
 				//Can't have these in vanilla. Sad!
-				"explosion particle" "peejar_impact_milk"  
-				"projectile trail particle" "~peejar_trail_blu"  
-				"custom impact sound" "=35|weapons/jar_explode.wav"  
+				"explosion particle" "peejar_impact_milk" [$SIGSEGV]
+				"projectile trail particle" "~peejar_trail_blu" [$SIGSEGV]
+				"custom impact sound" "=35|weapons/jar_explode.wav" [$SIGSEGV]
 			}
         }
 		Mix_Demoknight_Fireball_Minigiant
@@ -1038,7 +1081,7 @@ WaveSchedule
 			Item "The Milkman"
 			Item "The Jarmaments"
 			WeaponRestrictions PrimaryOnly
-			Action FetchFlag  
+			Action FetchFlag [$SIGSEGV]
 			// Tag "popext_aimat|flag" //was AimAt Body; flag is approx at the same spot.
 			// AimOffset "0 0 10"  
 			// AimLeadProjectileSpeed 1100   //overaims slightly
@@ -1096,6 +1139,64 @@ WaveSchedule
 			Template Zombie_Spy
 		}
 		
+		Mix_Giant_Scout_Jester
+		{
+			Class Scout
+			Name "Masquerade Menace"
+			Health 1600
+			Skill Expert
+			Attributes MiniBoss
+			ClassIcon scout_giant
+			Item "Upgradeable TF_WEAPON_SCATTERGUN"
+			Item "Pestering Jester"
+			Item "The Last Laugh"
+			Item "Jumping Jester"
+			Item "B'aaarrgh-n-Britches"
+			Tag "popext_usehumanmodel"
+			ItemAttributes
+			{
+				ItemName "Upgradeable TF_WEAPON_SCATTERGUN"
+				"Paintkit_proto_def_index" 271
+				"Set_item_texture_wear" 0
+				"custom_paintkit_seed_lo" "x27d68a84"
+				"custom_paintkit_seed_hi" "x375437dd"
+			}
+			CharacterAttributes
+			{
+				"override footstep sound set" 5
+				"damage force reduction" 0.6
+				"airblast vulnerability multiplier" 0.6
+			}
+		}
+		Mix_Giant_Scout_Jester_Alt
+		{
+			Class Scout
+			Name "Lowbrow Fooler"
+			Health 1600
+			Skill Expert
+			Attributes MiniBoss
+			ClassIcon scout_giant
+			Item "Upgradeable TF_WEAPON_SCATTERGUN"
+			Item "Pestering Jester"
+			Item "The Last Laugh"
+			Item "Jumping Jester"
+			Item "The Boom Boxers"
+			Tag "popext_usehumanmodel"
+			ItemAttributes
+			{
+				ItemName "Upgradeable TF_WEAPON_SCATTERGUN"
+				"Paintkit_proto_def_index" 271
+				"Set_item_texture_wear" 0
+				"custom_paintkit_seed_lo" "x27d68a84"
+				"custom_paintkit_seed_hi" "x375437dd"
+			}
+			CharacterAttributes
+			{
+				"override footstep sound set" 5
+				"damage force reduction" 0.6
+				"airblast vulnerability multiplier" 0.6
+			}
+		}
 		Mix_Giant_Demo_Neon
 		{
 			Template T_TFBot_Giant_Demoman
@@ -1121,9 +1222,9 @@ WaveSchedule
 				// "add damage type" 64   //Sets damage type to blast instead of bullet.
 				// "weapon never gib" 1  
 				
-				"damage penalty" 0.65
+				// "damage penalty" 0.65  //Now that they deal no melee damage, no real reason to nerf their damage anymore.
 				"fire rate bonus" 0.25
-				"faster reload rate" 0.65
+				"faster reload rate" 0.6
 				"clip size bonus" 2.5
 				"crit vs wet players" 1
 				"projectile spread angle penalty" 4
@@ -1134,17 +1235,7 @@ WaveSchedule
 				// "custom kill icon" "annihilator"  
 				"ragdolls plasma effect" 1
 			}
-			// Tag "popext_fireweapon" / changed to Tag, didn't modify below //Fixes starting with 4 clip
-			// {
-				// Repeats 1
-				// Delay 0.1
-				// Type "Reload"
-			// }
-			// ShootTemplate  
-			// {
-				// Name RotatingNeonSign
-				// AttachToProjectile 1
-			// }
+			// Tag "popext_fireweapon" / changed to Tag, didn't modify below
 			ItemAttributes
 			{
 				ItemName "Stunt Suit"
@@ -1606,7 +1697,7 @@ WaveSchedule
 			Name "The Honorbound General"
 			Class Heavy
 			Skill Expert
-			Health 45000
+			Health 52000
 			ClassIcon heavy_ultimate_v2 //temp icon of sorts
 			Attributes UseBossHealthBar
 			Attributes SuppressFire
@@ -1618,6 +1709,7 @@ WaveSchedule
 			Item "The Cuban Bristle Crisis"
 			Item "Sledder's Sidekick"
 			Item "gentlemanne_minigun_topshelf"
+			NoIdleSound 1 [$SIGSEGV]
 			ItemAttributes
 			{
 				ItemName "gentlemanne_minigun_topshelf"
@@ -1963,7 +2055,7 @@ PopExt.AddRobotTag(`disband_squad`,
     OnGameEvent_mvm_wave_complete = function(_) { Cleanup() }
 }
 __CollectGameEventCallbacks(CalendartillerySkybox)
-SetSkyboxTexture(`sky_stormfront_01`)
+SetSkyboxTexture(`sky_morningsnow_01`)
 //This is a little ugly, but Info() is not cooperating.
 ClientPrint(null,3,`\x07F1C232The General \x078FCE00: Today is \x07FF3F3FOUR\x078FCE00 day, recruits!`)
 ClientPrint(null,3,`\x078FCE00We will storm the village, and claim it for our own!`)
@@ -2312,7 +2404,7 @@ PopExt.AddRobotTag(`sandvich`, {
 				SetPropInt(weapon, STRING_NETPROP_ITEMDEF, SANDVICH_ITEM_ID)
 				SetPropBool(weapon, `m_AttributeManager.m_Item.m_bInitialized`, true)
 				SetPropBool(weapon, `m_bValidatedAttachedEntity`, true)
-				weapon.AddAttribute(`lunchbox healing decreased`,20,-1);
+				weapon.AddAttribute(`lunchbox healing decreased`,25,-1);
 				weapon.AddAttribute(`single wep holster time increased`,2,-1);
 				weapon.AddAttribute(`gesture speed increase`,1.25,-1);
 				weapon.AddAttribute(`dmg taken increased`,0.5,-1);
@@ -2397,7 +2489,7 @@ PopExt.AddRobotTag(`sandvich`, {
 		{
 			Name "w2_s1a"
 			Where flankers
-			WaitBeforeStarting 3
+			WaitBeforeStarting 2
 			WaitBetweenSpawns 10 //Minimum to prevent bowling people over if they kill all the soldiers instantly
 			TotalCount 10
 			MaxActive 6
@@ -2436,10 +2528,10 @@ PopExt.AddRobotTag(`sandvich`, {
 			Name "w2_s2a"
 			WaitForAllSpawned "w2_s1"
 			WaitBeforeStarting 10
-			WaitBetweenSpawns 2
+			WaitBetweenSpawns 0.75
 			TotalCount 12
 			MaxActive 6
-			SpawnCount 2
+			SpawnCount 1
 			TotalCurrency 48
 			TFBot
 			{
@@ -2449,12 +2541,12 @@ PopExt.AddRobotTag(`sandvich`, {
 		WaveSpawn
 		{
 			Where flankers
-			Name "w2_s2a"
+			Name "w2_s2b"
 			WaitForAllDead "w2_s1a"
-			WaitBetweenSpawns 2
+			WaitBetweenSpawns 0.75
 			TotalCount 12
 			MaxActive 4
-			SpawnCount 2
+			SpawnCount 1
 			TotalCurrency 36
 			TFBot
 			{
@@ -2468,10 +2560,10 @@ PopExt.AddRobotTag(`sandvich`, {
 			Name "w2_s2a"
 			WaitForAllSpawned "w2_s1a"
 			WaitBeforeStarting 10
-			WaitBetweenSpawns 2
+			WaitBetweenSpawns 0.75
 			TotalCount 12
 			MaxActive 6
-			SpawnCount 2
+			SpawnCount 1
 			TotalCurrency 48
 			TFBot
 			{
@@ -2481,12 +2573,12 @@ PopExt.AddRobotTag(`sandvich`, {
 		WaveSpawn
 		{
 			Where spawnbot
-			Name "w2_s2a"
+			Name "w2_s2b"
 			WaitForAllDead "w2_s1"
-			WaitBetweenSpawns 2
+			WaitBetweenSpawns 0.75
 			TotalCount 12
 			MaxActive 4
-			SpawnCount 2
+			SpawnCount 1
 			TotalCurrency 36
 			TFBot
 			{
@@ -2500,7 +2592,7 @@ PopExt.AddRobotTag(`sandvich`, {
 		WaveSpawn
 		{
 			Where spawnbot
-			Name "w2_s2"
+			Name "w2_s2_1"
 			WaitForAllDead "w2_s1_all"
 			WaitBetweenSpawns 15
 			TotalCount 2
@@ -2552,10 +2644,41 @@ PopExt.AddRobotTag(`sandvich`, {
 			Name "w2_s3a"
 			WaitForAllDead "w2_s2a"
 			WaitBetweenSpawns 2
-			TotalCount 24
-			MaxActive 16 // have Heavies trickle in, most of the spawn should be gas Pyros
+			TotalCount 12
+			MaxActive 8 // have Heavies trickle in, most of the spawn should be gas Pyros
 			SpawnCount 4
-			TotalCurrency 72
+			TotalCurrency 36
+			Squad
+			{
+				TFBot
+				{
+					Template Summer_Heavy_Heater
+					Tag disband_squad
+				}
+				TFBot
+				{
+					Template Summer_Pyro_Gas
+				}
+				TFBot
+				{
+					Template Summer_Pyro_Gas
+				}
+				TFBot
+				{
+					Template Summer_Pyro_Gas
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "w2_s3a"
+			WaitForAllDead "w2_s2b"
+			WaitBetweenSpawns 2
+			TotalCount 12
+			MaxActive 8 // have Heavies trickle in, most of the spawn should be gas Pyros
+			SpawnCount 4
+			TotalCurrency 36
 			Squad
 			{
 				TFBot
@@ -2582,7 +2705,7 @@ PopExt.AddRobotTag(`sandvich`, {
 		{
 			Where flankers
 			Name "w2_s3"
-			WaitForAllDead "w2_s2a"
+			WaitForAllDead "w2_s2_1"
 			WaitBeforeStarting 5 //Real starting time: after 30 seconds.
 			TotalCount 1
 			MaxActive 1
@@ -2635,7 +2758,10 @@ PopExt.AddRobotTag(`sandvich`, {
 		StartWaveOutput
 		{
 			Target wave_start_relay_classic
-			Action Trigger
+			Action RunScriptCode
+			Param " EntFire(`wave_start_relay_classic`,`Trigger`)
+					IncludeScript(`seel_ins.nut`,getroottable())
+					SINS.ChangeIconFlags(`spy`,0)"
 		}
 		InitWaveOutput
 		{
@@ -2722,14 +2848,29 @@ PopExt.AddRobotTag(`destructible_shield`, {
 		
 		WaveSpawn
 		{
-			Where spawnbot
+			Where flankers
 			Name "w3_s1"
 			WaitBeforeStarting 1
-			WaitBetweenSpawns 10
-			TotalCount 4
-			MaxActive 4
+			WaitBetweenSpawns 30
+			TotalCount 2
+			MaxActive 2
 			SpawnCount 1
-			TotalCurrency 150
+			TotalCurrency 75
+			TFBot
+			{
+				Template Halloween_Giant_Demoknight_Fireball
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "w3_s1"
+			WaitBeforeStarting 11
+			WaitBetweenSpawns 10
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 1
+			TotalCurrency 75
 			TFBot
 			{
 				Template Halloween_Giant_Demoknight_Fireball
@@ -2741,8 +2882,8 @@ PopExt.AddRobotTag(`destructible_shield`, {
 			Where flankers
 			Where spawnbot
 			Name "w3_s1b"
-			WaitBetweenSpawns 2.5
-			TotalCount 30
+			WaitBetweenSpawns 1.5
+			TotalCount 45
 			MaxActive 15
 			SpawnCount 3
 			TotalCurrency 150
@@ -2755,7 +2896,7 @@ PopExt.AddRobotTag(`destructible_shield`, {
 		WaveSpawn 
 		{
 			Name "w3_s2"
-			WaitForAllSpawned "w3_s1b"
+			WaitBeforeStarting 15
 			TotalCount 1
 			TotalCurrency 300
 				
@@ -2803,24 +2944,6 @@ PopExt.AddRobotTag(`destructible_shield`, {
 		
 		WaveSpawn
 		{
-			Name "w3_s2b"
-			WaitForAllDead "w3_s1b"
-			Where spawnbot
-			TotalCount 10
-			MaxActive 4
-			SpawnCount 2
-			WaitBeforeStarting 1
-			WaitBetweenSpawns 15
-			TotalCurrency 60
-
-			TFBot
-			{
-				Template Halloween_Spy
-			}
-		}
-		
-		WaveSpawn
-		{
 			Where spawnbot
 			Name "w3_s3"
 			WaitForAllSpawned "w3_s2a"
@@ -2851,12 +2974,59 @@ PopExt.AddRobotTag(`destructible_shield`, {
 			WaitBetweenSpawns 1
 			WaitBeforeStarting 5
 			TotalCount 48
-			MaxActive 12
-			SpawnCount 4
-			Support Limited
+			MaxActive 6
+			SpawnCount 2
+			Support 1
 			TFBot
 			{
 				Template Halloween_Scout_Melee
+			}
+		}
+		WaveSpawn
+		{
+			Name "w3_supp"
+			WaitForAllDead "w3_s2a"
+			Where spawnbot
+			Where flankers
+			WaitBetweenSpawns 1
+			WaitBeforeStarting 5
+			TotalCount 24
+			MaxActive 6
+			SpawnCount 2
+			Support Limited
+			TFBot
+			{
+				Template Halloween_Scout_Popper
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "w3_supp"
+			WaitForAllDead "w3_s1b"
+			Where spawnbot
+			TotalCount 10
+			MaxActive 4
+			SpawnCount 2
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 15
+			TotalCurrency 60
+			Support Limited
+			FirstSpawnOutput
+			{
+				Target gamerules
+				Action RunScriptCode
+				Param "SINS.ChangeIconFlags(`spy`,4)"
+			}
+			DoneOutput
+			{
+				Target gamerules
+				Action RunScriptCode
+				Param "SINS.ChangeIconFlags(`spy`,0)"
+			}
+			TFBot
+			{
+				Template Halloween_Spy
 			}
 		}
 	}
@@ -2873,12 +3043,11 @@ PopExt.AddRobotTag(`destructible_shield`, {
 	// Subwave 2 - Oops ! All Minigiants
 	// - [Minigiant] Flaming Demoknight
 	// - [Minigiant] Spider-Tossing Heavy
-	// - Exorcist Spy - MAINWAVE!
 
 	// Subwave 3 - Festive Conclusion. Spawn the tank some time after all minigiants have spawned! Might have to increase the max amount of bots allowed to be active at once with RobotLimit in WaveSchedule later...
-	// - Reindeer Tank + Reindeer Pyros //I think making the reindeers use Flare Guns could be good, for some ranged pressure.
-	// - On tank death: Giant Heavy (+ maybe some extra support...?)
-	// SUPPORT, after subwave 2's minigiants are dead: Some of the Winter wave's commons...? idk yet.
+	// - Reindeer Tank + Reindeer Flare Pyros 
+	// - Giant Crit Canteen Heavy (On tank death)
+	// SUPPORT (more after subwave 2's minigiants are dead): Backburner Pyros
 	// MISSION SUPPORT - so this is in the same spot as Sentry Busters, remember?: Jarchers
 	Wave
 	{
@@ -2891,7 +3060,8 @@ PopExt.AddRobotTag(`destructible_shield`, {
 		{
 			Target "gamerules"
 			Action "RunScriptCode"
-			Param "IncludeScript(`calendartillery_wave4.nut`,getroottable())
+			Param "
+IncludeScript(`calendartillery_wave4.nut`,getroottable())
 ::CalendartillerySkybox <- {
     Cleanup = function() {
         SetSkyboxTexture(`sky_trainyard_01`)
@@ -2901,37 +3071,29 @@ PopExt.AddRobotTag(`destructible_shield`, {
     OnGameEvent_mvm_wave_complete = function(_) { Cleanup() }
 }
 __CollectGameEventCallbacks(CalendartillerySkybox)
-SetSkyboxTexture(`sky_day01_01`)"
+SetSkyboxTexture(`sky_day01_01`)
+EntFire(`bombpath_choose_relay`,`Disable`)
+EntFire(`bombpath_left`,`Trigger`)"
 		}
 		DoneOutput
 		{
 			Target wave_finished_relay
-			Action Trigger
+			Action RunScriptCode
+			Param "
+EntFire(`wave_finished_relay`,`Trigger`)
+EntFire(`bombpath_choose_relay`,`Enable`)"
 		}
 		
 		WaveSpawn
 		{
 			Where spawnbot
 			Name "w4_s1a"
-			WaitBeforeStarting 3
-			TotalCount 1
-			MaxActive 1
+			WaitBeforeStarting 0.2
+			WaitBetweenSpawns 12
+			TotalCount 2
+			MaxActive 2
 			SpawnCount 1
-			TotalCurrency 40
-			TFBot
-			{
-				Template Mix_Giant_Demo_Neon
-			}
-		}
-		WaveSpawn
-		{
-			Name "w4_s1b"
-			Where spawnbot
-			WaitForAllDead "w4_s1a"
-			TotalCount 1
-			MaxActive 1
-			SpawnCount 1
-			TotalCurrency 40
+			TotalCurrency 60
 			TFBot
 			{
 				Template Mix_Giant_Demo_Neon
@@ -2941,12 +3103,12 @@ SetSkyboxTexture(`sky_day01_01`)"
 		{
 			Name "w4_s1b"
 			Where flankers
-			WaitForAllDead "w4_s1a"
-			WaitBeforeStarting 3
-			TotalCount 1
-			MaxActive 1
+			WaitBetweenSpawns 12
+			WaitBeforeStarting 0.4
+			TotalCount 2
+			MaxActive 2
 			SpawnCount 1
-			TotalCurrency 40
+			TotalCurrency 60
 			TFBot
 			{
 				Template Mix_Giant_Demo_Neon
@@ -2959,7 +3121,7 @@ SetSkyboxTexture(`sky_day01_01`)"
 			Where spawnbot
 			Where flankers
 			WaitBetweenSpawns 0.5
-			TotalCount 36 // this seems like a lot, I left it lasting longer, in case you wanted more Sign Demos, change it if you don't want a bunch of those at the same time
+			TotalCount 36
 			MaxActive 12
 			SpawnCount 2
 			TotalCurrency 180 //9999 / you have been in suspension for...
@@ -2974,10 +3136,49 @@ SetSkyboxTexture(`sky_day01_01`)"
 				TFBot
 				{
 					Template Mix_Medic_Milk_Syringe
+					Action FetchFlag [$SIGSEGV]
 				}
 			}
 		}
 		
+		WaveSpawn
+		{
+			Name "w4_s2"
+			Where spawnbot
+			WaitForAllDead "w4_s1a"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			TotalCurrency 36
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+			
+			TFBot { Template Mix_Giant_Scout_Jester_Alt } //The 1 in 7, lucky shot!
+			
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+		}
+		WaveSpawn
+		{
+			Name "w4_s2"
+			Where flankers
+			WaitForAllDead "w4_s1b"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			TotalCurrency 36
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+			
+			TFBot { Template Mix_Giant_Scout_Jester_Alt } //The 1 in 7, lucky shot!
+			
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+		}
 		WaveSpawn
 		{
 			Where spawnbot
@@ -3024,6 +3225,36 @@ SetSkyboxTexture(`sky_day01_01`)"
 				}
 			}
 		}
+		WaveSpawn
+		{
+			Name "w4_s2_both"
+			WaitForAllSpawned "w4_s2a"
+		}
+		WaveSpawn
+		{
+			Name "w4_s2_both"
+			WaitForAllSpawned "w4_s2b"
+		}
+		WaveSpawn
+		{
+			Name "w4_s2c"
+			Where flankers
+			WaitForAllSpawned "w4_s2_both"
+			WaitForAllDead "w4_s2"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			TotalCurrency 36
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+			
+			TFBot { Template Mix_Giant_Scout_Jester_Alt } //The 1 in 7, lucky shot!
+			
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+			TFBot { Template Mix_Giant_Scout_Jester }
+		}
 	
 		WaveSpawn 
 		{
@@ -3037,7 +3268,7 @@ SetSkyboxTexture(`sky_day01_01`)"
 			Tank
 			{
 				Speed 75
-				Health 15000
+				Health 18000
 				Name "sleightank"
 				StartingPathTrackNode "tank_path_a_10"
 				OnKilledOutput                                  
@@ -3058,9 +3289,10 @@ SetSkyboxTexture(`sky_day01_01`)"
 			Name "w4_s3a"
 			WaitForAllSpawned "w4_s3"
 			WaitBeforeStarting 0.5
+			WaitBetweenSpawns 1
 			Where spawnbot
 			//DoneWarningSound "vo/mvm/norm/heavy_mvm_cartgoingbackoffense02.mp3" // "Noooo!"
-			TotalCount 20
+			TotalCount 24
 			MaxActive 8
 			SpawnCount 2
 			TotalCurrency 200
@@ -3098,10 +3330,12 @@ SetSkyboxTexture(`sky_day01_01`)"
 			TotalCount 1
 			MaxActive 1
 			SpawnCount 1
-			TotalCurrency 208 //money laundering
+			TotalCurrency 100 //money laundering
 			TFBot
 			{
-				Template Mix_Giant_Heavy_Santa
+				Template Mix_Giant_Heavy_Santa				
+				Health 10000
+				Attributes UseBossHealthBar
 			}
 		}
 		
@@ -3192,7 +3426,7 @@ MissionAttrs({
 `NoThrillerTaunt` : 1
 })
 PopExt.AddRobotTag(`leave_squad`, {
-	OnSpawn = function(bot,tag) { bot.LeaveSquad(); }
+	OnSpawn = function(bot,tag) { EntFireByHandle(bot,`RunScriptCode`,`self.LeaveSquad()`,0.1,null,null) }
 });
 PopExt.AddRobotTag(`infclip`, {
 	OnSpawn = function(bot,tag) {
@@ -3243,7 +3477,7 @@ PopExt.AddRobotTag(`infclip`, {
 				TFBot
 				{
 					Template Invasion_Giant_Engineer_Widowmaker
-					Action FetchFlag  
+					Action FetchFlag [$SIGSEGV]
 				}
 			}
 		}
