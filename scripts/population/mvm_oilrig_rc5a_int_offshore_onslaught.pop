@@ -956,7 +956,7 @@ WaveSchedule
 		{
 			Name "w4a_ff_giant_demo"
 			Where spawnbot
-			TotalCount 25
+			TotalCount 20
 			MaxActive 10
 			SpawnCount 5
 			WaitBeforeStarting	0
