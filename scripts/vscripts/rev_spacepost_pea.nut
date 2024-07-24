@@ -287,6 +287,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		angles                  = QAngle(0, -150, 0)
 		DefaultAnim             = "stand_melee"
 		skin 					= 1
+		DisableBoneFollowers    = 1
 	})
 
 	blu_spawn_1_booth_board = SpawnEntityFromTable("prop_dynamic",
@@ -335,6 +336,7 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 		angles                  = QAngle(0, 90, 0)
 		DefaultAnim             = "stand_melee"
 		skin 					= 1
+		DisableBoneFollowers    = 1
 	})
 
 	blu_spawn_2_booth_board = SpawnEntityFromTable("prop_dynamic",
@@ -7594,8 +7596,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 			})
 			
 			tutorial_box = owner.GetScriptScope().tutorial_box
-
-			EntFireByHandle(tutorial_box, "SetParent", "!activator", 0, owner, owner)
+			
+			tutorial_box.AcceptInput("SetParent", "!activator", owner, owner)
 			
 			owner.GetScriptScope().audiosettings <- SpawnEntityFromTable("logic_case",
 			{
