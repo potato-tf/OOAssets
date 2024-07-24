@@ -28,7 +28,8 @@
     // Phrases to ignore when formatting mission display name
     IgnorePhrases = [
         "rev",
-        "reverse"
+        "reverse",
+        "666"
     ]
     // Valve popfile names
     ValvePops = [
@@ -246,8 +247,8 @@
             //  own as desired
             EntFireByHandle(__potato.objres, "RunScriptCode", format(@"
                 if (__potato.IsNameUnmodified())
-                    __potato.SetMissionName(`%s`)",
-              __potato.FormatMissionName(NetProps.GetPropString(__potato.objres, "m_iszMvMPopfileName"))),
+                    __potato.SetMissionName(__potato.FormatMissionName(`%s`))",
+              NetProps.GetPropString(__potato.objres, "m_iszMvMPopfileName")),
             __potato.FormatNameDelay, null, null)
         }
 
@@ -258,7 +259,7 @@
                 // Set name back to regular formatted name once victory panel has been displayed
                 EntFireByHandle(__potato.objres, "RunScriptCode", format(@"
                     if (__potato.InVictory)
-                        __potato.SetMissionName(`%s`)", __potato.FormatMissionName(params.mission)),
+                        __potato.SetMissionName(__potato.FormatMissionName(`%s`))", params.mission),
                 3.0, null, null)
             else
                 // Set name back to mission maker's name once panel has been displayed
@@ -270,7 +271,7 @@
             // Set mission name without difficulty before victory panel shows
             __potato.objres.AcceptInput("RunScriptCode", format(@"
                 if (__potato.InVictory)
-                    __potato.SetMissionName(`%s`)", __potato.FormatMissionName(params.mission, true)),
+                    __potato.SetMissionName(__potato.FormatMissionName(`%s`, true))", params.mission),
             null, null)
 
             // Reset mission name before the popfile is reloaded by plugin
@@ -295,8 +296,8 @@
             //  Can't do anything here if the mission maker has changed the prop since we have no
             //   guaranteed way of knowing the popfile name
             if (!changed(NetProps.GetPropString(__potato.objres, "m_iszMvMPopfileName"))) {
-                EntFireByHandle(__potato.objres, "RunScriptCode", format("if (__potato.InLoss) __potato.SetMissionName(`%s`)",
-                    __potato.FormatMissionName(NetProps.GetPropString(__potato.objres, "m_iszMvMPopfileName"), true)),
+                EntFireByHandle(__potato.objres, "RunScriptCode", format("if (__potato.InLoss) __potato.SetMissionName(__potato.FormatMissionName(`%s`))",
+                    NetProps.GetPropString(__potato.objres, "m_iszMvMPopfileName"), true),
                 3.0, null, null)
             }
         }
