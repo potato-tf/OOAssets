@@ -39,7 +39,8 @@
         "advanced2",
         "advanced3",
         "ironman",
-        "expert1"
+        "expert1",
+        "666"
     ]
 
     /**
