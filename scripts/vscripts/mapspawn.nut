@@ -240,7 +240,7 @@
             if (__potato.IsSigmod) {
                 __potato.popscript = Entities.FindByClassname(null, "$script_manager")
                 if (__potato.popscript == null)
-                    __potato.popscript = SpawnEntityFromTable("$script_manager", {})
+                    __potato.popscript = SpawnEntityFromTable("$script_manager", {targetname = "popscript"})
             }
 
             // We delay setting the mission display name so that mission makers may set their
