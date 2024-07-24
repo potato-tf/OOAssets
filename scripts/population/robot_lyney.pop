@@ -15,6 +15,10 @@ WaveSchedule
 			Item "The Soda Popper"
 			Item "Bonk Boy"
 			WeaponRestrictions PrimaryOnly
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Scout_Pistol
@@ -23,6 +27,10 @@ WaveSchedule
 			ClassIcon scout_pistol_nys
 			Name "Pistol Scout"
 			WeaponRestrictions SecondaryOnly
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Scout_Cola
@@ -43,6 +51,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"effect bar recharge rate increased" 0.55
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -65,6 +74,7 @@ WaveSchedule
 			{
 				"effect bar recharge rate increased" 0.55
 				"increase buff duration" 99
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -86,6 +96,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"effect bar recharge rate increased" 0.55
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -108,6 +119,7 @@ WaveSchedule
 			{
 				"effect bar recharge rate increased" 0.55
 				"increase buff duration" 99
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -124,6 +136,7 @@ WaveSchedule
 				ItemName "Bonk! Atomic Punch"
 				"single wep holster time increased" 0.35
 				"single wep deploy time increased" 0.35
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -131,6 +144,10 @@ WaveSchedule
 		{
 			Template T_TFBot_Scout_Melee
 			ClassIcon scout_bat_nys
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Scout_Candy_Cane
@@ -141,6 +158,10 @@ WaveSchedule
 			WeaponRestrictions MeleeOnly
 			Item "The Candy Cane"
 			Item "Citizen Cane"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Scout_Fast
@@ -159,6 +180,7 @@ WaveSchedule
 				"damage force reduction" 0.7
 				"airblast vulnerability multiplier" 0.7
 				"override footstep sound set" 5
+				"cancel falling damage" 1
 			}
 		}
 
@@ -173,6 +195,10 @@ WaveSchedule
 			Item "Fallen Angel"
 			Item "Tail From the Crypt"
 			Item "Blazing Bull"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Soldier_Ignited
@@ -186,6 +212,10 @@ WaveSchedule
 			{
 				ItemName "TF_WEAPON_ROCKETLAUNCHER"
 				"set damagetype ignite" 1
+			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -205,6 +235,10 @@ WaveSchedule
 				"Projectile speed increased" 0.5
 				"damage bonus" 1.5
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Soldier_CritCharged
@@ -223,6 +257,10 @@ WaveSchedule
 				"fire rate bonus" 2
 				"Projectile speed increased" 0.5
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Soldier_Spammer
@@ -239,6 +277,10 @@ WaveSchedule
 				"fire rate bonus" 0.5
 				"Projectile speed increased" 0.65
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Soldier_DirectHit
@@ -250,6 +292,10 @@ WaveSchedule
 			Item "The Direct Hit"
 			Item "The Team Captain"
 			WeaponRestrictions PrimaryOnly
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Soldier_DirectHit_Support // No WeaponRestrictions
@@ -265,6 +311,10 @@ WaveSchedule
 				ItemName "The Direct Hit"
 				"auto fires full clip" 1
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Soldier_Blackbox_Singular
@@ -279,6 +329,10 @@ WaveSchedule
 			{
 				ItemName "The Black Box"
 				"heal on hit for rapidfire" 60
+			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -298,6 +352,10 @@ WaveSchedule
 				"faster reload rate" 1.5
 				"projectile spread angle penalty" 5
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Soldier_Extended_Buff_Banner_Bugfixed
@@ -312,6 +370,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"increase buff duration" 99
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -327,6 +386,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"increase buff duration" 99
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -342,6 +402,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"increase buff duration" 99
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -362,6 +423,10 @@ WaveSchedule
 				"auto fires when full" 1
 				"can overload" 0
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Soldier_Shotgun
@@ -379,6 +444,10 @@ WaveSchedule
 				"bullets per shot bonus" 3
 				"damage bonus" 0.33
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Soldier_Bison
@@ -395,6 +464,10 @@ WaveSchedule
 				ItemName "The Righteous Bison"
 				"dmg bonus vs buildings" 5
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Soldier_Shovel
@@ -404,6 +477,10 @@ WaveSchedule
 			ClassIcon soldier_shovel
 			Skill Expert
 			WeaponRestrictions MeleeOnly
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Soldier_Equalizer
@@ -484,6 +561,10 @@ WaveSchedule
 			Item "Fallen Angel"
 			Item "Tail From the Crypt"
 			Item "Blazing Bull"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Pyro_Long_Flame
@@ -497,6 +578,10 @@ WaveSchedule
 			{
 				ItemName "TF_WEAPON_FLAMETHROWER"
 				"flame_drag" 5
+			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -513,6 +598,10 @@ WaveSchedule
 				"weapon burn dmg increased" 4
 				"damage bonus" 0
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Pyro_Airblast
@@ -523,7 +612,7 @@ WaveSchedule
 			Skill Expert
 			Health 175
 			WeaponRestrictions PrimaryOnly
-			Item "Flame Thrower"
+			Item "TF_WEAPON_FLAMETHROWER"
 			ItemAttributes
 			{
 				ItemName "TF_WEAPON_FLAMETHROWER"
@@ -534,6 +623,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"damage bonus" 0.1
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -545,13 +635,17 @@ WaveSchedule
 			Skill Expert
 			Health 175
 			WeaponRestrictions PrimaryOnly
-			Item "Flame Thrower"
+			Item "TF_WEAPON_FLAMETHROWER"
+			Item "Traffic Cone"
 			ItemAttributes
 			{
 				ItemName "TF_WEAPON_FLAMETHROWER"
 				"mult airblast refire time" 0.1
 			}
-			Item "Traffic Cone"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Pyro_Phlog
@@ -568,6 +662,10 @@ WaveSchedule
 				ItemName "The Phlogistinator"
 				"airblast disabled" 0
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Pyro_DF
@@ -582,6 +680,10 @@ WaveSchedule
 			Item "The Monster's Stompers"
 			Item "Fallen Angel"
 			MaxVisionRange 900
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Pyro_Detonator
@@ -595,6 +697,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"blast dmg to self increased" 0
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -612,6 +715,10 @@ WaveSchedule
 				"fire rate bonus" 2.5
 				"bullets per shot bonus" 3
 				"damage bonus" 0.33
+			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -632,15 +739,33 @@ WaveSchedule
 				"weapon burn dmg increased" 1.25
 				"weapon burn time increased" 1.25
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Pyro_Axe
 		{
 			Class Pyro
-			ClassIcon pyro_fireaxe_sif
+			ClassIcon pyro_fireaxe_lite
 			Name "Fire Axe Pyro"
 			Skill Hard
 			WeaponRestrictions	MeleeOnly
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
+		}
+		
+		T_TFBot_Pyro_BackScratcher
+		{
+			Class Pyro
+			ClassIcon pyro_backscratcher_lite
+			Name "Back Scratcher Pyro"
+			Skill Hard
+			WeaponRestrictions	MeleeOnly
+			Item "The Back Scratcher"
 			CharacterAttributes
 			{
 				"cancel falling damage" 1
@@ -655,6 +780,10 @@ WaveSchedule
 			ClassIcon pyro_axtinguisher
 			WeaponRestrictions MeleeOnly
 			Item "The Axtinguisher"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Demoman_LochNLoad
@@ -664,6 +793,10 @@ WaveSchedule
 			Name "Loch n' Load Demoman"
 			Skill Normal
 			Item "The Loch-n-Load"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Demoman_Iron
@@ -672,6 +805,10 @@ WaveSchedule
 			Name "Iron Bomber Demoman"
 			Skill Normal
 			Item "The Iron Bomber"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Demoman_ClusterBomb
@@ -688,6 +825,10 @@ WaveSchedule
 				"fire rate bonus" 0.15
 				"clip size penalty" 0.75
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Demoman_Targe
@@ -697,6 +838,10 @@ WaveSchedule
 			Name "Targe Demo"
 			Skill Normal
 			Item "The Chargin' Targe"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Demoman_Sticky
@@ -723,6 +868,10 @@ WaveSchedule
 				"max pipebombs decreased" -6
 				"projectile range increased" 0.35
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Demoman_Bottle
@@ -738,6 +887,10 @@ WaveSchedule
 			{
 				ItemName "Upgradeable TF_WEAPON_BOTTLE"
 				"critboost on kill" 3
+			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -756,6 +909,10 @@ WaveSchedule
 				ItemName "TF_WEAPON_MINIGUN"
 				"attack projectiles" 1
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Heavyweapons_Heavyweight_Champ_Fast_Ignited
@@ -769,6 +926,10 @@ WaveSchedule
 				ItemName "Gloves of Running Urgently MvM"
 				"Set DamageType Ignite" 1
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Heavyweapons_Steel_Manlet
@@ -781,6 +942,10 @@ WaveSchedule
 			Item "Fists of Steel"
 			Item "The Purity Fist"
 			Item "The Eliminators Safeguard"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Engineer_Shotgun
@@ -799,6 +964,10 @@ WaveSchedule
 				"bullets per shot bonus" 3
 				"damage bonus" 0.33
 			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Crossbow_Medic
@@ -810,6 +979,10 @@ WaveSchedule
 			BehaviorModifiers Push
 			Item "The Crusader's Crossbow"
 			Item "Berliner's Bucket Helm"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Engineer_MiniSentry_Teleporter
@@ -822,6 +995,10 @@ WaveSchedule
 			TeleportWhere spawnbot
 			Attributes TeleportToHint
 			Item "The Gunslinger"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Medic_BigHeal_FixedRange
@@ -1167,6 +1344,10 @@ WaveSchedule
 			Attributes HoldFireUntilFullReload
 			WeaponRestrictions SecondaryOnly
 			Item "SMG"
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
+			}
 		}
 		
 		T_TFBot_Sniper_Carbine
@@ -1183,6 +1364,10 @@ WaveSchedule
 				ItemName "The Cleaner's Carbine"
 				"fire rate penalty" 1
 				"clip size penalty" 1
+			}
+			CharacterAttributes
+			{
+				"cancel falling damage" 1
 			}
 		}
 		
@@ -1471,11 +1656,12 @@ WaveSchedule
 			Skill Expert
 			ClassIcon pyro_airblast_armored
 			WeaponRestrictions PrimaryOnly
-			Item "Flame Thrower"
+			Item "TF_WEAPON_FLAMETHROWER"
 			ItemAttributes
 			{
 				ItemName "TF_WEAPON_FLAMETHROWER"
 				"mult airblast refire time" 0.1
+				"weapon burn dmg increased" 0.1
 			}
 			Item "Traffic Cone"
 			CharacterAttributes
@@ -3009,7 +3195,6 @@ WaveSchedule
 				ItemName "The Righteous Bison"
 				"faster reload rate" -0.8
 				"fire rate bonus" 0.5
-				"Projectile speed increased" 0.65
 				"dmg bonus vs buildings" 5
 			}
 			CharacterAttributes
@@ -3025,20 +3210,55 @@ WaveSchedule
 		T_TFBot_Giant_Soldier_Bison_Burst
 		{
 			Class Soldier
-			ClassIcon soldier_bison_spammer_giant
-			Name "Giant Burst Fire Bison Soldier"
+			ClassIcon soldier_bison_barrage
+			Name "Giant Burst Bison Soldier"
 			Health 3800
 			Skill Expert
-			WeaponRestrictions SecondaryOnly
+			WeaponRestrictions PrimaryOnly
+			Attributes HoldFireUntilFullReload
 			Attributes MiniBoss
-			Item "The Righteous Bison"
-			Item "Lord Cockswain's Pith Helmet"
 			ItemAttributes
 			{
-				ItemName "The Righteous Bison"
-				"faster reload rate" 0.6
-				"fire rate bonus" 0.1
-				"Projectile speed increased" 0.65
+				ItemName "TF_WEAPON_ROCKETLAUNCHER"
+				"clip size upgrade atomic" 26
+				"fire rate bonus" 0.001
+				"faster reload rate" 0.2
+				"energy weapon penetration" 1
+				"override projectile type" 13
+				"projectile spread angle penalty" 0
+				"projectile speed decreased" 1
+				"dmg bonus vs buildings" 5
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.4
+				"airblast vulnerability multiplier" 0.4
+				"override footstep sound set" 3
+				"cancel falling damage" 1
+			}
+		}
+		
+		T_TFBot_Giant_Soldier_Bison_Barrage
+		{
+			Class Soldier
+			ClassIcon soldier_bison_barrage
+			Name "Giant Barrage Bison Soldier"
+			Health 3800
+			Skill Expert
+			WeaponRestrictions PrimaryOnly
+			Attributes HoldFireUntilFullReload
+			Attributes MiniBoss
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_ROCKETLAUNCHER"
+				"clip size upgrade atomic" 26
+				"faster reload rate" 0.22
+				"fire rate bonus" 0.2
+				"projectile spread angle penalty" 5
+				"energy weapon penetration" 1
+				"override projectile type" 13
+				"projectile speed decreased" 1.2
 				"dmg bonus vs buildings" 5
 			}
 			CharacterAttributes
@@ -3332,7 +3552,7 @@ WaveSchedule
 			WeaponRestrictions PrimaryOnly
 			Attributes MiniBoss
 			Tag bot_giant
-			Item "Flame Thrower"
+			Item "TF_WEAPON_FLAMETHROWER"
 			ItemAttributes
 			{
 				ItemName "TF_WEAPON_FLAMETHROWER"
@@ -3552,6 +3772,47 @@ WaveSchedule
 				"damage force reduction" 0.6
 				"airblast vulnerability multiplier" 0.6
 				"override footstep sound set" 6
+				"cancel falling damage" 1
+			}
+		}
+		
+		T_TFBot_Giant_Pyro_Axe
+		{
+			Class Soldier
+			Name "Giant Axe Pyro"
+			ClassIcon pyro_fireaxe_lite_giant
+			Skill Expert
+			Health 3000
+			WeaponRestrictions MeleeOnly
+			Attributes MiniBoss
+			Tag bot_giant
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.4
+				"airblast vulnerability multiplier" 0.4
+				"override footstep sound set" 3
+				"cancel falling damage" 1
+			}
+		}
+		
+		T_TFBot_Giant_Pyro_BackScratcher
+		{
+			Class Soldier
+			Name "Giant Back Scratcher Pyro"
+			ClassIcon pyro_backscratcher_lite_giant
+			Skill Expert
+			Health 3000
+			WeaponRestrictions MeleeOnly
+			Attributes MiniBoss
+			Tag bot_giant
+			Item "The Back Scratcher"
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.4
+				"airblast vulnerability multiplier" 0.4
+				"override footstep sound set" 3
 				"cancel falling damage" 1
 			}
 		}
@@ -3830,17 +4091,19 @@ WaveSchedule
 			Attributes HoldFireUntilFullReload
 			Tag bot_giant
 			WeaponRestrictions SecondaryOnly
+			Item "Upgradeable TF_WEAPON_GRENADELAUNCHER"
+			Item "Upgradeable TF_WEAPON_PIPEBOMBLAUNCHER"
 			Item "Bomb Beanie"
 			ItemAttributes
 			{
-				ItemName "TF_WEAPON_GRENADELAUNCHER"
+				ItemName "Upgradeable TF_WEAPON_GRENADELAUNCHER"
 				"is_passive_weapon" 1
 				"override projectile type" 27
 				"fire rate penalty" 99
 			}
 			ItemAttributes
 			{
-				ItemName "TF_WEAPON_PIPEBOMBLAUNCHER"
+				ItemName "Upgradeable TF_WEAPON_PIPEBOMBLAUNCHER"
 				"faster reload rate" 0
 				"stickybomb charge rate" 0
 				"max pipebombs decreased" -6
