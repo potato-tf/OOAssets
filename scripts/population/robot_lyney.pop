@@ -833,7 +833,7 @@ WaveSchedule
 			ItemAttributes
 			{
 				ItemName "The Quick-Fix"
-				"ubercharge rate bonus" 0.1
+				"ubercharge rate bonus" 0.01
 			}
 			ItemAttributes
 			{
@@ -1371,7 +1371,7 @@ WaveSchedule
 				ItemName "TF_WEAPON_ROCKETLAUNCHER"
 				"faster reload rate" -0.8
 				"fire rate bonus" 0.5
-
+				"Projectile speed increased" 0.65
 			}
 		}
 		
@@ -2402,6 +2402,7 @@ WaveSchedule
 				ItemName "TF_WEAPON_ROCKETLAUNCHER"
 				"faster reload rate" -0.8
 				"fire rate bonus" 0.5
+				"Projectile speed increased" 0.65
 			}
 		}
 		
@@ -2415,6 +2416,7 @@ WaveSchedule
 				ItemName "TF_WEAPON_ROCKETLAUNCHER"
 				"faster reload rate" -0.8
 				"fire rate bonus" 0.5
+				"Projectile speed increased" 0.65
 			}
 		}
 		
@@ -2428,6 +2430,7 @@ WaveSchedule
 				ItemName "TF_WEAPON_ROCKETLAUNCHER"
 				"faster reload rate" -0.8
 				"fire rate bonus" 0.5
+				"Projectile speed increased" 0.65
 			}
 		}
 		
@@ -2671,7 +2674,7 @@ WaveSchedule
 		T_TFBot_Giant_Soldier_Extended_Battalion_BurstFire_Spammer
 		{
 			Template T_TFBot_Giant_Soldier_Extended_Battalion_Bugfixed
-			Name "Giant Rapid Burst Batts Soldier"
+			Name "Giant Rapid Burst Batt Soldier"
 			ClassIcon soldier_backup_burstfire_spammer_yoovy_giant
 			ItemAttributes
 			{
@@ -2766,6 +2769,7 @@ WaveSchedule
 				"damage bonus" 2.0
 				"faster reload rate" -0.8
 				"fire rate bonus" 0.35
+				"Projectile speed increased" 0.65
 			}
 			CharacterAttributes
 			{
@@ -2773,7 +2777,6 @@ WaveSchedule
 				"damage force reduction" 0.4
 				"airblast vulnerability multiplier" 0.4
 				"override footstep sound set" 3
-				"Projectile speed increased" 0.65
 				"cancel falling damage" 1
 				"blast dmg to self increased" 0
 			}
@@ -2921,7 +2924,7 @@ WaveSchedule
 				ItemName "The Cow Mangler 5000"
 				"faster reload rate" -0.8
 				"fire rate bonus" 0.5
-
+				"Projectile speed increased" 0.65
 			}
 			CharacterAttributes
 			{
@@ -2929,7 +2932,6 @@ WaveSchedule
 				"damage force reduction" 0.4
 				"airblast vulnerability multiplier" 0.4
 				"override footstep sound set" 3
-				"Projectile speed increased" 0.65
 				"cancel falling damage" 1
 				"blast dmg to self increased" 0
 			}
@@ -2951,6 +2953,7 @@ WaveSchedule
 				"faster reload rate" -0.8
 				"fire rate bonus" 0.3
 				"damage bonus" 2.0
+				"Projectile speed increased" 0.65
 			}
 			CharacterAttributes
 			{
@@ -2958,7 +2961,6 @@ WaveSchedule
 				"damage force reduction" 0.4
 				"airblast vulnerability multiplier" 0.4
 				"override footstep sound set" 3
-				"Projectile speed increased" 0.65
 				"cancel falling damage" 1
 				"blast dmg to self increased" 0
 			}
@@ -3098,6 +3100,7 @@ WaveSchedule
 				"fire rate bonus" 0.35
 				"dmg bonus vs buildings" 10
 				"dmg penalty vs players" 2
+				"Projectile speed increased" 0.65
 			}
 			CharacterAttributes
 			{
