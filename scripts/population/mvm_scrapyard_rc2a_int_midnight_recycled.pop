@@ -297,7 +297,7 @@ WaveSchedule
 				EntFire(`bombpath_arrows_left`, `TurnOff`)
 				EntFire(`bombpath_arrows_right`, `TurnOn`)
                 EntFire(`bombpath_right_relay`, `Trigger`)
-				IncludeScript(`midnight_recycled_vscript`)
+				IncludeScript(`disablesquad`)
             "
 		}
 		
@@ -768,7 +768,7 @@ WaveSchedule
 				EntFire(`bombpath_arrows_left`, `TurnOn`)
 				EntFire(`bombpath_arrows_right`, `TurnOff`)
                 EntFire(`bombpath_left_relay`, `Trigger`)
-				IncludeScript(`midnight_recycled_vscript`)
+				IncludeScript(`disablesquad`)
             "
 		}
 		
@@ -901,7 +901,7 @@ WaveSchedule
 				EntFire(`bombpath_arrows_left`, `TurnOff`)
 				EntFire(`bombpath_arrows_right`, `TurnOn`)
                 EntFire(`bombpath_right_relay`, `Trigger`)
-				IncludeScript(`midnight_recycled_vscript`)
+				IncludeScript(`disablesquad`)
             "
 		}
 
@@ -1210,7 +1210,7 @@ WaveSchedule
 				EntFire(`bombpath_arrows_left`, `TurnOff`)
 				EntFire(`bombpath_arrows_right`, `TurnOn`)
                 EntFire(`bombpath_right_relay`, `Trigger`)
-				IncludeScript(`midnight_recycled_vscript`)
+				IncludeScript(`disablesquad`)
             "
 		}
 		
@@ -1534,7 +1534,7 @@ WaveSchedule
 				EntFire(`bombpath_arrows_left`, `TurnOn`)
 				EntFire(`bombpath_arrows_right`, `TurnOff`)
                 EntFire(`bombpath_left_relay`, `Trigger`)
-				IncludeScript(`midnight_recycled_vscript`)
+				IncludeScript(`disablesquad`)
             "
 		}
 
