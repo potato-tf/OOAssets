@@ -7631,8 +7631,8 @@ for (local ent; ent = Entities.FindByName(ent, "portablestation*"); ) ent.Kill()
 				OnCase11                = "!activator,RunScriptCode,AudioExcludeListControl(10),0.0,-1"
 				OnCase12                = "!activator,RunScriptCode,AudioExcludeListControl(11),0.0,-1"
 				OnCase13                = "!activator,RunScriptCode,AudioExcludeListControl(12),0.0,-1"
-				OnCase14                = "!activator,RunScriptCode,AudioExcludeListControl(12),0.0,-1"
-				OnCase15                = "!activator,RunScriptCode,AudioExcludeListControl(12),0.0,-1"
+				OnCase14                = "!activator,RunScriptCode,AudioExcludeListControl(13),0.0,-1"
+				OnCase15                = "!activator,RunScriptCode,AudioExcludeListControl(14),0.0,-1"
 			})
 			
 			audiosettings = owner.GetScriptScope().audiosettings
