@@ -79,8 +79,8 @@ WaveSchedule
 			"sniper fires tracer" 1
 			"no damage falloff"	1
 			"special item description"	"fires one bullet that deals MLG 420 damage."
-			"reload time increased" 3
-			"fire rate penalty" 2.5
+			"reload time increased" 2.25
+			"fire rate penalty" 2.25
 			"damage bonus" 70
 			"dmg pierces resists absorbs" 1
 			"maxammo secondary reduced" 0.13
@@ -996,7 +996,8 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Medic_QuickUber_Popping_BigHeal
+					Template T_TFBot_Medic_BigHeal
+					Name "Big-Heal Medic"
 					Attributes IgnoreEnemies
 				}
 			}
@@ -3196,3 +3197,6 @@ WaveSchedule
 // Wave 6
 // Remove Armored Uber Medic
 // Change Giant Demoknight to Crit Giant Targe Grenade Demo
+
+// Wave 2
+// Remove Support Engineer
