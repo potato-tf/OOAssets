@@ -775,7 +775,7 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template T_TFBot_Giant_Soldier_Extended_Battalion_Bugfixed
+					Template T_TFBot_Giant_Soldier
 				}
 				TFBot
 				{
@@ -880,7 +880,7 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template T_TFBot_Giant_Soldier_Extended_Battalion_Bugfixed
+					Template T_TFBot_Giant_Soldier
 				}
 				TFBot
 				{
