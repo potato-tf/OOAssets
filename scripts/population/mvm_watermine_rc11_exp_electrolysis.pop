@@ -28,6 +28,18 @@ quepereza
 	PrecacheSound "woter.mp3"
     PrecacheSound "bossrushdemo.mp3"
 	BodyPartScaleSpeed 14
+	// Precache for The Foreman icon swapping
+	// Icons will not download without this
+	PrecacheGeneric "materials/hud/leaderboard_class_hyper_giant"
+	PrecacheGeneric "materials/hud/leaderboard_class_pyro_axtinguish"
+	PrecacheGeneric "materials/hud/leaderboard_class_pyro_dragon_fury_swordstone"
+	PrecacheGeneric "materials/hud/leaderboard_class_pyro_dragon_fury_burstfire_swordstone"
+	PrecacheGeneric "materials/hud/leaderboard_class_heavy_shotgun_burst_lite"
+	PrecacheGeneric "materials/hud/leaderboard_class_pyro_ricochet_nys_giant"
+	PrecacheGeneric "materials/hud/leaderboard_class_pyro_flare_hyper_giant"
+	PrecacheGeneric "materials/hud/leaderboard_class_pyro_fireaxe_lite_armored_giant"
+	PrecacheGeneric "materials/hud/leaderboard_class_pyro_ranged"
+	PrecacheGeneric "materials/hud/leaderboard_class_pyro_hyper"
 	CustomWeapon
     {
 		"matateputa"
@@ -2753,7 +2765,7 @@ quepereza
 						{
 							Target player
 							Action $SetProp$m_iszClassIcon
-							Param 		pyro_dragon_fury
+							Param 		pyro_dragon_fury_swordstone
 							Delay 0
 							Cooldown 0
 							Repeats 1
@@ -2958,7 +2970,7 @@ quepereza
 						{
 							Target player
 							Action $SetProp$m_iszClassIcon
-							Param 	heavy_shotgun_burst
+							Param 	heavy_shotgun_burst_lite
 							Delay 0
 							Cooldown 0
 							Repeats 1
