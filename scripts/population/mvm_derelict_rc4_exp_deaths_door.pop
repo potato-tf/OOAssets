@@ -619,7 +619,7 @@ Die
 		}
 	}
 	SpawnTemplate AntiFrontFlank
-	
+
 	StartingCurrency		1000
 	RespawnWaveTime 		6
 	CanBotsAttackWhileInSpawnRoom no
@@ -2492,7 +2492,7 @@ Die
 		WaveSpawn //5 groups of 5 crit persian demoknights (75)
 		{
 			Name "C"
-			Where spawnbot_scattered
+			Where spawnbot
 			TotalCount 25
 			MaxActive 7
 			SpawnCount 5
@@ -2523,7 +2523,7 @@ Die
 		WaveSpawn //5 groups of 5 crit rapidfire demomen (75)
 		{
 			Name "C"
-			Where spawnbot
+			Where spawnbot_scattered
 			TotalCount 25
 			MaxActive 9
 			SpawnCount 5
